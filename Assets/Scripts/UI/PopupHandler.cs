@@ -23,7 +23,7 @@ public class PopupHandler
         {
             if (_popupStack.Count > 0 && _popupStack.Peek().InputMode == PopupInputMode.Modeless)
             {
-                ClosePopup();
+                _popupStack.Peek().Close();
             }
         }
     }

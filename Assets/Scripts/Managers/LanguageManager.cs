@@ -9,8 +9,6 @@ public enum Language
 
 public class LanguageManager : MonoBehaviour
 {
-    private const string LANG_KEY = "Language";
-    
     private Language _currentLanguage = Language.English;
     
     public Language CurrentLanguage => _currentLanguage;
@@ -22,14 +20,13 @@ public class LanguageManager : MonoBehaviour
 
     void LoadLanguage()
     {
-        _currentLanguage = (Language)PlayerPrefs.GetInt(LANG_KEY, 0);
+        _currentLanguage = (Language)Managers.Prefs.Language;
     }
     
     public void SetLanguage(int argLanguageIndex)
     {
         var prevLang = _currentLanguage;
-        PlayerPrefs.SetInt(LANG_KEY, argLanguageIndex);
-        PlayerPrefs.Save();
+        Managers.Prefs.SetLanguage(argLanguageIndex);
         _currentLanguage = (Language)argLanguageIndex;
         Debug.Log($"Language Changed. {prevLang} -> {_currentLanguage}");
     }

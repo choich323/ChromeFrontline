@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class EntityInfo : APrefabInfo
 {
+    public int level;
     public int hp;
     public int shield;
     public float armor;
@@ -18,6 +19,8 @@ public class EntityInfo : APrefabInfo
     public float moveSpeed;
 
     public float productionTime;
+    public int goldCost;
+    public int mineralCost;
 }
 
 [CreateAssetMenu(fileName = "EntityData", menuName = "Custom/EntityData")]

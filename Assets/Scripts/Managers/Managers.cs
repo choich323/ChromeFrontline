@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
     private StringManager _stringManager;
     private LanguageManager _languageManager;
     private SoundManager _soundManager;
+    private PlayerPrefsManager _prefsManager;
     
     private CameraController _cameraController;
     
@@ -24,6 +25,7 @@ public class Managers : MonoBehaviour
     public static StringManager String => I._stringManager;
     public static LanguageManager Language => I._languageManager;
     public static SoundManager Sound => I._soundManager;
+    public static PlayerPrefsManager Prefs => I._prefsManager;
 
     public static CameraController CamController => I._cameraController;
     
@@ -68,5 +70,8 @@ public class Managers : MonoBehaviour
         
         _soundManager = GetComponent<SoundManager>();
         _soundManager.Init();
+        
+        _prefsManager = new PlayerPrefsManager();
+        _prefsManager.Init();
     }
 }

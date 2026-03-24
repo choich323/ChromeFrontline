@@ -65,7 +65,7 @@ public abstract class APopup : MonoBehaviour
         if (IsClosed) return;
 
         IsClosed = true;
-        Managers.UI.Popup.ClosePopup();
+        Managers.UI.PopupHandler.ClosePopup();
         
         _onClose?.Invoke();
     }

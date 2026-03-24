@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
     
-    public PopupHandler Popup => _popupHandler;
+    public PopupHandler PopupHandler => _popupHandler;
     
     public void Init()
     {

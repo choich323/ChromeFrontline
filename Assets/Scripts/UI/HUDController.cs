@@ -37,6 +37,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Sprite _playBtnSprite;
 
     [Header("Menu Button")]
+    [SerializeField] private Button _hqBtn;
+    [SerializeField] private Button _pauseBtn;
     [SerializeField] private GameObject _subBtnGroup;
     [SerializeField] private List<CanvasGroup> _subBtnCanvasGroupList;
     [SerializeField] private float _subMenuAnimPlayTime = 0.1f;
@@ -55,6 +57,8 @@ public class HUDController : MonoBehaviour
     {
         Clear();
         
+        _hqBtn.onClick.AddListener(OnBtnHq);
+        _pauseBtn.onClick.AddListener(OnBtnPause);
         _optionBtn.onClick.AddListener(OnBtnOption);
         _restartBtn.onClick.AddListener(OnBtnReStart);
         _exitBtn.onClick.AddListener(OnBtnExit);
@@ -142,8 +146,17 @@ public class HUDController : MonoBehaviour
             _timerText.text = $"{minutes:D2}:{seconds:D2}";
         }
     }
+
+    void OnBtnHq()
+    {
+        if(!IsPaused)
+            OnBtnPause();
+
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIHqManagement>(PrefabID.UIHqManagement);
+        popup.Init();
+    }
     
-    public void OnBtnPause()
+    void OnBtnPause()
     {
         var gm = Managers.Game;
         if (!IsPaused)
@@ -158,7 +171,7 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    public void OnBtnMenu()
+    void OnBtnMenu()
     {
         if (_menuAnimCoroutine != null)
         {
@@ -205,22 +218,22 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    private void OnBtnOption()
+    void OnBtnOption()
     {
         if(!IsPaused)
             OnBtnPause();
         
-        var popup = Managers.UI.Popup.OpenPopup<UIOption>(PrefabID.UIOption);
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIOption>(PrefabID.UIOption);
         popup.SetOnClose(OnSubBtnPopupClose);
         popup.Init();
     }
     
-    private void OnBtnReStart()
+    void OnBtnReStart()
     {
         if(!IsPaused)
             OnBtnPause();
 
-        var popup = Managers.UI.Popup.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         popup.Init();
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmRestartStage);
@@ -243,12 +256,12 @@ public class HUDController : MonoBehaviour
             OnBtnPause();
     }
     
-    private void OnBtnExit()
+    void OnBtnExit()
     {
         if(!IsPaused)
             OnBtnPause();
         
-        var popup = Managers.UI.Popup.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         popup.Init();
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmExitStage);

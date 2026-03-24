@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    private const string SENSITIVITY_KEY = "Sensitivity";
     private const float MIN_BOUNDARY_X = -8f;
     private const float MAX_BOUNDARY_X = 22f;
     private const float DEFAULT_SENSITIVITY = 0.22f;
@@ -34,7 +33,7 @@ public class CameraController : MonoBehaviour
         if(_mainCam == null)
             _mainCam = Camera.main;
         _targetX = transform.position.x;
-        _smoothSpeed = PlayerPrefs.GetFloat(SENSITIVITY_KEY, DEFAULT_SENSITIVITY);
+        SetSensitivity(DEFAULT_SENSITIVITY);
     }
 
     void Update()
@@ -109,6 +108,6 @@ public class CameraController : MonoBehaviour
     public void SetSensitivity(float argSensitivity)
     {
         _smoothSpeed = argSensitivity;
-        PlayerPrefs.SetFloat(SENSITIVITY_KEY, argSensitivity);
+        Managers.Prefs.SetSensitivity(argSensitivity);
     }
 }

@@ -26,6 +26,8 @@ public struct EntityStatus
 {
     [Header("Team")]
     public Team team;
+
+    public int curLevel;
     
     [Header("Life")]
     public int curHp;
@@ -105,6 +107,7 @@ public abstract class AEntity : MonoBehaviour
     
     void SetEntityInfo(EntityInfo argEntityInfo)
     {
+        _entityStatus.curLevel = argEntityInfo.level;
         _entityStatus.curHp = argEntityInfo.hp;
         _entityStatus.curShield = argEntityInfo.shield;
         _entityStatus.armor = argEntityInfo.armor;

@@ -5,9 +5,6 @@ using TMPro;
 
 public class UIOption : APopup
 {
-    private const string FRAME_KEY = "Frame";
-    private const string QUALITY_KEY = "Quality";
-    
     [Header("Sliders")]
     [SerializeField] private Slider _soundSlider;
     [SerializeField] private Slider _sensitivitySlider;
@@ -45,24 +42,25 @@ public class UIOption : APopup
             _sensitivitySlider.value = camController.Sensitivity;
         }
 
+        var pm = Managers.Prefs;
         _frameRateSelector.Init(
             _frameList,
-            PlayerPrefs.GetInt(FRAME_KEY, 1),
+            pm.Frame,
             index =>
             {
                 int target = index == 0 ? 30 : (index == 1 ? 60 : -1);
                 Application.targetFrameRate = target;
-                PlayerPrefs.SetInt(FRAME_KEY, index);
+                pm.SetFrame(index);
             }
         );
         
         _qualitySelector.Init(
             _qualityList,
-            PlayerPrefs.GetInt(QUALITY_KEY, 1),
+            pm.Quality,
             index =>
             {
                 QualitySettings.SetQualityLevel(index);
-                PlayerPrefs.SetInt(QUALITY_KEY, index);
+                pm.SetQuality(index);
             }
         );
         

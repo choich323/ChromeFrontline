@@ -265,6 +265,8 @@ MonoBehaviour:
   _pauseBtnImage: {fileID: 2913394675511901086}
   _pauseBtnSprite: {fileID: -708245964, guid: a37e8466236089c45b610370218b5353, type: 3}
   _playBtnSprite: {fileID: 177566260, guid: a37e8466236089c45b610370218b5353, type: 3}
+  _hqBtn: {fileID: 6915096886099839899}
+  _pauseBtn: {fileID: 808249321921023816}
   _subBtnGroup: {fileID: 7257751680341587575}
   _subBtnCanvasGroupList:
   - {fileID: 1225785360866642872}
@@ -983,6 +985,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 790034120002514247, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790034120002514247, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790034120002514247, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2275343785093099745, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1033,7 +1047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1088,6 +1102,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763914300419274436, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763914300419274436, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2581822257932498297}
@@ -1106,6 +1124,14 @@ PrefabInstance:
     - target: {fileID: 5978978221269686141, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638233635541094921, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+      propertyPath: m_Name
+      value: Hq
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638233635541094921, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547242984269989603, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1160,6 +1186,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8773453536091839399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &808249321921023816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5763914300419274436, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+  m_PrefabInstance: {fileID: 4957042609223989644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1220,6 +1257,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6915096886099839899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1962909763710841367, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+  m_PrefabInstance: {fileID: 4957042609223989644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &7257751680341587575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2338007359571644411, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}

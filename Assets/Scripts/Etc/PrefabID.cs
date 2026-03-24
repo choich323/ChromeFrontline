@@ -20,4 +20,5 @@ public enum PrefabID
     UITopHUDPanel = 10001,
     UIConfirm,
     UIOption,
+    UIHqManagement,
 }
