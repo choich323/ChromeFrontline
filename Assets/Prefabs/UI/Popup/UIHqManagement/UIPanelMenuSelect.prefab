@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1232868523470814445}
   - component: {fileID: 3417657002048032857}
   m_Layer: 5
-  m_Name: UIPanel_MenuSelect
+  m_Name: UIPanelMenuSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
