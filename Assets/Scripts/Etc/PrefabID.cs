@@ -21,5 +21,6 @@ public enum PrefabID
     UIConfirm,
     UIOption,
     UIHqManagement,
-    UISlot,
+    UISlotUnit,
+    UIEntityUnit,
 }

@@ -88,7 +88,7 @@ MonoBehaviour:
   - id: HqInfo
     value:
       en: HQ Info
-      kr: "\uBCF8\uBD80 \uC0C1\uD669\uD310"
+      kr: "\uAE30\uC9C0 \uC815\uBCF4"
   - id: Hp
     value:
       en: Hp
@@ -139,8 +139,8 @@ MonoBehaviour:
       kr: "\uC2AC\uB86F {0}"
   - id: Lv
     value:
-      en: Lv
-      kr: "\uB808\uBCA8"
+      en: Lv.{0}
+      kr: "\uB808\uBCA8{0}"
   - id: Producing
     value:
       en: Producing..

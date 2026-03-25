@@ -5,7 +5,7 @@ public class UIPanelSlotSelect : MonoBehaviour
 {
     [SerializeField] private Transform _slotParent;
 
-    private List<UISlot> _slotList = new List<UISlot>();
+    private List<UISlotUnit> _slotUnitList = new List<UISlotUnit>();
 
     public void Init()
     {
@@ -14,7 +14,7 @@ public class UIPanelSlotSelect : MonoBehaviour
     
     public void SetPanel()
     {
-        DestroySlots();
+        DestroySlotUnits();
         CreateSlots();
     }
 
@@ -29,27 +29,29 @@ public class UIPanelSlotSelect : MonoBehaviour
 
     public void CreateSlot(int argSlotIndex)
     {
-        var slotObj = Managers.Pool.Instantiate(PrefabID.UISlot);
+        var slotObj = Managers.Pool.Instantiate(PrefabID.UISlotUnit);
         if(slotObj == null)
             return;
         
         slotObj.transform.SetParent(_slotParent);
-        var slot = slotObj.GetComponent<UISlot>();
+        slotObj.transform.localScale = Vector3.one;
+        var slot = slotObj.GetComponent<UISlotUnit>();
         slot.Init(argSlotIndex);
+        _slotUnitList.Add(slot);
     }
 
-    public void DestroySlots()
+    public void DestroySlotUnits()
     {
-        foreach (var slot in _slotList)
+        foreach (var slot in _slotUnitList)
         {
-            Managers.Pool.Destroy(slot, PrefabID.UISlot);
+            Managers.Pool.Destroy(slot, PrefabID.UISlotUnit);
             slot.Destroy();
         }
-        _slotList.Clear();
+        _slotUnitList.Clear();
     }
 
     public void Destroy()
     {
-        DestroySlots();
+        DestroySlotUnits();
     }
 }

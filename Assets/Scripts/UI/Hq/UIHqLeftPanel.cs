@@ -20,5 +20,7 @@ public class UIHqLeftPanel : MonoBehaviour
         _hpValueText.text = hq.Hp.ToString();
         _shieldValueText.text = hq.Shield.ToString();
         //_entityCountValueText.text = hq.
+        _goldValueText.text = hq.Gold.ToString();
+        _mineralValueText.text = hq.Mineral.ToString();
     }
 }

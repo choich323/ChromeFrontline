@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
 
-public class UISlot : MonoBehaviour
+public class UISlotUnit : MonoBehaviour
 {
     private const int INVALID_SLOT_INDEX = -1;
     
+    [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _slotText;
 
     private int _slotIndex;
