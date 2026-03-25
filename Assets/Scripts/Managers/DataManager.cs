@@ -57,7 +57,7 @@ public class DataManager : MonoBehaviour
         {
             return stringId;
         }
-        Debug.LogError("Invalid string ID");
+        Debug.LogError($"Invalid string ID. ID:{argStringId}");
         return StringID.None;
     }
     
@@ -66,6 +66,12 @@ public class DataManager : MonoBehaviour
         return _prefabDataDict.TryGetValue(argId, out outInfo);
     }
 
+    public bool TryGetString(string argId, out string outString)
+    {
+        var id = (int)ConvertStringToStringID(argId);
+        return TryGetString(id, out outString);
+    }
+    
     public bool TryGetString(int argId, out string outString)
     {
         outString = string.Empty;

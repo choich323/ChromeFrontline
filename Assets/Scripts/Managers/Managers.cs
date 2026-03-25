@@ -50,6 +50,9 @@ public class Managers : MonoBehaviour
 
     private void InitManagers()
     {
+        _prefsManager = new PlayerPrefsManager();
+        _prefsManager.Init();
+        
         _dataManager = GetComponent<DataManager>();
         _dataManager.Init();
         
@@ -70,8 +73,5 @@ public class Managers : MonoBehaviour
         
         _soundManager = GetComponent<SoundManager>();
         _soundManager.Init();
-        
-        _prefsManager = new PlayerPrefsManager();
-        _prefsManager.Init();
     }
 }

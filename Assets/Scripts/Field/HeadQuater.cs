@@ -94,7 +94,6 @@ public class HeadQuater : MonoBehaviour
     public void Destroy()
     {
         Reset();
-        Managers.Pool.Destroy(this, PrefabID.HeadQuater);
     }
 
     [ContextMenu("ShowStatus")]

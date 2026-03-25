@@ -258,6 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5543282676529253292}
   - component: {fileID: 3340863111751874521}
+  - component: {fileID: 9127071485834224844}
   m_Layer: 5
   m_Name: UISlot
   m_TagString: Untagged
@@ -284,10 +285,10 @@ RectTransform:
   - {fileID: 3663601375952257003}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 750, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3340863111751874521
 MonoBehaviour:
@@ -309,6 +310,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &9127071485834224844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624048158271565981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b816a0fa0be23684f9e070a7e8dcd35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISlot
+  _slotText: {fileID: 881224404713480706}
 --- !u!1 &7746426109564151483
 GameObject:
   m_ObjectHideFlags: 0

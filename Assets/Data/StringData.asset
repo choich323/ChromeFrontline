@@ -29,7 +29,7 @@ MonoBehaviour:
     value:
       en: Are you sure to\n exit stage?
       kr: "\uD604\uC7AC \uC2A4\uD14C\uC774\uC9C0\uC5D0\uC11C\\n \uB098\uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
-  - id: OptionTitle
+  - id: Option
     value:
       en: Option
       kr: "\uC124\uC815"
@@ -55,16 +55,16 @@ MonoBehaviour:
       kr: "\uC5B8\uC5B4"
   - id: Frame30
     value:
-      en: 30 FPS
-      kr: "30 \uD504\uB808\uC784"
+      en: 30FPS
+      kr: "30\uD504\uB808\uC784"
   - id: Frame60
     value:
-      en: 60 FPS
-      kr: "60 \uD504\uB808\uC784"
+      en: 60FPS
+      kr: "60\uD504\uB808\uC784"
   - id: FrameMax
     value:
       en: Max
-      kr: "\uC81C\uD55C \uC5C6\uC74C"
+      kr: "\uC81C\uD55C\uC5C6\uC74C"
   - id: QualityLow
     value:
       en: Low
@@ -85,3 +85,75 @@ MonoBehaviour:
     value:
       en: Korean
       kr: "\uD55C\uAD6D\uC5B4"
+  - id: HqInfo
+    value:
+      en: HQ Info
+      kr: "\uBCF8\uBD80 \uC0C1\uD669\uD310"
+  - id: Hp
+    value:
+      en: Hp
+      kr: "\uC0DD\uBA85\uB825"
+  - id: Shield
+    value:
+      en: Shield
+      kr: "\uBCF4\uD638\uB9C9"
+  - id: Entity
+    value:
+      en: Unit
+      kr: "\uC720\uB2DB"
+  - id: MenuSelect
+    value:
+      en: Menu Select
+      kr: "\uBA54\uB274 \uC120\uD0DD"
+  - id: LaneSelect
+    value:
+      en: Lane Select
+      kr: "\uACF5\uACA9\uB85C \uC120\uD0DD"
+  - id: SlotSelect
+    value:
+      en: Slot Select
+      kr: "\uC2AC\uB86F \uC120\uD0DD"
+  - id: EntitySelect
+    value:
+      en: Unit Select
+      kr: "\uC720\uB2DB \uC120\uD0DD"
+  - id: EntityStat
+    value:
+      en: Stats
+      kr: "\uB2A5\uB825\uCE58"
+  - id: Top
+    value:
+      en: Top
+      kr: "\uC0C1\uB2E8"
+  - id: Mid
+    value:
+      en: Mid
+      kr: "\uC911\uB2E8"
+  - id: Bottom
+    value:
+      en: Bottom
+      kr: "\uD558\uB2E8"
+  - id: Slot
+    value:
+      en: Slot {0}
+      kr: "\uC2AC\uB86F {0}"
+  - id: Lv
+    value:
+      en: Lv
+      kr: "\uB808\uBCA8"
+  - id: Producing
+    value:
+      en: Producing..
+      kr: "\uC0DD\uC0B0 \uC911.."
+  - id: Produce
+    value:
+      en: Produce
+      kr: "\uC0DD\uC0B0"
+  - id: EntityUpgrade
+    value:
+      en: Unit Upgrade
+      kr: "\uC720\uB2DB \uAC15\uD654"
+  - id: HqUpgrade
+    value:
+      en: HQ Upgrade
+      kr: "\uBCF8\uBD80 \uAC15\uD654"

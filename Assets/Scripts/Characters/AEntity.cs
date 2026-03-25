@@ -63,15 +63,16 @@ public abstract class AEntity : MonoBehaviour
     
     private EntityStatus _entityStatus;
     private int _entityLayerMask;
+    private int _homeSpawnerIndex;
     private PrefabID _id;
     private ulong _uid;
     private Vector2 _direction;
     private Transform _targetHqCoreTransform;
-    private int _homeSpawnerIndex;
     private float _attackCooldownTimer;
     private float _retargetTimer;
     private AEntity _attackTarget;
     private RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
+    private Action<AEntity> _onDie;
     
     public EntityStatus EntityStatus => _entityStatus;
     public PrefabID Id => _id;
@@ -83,7 +84,7 @@ public abstract class AEntity : MonoBehaviour
     public float CurShield => _entityStatus.curShield;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(PrefabID argId, ulong argUid, Team argTeam, EntityInfo argEntityInfo, int argHomeSpawnerIndex, Transform argTargetHqCoreTransform)
+    public virtual void Init(PrefabID argId, ulong argUid, Team argTeam, EntityInfo argEntityInfo, int argHomeSpawnerIndex, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie)
     {
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
@@ -102,6 +103,7 @@ public abstract class AEntity : MonoBehaviour
         SetEntityInfo(argEntityInfo);
         _homeSpawnerIndex = argHomeSpawnerIndex;
         _targetHqCoreTransform = argTargetHqCoreTransform;
+        _onDie = argOnDie;
         _attackCooldownTimer = 0f;
     }
     
@@ -280,7 +282,7 @@ public abstract class AEntity : MonoBehaviour
         if (_entityStatus.curHp <= 0)
         {
             _entityStatus.curHp = 0;
-            Die();
+            Destroy();
         }
         else
         {
@@ -292,21 +294,13 @@ public abstract class AEntity : MonoBehaviour
     {
         
     }
-    
-    protected virtual void Die()
-    {
-        Managers.Game.GameField.RemoveEntity(this);
-        var prevId = _id;
-        Reset();
-        Managers.Pool.Destroy(this, prevId);
-    }
 
     public virtual void Destroy()
     {
-        Die();
+        _onDie?.Invoke(this);
     }
 
-    protected virtual void Reset()
+    public virtual void ResetEntity()
     {
         _entityStatus = new EntityStatus();
         _id = PrefabID.None;
@@ -336,7 +330,7 @@ public abstract class AEntity : MonoBehaviour
             var hq = _entityStatus.team == Team.Player ? field.EnemyHq : field.PlayerHq;
             hq.OnHqDamaged((int)_entityStatus.attack);
             
-            Die();
+            Destroy();
         }
     }
     

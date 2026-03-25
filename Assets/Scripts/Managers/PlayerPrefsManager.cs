@@ -7,12 +7,18 @@ public class PlayerPrefsManager
     private const string FRAME_KEY = "Frame";
     private const string QUALITY_KEY = "Quality";
     private const string LANG_KEY = "Language";
+
+    private const float DEFAULT_SOUND = 1f;
+    private const float DEFAULT_SENSITIVITY = 0.22f;
+    private const int DEFAULT_FRAME_INDEX = 1;
+    private const int DEFAULT_QUALITY_INDEX = 1;
+    private const int DEFAULT_LANG_INDEX = 0;
     
-    public float Sound => PlayerPrefs.GetFloat(SOUND_KEY);
-    public float Sensitivity => PlayerPrefs.GetFloat(SENSITIVITY_KEY);
-    public int Frame => PlayerPrefs.GetInt(FRAME_KEY);
-    public int Quality => PlayerPrefs.GetInt(QUALITY_KEY);
-    public int Language => PlayerPrefs.GetInt(LANG_KEY);
+    public float Sound => PlayerPrefs.GetFloat(SOUND_KEY, DEFAULT_SOUND);
+    public float Sensitivity => PlayerPrefs.GetFloat(SENSITIVITY_KEY, DEFAULT_SENSITIVITY);
+    public int Frame => PlayerPrefs.GetInt(FRAME_KEY, DEFAULT_FRAME_INDEX);
+    public int Quality => PlayerPrefs.GetInt(QUALITY_KEY, DEFAULT_QUALITY_INDEX);
+    public int Language => PlayerPrefs.GetInt(LANG_KEY, DEFAULT_LANG_INDEX);
     
     public void Init()
     {

@@ -15,15 +15,18 @@ public class EntitySpawner : MonoBehaviour
     private int _slotIndex = DEFAULT_SLOT_INDEX;
     private Team _team;
     private Transform _targetHqCoreTransform;
+    private Action<AEntity> _onEntityDie;
     
+    public int SlotCount => _slotList.Count;
     public Transform TargetHqCoreTransform => _targetHqCoreTransform;
     
-    public void Init(Team argTeam, Transform argTargetHqCoreTransform)
+    public void Init(Team argTeam, Transform argTargetHqCoreTransform, Action<AEntity> argOnEntityDie)
     {
         ResetSpawner();
         
         _team = argTeam;
         _targetHqCoreTransform = argTargetHqCoreTransform;
+        _onEntityDie = argOnEntityDie;
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
         {
@@ -114,7 +117,7 @@ public class EntitySpawner : MonoBehaviour
             entityObj.transform.position = transform.position;
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetHqCoreTransform);
+            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetHqCoreTransform, _onEntityDie);
             
             OnSpawn(entity);
         }
@@ -128,7 +131,6 @@ public class EntitySpawner : MonoBehaviour
     public void Destroy()
     {
         ResetSpawner();
-        Managers.Pool.Destroy(this, PrefabID.EntitySpawner);
     }
     
     [ContextMenu("Spawn")]

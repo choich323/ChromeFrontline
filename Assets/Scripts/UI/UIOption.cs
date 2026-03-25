@@ -5,6 +5,10 @@ using TMPro;
 
 public class UIOption : APopup
 {
+    private const int FRAME30 = 30;
+    private const int FRAME60 = 60;
+    private const int FRAME_MAX = -1;
+    
     [Header("Sliders")]
     [SerializeField] private Slider _soundSlider;
     [SerializeField] private Slider _sensitivitySlider;
@@ -30,6 +34,8 @@ public class UIOption : APopup
     
     public override void Init()
     {
+        base.Init();
+        
         RefreshText();
         
         _soundSlider.onValueChanged.AddListener(OnSoundChanged);
@@ -48,7 +54,7 @@ public class UIOption : APopup
             pm.Frame,
             index =>
             {
-                int target = index == 0 ? 30 : (index == 1 ? 60 : -1);
+                int target = index == 0 ? FRAME30 : (index == 1 ? FRAME60 : FRAME_MAX);
                 Application.targetFrameRate = target;
                 pm.SetFrame(index);
             }
@@ -90,11 +96,19 @@ public class UIOption : APopup
             _sensitivityValueText.text = $"{argValue * 100:F0}";
         }
     }
+
+    public override void Clear()
+    {
+        base.Clear();
+        
+        _soundSlider.onValueChanged.RemoveAllListeners();
+        _sensitivitySlider.onValueChanged.RemoveAllListeners();
+    }
     
     void RefreshText()
     {
         var sm = Managers.String;
-        _title.text = sm.GetString(StringID.OptionTitle);
+        _title.text = sm.GetString(StringID.Option);
         _soundText.text = sm.GetString(StringID.Sound);
         _sensitivityText.text = sm.GetString(StringID.Sensitivity);
         _frameRateText.text = sm.GetString(StringID.Frame);

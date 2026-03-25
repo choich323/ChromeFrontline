@@ -89,7 +89,7 @@ public class GameField : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         var spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetHqCoreTransform = isPlayer ? _enemyHqCorePosList[argSpawnerIndex] : _playerHqCorePosList[argSpawnerIndex];
-        spawner.Init(argTeam, targetHqCoreTransform);
+        spawner.Init(argTeam, targetHqCoreTransform, DestroyEntity);
         _spawnerDict[argTeam].Add(spawner);
         
         return spawner;
@@ -123,6 +123,28 @@ public class GameField : MonoBehaviour
         }
     }
 
+    public int GetSlotCount(Team argTeam)
+    {
+        if (!_spawnerDict.TryGetValue(argTeam, out var spawnerList))
+        {
+            return 0;
+        }
+        
+        return spawnerList[0].SlotCount;
+    }
+
+    public int GetEntityCount(Team argTeam)
+    {
+        int count = 0;
+        var innerDict = _entityDict[argTeam];
+        foreach (var kvp in innerDict)
+        {
+            count += kvp.Value.Count;
+        }
+
+        return count;
+    }
+    
     public bool IsGameOver()
     {
         return _playerHq.Hp <= 0 || _enemyHq.Hp <= 0;
@@ -142,18 +164,23 @@ public class GameField : MonoBehaviour
     
     void DestroySpawners()
     {
-        foreach (var spawnerList in _spawnerDict)
+        foreach (var kvp in _spawnerDict)
         {
-            foreach (var spawner in spawnerList.Value)
+            var spawnerList = kvp.Value;
+            foreach (var spawner in spawnerList)
             {
+                Managers.Pool.Destroy(spawner, PrefabID.EntitySpawner);
                 spawner.Destroy();
             }
+            spawnerList.Clear();
         }
         _spawnerDict.Clear();
     }
 
     void DestroyHqs()
     {
+        Managers.Pool.Destroy(_playerHq, PrefabID.HeadQuater);
+        Managers.Pool.Destroy(_enemyHq, PrefabID.HeadQuater);
         _playerHq.Destroy();
         _enemyHq.Destroy();
         _playerHq = null;
@@ -177,7 +204,13 @@ public class GameField : MonoBehaviour
 
         foreach (var entity in entityList)
         {
-            entity.Destroy();
+            DestroyEntity(entity);
         }
+    }
+
+    void DestroyEntity(AEntity argEntity)
+    {
+        Managers.Pool.Destroy(argEntity, argEntity.Id);
+        argEntity.ResetEntity();
     }
 }

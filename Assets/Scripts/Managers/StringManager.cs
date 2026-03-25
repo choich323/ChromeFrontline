@@ -8,6 +8,16 @@ public class StringManager : MonoBehaviour
         
     }
 
+    public string GetString(string argStringId)
+    {
+        if (Managers.Data.TryGetString(argStringId, out string str))
+        {
+            return str;
+        }
+        Debug.LogError($"No string found for ID. ID:{argStringId}");
+        return string.Empty;
+    }
+    
     public string GetString(StringID argStringId)
     {
         var id = (int)argStringId;
@@ -15,7 +25,7 @@ public class StringManager : MonoBehaviour
         {
             return str;
         }
-        Debug.LogError($"No string found for id:{id}");
+        Debug.LogError($"No string found for ID. ID:{id}");
         return string.Empty;
     }
 
@@ -28,7 +38,7 @@ public class StringManager : MonoBehaviour
         }
         catch (FormatException)
         {
-            Debug.LogError($"String not found for id:{argStringId}");
+            Debug.LogError($"String not found for ID. ID:{argStringId}");
             return string.Empty;
         }
     }

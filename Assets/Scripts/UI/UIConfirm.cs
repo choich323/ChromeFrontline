@@ -15,7 +15,16 @@ public class UIConfirm : APopup
     
     public override void Init()
     {
+        base.Init();
+        
         _cancelBtn.onClick.AddListener(Close);
+    }
+
+    public override void Clear()
+    {
+        base.Clear();
+        
+        _cancelBtn.onClick.RemoveAllListeners();
     }
 
     public void SetData(string argMsg, Action argConfirmAction, Action argCancelAction, string argConfirmText, string argCancelText)

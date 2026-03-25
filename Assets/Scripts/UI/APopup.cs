@@ -34,8 +34,10 @@ public abstract class APopup : MonoBehaviour
     public PopupInputMode InputMode => _inputMode;
     public bool IsClosed { get; private set; } = true;
 
-    protected virtual void Awake()
+    public virtual void Init()
     {
+        Clear();
+        
         if (_closeButton != null)
         {
             _closeButton.onClick.AddListener(Close);
@@ -50,8 +52,24 @@ public abstract class APopup : MonoBehaviour
         }
     }
 
-    public abstract void Init();
+    public virtual void Clear()
+    {
+        _onClose = null;
+        
+        if (_closeButton != null)
+        {
+            _closeButton.onClick.RemoveAllListeners();
+        }
 
+        if (_dimmedBg != null && _inputMode == PopupInputMode.Modeless)
+        {
+            if(_dimmedBg.TryGetComponent<Button>(out var btn))
+            {
+                btn.onClick.RemoveAllListeners();
+            }
+        }
+    }
+    
     public virtual void Open()
     {
         if (!IsClosed) return;
@@ -65,7 +83,6 @@ public abstract class APopup : MonoBehaviour
         if (IsClosed) return;
 
         IsClosed = true;
-        Managers.UI.PopupHandler.ClosePopup();
         
         _onClose?.Invoke();
     }

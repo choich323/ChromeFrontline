@@ -154,6 +154,7 @@ public class HUDController : MonoBehaviour
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIHqManagement>(PrefabID.UIHqManagement);
         popup.Init();
+        popup.SetOnClose(OnBtnPopupClose);
     }
     
     void OnBtnPause()
@@ -224,8 +225,8 @@ public class HUDController : MonoBehaviour
             OnBtnPause();
         
         var popup = Managers.UI.PopupHandler.OpenPopup<UIOption>(PrefabID.UIOption);
-        popup.SetOnClose(OnSubBtnPopupClose);
         popup.Init();
+        popup.SetOnClose(OnBtnPopupClose);
     }
     
     void OnBtnReStart()
@@ -239,7 +240,7 @@ public class HUDController : MonoBehaviour
         string msg = sm.GetString(StringID.ConfirmRestartStage);
         string confirm = sm.GetString(StringID.Yes);
         string cancel = sm.GetString(StringID.No);
-        popup.SetData(msg, OnConfirm, OnSubBtnPopupClose, confirm, cancel);
+        popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel);
 
         void OnConfirm()
         {
@@ -250,10 +251,11 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    void OnSubBtnPopupClose()
+    void OnBtnPopupClose()
     {
         if(IsPaused)
             OnBtnPause();
+        Managers.UI.PopupHandler.ClosePopup();
     }
     
     void OnBtnExit()
@@ -267,7 +269,7 @@ public class HUDController : MonoBehaviour
         string msg = sm.GetString(StringID.ConfirmExitStage);
         string confirm = sm.GetString(StringID.Yes);
         string cancel = sm.GetString(StringID.No);
-        popup.SetData(msg, OnConfirm, OnSubBtnPopupClose, confirm, cancel);
+        popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel);
 
         void OnConfirm()
         {

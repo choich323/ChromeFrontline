@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2336058835145595212}
   - component: {fileID: 7357932837328516192}
   - component: {fileID: 7986317989283681335}
+  - component: {fileID: 3874291664735962823}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3874291664735962823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281217266301024577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringId: SlotSelect
+  _text: {fileID: 1145390967892228540}
 --- !u!1 &1815716959870875806
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453905179255608979}
   - component: {fileID: 1326413403876779114}
+  - component: {fileID: 2319261312163018486}
   m_Layer: 5
   m_Name: UIPanelSlotSelect
   m_TagString: Untagged
@@ -502,7 +518,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7635003658314598934}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -528,6 +544,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2319261312163018486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635003658314598934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed2c0a49dfefe54eba759973c3c8e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIPanelSlotSelect
+  _slotParent: {fileID: 1971038391762845302}
 --- !u!1 &8013440657381113375
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,15 +741,7 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5543282676529253292, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5543282676529253292, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5543282676529253292, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5543282676529253292, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
@@ -786,10 +807,76 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7829828029387302124, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6085287687320585344}
+    - targetCorrespondingSourceObject: {fileID: 1051209836893013772, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1900716028645503133}
   m_SourcePrefab: {fileID: 100100000, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+--- !u!1 &746936463349853717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1051209836893013772, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+  m_PrefabInstance: {fileID: 345373127031040281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1900716028645503133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746936463349853717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringId: Producing
+  _text: {fileID: 7443329022296060081}
 --- !u!224 &5199037703982473909 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5543282676529253292, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
   m_PrefabInstance: {fileID: 345373127031040281}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7443329022296060081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7171708938636319144, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+  m_PrefabInstance: {fileID: 345373127031040281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &7521609635508276725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7829828029387302124, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+  m_PrefabInstance: {fileID: 345373127031040281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6085287687320585344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521609635508276725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringId: Lv
+  _text: {fileID: 8974888531304833936}
+--- !u!114 &8974888531304833936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8666674550802500233, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+  m_PrefabInstance: {fileID: 345373127031040281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
