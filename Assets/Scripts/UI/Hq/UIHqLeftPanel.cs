@@ -19,7 +19,7 @@ public class UIHqLeftPanel : MonoBehaviour
         var hq = Managers.Game.GameField.PlayerHq;
         _hpValueText.text = hq.Hp.ToString();
         _shieldValueText.text = hq.Shield.ToString();
-        //_entityCountValueText.text = hq.
+        _entityCountValueText.text = hq.GetEntityCount().ToString();
         _goldValueText.text = hq.Gold.ToString();
         _mineralValueText.text = hq.Mineral.ToString();
     }

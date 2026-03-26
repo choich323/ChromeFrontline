@@ -14,19 +14,18 @@ public class EntitySpawner : MonoBehaviour
     private List<Coroutine> _coroutineList = new List<Coroutine>();
     private int _slotIndex = DEFAULT_SLOT_INDEX;
     private Team _team;
-    private Transform _targetHqCoreTransform;
-    private Action<AEntity> _onEntityDie;
+    private Transform _targetTransform;
+    private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
     
     public int SlotCount => _slotList.Count;
-    public Transform TargetHqCoreTransform => _targetHqCoreTransform;
+    public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Transform argTargetHqCoreTransform, Action<AEntity> argOnEntityDie)
+    public void Init(Team argTeam, Transform argTargetTransform)
     {
         ResetSpawner();
         
         _team = argTeam;
-        _targetHqCoreTransform = argTargetHqCoreTransform;
-        _onEntityDie = argOnEntityDie;
+        _targetTransform = argTargetTransform;
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
         {
@@ -43,7 +42,7 @@ public class EntitySpawner : MonoBehaviour
         _coroutineList.Add(null);
     }
 
-    public void ResetSpawner()
+    void ResetSpawner()
     {
         StopAllCoroutines();
         _coroutineList.Clear();
@@ -56,7 +55,7 @@ public class EntitySpawner : MonoBehaviour
         
         _slotIndex = DEFAULT_SLOT_INDEX;
         _team = Team.None;
-        _targetHqCoreTransform = null;
+        _targetTransform = null;
     }
 
     void OnSlotTargetChanged(int argSlotIndex)
@@ -64,7 +63,7 @@ public class EntitySpawner : MonoBehaviour
         StartSpawn(argSlotIndex);
     }
 
-    public void StopSpawn(int argSlotIndex)
+    void StopSpawn(int argSlotIndex)
     {
         if (_coroutineList[argSlotIndex] != null)
         {
@@ -73,7 +72,7 @@ public class EntitySpawner : MonoBehaviour
         }
     }
 
-    public void StartSpawn(int argSlotIndex)
+    void StartSpawn(int argSlotIndex)
     {
         if (argSlotIndex < 0 || argSlotIndex >= _slotList.Count)
         {
@@ -117,7 +116,7 @@ public class EntitySpawner : MonoBehaviour
             entityObj.transform.position = transform.position;
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetHqCoreTransform, _onEntityDie);
+            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity);
             
             OnSpawn(entity);
         }
@@ -125,12 +124,70 @@ public class EntitySpawner : MonoBehaviour
 
     void OnSpawn(AEntity argEntity)
     {
-        Managers.Game.GameField.AddEntity(argEntity);
+        AddEntity(argEntity);
     }
 
     public void Destroy()
     {
+        DestroyEntities();
+        
         ResetSpawner();
+    }
+    
+    void AddEntity(AEntity argEntity)
+    {
+        Type type = argEntity.GetType();
+        if (!_entityDict.ContainsKey(type))
+        {
+            _entityDict[type] = new HashSet<AEntity>();
+        }
+        _entityDict[type].Add(argEntity);
+    }
+
+    void RemoveEntity(AEntity argEntity)
+    {
+        Managers.Pool.Destroy(argEntity, argEntity.Id);
+        
+        Type type = argEntity.GetType();
+        if (_entityDict.TryGetValue(type, out var entitySet))
+        {
+            entitySet.Remove(argEntity);
+        }
+        argEntity.ResetEntity();
+    }
+    
+    public int GetEntityCount()
+    {
+        int count = 0;
+        foreach (var kvp in _entityDict)
+        {
+            count += kvp.Value.Count;
+        }
+
+        return count;
+    }
+    
+    void DestroyEntities()
+    {
+        List<AEntity> entityList = new List<AEntity>();
+        foreach(var kvp in _entityDict)
+        {
+            foreach (var entity in kvp.Value)
+            {
+                entityList.Add(entity);
+            }
+        }
+        _entityDict.Clear();
+
+        foreach (var entity in entityList)
+        {
+            DestroyEntity(entity);
+        }
+    }
+
+    public void DestroyEntity(AEntity argEntity)
+    {
+        RemoveEntity(argEntity);
     }
     
     [ContextMenu("Spawn")]

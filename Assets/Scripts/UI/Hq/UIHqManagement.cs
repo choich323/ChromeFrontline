@@ -16,6 +16,8 @@ public class UIHqManagement : APopup
 
     public override void Close()
     {
+        // menu select 패널일 때만 닫히도록 하고, 나머지는 패널 복귀로 하도록 수정.
+        
         _panelSlotSelect.Destroy();
         
         base.Close();

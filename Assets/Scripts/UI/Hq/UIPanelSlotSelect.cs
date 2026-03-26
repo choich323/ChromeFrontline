@@ -20,7 +20,7 @@ public class UIPanelSlotSelect : MonoBehaviour
 
     public void CreateSlots()
     {
-        int slotCount = Managers.Game.GameField.GetSlotCount(Team.Player);
+        int slotCount = Managers.Game.GameField.PlayerHq.GetSlotCount();
         for (int i = 0; i < slotCount; i++)
         {
             CreateSlot(i);
