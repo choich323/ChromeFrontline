@@ -154,14 +154,7 @@ public class HUDController : MonoBehaviour
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIHqManagement>(PrefabID.UIHqManagement);
         popup.Init();
-        popup.SetOnClose(OnBtnHqPopupClose);
-
-        void OnBtnHqPopupClose()
-        {
-            if(!IsPaused)
-                OnBtnPause();
-            
-        }
+        popup.SetOnClose(OnBtnPopupClose);
     }
     
     void OnBtnPause()
