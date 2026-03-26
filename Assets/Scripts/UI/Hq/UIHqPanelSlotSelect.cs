@@ -1,21 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIPanelSlotSelect : MonoBehaviour
+public class UIHqPanelSlotSelect : AUIHqPanelSelect
 {
     [SerializeField] private Transform _slotParent;
 
     private List<UISlotUnit> _slotUnitList = new List<UISlotUnit>();
 
-    public void Init()
+    public override void SetPanel()
     {
-        SetPanel();
-    }
-    
-    public void SetPanel()
-    {
+        _panelType = HqRightPanelType.Slot;
         DestroySlotUnits();
         CreateSlots();
+        SetBtns();
     }
 
     public void CreateSlots()
@@ -40,6 +38,14 @@ public class UIPanelSlotSelect : MonoBehaviour
         _slotUnitList.Add(slot);
     }
 
+    void SetBtns()
+    {
+        foreach (var slot in _slotUnitList)
+        {
+            slot.SetBtnAction(_goToPanel);
+        }
+    }
+    
     public void DestroySlotUnits()
     {
         foreach (var slot in _slotUnitList)
@@ -50,8 +56,9 @@ public class UIPanelSlotSelect : MonoBehaviour
         _slotUnitList.Clear();
     }
 
-    public void Destroy()
+    public override void Destroy()
     {
         DestroySlotUnits();
+        _transitionContent.lane = Lane.None;
     }
 }

@@ -153,7 +153,6 @@ public class HUDController : MonoBehaviour
             OnBtnPause();
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIHqManagement>(PrefabID.UIHqManagement);
-        popup.Init();
         popup.SetOnClose(OnBtnPopupClose);
     }
     
@@ -225,7 +224,6 @@ public class HUDController : MonoBehaviour
             OnBtnPause();
         
         var popup = Managers.UI.PopupHandler.OpenPopup<UIOption>(PrefabID.UIOption);
-        popup.Init();
         popup.SetOnClose(OnBtnPopupClose);
     }
     
@@ -235,7 +233,6 @@ public class HUDController : MonoBehaviour
             OnBtnPause();
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
-        popup.Init();
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmRestartStage);
         string confirm = sm.GetString(StringID.Yes);
@@ -264,7 +261,6 @@ public class HUDController : MonoBehaviour
             OnBtnPause();
         
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
-        popup.Init();
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmExitStage);
         string confirm = sm.GetString(StringID.Yes);

@@ -1138,6 +1138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232868523470814445}
   - component: {fileID: 3417657002048032857}
+  - component: {fileID: -8293053391480910712}
   m_Layer: 5
   m_Name: UIPanelMenuSelect
   m_TagString: Untagged
@@ -1178,6 +1179,23 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-8293053391480910712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7670921089024722423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb977a229bf02f4b94dee16785202c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHqPanelMenuSelect
+  _canvasGroup: {fileID: 3417657002048032857}
+  _rectTransform: {fileID: 1232868523470814445}
+  _btnProduce: {fileID: 4806576021364194081}
+  _btnEntityUpgrade: {fileID: 5540650045108713473}
+  _btnHqUpgrade: {fileID: 4728022848457201340}
 --- !u!1 &8639324795419151738
 GameObject:
   m_ObjectHideFlags: 0

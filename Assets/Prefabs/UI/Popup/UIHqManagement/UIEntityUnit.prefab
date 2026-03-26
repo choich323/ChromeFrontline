@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 3769354881191610628}
   - component: {fileID: 6268979061867476337}
   - component: {fileID: 9199111656930653134}
+  - component: {fileID: 5917312327898516713}
   m_Layer: 5
   m_Name: UIEntityUnit
   m_TagString: Untagged
@@ -603,6 +604,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5917312327898516713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073832685670674997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e718222a1ec814db5892da7c55437f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIEntityUnit
 --- !u!1 &4174978301373508582
 GameObject:
   m_ObjectHideFlags: 0

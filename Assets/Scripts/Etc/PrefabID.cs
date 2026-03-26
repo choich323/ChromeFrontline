@@ -23,4 +23,6 @@ public enum PrefabID
     UIHqManagement,
     UISlotUnit,
     UIEntityUnit,
+    
+    UIEntityStat = 10011,
 }
