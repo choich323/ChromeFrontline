@@ -40,30 +40,43 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
         slot.Init(argSlotIndex, _transitionContent.lane);
         _slotUnitList.Add(slot);
         SetBtn(slot);
-        SubscribeSpawner(argSlotIndex);
+        SubscribeSlotProgress(argSlotIndex);
     }
 
-    void SubscribeSpawner(int argSlotIndex)
+    void SubscribeSlotProgress(int argSlotIndex)
     {
         var lane = _transitionContent.lane;
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)lane);
-        spawner.GetSlot(argSlotIndex).OnSlotProgressChanged += RefreshSlotUI;
+        if (spawner == null) return;
+        
+        var slot = spawner.GetSlot(argSlotIndex);
+        if (slot == null) return;
+        
+        slot.OnSlotProgressChanged += RefreshSlotUI;
     }
 
-    void UnScribeSpawner()
+    void UnSubscribeSlotProgress()
     {
         var lane = _transitionContent.lane;
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)lane);
+        if (spawner == null) return;
         for (int i = 0; i < _slotUnitList.Count; i++)
         {
-            spawner.GetSlot(i).OnSlotProgressChanged -= RefreshSlotUI;
+            var slot = spawner.GetSlot(i);
+            if (slot == null) continue;
+            
+            slot.OnSlotProgressChanged -= RefreshSlotUI;
         }
     }
     
     void RefreshSlotUI(int argSlotIndex, float argProgress)
     {
+        if (argSlotIndex < 0 || argSlotIndex >= _slotUnitList.Count)
+            return;
+        
         var slotUnit = _slotUnitList[argSlotIndex];
         slotUnit.RefreshProgress(argProgress);
+        slotUnit.SetEntityInfo();
     }
 
     void SetBtn(UISlotUnit argSlot)
@@ -83,7 +96,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
 
     public override void Destroy()
     {
-        UnScribeSpawner();
+        UnSubscribeSlotProgress();
         DestroySlotUnits();
         _transitionContent.lane = Lane.None;
     }

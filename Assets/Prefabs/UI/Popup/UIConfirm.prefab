@@ -789,7 +789,7 @@ MonoBehaviour:
   m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 36
+  m_fontSizeMin: 24
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5698dca421efe48a6cd0d118835c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIConfirm
-  _action: 2
+  _action: 1
   _inputMode: 2
   _closeButton: {fileID: 0}
   _dimmedBg: {fileID: 1782928924687994297}

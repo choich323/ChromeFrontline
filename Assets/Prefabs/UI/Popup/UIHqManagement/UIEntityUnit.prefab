@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: _Lv.3
+  m_text: _lv.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 28
   m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 28
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -322,8 +322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 200, y: 45}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 45}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3440316589204441237
 CanvasRenderer:
@@ -380,14 +380,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 26
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 26
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -616,6 +616,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e718222a1ec814db5892da7c55437f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIEntityUnit
+  _btnSelect: {fileID: 9199111656930653134}
+  _icon: {fileID: 125614596945357699}
+  _levelText: {fileID: 64445557687814177}
+  _nameText: {fileID: 4791098656656751927}
+  _productionTimeText: {fileID: 3424247519875465540}
+  _goldText: {fileID: 6788236936070433770}
+  _mineralText: {fileID: 4458117825149967851}
+  _typeTagText: {fileID: 5899362642700127665}
+  _combatRoleTagText: {fileID: 7619627894658601323}
+  _combatRole: {fileID: 7085410685710829346}
 --- !u!1 &4174978301373508582
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -15}
+  m_AnchoredPosition: {x: 85, y: -15}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &3613681771454481211
@@ -792,7 +802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 750497148797742381}
   m_Layer: 5
-  m_Name: Tag
+  m_Name: Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -876,7 +886,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 40
+  m_Spacing: 45
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -894,7 +904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6385095527432746622}
   m_Layer: 5
-  m_Name: Tag (1)
+  m_Name: CombatRole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,8 +965,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 120, y: 45}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 125, y: 45}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &499877265390717271
 CanvasRenderer:
@@ -1016,11 +1026,11 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 24
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1278,6 +1288,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4429860903441001332}
     m_Modifications:
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_overflowMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2181155764000884162, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_Name
       value: Time
@@ -1367,6 +1385,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+--- !u!114 &3424247519875465540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+  m_PrefabInstance: {fileID: 2804210512601237747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &8423928217346638043 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
@@ -1380,6 +1409,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4429860903441001332}
     m_Modifications:
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_overflowMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2181155764000884162, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_Name
       value: Mineral
@@ -1481,6 +1518,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+--- !u!114 &4458117825149967851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+  m_PrefabInstance: {fileID: 3797021475921548380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &7403067196294831220 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
@@ -1494,6 +1542,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4429860903441001332}
     m_Modifications:
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_overflowMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2181155764000884162, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_Name
       value: Gold
@@ -1600,3 +1656,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
   m_PrefabInstance: {fileID: 6294758939835351645}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6788236936070433770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+  m_PrefabInstance: {fileID: 6294758939835351645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI

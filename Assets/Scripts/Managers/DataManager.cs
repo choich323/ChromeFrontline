@@ -41,7 +41,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    PrefabID ConvertStringToPrefabID(string argPrefabId)
+    public PrefabID ConvertStringToPrefabID(string argPrefabId)
     {
         if (Enum.TryParse(argPrefabId, true, out PrefabID prefabId))
         {
@@ -51,7 +51,7 @@ public class DataManager : MonoBehaviour
         return PrefabID.None;
     }
 
-    StringID ConvertStringToStringID(string argStringId)
+    public StringID ConvertStringToStringID(string argStringId)
     {
         if (Enum.TryParse(argStringId, true, out StringID stringId))
         {

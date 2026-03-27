@@ -27,9 +27,12 @@ public class UISlotUnit : MonoBehaviour
     {
         SetSlotIndex(argSlotIndex);
         SetLane(argLane);
-        
+        SetEntityInfo();
+
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)argLane);
+        if (spawner == null) return;
         var slot = spawner.GetSlot(argSlotIndex);
+        if (slot == null) return;
         RefreshProgress(slot.GetProgress());
     }
     
@@ -38,11 +41,26 @@ public class UISlotUnit : MonoBehaviour
         _slotIndex = argSlotIndex;
     }
 
-    public void SetEntityInfo(PrefabID argTargetId)
+    public void SetEntityInfo()
     {
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        if (spawner == null) return;
+        
+        var slot = spawner.GetSlot(_slotIndex);
+        if (slot == null) return;
+        
+        var id = slot.GetTargetId();
+        
         var dm = Managers.Data;
-        dm.TryGetPrefabInfo((int)argTargetId, out var info);
-        _targetId = argTargetId;
+        dm.TryGetPrefabInfo((int)id, out var info);
+        if (info == null)
+        {
+            _levelText.text = string.Empty;
+            // icon image setting
+            return;
+        }
+        
+        _targetId = id;
         var entityInfo = info as EntityInfo;
         _targetLevel = entityInfo.level;
         // TODO: icon 이미지도 세팅해야 한다.
@@ -56,7 +74,7 @@ public class UISlotUnit : MonoBehaviour
         var sm = Managers.String;
         
         _slotText.text = sm.GetString(StringID.Slot, _slotIndex + 1);
-        _progressText.text = $"{argProgress}%";
+        _progressText.text = $"{(argProgress * 100):N0}%";
         _progressSlider.value = argProgress;
 
         if (_targetId != PrefabID.None && _targetLevel > 0)

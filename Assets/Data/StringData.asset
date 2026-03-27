@@ -157,3 +157,32 @@ MonoBehaviour:
     value:
       en: HQ Upgrade
       kr: "\uBCF8\uBD80 \uAC15\uD654"
+  - id: ConfirmEntitySelect
+    value:
+      en: Stop current producing\n and switch to the selected unit.
+      kr: "\uAE30\uC874 \uC720\uB2DB \uC0DD\uC0B0\uC744 \uBA48\uCD94\uACE0,\\n\uC120\uD0DD\uD55C
+        \uC720\uB2DB\uC744 \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
+  - id: Pioneer
+    value:
+      en: Pioneer
+      kr: "\uAC1C\uCC99\uC790"
+  - id: Alien
+    value:
+      en: Alien
+      kr: "\uC5D0\uC5B4\uB9AC\uC5B8"
+  - id: Melee
+    value:
+      en: Melee
+      kr: "\uADFC\uAC70\uB9AC"
+  - id: Range
+    value:
+      en: Range
+      kr: "\uC6D0\uAC70\uB9AC"
+  - id: MainDps
+    value:
+      en: Main DPS
+      kr: "\uBA54\uC778 \uB51C\uB7EC"
+  - id: MainTank
+    value:
+      en: Main Tank
+      kr: "\uBA54\uC778 \uD0F1\uCEE4"

@@ -107,8 +107,8 @@ public class HUDController : MonoBehaviour
         _shieldSlider.value = shieldRatio;
         var shieldText = shieldRatio <= 0 ? "" : $"+{shieldRatio * HUNDRED_PERCENT:N0}%";
         _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%" + shieldText;
-        _goldText.text = $"{curGold:N0}";
-        _mineralText.text = $"{curMineral:N0}";
+        _goldText.text = $"{curGold}";
+        _mineralText.text = $"{curMineral}";
         
         UpdateHpBarColor(hpRatio);
     }

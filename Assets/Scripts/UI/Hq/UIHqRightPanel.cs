@@ -47,7 +47,7 @@ public class UIHqRightPanel : MonoBehaviour
         foreach (var panel in _panelList)
         {
             panel.gameObject.SetActive(false);
-            panel.Init(GoToPanel);
+            panel.Init(GoToPanel, GoBack);
             _panelDict.Add(panel.PanelType, panel);
         }
 
@@ -89,8 +89,10 @@ public class UIHqRightPanel : MonoBehaviour
     {
         if (_panelStack.Count > 0)
         {
-            var prevType = _panelStack.Pop();
-            Transition(prevType, true);
+            var nextPanelType = _panelStack.Pop();
+            var prevPanel = _panelDict[_curType];
+            prevPanel.OnBeforeGoBackTransition();
+            Transition(nextPanelType, true);
         }
         else
         {
@@ -100,42 +102,42 @@ public class UIHqRightPanel : MonoBehaviour
     
     void Transition(HqRightPanelType argNextType, bool argIsGoBack)
     {
-        var removePanel = _panelDict[_curType];
-        var addPanel = _panelDict[argNextType];
+        var prevPanel = _panelDict[_curType];
+        var nextPanel = _panelDict[argNextType];
 
-        if (removePanel == null || addPanel == null)
+        if (prevPanel == null || nextPanel == null)
         {
             Debug.LogError($"Can't find panels. curPanelType:{_curType}, nextPanelType:{argNextType}");
             return;
         }
         
         // 상호작용과 레이캐스트 설정
-        removePanel.CanvasGroup.interactable = removePanel.CanvasGroup.blocksRaycasts = false;
+        prevPanel.CanvasGroup.interactable = prevPanel.CanvasGroup.blocksRaycasts = false;
         
         // 활성화 패널을 켜고 알파만 0으로
-        addPanel.gameObject.SetActive(true);
-        addPanel.CanvasGroup.alpha = 0f;
+        nextPanel.gameObject.SetActive(true);
+        nextPanel.CanvasGroup.alpha = 0f;
         
         // 시작 위치 설정
         float startX = argIsGoBack ? -_slideDistance : _slideDistance;
-        addPanel.RectTransform.anchoredPosition = new Vector2(startX, 0);
+        nextPanel.RectTransform.anchoredPosition = new Vector2(startX, 0);
 
         // 트랜지션 시간동안 이전 패널을 투명하게 만들고
-        removePanel.CanvasGroup.DOFade(0, _transitionDuration).SetUpdate(true);
+        prevPanel.CanvasGroup.DOFade(0, _transitionDuration).SetUpdate(true);
         // 동일한 시간동안 새로운 패널을 선명하게 만든다
-        addPanel.CanvasGroup.DOFade(1, _transitionDuration).SetUpdate(true);
+        nextPanel.CanvasGroup.DOFade(1, _transitionDuration).SetUpdate(true);
         // 그러면서 위치를 중앙으로 이동시키고, 종료 후 이전 패널은 비활성화.
-        addPanel.RectTransform.DOAnchorPos(Vector2.zero, _transitionDuration)
+        nextPanel.RectTransform.DOAnchorPos(Vector2.zero, _transitionDuration)
             .SetEase(Ease.OutCubic)
             .SetUpdate(true)
             .OnComplete(() =>
             {
-                addPanel.CanvasGroup.interactable = addPanel.CanvasGroup.blocksRaycasts = true;
-                removePanel.gameObject.SetActive(false);
+                nextPanel.CanvasGroup.interactable = nextPanel.CanvasGroup.blocksRaycasts = true;
+                prevPanel.gameObject.SetActive(false);
 
             });
         _curType = argNextType;
-        addPanel.SetPanel();
+        nextPanel.SetPanel();
         // 뒤로가기 키 제어
         if (_panelStack.Count <= 0)
         {

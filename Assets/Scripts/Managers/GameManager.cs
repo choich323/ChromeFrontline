@@ -44,8 +44,9 @@ public class GameManager : MonoBehaviour
         _gameField = gameFieldObj.GetComponent<GameField>();
         _gameField.Init();
         
-        // TODO: 임시로 하나를 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
+        // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
         _unlockEntityIDList.Add(PrefabID.Pioneer);
+        _unlockEntityIDList.Add(PrefabID.Alien);
     }
     
     public ulong GetNewUid()

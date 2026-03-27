@@ -42,4 +42,17 @@ public enum StringID
     Produce,
     EntityUpgrade,
     HqUpgrade,
+    ConfirmEntitySelect,
+    
+    // type tag
+    Melee = 9001,
+    Range,
+    
+    // combat role tag
+    MainDps = 9101,
+    MainTank,
+    
+    // Entity Name
+    Pioneer = 10001,
+    Alien,
 }

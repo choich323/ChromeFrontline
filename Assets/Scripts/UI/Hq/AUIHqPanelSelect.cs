@@ -7,6 +7,7 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
     [SerializeField] private RectTransform _rectTransform;
 
     protected Action<HqRightPanelType, HqPanelTransitionContent> _goToPanel;
+    protected Action _goBack;
     protected HqRightPanelType _panelType;
     protected HqPanelTransitionContent _transitionContent;
     
@@ -14,9 +15,10 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
     public HqRightPanelType PanelType => _panelType;
     public RectTransform RectTransform => _rectTransform;
 
-    public virtual void Init(Action<HqRightPanelType, HqPanelTransitionContent> argGoToPanel)
+    public virtual void Init(Action<HqRightPanelType, HqPanelTransitionContent> argGoToPanel, Action argGoBack)
     {
         _goToPanel = argGoToPanel;
+        _goBack = argGoBack;
         
         SetType();
     }
@@ -26,6 +28,11 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
         _transitionContent = argContent;
     }
 
+    public virtual void OnBeforeGoBackTransition()
+    {
+        Destroy();
+    }
+    
     public abstract void SetType();
     public abstract void SetPanel();
     public abstract void Destroy();
