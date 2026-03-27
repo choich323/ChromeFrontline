@@ -56,7 +56,8 @@ public class UISlotUnit : MonoBehaviour
         if (info == null)
         {
             _levelText.text = string.Empty;
-            // icon image setting
+            // TODO: icon image setting
+            
             return;
         }
         
@@ -114,6 +115,8 @@ public class UISlotUnit : MonoBehaviour
     
     public void Destroy()
     {
+        SetEntityInfo();
+        RefreshProgress(0);
         _slotIndex = INVALID_SLOT_INDEX;
         _targetLevel = 0;
         _targetId = PrefabID.None;

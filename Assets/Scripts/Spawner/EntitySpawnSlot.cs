@@ -65,6 +65,7 @@ public class EntitySpawnSlot
         _targetId = INVALID_TARGET_ID;
         _progress = DEFALUT_PROGRESS;
         _onTargetChange = null;
+        _onSlotProgressChanged = null;
     }
 
     public void Destroy()

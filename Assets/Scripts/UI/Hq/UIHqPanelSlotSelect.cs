@@ -15,7 +15,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
     
     public override void SetPanel()
     {
-        DestroySlotUnits();
+        Clear();
         CreateSlots();
     }
 
@@ -31,7 +31,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
     public void CreateSlot(int argSlotIndex)
     {
         var slotObj = Managers.Pool.Instantiate(PrefabID.UISlotUnit);
-        if(slotObj == null)
+        if (slotObj == null)
             return;
         
         slotObj.transform.SetParent(_slotParent);
@@ -52,6 +52,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
         var slot = spawner.GetSlot(argSlotIndex);
         if (slot == null) return;
         
+        slot.OnSlotProgressChanged -= RefreshSlotUI;
         slot.OnSlotProgressChanged += RefreshSlotUI;
     }
 
@@ -94,10 +95,15 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
         _slotUnitList.Clear();
     }
 
-    public override void Destroy()
+    void Clear()
     {
         UnSubscribeSlotProgress();
         DestroySlotUnits();
+    }
+    
+    public override void Destroy()
+    {
+        Clear();
         _transitionContent.lane = Lane.None;
     }
 }
