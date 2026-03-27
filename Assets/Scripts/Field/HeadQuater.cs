@@ -101,6 +101,15 @@ public class HeadQuater : MonoBehaviour
         }
         return _entitySpawnerRightPosList[argSpawnerIndex];
     }
+
+    public EntitySpawner GetSpawner(int argSpawnerIndex)
+    {
+        if (argSpawnerIndex < 0 || argSpawnerIndex >= _spawnerList.Count)
+        {
+            return null;
+        }
+        return _spawnerList[argSpawnerIndex];
+    }
     
     void Clear()
     {
@@ -139,7 +148,7 @@ public class HeadQuater : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         var spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team, argSpawnerIndex);
-        spawner.Init(_team, targetPos);
+        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos);
         _spawnerList.Add(spawner);
         
         return spawner;
@@ -163,12 +172,12 @@ public class HeadQuater : MonoBehaviour
         return _spawnerList[0].SlotCount;
     }
 
-    public int GetEntityCount()
+    public int GetEntitiesCount()
     {
         int count = 0;
         foreach (var spawner in _spawnerList)
         {
-            count += spawner.GetEntityCount();
+            count += spawner.GetEntitiesCount();
         }
 
         return count;

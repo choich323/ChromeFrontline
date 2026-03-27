@@ -18,15 +18,15 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
     {
         _goToPanel = argGoToPanel;
         
-        SetPanel();
+        SetType();
     }
 
     public virtual void SetTransitionContent(HqPanelTransitionContent argContent)
     {
         _transitionContent = argContent;
     }
-    
-    public abstract void SetPanel();
 
+    public abstract void SetType();
+    public abstract void SetPanel();
     public abstract void Destroy();
 }

@@ -12,6 +12,13 @@ public class EntitySpawnSlot
     private float _progress;
     private Action<int> _onTargetChange;
     
+    private Action<int, float> _onSlotProgressChanged;
+    public event Action<int, float> OnSlotProgressChanged
+    {
+        add => _onSlotProgressChanged += value;
+        remove => _onSlotProgressChanged -= value;
+    }
+    
     public void Init(int argSlotIndex, Action<int> argOnTargetChange)
     {
         ResetSlot();
@@ -39,6 +46,7 @@ public class EntitySpawnSlot
     public void SetProgress(float argProgress)
     {
         _progress = argProgress;
+        _onSlotProgressChanged?.Invoke(_slotIndex, argProgress);
     }
 
     public PrefabID GetTargetId()

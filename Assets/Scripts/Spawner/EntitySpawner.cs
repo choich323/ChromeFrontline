@@ -14,17 +14,19 @@ public class EntitySpawner : MonoBehaviour
     private List<Coroutine> _coroutineList = new List<Coroutine>();
     private int _slotIndex = DEFAULT_SLOT_INDEX;
     private Team _team;
+    private Lane _lane;
     private Transform _targetTransform;
     private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
     
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Transform argTargetTransform)
+    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform)
     {
         ResetSpawner();
         
         _team = argTeam;
+        _lane = argLane;
         _targetTransform = argTargetTransform;
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
@@ -42,6 +44,14 @@ public class EntitySpawner : MonoBehaviour
         _coroutineList.Add(null);
     }
 
+    public EntitySpawnSlot GetSlot(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= _slotList.Count)
+            return null;
+        
+        return _slotList[slotIndex];
+    }
+    
     void ResetSpawner()
     {
         StopAllCoroutines();
@@ -55,6 +65,7 @@ public class EntitySpawner : MonoBehaviour
         
         _slotIndex = DEFAULT_SLOT_INDEX;
         _team = Team.None;
+        _lane = Lane.None;
         _targetTransform = null;
     }
 
@@ -80,6 +91,7 @@ public class EntitySpawner : MonoBehaviour
         }
 
         StopSpawn(argSlotIndex);
+        
         _coroutineList[argSlotIndex] = StartCoroutine(CoStartSpawn(argSlotIndex));
     }
 
@@ -98,7 +110,8 @@ public class EntitySpawner : MonoBehaviour
             float elapsedTime = 0f;
             while (elapsedTime < productionTime) {
                 elapsedTime += Time.deltaTime;
-                slot.SetProgress(Mathf.Clamp01(elapsedTime / productionTime));
+                var progress = Mathf.Clamp01(elapsedTime / productionTime);
+                slot.SetProgress(progress);
                 yield return null;
             }
             
@@ -156,7 +169,7 @@ public class EntitySpawner : MonoBehaviour
         argEntity.ResetEntity();
     }
     
-    public int GetEntityCount()
+    public int GetEntitiesCount()
     {
         int count = 0;
         foreach (var kvp in _entityDict)

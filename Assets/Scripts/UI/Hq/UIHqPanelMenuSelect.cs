@@ -7,10 +7,14 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
     [SerializeField] private Button _btnProduce;
     [SerializeField] private Button _btnEntityUpgrade;
     [SerializeField] private Button _btnHqUpgrade;
+
+    public override void SetType()
+    {
+        _panelType = HqRightPanelType.Menu;
+    }
     
     public override void SetPanel()
     {
-        _panelType = HqRightPanelType.Menu;
         SetBtns();
     }
 

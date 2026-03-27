@@ -8,12 +8,15 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
 
     private List<UISlotUnit> _slotUnitList = new List<UISlotUnit>();
 
-    public override void SetPanel()
+    public override void SetType()
     {
         _panelType = HqRightPanelType.Slot;
+    }
+    
+    public override void SetPanel()
+    {
         DestroySlotUnits();
         CreateSlots();
-        SetBtns();
     }
 
     public void CreateSlots()
@@ -34,16 +37,38 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
         slotObj.transform.SetParent(_slotParent);
         slotObj.transform.localScale = Vector3.one;
         var slot = slotObj.GetComponent<UISlotUnit>();
-        slot.Init(argSlotIndex);
+        slot.Init(argSlotIndex, _transitionContent.lane);
         _slotUnitList.Add(slot);
+        SetBtn(slot);
+        SubscribeSpawner(argSlotIndex);
     }
 
-    void SetBtns()
+    void SubscribeSpawner(int argSlotIndex)
     {
-        foreach (var slot in _slotUnitList)
+        var lane = _transitionContent.lane;
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)lane);
+        spawner.GetSlot(argSlotIndex).OnSlotProgressChanged += RefreshSlotUI;
+    }
+
+    void UnScribeSpawner()
+    {
+        var lane = _transitionContent.lane;
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)lane);
+        for (int i = 0; i < _slotUnitList.Count; i++)
         {
-            slot.SetBtnAction(_goToPanel);
+            spawner.GetSlot(i).OnSlotProgressChanged -= RefreshSlotUI;
         }
+    }
+    
+    void RefreshSlotUI(int argSlotIndex, float argProgress)
+    {
+        var slotUnit = _slotUnitList[argSlotIndex];
+        slotUnit.RefreshProgress(argProgress);
+    }
+
+    void SetBtn(UISlotUnit argSlot)
+    {
+        argSlot.SetBtnAction(_goToPanel);
     }
     
     public void DestroySlotUnits()
@@ -58,6 +83,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
 
     public override void Destroy()
     {
+        UnScribeSpawner();
         DestroySlotUnits();
         _transitionContent.lane = Lane.None;
     }

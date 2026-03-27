@@ -323,9 +323,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b816a0fa0be23684f9e070a7e8dcd35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISlot
+  _icon: {fileID: 8726999427385780523}
   _levelText: {fileID: 8666674550802500233}
   _slotText: {fileID: 881224404713480706}
+  _progressText: {fileID: 7790324889694650093}
+  _stateText: {fileID: 7171708938636319144}
   _btnSlot: {fileID: 5473276306191696640}
+  _progressSlider: {fileID: 38586889407217256}
 --- !u!114 &5473276306191696640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +774,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 298460841195419312}
   m_SourcePrefab: {fileID: 100100000, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
+--- !u!114 &38586889407217256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7495368860132376393, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
+  m_PrefabInstance: {fileID: 7533942555397603617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051209836893013772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &1051209836893013772 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7357567946078275117, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
@@ -797,6 +812,17 @@ RectTransform:
 --- !u!114 &7171708938636319144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 795720542887155849, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
+  m_PrefabInstance: {fileID: 7533942555397603617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &7790324889694650093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 329110082032664524, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
   m_PrefabInstance: {fileID: 7533942555397603617}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

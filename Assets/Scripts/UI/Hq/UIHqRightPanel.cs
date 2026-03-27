@@ -55,6 +55,7 @@ public class UIHqRightPanel : MonoBehaviour
         startPanel.gameObject.SetActive(true);
         startPanel.CanvasGroup.alpha = 1f;
         startPanel.CanvasGroup.interactable = startPanel.CanvasGroup.blocksRaycasts = true;
+        startPanel.SetPanel();
         _actionClose = argActionClose;
     }
 
@@ -80,8 +81,8 @@ public class UIHqRightPanel : MonoBehaviour
         }
         
         _panelStack.Push(_curType);
+        _panelDict[argNextPanelType].SetTransitionContent(argContent);
         Transition(argNextPanelType, false);
-        _panelDict[_curType].SetTransitionContent(argContent);
     }
 
     public void GoBack()
@@ -131,10 +132,10 @@ public class UIHqRightPanel : MonoBehaviour
             {
                 addPanel.CanvasGroup.interactable = addPanel.CanvasGroup.blocksRaycasts = true;
                 removePanel.gameObject.SetActive(false);
-                addPanel.SetPanel();
+
             });
         _curType = argNextType;
-        
+        addPanel.SetPanel();
         // 뒤로가기 키 제어
         if (_panelStack.Count <= 0)
         {

@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public enum Lane
 {
-    None = 0,
-    Top,
+    None = -1,
+    Top = 0,
     Mid,
     Bottom,
 }
@@ -15,10 +15,14 @@ public class UIHqPanelLaneSelect : AUIHqPanelSelect
     [SerializeField] private Button _btnTop;
     [SerializeField] private Button _btnMid;
     [SerializeField] private Button _btnBottom;
+
+    public override void SetType()
+    {
+        _panelType = HqRightPanelType.Lane;
+    }
     
     public override void SetPanel()
     {
-        _panelType = HqRightPanelType.Lane;
         SetBtns();
     }
 

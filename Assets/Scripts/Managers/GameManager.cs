@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     private int _curGameSpeed = DEFAULT_GAME_SPEED;
     private GameField _gameField;
     private bool _isPaused = false;
+    private List<PrefabID> _unlockEntityIDList = new List<PrefabID>();
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -41,6 +43,9 @@ public class GameManager : MonoBehaviour
         }
         _gameField = gameFieldObj.GetComponent<GameField>();
         _gameField.Init();
+        
+        // TODO: 임시로 하나를 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
+        _unlockEntityIDList.Add(PrefabID.Pioneer);
     }
     
     public ulong GetNewUid()
@@ -49,17 +54,24 @@ public class GameManager : MonoBehaviour
         return _uid;
     }
 
-    public void SetSlotCount(int argCount)
+    public void SetSlotCountMax(int argCount)
     {
         _slotCountMax = argCount;
     }
 
+    public IEnumerable<PrefabID> GetUnlockEntityIDList()
+    {
+        return _unlockEntityIDList;
+    }
+    
     public void EndStage(bool isPlayerWin)
     {
         if(isPlayerWin)
             Debug.Log($"You Win!");
         else
             Debug.Log($"You Lose!");
+        
+        PauseGame();
     }
 
     public void SetGameSpeed(int argSpeed)
@@ -86,5 +98,6 @@ public class GameManager : MonoBehaviour
         _curGameSpeed = DEFAULT_GAME_SPEED;
         _gameField.ResetField();
         _gameField.Init();
+        _unlockEntityIDList.Clear();
     }
 }
