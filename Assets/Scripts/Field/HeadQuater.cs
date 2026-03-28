@@ -7,6 +7,7 @@ public class HeadQuater : MonoBehaviour
     private const int DEFAULT_SPAWNER_COUNT = 3;
     
     [SerializeField] private Transform _spawnerParent;
+    // 플레이어 진영이 좌우 어느 쪽인지는 변할 수 있다.
     [SerializeField] private List<Transform> _entitySpawnerRightPosList;
     [SerializeField] private List<Transform> _entitySpawnerLeftPosList;
 
@@ -95,11 +96,12 @@ public class HeadQuater : MonoBehaviour
 
     public Transform GetTargetSpawnerTransform(int argSpawnerIndex)
     {
-        if (argSpawnerIndex < 0 || argSpawnerIndex >= _entitySpawnerRightPosList.Count)
+        var posList = _useLeftSpawnerPos ? _entitySpawnerLeftPosList : _entitySpawnerRightPosList;
+        if (argSpawnerIndex < 0 || argSpawnerIndex >= posList.Count)
         {
             return null;
         }
-        return _entitySpawnerRightPosList[argSpawnerIndex];
+        return posList[argSpawnerIndex];
     }
 
     public EntitySpawner GetSpawner(int argSpawnerIndex)
