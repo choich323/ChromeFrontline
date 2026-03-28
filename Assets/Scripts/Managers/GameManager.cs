@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         _gameField = gameFieldObj.GetComponent<GameField>();
         _gameField.Init();
         
+        ResetUnlockEntityIdList();
+    }
+
+    void ResetUnlockEntityIdList()
+    {
         // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
         _unlockEntityIDList.Add(PrefabID.Pioneer);
         _unlockEntityIDList.Add(PrefabID.Alien);
@@ -97,8 +102,8 @@ public class GameManager : MonoBehaviour
         _uid = INVALID_UID;
         _slotCountMax = DEFAULT_SLOT_COUNT;
         _curGameSpeed = DEFAULT_GAME_SPEED;
+        ResetUnlockEntityIdList();
         _gameField.ResetField();
         _gameField.Init();
-        _unlockEntityIDList.Clear();
     }
 }

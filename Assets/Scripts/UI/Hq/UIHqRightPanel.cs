@@ -40,6 +40,8 @@ public class UIHqRightPanel : MonoBehaviour
     
     public void Init(Action argActionClose)
     {
+        Clear();
+        
         _btnPrev.onClick.AddListener(GoBack);
         _btnPrev.gameObject.SetActive(false);
         
@@ -59,7 +61,7 @@ public class UIHqRightPanel : MonoBehaviour
         _actionClose = argActionClose;
     }
 
-    public void Destroy()
+    public void Clear()
     {
         _btnPrev.onClick.RemoveAllListeners();
         _btnPrev.gameObject.SetActive(false);

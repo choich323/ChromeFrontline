@@ -81,6 +81,8 @@ public class HUDController : MonoBehaviour
             cg.blocksRaycasts = false;
         }
         
+        _hqBtn.onClick.RemoveAllListeners();
+        _pauseBtn.onClick.RemoveAllListeners();
         _optionBtn.onClick.RemoveAllListeners();
         _restartBtn.onClick.RemoveAllListeners();
         _exitBtn.onClick.RemoveAllListeners();

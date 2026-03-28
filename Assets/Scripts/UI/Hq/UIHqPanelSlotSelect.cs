@@ -58,6 +58,9 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
 
     void UnSubscribeSlotProgress()
     {
+        // 슬롯 선택 창을 한 번도 안 열고 팝업을 닫으면 없음.
+        if (_transitionContent == null) return;
+        
         var lane = _transitionContent.lane;
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)lane);
         if (spawner == null) return;
@@ -104,6 +107,6 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
     public override void Destroy()
     {
         Clear();
-        _transitionContent.lane = Lane.None;
+        _transitionContent = null;
     }
 }

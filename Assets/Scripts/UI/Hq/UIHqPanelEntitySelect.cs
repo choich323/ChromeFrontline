@@ -67,5 +67,6 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
     public override void Destroy()
     {
         DestroyEntityUnits();
+        _transitionContent = null;
     }
 }
