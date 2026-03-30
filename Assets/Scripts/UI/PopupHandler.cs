@@ -27,6 +27,11 @@ public class PopupHandler
             }
         }
     }
+
+    public APopup Top()
+    {
+        return _popupStack.Peek();
+    }
     
     public T OpenPopup<T>(PrefabID argPrefabID) where T : APopup
     {

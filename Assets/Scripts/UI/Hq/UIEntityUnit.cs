@@ -17,6 +17,7 @@ public class UIEntityUnit : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _typeTagText;
     [SerializeField] private TextMeshProUGUI _combatRoleTagText;
     [SerializeField] private GameObject _combatRole;
+    [SerializeField] private UILongPressDetector _detector;
 
     private Action<PrefabID> _onSelectEntity;
     private EntityInfo _entityInfo;
@@ -28,9 +29,10 @@ public class UIEntityUnit : MonoBehaviour
         _lane = argLane;
         _slotIndex = argSlotIndex;
         SetInfo(argPrefabID);
-        SetBtn();
         SetText();
+        SetBtnSelect();
         _onSelectEntity = argOnSelectEntity;
+        SetDetector();
     }
 
     void SetInfo(PrefabID argPrefabID)
@@ -60,14 +62,26 @@ public class UIEntityUnit : MonoBehaviour
             _combatRoleTagText.text = sm.GetString(dm.ConvertStringToStringID(_entityInfo.combatRoleTagStringId));
         }
     }
-    
-    void SetBtn()
+
+    void SetBtnSelect()
     {
         _btnSelect.onClick.RemoveAllListeners();
-        _btnSelect.onClick.AddListener(OnBtn);
+        _btnSelect.onClick.AddListener(OnBtnSelect);
+    }
+    
+    void SetDetector()
+    {
+        _detector.OnLongPress -= OpenEntityStats;
+        _detector.OnLongPress += OpenEntityStats;
+        _detector.SetActionInteractableBtn(InteractableBtnSelect);
     }
 
-    void OnBtn()
+    void InteractableBtnSelect(bool argInteractable)
+    {
+        _btnSelect.interactable = argInteractable;
+    }
+
+    void OnBtnSelect()
     {
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
         if (spawner == null)
@@ -105,13 +119,32 @@ public class UIEntityUnit : MonoBehaviour
             _onSelectEntity?.Invoke(id);
         }
     }
+
+    void OpenEntityStats()
+    {
+        var ph = Managers.UI.PopupHandler;
+        if (ph.Top().GetType() == typeof(UIEntityStat))
+        {
+            ph.ClosePopup();
+        }
+        
+        var popup = ph.OpenPopup<UIEntityStat>(PrefabID.UIEntityStat);
+        if (popup == null) return;
+        
+        popup.Init();
+        popup.SetData(_entityInfo);
+        popup.SetOnClose(ph.ClosePopup);
+        popup.SetPos(Input.mousePosition);
+    }
     
     public void Destroy()
     {
         _lane = Lane.None;
         _slotIndex = INVALID_INDEX;
         _onSelectEntity = null;
-        _btnSelect?.onClick.RemoveAllListeners();
         _entityInfo = null;
+        _btnSelect.onClick.RemoveAllListeners();
+        _detector.OnLongPress -= OpenEntityStats;
+        _detector.Clear();
     }
 }

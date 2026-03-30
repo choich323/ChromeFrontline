@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 6268979061867476337}
   - component: {fileID: 9199111656930653134}
   - component: {fileID: 5917312327898516713}
+  - component: {fileID: 265847848692291810}
   m_Layer: 5
   m_Name: UIEntityUnit
   m_TagString: Untagged
@@ -585,7 +586,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -626,6 +627,20 @@ MonoBehaviour:
   _typeTagText: {fileID: 5899362642700127665}
   _combatRoleTagText: {fileID: 7619627894658601323}
   _combatRole: {fileID: 7085410685710829346}
+  _detector: {fileID: 265847848692291810}
+--- !u!114 &265847848692291810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073832685670674997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a319ad645c2174fa31f03f6936ab6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UILongPressDetector
+  _threshold: 0.6
 --- !u!1 &4174978301373508582
 GameObject:
   m_ObjectHideFlags: 0

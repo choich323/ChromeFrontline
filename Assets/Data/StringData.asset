@@ -119,8 +119,8 @@ MonoBehaviour:
       kr: "\uC720\uB2DB \uC120\uD0DD"
   - id: EntityStat
     value:
-      en: Stats
-      kr: "\uB2A5\uB825\uCE58"
+      en: Unit Stats
+      kr: "\uC720\uB2DB \uB2A5\uB825\uCE58"
   - id: Top
     value:
       en: Top
