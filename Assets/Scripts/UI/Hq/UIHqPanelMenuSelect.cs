@@ -12,25 +12,29 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
     {
         _panelType = HqRightPanelType.Menu;
     }
+
+    protected override void OnInit()
+    {
+        _btnProduce.onClick.AddListener(OnBtnProduce);
+    }
     
     public override void SetPanel()
     {
-        SetBtns();
-    }
-
-    void SetBtns()
-    {
-        _btnProduce.onClick.RemoveAllListeners();
-        _btnProduce.onClick.AddListener(OnBtnProduce);
+        
     }
     
     void OnBtnProduce()
     {
         _goToPanel?.Invoke(HqRightPanelType.Lane, null);
     }
+
+    public override void Clear()
+    {
+        
+    }
     
     public override void Destroy()
     {
-        
+        _btnProduce.onClick.RemoveAllListeners();
     }
 }

@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIHqPanelEntitySelect : AUIHqPanelSelect
 {
     [SerializeField] private Transform _entityParent;
+    [SerializeField] private Button _stopBtn;
+    [SerializeField] private TextMeshProUGUI _stopBtnText;
     
     private List<UIEntityUnit> _entityUnitList = new List<UIEntityUnit>();
 
@@ -12,11 +17,17 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
     {
         _panelType = HqRightPanelType.Entity;
     }
+
+    protected override void OnInit()
+    {
+        _stopBtn.onClick.AddListener(OnBtnStopProducing);
+    }
     
     public override void SetPanel()
     {
         DestroyEntityUnits();
         CreateEntityUnits();
+        SetText();
     }
 
     void CreateEntityUnits()
@@ -53,6 +64,36 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
         
         _goBack?.Invoke();
     }
+
+    void SetText()
+    {
+        _stopBtnText.text = Managers.String.GetString(StringID.StopProducing);
+    }
+
+    public void OnBtnStopProducing()
+    {
+        if (_transitionContent.prefabID == PrefabID.None)
+        {
+            _goBack?.Invoke();
+            return;
+        }
+        
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
+        if (popup == null) return;
+
+        var sm = Managers.String;
+        var msg = sm.GetString(StringID.ConfirmStopProducing) + '\n' + sm.GetString(StringID.NowProducingEntity) + $"{_transitionContent.prefabID}";
+        string confirm = sm.GetString(StringID.Yes);
+        string cancel = sm.GetString(StringID.No);
+        var ph = Managers.UI.PopupHandler;
+        popup.Init();
+        popup.SetData(msg, OnConfirm, ph.ClosePopup, confirm, cancel);
+
+        void OnConfirm()
+        {
+            OnSelectEntityUnit(PrefabID.None);
+        }
+    }
     
     void DestroyEntityUnits()
     {
@@ -63,10 +104,16 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
         }
         _entityUnitList.Clear();
     }
-    
-    public override void Destroy()
+
+    public override void Clear()
     {
         DestroyEntityUnits();
         _transitionContent = null;
+    }
+    
+    public override void Destroy()
+    {
+        Clear();
+        _stopBtn.onClick.RemoveAllListeners();
     }
 }

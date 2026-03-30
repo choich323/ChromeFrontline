@@ -23,4 +23,9 @@ public class UIHqLeftPanel : MonoBehaviour
         _goldValueText.text = $"{hq.Gold}";
         _mineralValueText.text = $"{hq.Mineral}";
     }
+
+    public void Destroy()
+    {
+        
+    }
 }

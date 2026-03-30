@@ -43,6 +43,9 @@ public enum StringID
     EntityUpgrade,
     HqUpgrade,
     ConfirmEntitySelect,
+    StopProducing,
+    ConfirmStopProducing,
+    NowProducingEntity,
     
     // type tag
     Melee = 9001,

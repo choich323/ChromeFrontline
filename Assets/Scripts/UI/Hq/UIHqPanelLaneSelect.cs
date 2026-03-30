@@ -20,21 +20,17 @@ public class UIHqPanelLaneSelect : AUIHqPanelSelect
     {
         _panelType = HqRightPanelType.Lane;
     }
-    
-    public override void SetPanel()
-    {
-        SetBtns();
-    }
 
-    void SetBtns()
+    protected override void OnInit()
     {
-        _btnTop.onClick.RemoveAllListeners();
-        _btnMid.onClick.RemoveAllListeners();
-        _btnBottom.onClick.RemoveAllListeners();
-        
         _btnTop.onClick.AddListener(OnBtnTop);
         _btnMid.onClick.AddListener(OnBtnMid);
         _btnBottom.onClick.AddListener(OnBtnBottom);
+    }
+    
+    public override void SetPanel()
+    {
+        
     }
 
     void OnBtnLane(Lane argLane)
@@ -58,9 +54,16 @@ public class UIHqPanelLaneSelect : AUIHqPanelSelect
     {
         OnBtnLane(Lane.Bottom);
     }
+
+    public override void Clear()
+    {
+        
+    }
     
     public override void Destroy()
     {
-        
+        _btnTop.onClick.RemoveAllListeners();
+        _btnMid.onClick.RemoveAllListeners();
+        _btnBottom.onClick.RemoveAllListeners();
     }
 }

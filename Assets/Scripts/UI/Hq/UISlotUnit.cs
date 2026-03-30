@@ -104,6 +104,7 @@ public class UISlotUnit : MonoBehaviour
         var transitionContent = new HqPanelTransitionContent();
         transitionContent.slotIndex = _slotIndex;
         transitionContent.lane = _lane;
+        transitionContent.prefabID = _targetId;
         _onSlotAction?.Invoke(HqRightPanelType.Entity, transitionContent);
     }
     

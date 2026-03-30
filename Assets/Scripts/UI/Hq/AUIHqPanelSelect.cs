@@ -21,6 +21,8 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
         _goBack = argGoBack;
         
         SetType();
+        
+        OnInit();
     }
 
     public virtual void SetTransitionContent(HqPanelTransitionContent argContent)
@@ -30,10 +32,16 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
 
     public virtual void OnBeforeGoBackTransition()
     {
-        Destroy();
+        Clear();
+    }
+
+    protected virtual void OnInit()
+    {
+        
     }
     
     public abstract void SetType();
     public abstract void SetPanel();
+    public abstract void Clear();
     public abstract void Destroy();
 }

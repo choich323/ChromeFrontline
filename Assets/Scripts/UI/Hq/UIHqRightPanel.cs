@@ -16,11 +16,13 @@ public class HqPanelTransitionContent
 {
     public Lane lane;
     public int slotIndex;
+    public PrefabID prefabID;
 
     public void Clear()
     {
         lane = Lane.None;
         slotIndex = -1;
+        prefabID = PrefabID.None;
     }
 }
 
@@ -40,8 +42,6 @@ public class UIHqRightPanel : MonoBehaviour
     
     public void Init(Action argActionClose)
     {
-        Clear();
-        
         _btnPrev.onClick.AddListener(GoBack);
         _btnPrev.gameObject.SetActive(false);
         
@@ -61,7 +61,7 @@ public class UIHqRightPanel : MonoBehaviour
         _actionClose = argActionClose;
     }
 
-    public void Clear()
+    public void Destroy()
     {
         _btnPrev.onClick.RemoveAllListeners();
         _btnPrev.gameObject.SetActive(false);

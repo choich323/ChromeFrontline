@@ -98,7 +98,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
         _slotUnitList.Clear();
     }
 
-    void Clear()
+    public override void Clear()
     {
         UnSubscribeSlotProgress();
         DestroySlotUnits();

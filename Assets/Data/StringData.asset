@@ -23,11 +23,11 @@ MonoBehaviour:
       kr: "\uC544\uB2C8\uC624"
   - id: ConfirmRestartStage
     value:
-      en: Are you sure to\n restart stage?
+      en: Are you sure to restart stage?
       kr: "\uD604\uC7AC \uC2A4\uD14C\uC774\uC9C0\uB97C\\n \uB2E4\uC2DC \uC2DC\uC791\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   - id: ConfirmExitStage
     value:
-      en: Are you sure to\n exit stage?
+      en: Are you sure to exit stage?
       kr: "\uD604\uC7AC \uC2A4\uD14C\uC774\uC9C0\uC5D0\uC11C\\n \uB098\uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   - id: Option
     value:
@@ -159,7 +159,7 @@ MonoBehaviour:
       kr: "\uBCF8\uBD80 \uAC15\uD654"
   - id: ConfirmEntitySelect
     value:
-      en: Stop current producing\n and switch to the selected unit.
+      en: Are you sure to stop current producing and switch to the selected unit?
       kr: "\uAE30\uC874 \uC720\uB2DB \uC0DD\uC0B0\uC744 \uBA48\uCD94\uACE0,\\n\uC120\uD0DD\uD55C
         \uC720\uB2DB\uC744 \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
   - id: Pioneer
@@ -186,3 +186,15 @@ MonoBehaviour:
     value:
       en: Main Tank
       kr: "\uBA54\uC778 \uD0F1\uCEE4"
+  - id: StopProducing
+    value:
+      en: Stop Producing
+      kr: "\uC0DD\uC0B0 \uC911\uC9C0"
+  - id: ConfirmStopProducing
+    value:
+      en: Are you sure to stop producing?
+      kr: "\uC0DD\uC0B0\uC744 \uC911\uC9C0\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  - id: NowProducingEntity
+    value:
+      en: 'Now Producing Unit:'
+      kr: "\uD604\uC7AC \uC0DD\uC0B0 \uC911\uC778 \uC720\uB2DB:"
