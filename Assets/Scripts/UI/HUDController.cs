@@ -30,15 +30,9 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Color _highHpColor = Color.green;
     [SerializeField] private Color _mediumHpColor = Color.yellow;
     [SerializeField] private Color _lowHpColor = Color.red;
-    
-    [Header("Pause Setting")]
-    [SerializeField] private Image _pauseBtnImage;
-    [SerializeField] private Sprite _pauseBtnSprite;
-    [SerializeField] private Sprite _playBtnSprite;
 
     [Header("Menu Button")]
     [SerializeField] private Button _hqBtn;
-    [SerializeField] private Button _pauseBtn;
     [SerializeField] private GameObject _subBtnGroup;
     [SerializeField] private List<CanvasGroup> _subBtnCanvasGroupList;
     [SerializeField] private float _subMenuAnimPlayTime = 0.1f;
@@ -51,14 +45,13 @@ public class HUDController : MonoBehaviour
     private bool _isRestarting = false;
     private Coroutine _menuAnimCoroutine;
 
-    public bool IsPaused => Managers.Game.IsPaused;
+    bool IsPaused => Managers.Game.IsPaused;
 
     public void Init()
     {
         Clear();
         
         _hqBtn.onClick.AddListener(OnBtnHq);
-        _pauseBtn.onClick.AddListener(OnBtnPause);
         _optionBtn.onClick.AddListener(OnBtnOption);
         _restartBtn.onClick.AddListener(OnBtnReStart);
         _exitBtn.onClick.AddListener(OnBtnExit);
@@ -82,7 +75,6 @@ public class HUDController : MonoBehaviour
         }
         
         _hqBtn.onClick.RemoveAllListeners();
-        _pauseBtn.onClick.RemoveAllListeners();
         _optionBtn.onClick.RemoveAllListeners();
         _restartBtn.onClick.RemoveAllListeners();
         _exitBtn.onClick.RemoveAllListeners();
@@ -151,26 +143,8 @@ public class HUDController : MonoBehaviour
 
     void OnBtnHq()
     {
-        if(!IsPaused)
-            OnBtnPause();
-
         var popup = Managers.UI.PopupHandler.OpenPopup<UIHqManagement>(PrefabID.UIHqManagement);
         popup.SetOnClose(OnBtnPopupClose);
-    }
-    
-    void OnBtnPause()
-    {
-        var gm = Managers.Game;
-        if (!IsPaused)
-        {
-            gm.PauseGame();
-            _pauseBtnImage.sprite = _playBtnSprite;
-        }
-        else
-        {
-            gm.ResumeGame();
-            _pauseBtnImage.sprite = _pauseBtnSprite;
-        }
     }
 
     void OnBtnMenu()
@@ -222,18 +196,12 @@ public class HUDController : MonoBehaviour
 
     void OnBtnOption()
     {
-        if(!IsPaused)
-            OnBtnPause();
-        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIOption>(PrefabID.UIOption);
         popup.SetOnClose(OnBtnPopupClose);
     }
     
     void OnBtnReStart()
     {
-        if(!IsPaused)
-            OnBtnPause();
-
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmRestartStage);
@@ -252,16 +220,11 @@ public class HUDController : MonoBehaviour
 
     void OnBtnPopupClose()
     {
-        if(IsPaused)
-            OnBtnPause();
         Managers.UI.PopupHandler.ClosePopup();
     }
     
     void OnBtnExit()
     {
-        if(!IsPaused)
-            OnBtnPause();
-        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmExitStage);

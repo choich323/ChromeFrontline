@@ -23,6 +23,7 @@ public enum PrefabID
     UIHqManagement,
     UISlotUnit,
     UIEntityUnit,
+    UIPauseBtn,
     
     UIEntityStat = 10011,
 }

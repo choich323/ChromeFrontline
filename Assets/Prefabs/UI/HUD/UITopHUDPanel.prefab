@@ -262,16 +262,12 @@ MonoBehaviour:
   _highHpColor: {r: 0.34509805, g: 0.8980393, b: 0.60784316, a: 1}
   _mediumHpColor: {r: 0.8610398, g: 0.8792453, b: 0.39648986, a: 1}
   _lowHpColor: {r: 1, g: 0.19433957, b: 0.19433957, a: 1}
-  _pauseBtnImage: {fileID: 2913394675511901086}
-  _pauseBtnSprite: {fileID: -708245964, guid: a37e8466236089c45b610370218b5353, type: 3}
-  _playBtnSprite: {fileID: 177566260, guid: a37e8466236089c45b610370218b5353, type: 3}
   _hqBtn: {fileID: 6915096886099839899}
-  _pauseBtn: {fileID: 808249321921023816}
   _subBtnGroup: {fileID: 7257751680341587575}
   _subBtnCanvasGroupList:
-  - {fileID: 1225785360866642872}
-  - {fileID: 6615802414556542639}
-  - {fileID: 949914359573748057}
+  - {fileID: 3514954286805311880}
+  - {fileID: 4438243615481548134}
+  - {fileID: 2769040809200874728}
   _subMenuAnimPlayTime: 0.1
   _optionBtn: {fileID: 3588284495293880978}
   _restartBtn: {fileID: 3779359407772689450}
@@ -1047,7 +1043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1083,7 +1079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -80
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1101,14 +1097,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5763914300419274436, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5763914300419274436, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2581822257932498297}
     - target: {fileID: 5978978221269686141, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1124,14 +1112,6 @@ PrefabInstance:
     - target: {fileID: 5978978221269686141, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7638233635541094921, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      propertyPath: m_Name
-      value: Hq
-      objectReference: {fileID: 0}
-    - target: {fileID: 7638233635541094921, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547242984269989603, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1152,48 +1132,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5064800685867274304, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1225785360866642872}
-    - targetCorrespondingSourceObject: {fileID: 1656108827908817949, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6615802414556542639}
-    - targetCorrespondingSourceObject: {fileID: 4398717748782522923, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 949914359573748057}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
---- !u!1 &181052864465168844 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5064800685867274304, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-  m_PrefabInstance: {fileID: 4957042609223989644}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &1225785360866642872
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181052864465168844}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &311885883465777659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4656433339969484919, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-  m_PrefabInstance: {fileID: 4957042609223989644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8773453536091839399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &808249321921023816 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5763914300419274436, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1207,23 +1150,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5192287305037763659, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2913394675511901086 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7828530455596220946, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+--- !u!225 &2769040809200874728 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 7108764940726373732, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!225 &3514954286805311880 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8362432099843643396, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+  m_PrefabInstance: {fileID: 4957042609223989644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3588284495293880978 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8432662931057795870, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181052864465168844}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1234,29 +1176,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8122251440536624550, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5922618103100980625}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!1 &5922618103100980625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1656108827908817949, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
+--- !u!225 &4438243615481548134 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8745213057143747818, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &6615802414556542639
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5922618103100980625}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &6915096886099839899 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1962909763710841367, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
@@ -1273,23 +1203,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2338007359571644411, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
   m_PrefabInstance: {fileID: 4957042609223989644}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8773453536091839399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4398717748782522923, guid: ed684385088fdff4ea3c805ff91dba41, type: 3}
-  m_PrefabInstance: {fileID: 4957042609223989644}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &949914359573748057
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8773453536091839399}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &8965333342887844450
 PrefabInstance:
   m_ObjectHideFlags: 0

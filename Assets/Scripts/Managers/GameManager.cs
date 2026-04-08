@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +14,26 @@ public class GameManager : MonoBehaviour
     private GameField _gameField;
     private bool _isPaused = false;
     private List<PrefabID> _unlockEntityIDList = new List<PrefabID>();
+    private event Action _onGamePause;
+    private event Action _onGameResume;
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
     public int SlotCountMax => _slotCountMax;
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
+
+    public event Action OnGamePause
+    {
+        add => _onGamePause += value;
+        remove => _onGamePause -= value;
+    }
+    
+    public event Action OnGameResume
+    {
+        add => _onGameResume += value;
+        remove => _onGameResume -= value;
+    }
 
     void Update()
     {
@@ -89,12 +104,14 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         _isPaused = true;
+        _onGamePause?.Invoke();
     }
 
     public void ResumeGame()
     {
         Time.timeScale = _curGameSpeed;
         _isPaused = false;
+        _onGameResume?.Invoke();
     }
 
     public void RestartStage()
