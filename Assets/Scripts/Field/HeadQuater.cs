@@ -1,10 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HeadQuater : MonoBehaviour
 {
     private const int DEFAULT_SPAWNER_COUNT = 3;
+    private const int START_GOLD = 300;
+    private const int DEFAULT_GOLD_PER_SECOND = 1;
+    private const float SECOND = 1f;
     
     [SerializeField] private Transform _spawnerParent;
     // 플레이어 진영이 좌우 어느 쪽인지는 변할 수 있다.
@@ -15,11 +19,13 @@ public class HeadQuater : MonoBehaviour
     private int _maxHp;
     private int _hp;
     private int _shield;
-    private long _gold;
+    private long _gold = START_GOLD;
     private int _mineral;
+    private int _goldPerSecond = DEFAULT_GOLD_PER_SECOND;
     private Team _team;
     private List<EntitySpawner> _spawnerList = new List<EntitySpawner>();
     private Func<Team, int, Transform> _getTargetSpawnerPos;
+    private Coroutine _coroutineGoldPerSecond;
     
     public int Hp => _hp;
     public int Shield => _shield;
@@ -34,6 +40,23 @@ public class HeadQuater : MonoBehaviour
         _team = argTeam;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
+        
+        if (_coroutineGoldPerSecond != null)
+        {
+            StopCoroutine(_coroutineGoldPerSecond);
+        }
+        _coroutineGoldPerSecond = StartCoroutine(CoEarnGoldPerSecond());
+    }
+
+    IEnumerator CoEarnGoldPerSecond()
+    {
+        var wait = new WaitForSeconds(SECOND);
+        while (true)
+        {
+            yield return wait;
+            
+            EarnGold(_goldPerSecond);
+        }
     }
 
     public void OnHqDamaged(int argDamage)
@@ -74,6 +97,11 @@ public class HeadQuater : MonoBehaviour
         return (float)_shield / _maxHp;
     }
 
+    public long GetGold()
+    {
+        return _gold;
+    }
+    
     public void EarnGold(long argGold)
     {
         _gold += argGold;
@@ -84,6 +112,11 @@ public class HeadQuater : MonoBehaviour
         _gold -= argGold;
     }
 
+    public int GetMineral()
+    {
+        return _mineral;
+    }
+    
     public void EarnMineral(int argMineral)
     {
         _mineral += argMineral;
@@ -150,7 +183,7 @@ public class HeadQuater : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         var spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team, argSpawnerIndex);
-        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos);
+        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos, EarnGold, ConsumeGold, GetGold, ConsumeMineral, GetMineral);
         _spawnerList.Add(spawner);
         
         return spawner;

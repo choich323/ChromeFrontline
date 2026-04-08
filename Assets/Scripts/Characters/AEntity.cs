@@ -28,6 +28,7 @@ public struct EntityStatus
     public Team team;
 
     public int curLevel;
+    public long reward;
     
     [Header("Life")]
     public int curHp;
@@ -57,6 +58,7 @@ public abstract class AEntity : MonoBehaviour
     private const float RETARGET_INTERVAL = 5f;
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
+    private const float REWARD_RATIO = 0.25f;
     private const int DEFAULT_RAYCAST_COUNT = 50;
     private const int INVALID_SPAWNER_INDEX = -1;
     private const string LAYER_NAME_ENTITY = "Entity";
@@ -73,10 +75,12 @@ public abstract class AEntity : MonoBehaviour
     private AEntity _attackTarget;
     private RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
     private Action<AEntity> _onDie;
+    private Action<long> _onKill;
     
     public EntityStatus EntityStatus => _entityStatus;
     public PrefabID Id => _id;
     public ulong Uid => _uid;
+    public long Reward => _entityStatus.reward;
     public bool IsDead => _entityStatus.curHp <= 0;
     public bool CanAction => _entityStatus.canAction;
     public Team Team => _entityStatus.team;
@@ -84,7 +88,7 @@ public abstract class AEntity : MonoBehaviour
     public float CurShield => _entityStatus.curShield;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(PrefabID argId, ulong argUid, Team argTeam, EntityInfo argEntityInfo, int argHomeSpawnerIndex, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie)
+    public virtual void Init(PrefabID argId, ulong argUid, Team argTeam, EntityInfo argEntityInfo, int argHomeSpawnerIndex, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
     {
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
@@ -104,6 +108,7 @@ public abstract class AEntity : MonoBehaviour
         _homeSpawnerIndex = argHomeSpawnerIndex;
         _targetHqCoreTransform = argTargetHqCoreTransform;
         _onDie = argOnDie;
+        _onKill = argOnKill;
         _attackCooldownTimer = 0f;
     }
     
@@ -119,6 +124,7 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.criticalChance = argEntityInfo.criticalChance;
         _entityStatus.moveSpeed = argEntityInfo.moveSpeed;
         _entityStatus.canAction = true;
+        _entityStatus.reward = (int)(argEntityInfo.goldCost * REWARD_RATIO);
     }
     
     protected virtual void Update()
@@ -253,7 +259,6 @@ public abstract class AEntity : MonoBehaviour
         }
     }
     
-    // Attacker를 지금은 안쓰는데, 나중에 반사 데미지를 받는다던지 하는 경우를 위해 일단 넣어 놓음.
     public virtual void GetDamage(float argDamage, AEntity argAttacker)
     {
         if (IsDead)
@@ -282,6 +287,7 @@ public abstract class AEntity : MonoBehaviour
         if (_entityStatus.curHp <= 0)
         {
             _entityStatus.curHp = 0;
+            argAttacker.OnKill(_entityStatus.reward);
             Destroy();
         }
         else
@@ -290,6 +296,11 @@ public abstract class AEntity : MonoBehaviour
         }
     }
 
+    protected virtual void OnKill(long argReward)
+    {
+        _onKill?.Invoke(argReward);
+    }
+    
     protected virtual void OnDamaged()
     {
         

@@ -17,17 +17,27 @@ public class EntitySpawner : MonoBehaviour
     private Lane _lane;
     private Transform _targetTransform;
     private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
+    private Action<long> _earnGold;
+    private Action<long> _consumeGold;
+    private Action<int> _consumeMineral;
+    private Func<long> _getGold;
+    private Func<int> _getMineral;
     
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform)
+    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Action<int> argConsumeMineral, Func<int> argGetMineral)
     {
         ResetSpawner();
         
         _team = argTeam;
         _lane = argLane;
         _targetTransform = argTargetTransform;
+        _earnGold = argEarnGold;
+        _consumeGold = argConsumeGold;
+        _getGold = argGetGold;
+        _consumeMineral = argConsumeMineral;
+        _getMineral = argGetMineral;
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
         {
@@ -67,6 +77,10 @@ public class EntitySpawner : MonoBehaviour
         _team = Team.None;
         _lane = Lane.None;
         _targetTransform = null;
+        _consumeGold = null;
+        _getGold = null;
+        _consumeMineral = null;
+        _getMineral = null;
     }
 
     void OnSlotTargetChanged(int argSlotIndex)
@@ -99,13 +113,22 @@ public class EntitySpawner : MonoBehaviour
     {
         var slot = _slotList[argSlotIndex];
         var targetId = slot.GetTargetId();
-        Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
-        if(info == null) 
-            yield break;
-
         while (true)
         {
+            Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
+            if(info == null) 
+                yield break;
             var entityInfo = info as EntityInfo;
+            var goldCost = entityInfo.goldCost;
+            var mineralCost = entityInfo.mineralCost;
+            if (_getGold?.Invoke() < goldCost || _getMineral?.Invoke() < mineralCost)
+            {
+                _coroutineList[argSlotIndex] = null;
+                yield break;
+            }
+            
+            _consumeGold?.Invoke(goldCost);
+            _consumeMineral?.Invoke(mineralCost);
             float productionTime = entityInfo.productionTime;
             float elapsedTime = 0f;
             while (elapsedTime < productionTime) {
@@ -129,7 +152,7 @@ public class EntitySpawner : MonoBehaviour
             entityObj.transform.position = transform.position;
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity);
+            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }

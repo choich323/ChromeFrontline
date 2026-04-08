@@ -24,6 +24,7 @@ public class EntityInfo : APrefabInfo
     public int mineralCost;
 
     public string typeTagStringId;
+    // 필요 없을지도 모름.
     public string combatRoleTagStringId;
 }
 
