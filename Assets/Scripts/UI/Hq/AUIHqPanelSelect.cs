@@ -17,6 +17,7 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
 
     public virtual void Init(Action<HqRightPanelType, HqPanelTransitionContent> argGoToPanel, Action argGoBack)
     {
+        _canvasGroup.interactable = _canvasGroup.blocksRaycasts = false;
         _goToPanel = argGoToPanel;
         _goBack = argGoBack;
         

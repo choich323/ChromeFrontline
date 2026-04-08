@@ -136,7 +136,6 @@ public class UIHqRightPanel : MonoBehaviour
             {
                 nextPanel.CanvasGroup.interactable = nextPanel.CanvasGroup.blocksRaycasts = true;
                 prevPanel.gameObject.SetActive(false);
-
             });
         _curType = argNextType;
         nextPanel.SetPanel();

@@ -6,6 +6,7 @@ using UnityEngine;
 public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
+    private const float SPAWN_POS_Y_OFFSET = 0.5f;
     
     [SerializeField] private Transform _entityParent;
     
@@ -121,10 +122,9 @@ public class EntitySpawner : MonoBehaviour
             var entityInfo = info as EntityInfo;
             var goldCost = entityInfo.goldCost;
             var mineralCost = entityInfo.mineralCost;
-            if (_getGold?.Invoke() < goldCost || _getMineral?.Invoke() < mineralCost)
+            while (_getGold?.Invoke() < goldCost || _getMineral?.Invoke() < mineralCost)
             {
-                _coroutineList[argSlotIndex] = null;
-                yield break;
+                yield return null;
             }
             
             _consumeGold?.Invoke(goldCost);
@@ -149,7 +149,8 @@ public class EntitySpawner : MonoBehaviour
         var entityObj = Managers.Pool.Instantiate(argPrefabId);
         if (entityObj != null)
         {
-            entityObj.transform.position = transform.position;
+            var randomYOffset = UnityEngine.Random.Range(-SPAWN_POS_Y_OFFSET, SPAWN_POS_Y_OFFSET);
+            entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
             entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity, _earnGold);
