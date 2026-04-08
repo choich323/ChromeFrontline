@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private const ulong INVALID_UID = 0;
-    private const int DEFAULT_SLOT_COUNT = 2;
+    private const int DEFAULT_SLOT_COUNT = 1;
     private const int DEFAULT_GAME_SPEED = 1;
     
     private ulong _uid = INVALID_UID;
