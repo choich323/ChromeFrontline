@@ -226,11 +226,4 @@ public class EntitySpawner : MonoBehaviour
     {
         RemoveEntity(argEntity);
     }
-    
-    [ContextMenu("Spawn")]
-    void TestSpawn()
-    {
-        _slotList[0].ChangeTarget(PrefabID.Pioneer);
-        _slotList[1].ChangeTarget(PrefabID.Alien);
-    }
 }

@@ -6,9 +6,11 @@ public class DataManager : MonoBehaviour
 {
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
+    [SerializeField] private AIScheduleData _aiScheduleData;
     
-    private Dictionary<int, APrefabInfo> _prefabDataDict = new Dictionary<int, APrefabInfo>();
-    private Dictionary<int, LocalizationText> _stringDataDict = new Dictionary<int, LocalizationText>();
+    private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
+    private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
+    private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
     
     public void Init()
     {
@@ -27,17 +29,19 @@ public class DataManager : MonoBehaviour
                 var key = (int)ConvertStringToPrefabID(info.prefab.name);
                 if (key == (int)PrefabID.None) continue;
                 
-                if (!_prefabDataDict.ContainsKey(key))
-                {
-                    _prefabDataDict[key] = info;
-                }
+                _prefabInfoDict.TryAdd(key, info);
             }
         }
 
         foreach (var info in _stringData.GetInfoList())
         {
             var id = (int)ConvertStringToStringID(info.id);
-            _stringDataDict.Add(id, info.value);
+            _stringInfoDict.TryAdd(id, info.value);
+        }
+
+        foreach (var info in _aiScheduleData.GetScheduleInfoList())
+        {
+            _aiScheduleInfoList.Add(info);
         }
     }
 
@@ -63,7 +67,7 @@ public class DataManager : MonoBehaviour
     
     public bool TryGetPrefabInfo(int argId, out APrefabInfo outInfo)
     {
-        return _prefabDataDict.TryGetValue(argId, out outInfo);
+        return _prefabInfoDict.TryGetValue(argId, out outInfo);
     }
 
     public bool TryGetString(string argId, out string outString)
@@ -75,21 +79,27 @@ public class DataManager : MonoBehaviour
     public bool TryGetString(int argId, out string outString)
     {
         outString = string.Empty;
-        bool isFind = _stringDataDict.TryGetValue(argId, out var data);
-        if (data != null)
+        bool isFind = _stringInfoDict.TryGetValue(argId, out var info);
+        if (info != null)
         {
             var lang = Managers.Language.CurrentLanguage;
             switch (lang)
             {
                 default:
                 case Language.English:
-                    outString = data.en;
+                    outString = info.en;
                     break;
                 case Language.Korean:
-                    outString = data.kr;
+                    outString = info.kr;
                     break;
             }
         }
         return isFind;
+    }
+
+    public AIScheduleInfo GetAIScheduleInfo()
+    {
+        int randIndex = UnityEngine.Random.Range(0, _aiScheduleInfoList.Count - 1);
+        return _aiScheduleInfoList[randIndex];
     }
 }

@@ -73,6 +73,12 @@ public class GameField : MonoBehaviour
     {
         DestroyAll();
     }
+
+    public void Restart()
+    {
+        ResetField();
+        Init();
+    }
     
     void DestroyAll()
     {

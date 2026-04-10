@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
   - prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
-    stringId: Pioneer
+    stringId: Infantry
     level: 1
     hp: 50
     shield: 0

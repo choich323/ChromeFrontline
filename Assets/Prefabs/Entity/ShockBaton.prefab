@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5888646894343762764}
   - component: {fileID: 8211836838429605089}
   m_Layer: 3
-  m_Name: Alien
+  m_Name: ShockBaton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

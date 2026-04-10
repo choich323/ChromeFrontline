@@ -10,7 +10,7 @@ public enum PrefabID
     // Entity
     Pioneer = 101,
     
-    Alien = 1001,
+    Revolt = 1001,
         
     // spawner
     EntitySpawner = 5001,

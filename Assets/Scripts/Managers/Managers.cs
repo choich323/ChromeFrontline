@@ -4,17 +4,17 @@ using UnityEngine;
 public class Managers : MonoBehaviour
 {
     private static Managers _instance;
-    public static Managers I => _instance;
+    private static Managers I => _instance;
     
-    private PoolManager _poolManager;
-    private DataManager _dataManager;
-    private GameManager _gameManager;
-    private UIManager _uiManager;
-    private StringManager _stringManager;
-    private LanguageManager _languageManager;
-    private SoundManager _soundManager;
+    [SerializeField] private PoolManager _poolManager;
+    [SerializeField] private DataManager _dataManager;
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private StringManager _stringManager;
+    [SerializeField] private LanguageManager _languageManager;
+    [SerializeField] private SoundManager _soundManager;
+    
     private PlayerPrefsManager _prefsManager;
-    
     private CameraController _cameraController;
     
     // 접근용 프로퍼티
@@ -53,25 +53,18 @@ public class Managers : MonoBehaviour
         _prefsManager = new PlayerPrefsManager();
         _prefsManager.Init();
         
-        _dataManager = GetComponent<DataManager>();
         _dataManager.Init();
         
-        _poolManager = GetComponent<PoolManager>();
         _poolManager.Init();
         
-        _gameManager = GetComponent<GameManager>();
         _gameManager.Init();
         
-        _uiManager = GetComponent<UIManager>();
         _uiManager.Init();
         
-        _stringManager = GetComponent<StringManager>();
         _stringManager.Init();
 
-        _languageManager = GetComponent<LanguageManager>();
         _languageManager.Init();
         
-        _soundManager = GetComponent<SoundManager>();
         _soundManager.Init();
     }
 }

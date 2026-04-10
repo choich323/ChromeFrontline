@@ -162,14 +162,14 @@ MonoBehaviour:
       en: Are you sure to stop current producing and switch to the selected unit?
       kr: "\uAE30\uC874 \uC720\uB2DB \uC0DD\uC0B0\uC744 \uBA48\uCD94\uACE0,\\n\uC120\uD0DD\uD55C
         \uC720\uB2DB\uC744 \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
-  - id: Pioneer
+  - id: Infantry
     value:
-      en: Pioneer
-      kr: "\uAC1C\uCC99\uC790"
-  - id: Alien
+      en: Infantry
+      kr: "\uAC1C\uCC99 \uBCF4\uBCD1"
+  - id: ShockBaton
     value:
-      en: Alien
-      kr: "\uC5D0\uC5B4\uB9AC\uC5B8"
+      en: Shock Baton
+      kr: "\uC804\uACA9 \uD0C0\uACA9\uAFBC"
   - id: Melee
     value:
       en: Melee

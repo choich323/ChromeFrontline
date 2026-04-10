@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3931792488220405710}
   - component: {fileID: 9201654926872411682}
   m_Layer: 3
-  m_Name: Pioneer
+  m_Name: Infantry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

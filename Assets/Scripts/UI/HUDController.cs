@@ -40,7 +40,6 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Button _restartBtn;
     [SerializeField] private Button _exitBtn;
     
-    private float _elapsedPlayTime = 0f;
     private bool _isSubMenuOpen = false;
     private bool _isRestarting = false;
     private Coroutine _menuAnimCoroutine;
@@ -59,7 +58,6 @@ public class HUDController : MonoBehaviour
 
     public void Clear()
     {
-        _elapsedPlayTime = 0f;
         _isSubMenuOpen = false;
         if (_menuAnimCoroutine != null)
         {
@@ -125,11 +123,11 @@ public class HUDController : MonoBehaviour
 
     void UpdateTimer()
     {
-        _elapsedPlayTime += Time.deltaTime;
-
-        int hours = Mathf.FloorToInt(_elapsedPlayTime / HOUR_TO_SECOND);
-        int minutes = Mathf.FloorToInt((_elapsedPlayTime % HOUR_TO_SECOND) / MINUTE_TO_SECOND);
-        int seconds = Mathf.FloorToInt(_elapsedPlayTime % MINUTE_TO_SECOND);
+        var playTime = Managers.Game.PlayTime;
+        
+        int hours = Mathf.FloorToInt(playTime / HOUR_TO_SECOND);
+        int minutes = Mathf.FloorToInt((playTime % HOUR_TO_SECOND) / MINUTE_TO_SECOND);
+        int seconds = Mathf.FloorToInt(playTime % MINUTE_TO_SECOND);
 
         if (hours > 0)
         {

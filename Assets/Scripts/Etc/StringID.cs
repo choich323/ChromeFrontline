@@ -55,7 +55,9 @@ public enum StringID
     MainDps = 9101,
     MainTank,
     
-    // Entity Name
-    Pioneer = 10001,
-    Alien,
+    // Entity - Pioneer Name
+    Infantry = 10001,
+    
+    // Entity - Revolt Name
+    ShockBaton = 20001,
 }

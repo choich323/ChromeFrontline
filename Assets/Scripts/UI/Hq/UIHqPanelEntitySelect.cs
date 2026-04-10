@@ -32,7 +32,7 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
 
     void CreateEntityUnits()
     {
-        var unlockEntityList = Managers.Game.GetUnlockEntityIDList();
+        var unlockEntityList = Managers.Game.GetPlayerUsableEntityIDList();
         foreach (var entityId in unlockEntityList)
         {
             CreateEntityUnit(entityId);

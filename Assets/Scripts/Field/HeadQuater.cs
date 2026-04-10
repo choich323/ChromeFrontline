@@ -6,7 +6,7 @@ using UnityEngine;
 public class HeadQuater : MonoBehaviour
 {
     private const int DEFAULT_SPAWNER_COUNT = 3;
-    private const int START_GOLD = 300;
+    private const int START_GOLD = 200;
     private const int DEFAULT_GOLD_PER_SECOND = 1;
     private const float SECOND = 1f;
     
@@ -26,6 +26,7 @@ public class HeadQuater : MonoBehaviour
     private List<EntitySpawner> _spawnerList = new List<EntitySpawner>();
     private Func<Team, int, Transform> _getTargetSpawnerPos;
     private Coroutine _coroutineGoldPerSecond;
+    private List<PrefabID> _usableEntityIDList = new List<PrefabID>();
     
     public int Hp => _hp;
     public int Shield => _shield;
@@ -40,14 +41,29 @@ public class HeadQuater : MonoBehaviour
         _team = argTeam;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
-        
-        if (_coroutineGoldPerSecond != null)
+
+        if (_team == Team.Player)
         {
-            StopCoroutine(_coroutineGoldPerSecond);
+            if (_coroutineGoldPerSecond != null)
+            {
+                StopCoroutine(_coroutineGoldPerSecond);
+            }
+            _coroutineGoldPerSecond = StartCoroutine(CoEarnGoldPerSecond());
         }
-        _coroutineGoldPerSecond = StartCoroutine(CoEarnGoldPerSecond());
     }
 
+    void ResetUsableEntityIdList()
+    {
+        // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
+        _usableEntityIDList.Add(PrefabID.Pioneer);
+        _usableEntityIDList.Add(PrefabID.Revolt);
+    }
+    
+    public IEnumerable<PrefabID> GetUsableEntityIDList()
+    {
+        return _usableEntityIDList;
+    }
+    
     IEnumerator CoEarnGoldPerSecond()
     {
         var wait = new WaitForSeconds(SECOND);
@@ -149,7 +165,7 @@ public class HeadQuater : MonoBehaviour
     void Clear()
     {
         DestroySpawners();
-
+        ResetUsableEntityIdList();
         _useLeftSpawnerPos = false;
         _maxHp = 0;
         _hp = 0;
