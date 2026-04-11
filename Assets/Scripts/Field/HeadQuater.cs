@@ -6,8 +6,6 @@ using UnityEngine;
 public class HeadQuater : MonoBehaviour
 {
     private const int DEFAULT_SPAWNER_COUNT = 3;
-    private const int START_GOLD = 200;
-    private const int DEFAULT_GOLD_PER_SECOND = 1;
     private const float SECOND = 1f;
     
     [SerializeField] private Transform _spawnerParent;
@@ -19,9 +17,8 @@ public class HeadQuater : MonoBehaviour
     private int _maxHp;
     private int _hp;
     private int _shield;
-    private long _gold = START_GOLD;
+    private long _gold;
     private int _mineral;
-    private int _goldPerSecond = DEFAULT_GOLD_PER_SECOND;
     private Team _team;
     private List<EntitySpawner> _spawnerList = new List<EntitySpawner>();
     private Func<Team, int, Transform> _getTargetSpawnerPos;
@@ -40,6 +37,7 @@ public class HeadQuater : MonoBehaviour
         _hp = argInfo.hp;
         _shield = argInfo.shield;
         _team = argTeam;
+        _gold = Managers.Data.StartGold;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
 
@@ -71,7 +69,7 @@ public class HeadQuater : MonoBehaviour
         {
             yield return wait;
             
-            EarnGold(_goldPerSecond);
+            EarnGold(Managers.Data.CurGoldPerSecond);
         }
     }
 

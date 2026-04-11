@@ -34,11 +34,14 @@ public class EntitySpawner : MonoBehaviour
         _team = argTeam;
         _lane = argLane;
         _targetTransform = argTargetTransform;
-        _earnGold = argEarnGold;
-        _consumeGold = argConsumeGold;
-        _getGold = argGetGold;
-        _consumeMineral = argConsumeMineral;
-        _getMineral = argGetMineral;
+        if (_team == Team.Player)
+        {
+            _earnGold = argEarnGold;
+            _consumeGold = argConsumeGold;
+            _getGold = argGetGold;
+            _consumeMineral = argConsumeMineral;
+            _getMineral = argGetMineral;
+        }
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
         {

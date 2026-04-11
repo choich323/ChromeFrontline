@@ -7,12 +7,17 @@ public class DataManager : MonoBehaviour
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
     [SerializeField] private AIScheduleData _aiScheduleData;
+    [SerializeField] private PlayerCurrencyData _playerCurrencyData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
     private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
     private List<EntityInfo> _pioneerInfoList = new List<EntityInfo>();
     private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
+    private int _curGoldPerSecond;
+
+    public int StartGold => _playerCurrencyData.startGold;
+    public int CurGoldPerSecond => _curGoldPerSecond;
     
     public void Init()
     {
@@ -57,6 +62,8 @@ public class DataManager : MonoBehaviour
         {
             _aiScheduleInfoList.Add(info);
         }
+
+        _curGoldPerSecond = _playerCurrencyData.goldPerSecond;
     }
 
     public PrefabID ConvertStringToPrefabID(string argPrefabId)

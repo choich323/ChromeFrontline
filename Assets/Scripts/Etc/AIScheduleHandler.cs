@@ -63,7 +63,7 @@ public class AIScheduleHandler
 
             SpendTp(spendAmount, out int changeAmount);
 
-            _accumulatedTp += saveAmount + changeAmount;
+            _accumulatedTp += saveAmount;
         }
     }
 
@@ -124,6 +124,6 @@ public class AIScheduleHandler
         var tpAmount = _aiScheduleInfo.tpAmountCurve.Evaluate(playTime);
         int emergencyTp = (int)(tpAmount * _aiScheduleInfo.emergencyTpMultiplier);
         SpendTp(emergencyTp, out int changeAmount);
-        _accumulatedTp += changeAmount;
+        //_accumulatedTp += changeAmount;
     }
 }

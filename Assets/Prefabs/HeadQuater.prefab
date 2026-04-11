@@ -271,6 +271,8 @@ MonoBehaviour:
   - {fileID: 3315852264639158035}
   - {fileID: 3247234362817835404}
   - {fileID: 4610065183167546681}
+  _startGold: 300
+  _goldPerSecond: 5
 --- !u!1 &6980722619996442859
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ MonoBehaviour:
     criticalChance: 0
     moveSpeed: 1.5
     productionTime: 15
-    goldCost: 40
+    goldCost: 30
     mineralCost: 0
     typeTagStringId: Melee
     combatRoleTagStringId: 
