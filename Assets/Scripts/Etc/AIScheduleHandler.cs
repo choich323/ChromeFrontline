@@ -18,6 +18,8 @@ public class AIScheduleHandler
     private float _nextTpSupplyTimer = 0f;
     private float _nextBurstTimer = 0f;
     
+    public AIScheduleInfo ScheduleInfo => _aiScheduleInfo;
+    
     public void Init()
     {
         _aiScheduleInfo = Managers.Data.GetAIScheduleInfo();
@@ -114,5 +116,14 @@ public class AIScheduleHandler
         }
         
         Managers.Game.ForceSpawn(reqList);
+    }
+
+    public void Emergency()
+    {
+        var playTime = Managers.Game.PlayTime;
+        var tpAmount = _aiScheduleInfo.tpAmountCurve.Evaluate(playTime);
+        int emergencyTp = (int)(tpAmount * _aiScheduleInfo.emergencyTpMultiplier);
+        SpendTp(emergencyTp, out int changeAmount);
+        _accumulatedTp += changeAmount;
     }
 }

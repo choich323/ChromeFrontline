@@ -14,43 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    tpInterval: 14
+    tpInterval: 13
     tpIntervalDecrementAmount: 0.5
-    tpIntervalDecrementInterval: 45
-    minInterval: 8
+    tpIntervalDecrementInterval: 60
+    minInterval: 9
     tpAmountCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 50
-        inSlope: 0.75
-        outSlope: 0.75
+        value: 30
+        inSlope: 0.45
+        outSlope: 0.45
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 600
-        value: 500
-        inSlope: 1.0416667
-        outSlope: 1.0416667
+        value: 300
+        inSlope: 0.725
+        outSlope: 0.725
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 900
-        value: 900
-        inSlope: 1.6666667
-        outSlope: 1.6666667
+        value: 600
+        inSlope: 1.5
+        outSlope: 1.5
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1200
-        value: 1500
+        value: 1200
         inSlope: 2
         outSlope: 2
         tangentMode: 34
@@ -66,17 +66,17 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0.8
-        inSlope: -0.00033333333
-        outSlope: -0.00033333333
+        inSlope: -0.00016666665
+        outSlope: -0.00016666665
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1200
-        value: 0.4
-        inSlope: -0.00033333333
-        outSlope: -0.00033333333
+        value: 0.6
+        inSlope: -0.00016666665
+        outSlope: -0.00016666665
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -110,4 +110,4 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     emergencyHpThreshold: 0.3
-    tpBonusMultiplier: 10
+    emergencyTpMultiplier: 5

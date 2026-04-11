@@ -35,6 +35,7 @@ public class HeadQuater : MonoBehaviour
     
     public void Init(HeadQuaterInfo argInfo, Team argTeam, bool argUseLeftSpawnerPos, Func<Team, int, Transform> argGetTargetSpawnerPos)
     {
+        SetUsableEntityIdList();
         _maxHp = argInfo.hp;
         _hp = argInfo.hp;
         _shield = argInfo.shield;
@@ -52,7 +53,7 @@ public class HeadQuater : MonoBehaviour
         }
     }
 
-    void ResetUsableEntityIdList()
+    void SetUsableEntityIdList()
     {
         // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
         _usableEntityIDList.Add(PrefabID.Infantry);
@@ -95,6 +96,10 @@ public class HeadQuater : MonoBehaviour
         }
         
         _hp -= argDamage;
+        if (_team == Team.Enemy)
+        {
+            gm.OnEnemyHqHpChanged(_hp, _maxHp);
+        }
         if (_hp <= 0)
         {
             bool isPlayerWin = _team != Team.Player;
@@ -164,7 +169,7 @@ public class HeadQuater : MonoBehaviour
     void Clear()
     {
         DestroySpawners();
-        ResetUsableEntityIdList();
+        SetUsableEntityIdList();
         _useLeftSpawnerPos = false;
         _maxHp = 0;
         _hp = 0;

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private float _elapsedPlayTime = 0f;
     private GameField _gameField;
     private bool _isPaused = false;
+    private bool _isEnemyEmergencyTriggered = false;
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
@@ -138,6 +139,7 @@ public class GameManager : MonoBehaviour
         _slotCountMax = DEFAULT_SLOT_COUNT;
         _curGameSpeed = DEFAULT_GAME_SPEED;
         _elapsedPlayTime = 0f;
+        _isEnemyEmergencyTriggered = false;
         StartAIScheduleHandler();
         _gameField.Restart();
     }
@@ -145,5 +147,18 @@ public class GameManager : MonoBehaviour
     public void ForceSpawn(List<SpawnRequest> argSpawnRequestList)
     {
         GameField.EnemyHq.ForceSpawn(argSpawnRequestList);
+    }
+
+    public void OnEnemyHqHpChanged(int argHp, int argMaxHp)
+    {
+        if (_isEnemyEmergencyTriggered || _aiScheduleHandler == null) return;
+        
+        float hpRatio = argHp / argMaxHp;
+        if (hpRatio <= _aiScheduleHandler.ScheduleInfo.emergencyHpThreshold)
+        {
+            _isEnemyEmergencyTriggered = true;
+            Debug.Log("Emergency triggered!");
+            _aiScheduleHandler.Emergency();
+        }
     }
 }

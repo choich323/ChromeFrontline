@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7f93fbef008d542b7caa92e2bbd00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySpawner
+  SPAWN_POS_Y_OFFSET: 0.15
   _entityParent: {fileID: 2837161493676446153}
 --- !u!1 &4537021477540360877
 GameObject:

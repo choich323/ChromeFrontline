@@ -6,8 +6,8 @@ using UnityEngine;
 public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
-    private const float SPAWN_POS_Y_OFFSET = 0.5f;
     
+    [SerializeField] private float SPAWN_POS_Y_OFFSET = 0.2f;
     [SerializeField] private Transform _entityParent;
     
     // slot과 coroutine의 인덱스를 동일하게 맞춰야 한다.
