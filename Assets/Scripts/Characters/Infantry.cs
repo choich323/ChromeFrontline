@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Revolt : AEntity
+public class Infantry : AEntity
 {
     
 }

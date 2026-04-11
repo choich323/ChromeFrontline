@@ -55,8 +55,7 @@ public class HeadQuater : MonoBehaviour
     void ResetUsableEntityIdList()
     {
         // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
-        _usableEntityIDList.Add(PrefabID.Pioneer);
-        _usableEntityIDList.Add(PrefabID.Revolt);
+        _usableEntityIDList.Add(PrefabID.Infantry);
     }
     
     public IEnumerable<PrefabID> GetUsableEntityIDList()
@@ -203,6 +202,15 @@ public class HeadQuater : MonoBehaviour
         _spawnerList.Add(spawner);
         
         return spawner;
+    }
+
+    public void ForceSpawn(List<SpawnRequest> spawnRequestList)
+    {
+        foreach (var req in spawnRequestList)
+        {
+            var spawner = _spawnerList[req.laneIndex];
+            spawner.ForceSpawn(req.infoList);
+        }
     }
     
     void DestroySpawners()

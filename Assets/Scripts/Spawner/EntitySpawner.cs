@@ -139,21 +139,38 @@ public class EntitySpawner : MonoBehaviour
             }
             
             slot.SetProgress(0);
-            Spawn(targetId, entityInfo);
+            Spawn(entityInfo);
             yield return null;
         }
     }
     
-    void Spawn(PrefabID argPrefabId, EntityInfo argEntityInfo)
+    public void ForceSpawn(List<EntityInfo> entityInfoList)
     {
-        var entityObj = Managers.Pool.Instantiate(argPrefabId);
+        StartCoroutine(CoForceSpawn(entityInfoList));
+    }
+    
+    IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList)
+    {
+        var wait = new WaitForSeconds(1f);
+        foreach (var info in entityInfoList)
+        {
+            Spawn(info);
+
+            yield return wait;
+        }
+    }
+    
+    void Spawn(EntityInfo argEntityInfo)
+    {
+        var prefabId = argEntityInfo.GetPrefabID();
+        var entityObj = Managers.Pool.Instantiate(prefabId);
         if (entityObj != null)
         {
             var randomYOffset = UnityEngine.Random.Range(-SPAWN_POS_Y_OFFSET, SPAWN_POS_Y_OFFSET);
             entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity, _earnGold);
+            entity.Init(prefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }

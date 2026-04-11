@@ -8,10 +8,10 @@ public enum PrefabID
     HeadQuater = 51,
     
     // Entity
-    Pioneer = 101,
+    Infantry = 1001,
     
-    Revolt = 1001,
-        
+    ShockBaton = 2001,
+    
     // spawner
     EntitySpawner = 5001,
     

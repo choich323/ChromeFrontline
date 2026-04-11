@@ -22,6 +22,7 @@ public class AIScheduleInfo
     // x:시간, y:엔티티 레벨
     public AnimationCurve levelCurve;
 
+    [Range(0f, 1f)]
     public float emergencyHpThreshold = 0.3f; // 발악 패턴 체력 기준
     public float tpBonusMultiplier = 10f; // 초당 수급량의 x배 만큼 지급
 }

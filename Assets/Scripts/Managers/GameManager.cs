@@ -141,4 +141,9 @@ public class GameManager : MonoBehaviour
         StartAIScheduleHandler();
         _gameField.Restart();
     }
+
+    public void ForceSpawn(List<SpawnRequest> argSpawnRequestList)
+    {
+        GameField.EnemyHq.ForceSpawn(argSpawnRequestList);
+    }
 }

@@ -6,6 +6,11 @@ using UnityEngine;
 public class APrefabInfo
 {
     public GameObject prefab;
+
+    public PrefabID GetPrefabID()
+    {
+        return Managers.Data.ConvertStringToPrefabID(prefab.name);
+    }
 }
 
 public abstract class APrefabData : ScriptableObject

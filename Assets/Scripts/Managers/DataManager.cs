@@ -11,6 +11,8 @@ public class DataManager : MonoBehaviour
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
     private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
+    private List<EntityInfo> _pioneerInfoList = new List<EntityInfo>();
+    private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
     
     public void Init()
     {
@@ -26,10 +28,22 @@ public class DataManager : MonoBehaviour
             {
                 if (info == null) continue;
                 if (info.prefab == null) continue;
-                var key = (int)ConvertStringToPrefabID(info.prefab.name);
+                var key = (int)info.GetPrefabID();
                 if (key == (int)PrefabID.None) continue;
                 
                 _prefabInfoDict.TryAdd(key, info);
+
+                if (info is EntityInfo entityInfo)
+                {
+                    if (entityInfo.camp == CampType.Pioneer)
+                    {
+                        _pioneerInfoList.Add(entityInfo);
+                    }
+                    else if (entityInfo.camp == CampType.Revolt)
+                    {
+                        _revoltInfoList.Add(entityInfo);
+                    }
+                }
             }
         }
 
@@ -99,7 +113,22 @@ public class DataManager : MonoBehaviour
 
     public AIScheduleInfo GetAIScheduleInfo()
     {
-        int randIndex = UnityEngine.Random.Range(0, _aiScheduleInfoList.Count - 1);
+        int randIndex = UnityEngine.Random.Range(0, _aiScheduleInfoList.Count);
         return _aiScheduleInfoList[randIndex];
+    }
+
+    public IEnumerable<EntityInfo> GetPioneerInfoList()
+    {
+        return _pioneerInfoList;
+    }
+
+    public IEnumerable<EntityInfo> GetRevoltInfoList()
+    {
+        return _revoltInfoList;
+    }
+
+    public List<EntityInfo> GetRevoltInfoList(int argTpAmount)
+    {
+        return _revoltInfoList.FindAll(entity => entity.goldCost <= argTpAmount);
     }
 }

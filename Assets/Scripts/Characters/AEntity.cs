@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
 
+public enum CampType
+{
+    None = 0,
+    Pioneer,
+    Revolt,
+}
+
 public enum Team
 {
     None,
@@ -24,6 +31,8 @@ public enum EntityActionType
 [Serializable]
 public struct EntityStatus
 {
+    public CampType camp;
+    
     [Header("Team")]
     public Team team;
 
@@ -114,6 +123,7 @@ public abstract class AEntity : MonoBehaviour
     
     void SetEntityInfo(EntityInfo argEntityInfo)
     {
+        _entityStatus.camp = argEntityInfo.camp;
         _entityStatus.curLevel = argEntityInfo.level;
         _entityStatus.curHp = argEntityInfo.hp;
         _entityStatus.curShield = argEntityInfo.shield;

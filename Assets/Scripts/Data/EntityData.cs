@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class EntityInfo : APrefabInfo
 {
+    public CampType camp;
     public string stringId;
     public int level;
     public int hp;

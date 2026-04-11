@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Pioneer : AEntity
+public class ShockBaton : AEntity
 {
     
 }
