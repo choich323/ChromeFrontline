@@ -201,7 +201,7 @@ public class HeadQuater : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         var spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team, argSpawnerIndex);
-        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos, EarnGold, ConsumeGold, GetGold, ConsumeMineral, GetMineral);
+        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos, EarnGold, EarnMineral, ConsumeGold, GetGold, ConsumeMineral, GetMineral);
         _spawnerList.Add(spawner);
         
         return spawner;

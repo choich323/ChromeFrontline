@@ -19,6 +19,7 @@ public class EntitySpawner : MonoBehaviour
     private Transform _targetTransform;
     private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
     private Action<long> _earnGold;
+    private Action<int> _earnMineral;
     private Action<long> _consumeGold;
     private Action<int> _consumeMineral;
     private Func<long> _getGold;
@@ -27,7 +28,7 @@ public class EntitySpawner : MonoBehaviour
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Action<int> argConsumeMineral, Func<int> argGetMineral)
+    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<int> argEarnMineral, Action<long> argConsumeGold, Func<long> argGetGold, Action<int> argConsumeMineral, Func<int> argGetMineral)
     {
         ResetSpawner();
         
@@ -37,6 +38,7 @@ public class EntitySpawner : MonoBehaviour
         if (_team == Team.Player)
         {
             _earnGold = argEarnGold;
+            _earnMineral = argEarnMineral;
             _consumeGold = argConsumeGold;
             _getGold = argGetGold;
             _consumeMineral = argConsumeMineral;
@@ -98,6 +100,14 @@ public class EntitySpawner : MonoBehaviour
         {
             StopCoroutine(_coroutineList[argSlotIndex]);
             _coroutineList[argSlotIndex] = null;
+            var slot = _slotList[argSlotIndex];
+            var targetId = slot.GetTargetId();
+            Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
+            if (info is EntityInfo entityInfo)
+            {
+                _earnGold?.Invoke(entityInfo.goldCost);
+                _earnMineral?.Invoke(entityInfo.mineralCost);
+            }
         }
     }
 
