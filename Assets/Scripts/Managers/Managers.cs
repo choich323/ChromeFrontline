@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
     [SerializeField] private StringManager _stringManager;
     [SerializeField] private LanguageManager _languageManager;
     [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private SaveManager _saveManager;
     
     private PlayerPrefsManager _prefsManager;
     private CameraController _cameraController;
@@ -26,6 +27,7 @@ public class Managers : MonoBehaviour
     public static LanguageManager Language => I._languageManager;
     public static SoundManager Sound => I._soundManager;
     public static PlayerPrefsManager Prefs => I._prefsManager;
+    public static SaveManager Save => I._saveManager;
 
     public static CameraController CamController => I._cameraController;
     
@@ -66,5 +68,7 @@ public class Managers : MonoBehaviour
         _languageManager.Init();
         
         _soundManager.Init();
+        
+        _saveManager.Init();
     }
 }

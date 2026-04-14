@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
+    private UserRecord _userRecord;
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -31,7 +32,8 @@ public class GameManager : MonoBehaviour
     public bool IsInGame => _isInGame;
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
-
+    public UserRecord UserRecord => _userRecord;
+    
     public event Action OnGamePause
     {
         add => _onGamePause += value;
@@ -70,6 +72,9 @@ public class GameManager : MonoBehaviour
     
     public void Init()
     {
+        _userRecord = Managers.Save.LoadRecord();
+        
+        // TODO: game start 버튼을 누르면 실행되도록 수정 필요
         var gameFieldObj = Managers.Pool.Instantiate(PrefabID.GameField);
         if (gameFieldObj == null)
         {
@@ -77,11 +82,17 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        // TODO: game start 버튼을 누르면 실행되도록 수정 필요
         _isInGame = true;
         StartAIScheduleHandler();
         _gameField = gameFieldObj.GetComponent<GameField>();
         _gameField.Init();
+    }
+
+    public void SaveUserRecord(UserRecord argUserRecord)
+    {
+        _userRecord.Save(argUserRecord);
+        var sm = Managers.Save;
+        sm.SaveRecord(_userRecord);
     }
 
     void StartAIScheduleHandler()
@@ -114,14 +125,16 @@ public class GameManager : MonoBehaviour
         return GameField.PlayerHq.GetUsableEntityIDList();
     }
     
-    public void EndStage(bool isPlayerWin)
+    public void EndStage(bool argIsPlayerWin)
     {
-        if(isPlayerWin)
-            Debug.Log($"You Win!");
-        else
-            Debug.Log($"You Lose!");
-        
         PauseGame();
+
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
+        popup.Init();
+        var resultData = new ResultData();
+        resultData.isVictory = argIsPlayerWin;
+        resultData.stage = _stage;
+        popup.SetData(resultData);
     }
 
     public void SetGameSpeed(int argSpeed)
@@ -150,6 +163,8 @@ public class GameManager : MonoBehaviour
         _curGameSpeed = DEFAULT_GAME_SPEED;
         _elapsedPlayTime = 0f;
         _isEnemyEmergencyTriggered = false;
+        Managers.UI.PopupHandler.CloseAllPopup();
+        ResumeGame();
         StartAIScheduleHandler();
         _gameField.Restart();
     }

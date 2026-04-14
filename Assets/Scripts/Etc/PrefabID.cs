@@ -26,4 +26,5 @@ public enum PrefabID
     UIPauseBtn,
     
     UIEntityStat = 10011,
+    UIResult,
 }

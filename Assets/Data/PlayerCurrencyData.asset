@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerCurrencyData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCurrencyData
   startGold: 300
-  goldPerSecond: 5
+  goldPerSecond: 10

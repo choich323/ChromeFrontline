@@ -25,6 +25,11 @@ public class UIPauseBtn : MonoBehaviour
     void OnBtnPause()
     {
         var gm = Managers.Game;
+        if (gm.IsGameOver)
+        {
+            return;
+        }
+        
         if (!IsPaused)
         {
             gm.PauseGame();

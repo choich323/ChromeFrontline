@@ -411,7 +411,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 97690656
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1056,8 +1056,8 @@ MonoBehaviour:
   _closeButton: {fileID: 0}
   _dimmedBg: {fileID: 0}
   _bgImage: {fileID: 7033721165504682862}
-  _bgVictoryColor: {r: 0.85882354, g: 0.9607843, b: 1, a: 0}
-  _bgDefeatColor: {r: 1, g: 0.85882354, b: 0.8627451, a: 0}
+  _bgVictoryColor: {r: 0.85882354, g: 0.9607843, b: 1, a: 1}
+  _bgDefeatColor: {r: 1, g: 0.85882354, b: 0.8627451, a: 1}
   _titleText: {fileID: 4892245699034751419}
   _victoryTextColor: {r: 0.20392157, g: 0.49411765, b: 0.79607844, a: 1}
   _defeatTextColor: {r: 0.87169814, g: 0.28782475, b: 0.32544026, a: 1}
@@ -1070,14 +1070,16 @@ MonoBehaviour:
   _clearTimeMissionText: {fileID: 4885332818641947036}
   _clearTimeText: {fileID: 11589654826139308}
   _clearTimeBestText: {fileID: 2045585196510902798}
-  _clearTimeNewText: {fileID: 6019921641585208860}
+  _clearTimeNewTextObject: {fileID: 6019921641585208860}
   _hqHpIcon: {fileID: 6338598444527966359}
   _hqHpMissionText: {fileID: 2327755622001942904}
   _hqHpText: {fileID: 7181206818831799880}
   _hqHpBestText: {fileID: 9215079326586393322}
-  _hqHpNewText: {fileID: 3461834219619174136}
+  _hqHpNewTextObject: {fileID: 3461834219619174136}
   _retryBtn: {fileID: 6887218171167131198}
+  _retryBtnText: {fileID: 1317289282272924628}
   _exitBtn: {fileID: 8088127890198504171}
+  _exitBtnText: {fileID: 4887553779316806798}
 --- !u!1001 &218270635772663353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1166,11 +1168,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1363902581380961259, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9411765
+      objectReference: {fileID: 0}
     - target: {fileID: 1394064214467233420, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
       propertyPath: m_Name
       value: UIDimmedBg
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3963218511745687382, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3963218511745687382, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

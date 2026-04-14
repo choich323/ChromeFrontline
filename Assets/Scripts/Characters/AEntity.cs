@@ -348,8 +348,13 @@ public abstract class AEntity : MonoBehaviour
         if (dist < errorThreshold)
         {
             var field = Managers.Game.GameField;
-            var hq = _entityStatus.team == Team.Player ? field.EnemyHq : field.PlayerHq;
-            hq.OnHqDamaged((int)_entityStatus.attack);
+            var enemyHq = _entityStatus.team == Team.Player ? field.EnemyHq : field.PlayerHq;
+            var myHq = _entityStatus.team == Team.Player ? field.PlayerHq : field.EnemyHq;
+            enemyHq.OnHqDamaged((int)_entityStatus.attack);
+            if (_entityStatus.team == Team.Player)
+            {
+                myHq.EarnGold((long)(_entityStatus.reward / REWARD_RATIO));
+            }
             
             Destroy();
         }
