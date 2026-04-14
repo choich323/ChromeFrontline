@@ -107,7 +107,7 @@ MonoBehaviour:
       kr: "\uBA54\uB274 \uC120\uD0DD"
   - id: LaneSelect
     value:
-      en: Lane Select
+      en: Best
       kr: "\uACF5\uACA9\uB85C \uC120\uD0DD"
   - id: SlotSelect
     value:
@@ -198,3 +198,47 @@ MonoBehaviour:
     value:
       en: 'Now Producing Unit:'
       kr: "\uD604\uC7AC \uC0DD\uC0B0 \uC911\uC778 \uC720\uB2DB:"
+  - id: Victory
+    value:
+      en: Victory
+      kr: "\uC2B9\uB9AC"
+  - id: Defeat
+    value:
+      en: Defeat
+      kr: "\uD328\uBC30"
+  - id: Clear
+    value:
+      en: Clear
+      kr: "\uD074\uB9AC\uC5B4 \uC5EC\uBD80"
+  - id: Success
+    value:
+      en: Success
+      kr: "\uC131\uACF5"
+  - id: Fail
+    value:
+      en: Fail
+      kr: "\uC2E4\uD328"
+  - id: Best
+    value:
+      en: '(Best: {0})'
+      kr: "(\uCD5C\uACE0 \uAE30\uB85D: {0})"
+  - id: NewRecord
+    value:
+      en: New!
+      kr: "\uAC31\uC2E0!"
+  - id: ClearTimeMission
+    value:
+      en: Clear in {0}
+      kr: "{0}\uBD84 \uC774\uB0B4 \uD074\uB9AC\uC5B4"
+  - id: HqHpMission
+    value:
+      en: HQ HP {0}%
+      kr: "HQ \uCCB4\uB825 {0}%"
+  - id: Retry
+    value:
+      en: Retry
+      kr: "\uB2E4\uC2DC\uD558\uAE30"
+  - id: Exit
+    value:
+      en: Exit
+      kr: "\uB098\uAC00\uAE30"

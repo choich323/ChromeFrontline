@@ -7,14 +7,17 @@ public class GameManager : MonoBehaviour
     private const ulong INVALID_UID = 0;
     private const int DEFAULT_SLOT_COUNT = 1;
     private const int DEFAULT_GAME_SPEED = 1;
+    private const int DEFAULT_STAGE = 1;
     
     private ulong _uid = INVALID_UID;
     private int _slotCountMax = DEFAULT_SLOT_COUNT;
     private int _curGameSpeed = DEFAULT_GAME_SPEED;
+    private int _stage = DEFAULT_STAGE;
     private float _elapsedPlayTime = 0f;
     private GameField _gameField;
     private bool _isPaused = false;
     private bool _isEnemyEmergencyTriggered = false;
+    private bool _isInGame = false;
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
@@ -22,8 +25,10 @@ public class GameManager : MonoBehaviour
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
     public int SlotCountMax => _slotCountMax;
+    public int Stage => _stage;
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
+    public bool IsInGame => _isInGame;
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
 
@@ -42,8 +47,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CheckEscapeKey();
-        UpdateTimer();
-        UpdateAIScheduleHandler();
+
+        if (_isInGame)
+        {
+            UpdateTimer();
+            UpdateAIScheduleHandler();
+        }
     }
 
     void CheckEscapeKey()
@@ -69,6 +78,7 @@ public class GameManager : MonoBehaviour
         }
         
         // TODO: game start 버튼을 누르면 실행되도록 수정 필요
+        _isInGame = true;
         StartAIScheduleHandler();
         _gameField = gameFieldObj.GetComponent<GameField>();
         _gameField.Init();
@@ -142,6 +152,16 @@ public class GameManager : MonoBehaviour
         _isEnemyEmergencyTriggered = false;
         StartAIScheduleHandler();
         _gameField.Restart();
+    }
+
+    public void ExitStage()
+    {
+        Debug.Log("out from stage.");
+        _isInGame = false;
+        Managers.UI.PopupHandler.CloseAllPopup();
+        
+        // TODO: 실제 씬 이름을 가져오도록 수정 필요
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby Scene");
     }
 
     public void ForceSpawn(List<SpawnRequest> argSpawnRequestList)

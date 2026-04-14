@@ -105,4 +105,12 @@ public class PopupHandler
             }
         }
     }
+
+    public void CloseAllPopup()
+    {
+        while (_popupStack.Count > 0)
+        {
+            ClosePopup();
+        }
+    }
 }

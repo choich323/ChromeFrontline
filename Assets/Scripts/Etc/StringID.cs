@@ -47,6 +47,18 @@ public enum StringID
     ConfirmStopProducing,
     NowProducingEntity,
     
+    Victory = 401,
+    Defeat,
+    Clear,
+    Success,
+    Fail,
+    Best,
+    NewRecord,
+    ClearTimeMission,
+    HqHpMission,
+    Retry,
+    Exit,
+    
     // type tag
     Melee = 9001,
     Range,
