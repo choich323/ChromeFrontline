@@ -20,12 +20,12 @@ MonoBehaviour:
     hp: 50
     shield: 0
     armor: 1
-    attack: 5
+    attack: 9
     attackSpeed: 2
     attackRange: 1
     criticalChance: 0
     moveSpeed: 1.5
-    productionTime: 8
+    productionTime: 7
     goldCost: 30
     mineralCost: 0
     typeTagStringId: Melee
