@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeadQuater : MonoBehaviour
+public class HeadQuarter : MonoBehaviour
 {
     private const int DEFAULT_SPAWNER_COUNT = 3;
+    private const int DEFAULT_LEVEL = 1;
     private const float SECOND = 1f;
     
     [SerializeField] private Transform _spawnerParent;
@@ -14,7 +15,7 @@ public class HeadQuater : MonoBehaviour
     [SerializeField] private List<Transform> _entitySpawnerLeftPosList;
 
     private bool _useLeftSpawnerPos;
-    private int _level;
+    private int _level = DEFAULT_LEVEL;
     private int _maxHp;
     private int _hp;
     private int _shield;
@@ -32,9 +33,10 @@ public class HeadQuater : MonoBehaviour
     public long Gold => _gold;
     public int Mineral => _mineral;
     
-    public void Init(HeadQuaterInfo argInfo, Team argTeam, bool argUseLeftSpawnerPos, Func<Team, int, Transform> argGetTargetSpawnerPos)
+    public void Init(HeadQuarterInfo argInfo, Team argTeam, bool argUseLeftSpawnerPos, Func<Team, int, Transform> argGetTargetSpawnerPos)
     {
         SetUsableEntityIdList();
+        _level = DEFAULT_LEVEL;
         _maxHp = argInfo.hp;
         _hp = argInfo.hp;
         _shield = argInfo.shield;
@@ -172,6 +174,7 @@ public class HeadQuater : MonoBehaviour
         DestroySpawners();
         SetUsableEntityIdList();
         _useLeftSpawnerPos = false;
+        _level = DEFAULT_LEVEL;
         _maxHp = 0;
         _hp = 0;
         _shield = 0;

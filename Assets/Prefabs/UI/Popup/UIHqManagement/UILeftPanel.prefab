@@ -855,6 +855,10 @@ PrefabInstance:
       propertyPath: m_text
       value: _1
       objectReference: {fileID: 0}
+    - target: {fileID: 8450615867693696235, guid: 8caee1a72e78a3d4a93c90b2832651a8, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8731303479567959444, guid: 8caee1a72e78a3d4a93c90b2832651a8, type: 3}
       propertyPath: m_Name
       value: UITextInfoSet

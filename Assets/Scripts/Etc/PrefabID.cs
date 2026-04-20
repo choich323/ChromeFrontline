@@ -5,7 +5,7 @@ public enum PrefabID
     None = 0,
     
     GameField = 50,
-    HeadQuater = 51,
+    HeadQuarter = 51,
     
     // Entity
     Infantry = 1001,

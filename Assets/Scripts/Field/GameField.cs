@@ -8,11 +8,11 @@ public class GameField : MonoBehaviour
     [SerializeField] private Transform _playerHqPos;
     [SerializeField] private Transform _enemyHqPos;
 
-    private HeadQuater _playerHq;
-    private HeadQuater _enemyHq;
+    private HeadQuarter _playerHq;
+    private HeadQuarter _enemyHq;
     
-    public HeadQuater PlayerHq => _playerHq;
-    public HeadQuater EnemyHq => _enemyHq;
+    public HeadQuarter PlayerHq => _playerHq;
+    public HeadQuarter EnemyHq => _enemyHq;
     
     public void Init()
     {
@@ -34,16 +34,16 @@ public class GameField : MonoBehaviour
     
     void CreateHq(Team argTeam)
     {
-        var hqObj = Managers.Pool.Instantiate(PrefabID.HeadQuater);
+        var hqObj = Managers.Pool.Instantiate(PrefabID.HeadQuarter);
         if (hqObj == null)
             return;
         
         hqObj.transform.SetParent(_hqParent);
         bool isPlayer = argTeam == Team.Player;
         hqObj.transform.position = isPlayer ? _playerHqPos.position : _enemyHqPos.position;
-        Managers.Data.TryGetPrefabInfo((int)PrefabID.HeadQuater, out var info);
-        var hqInfo = info as HeadQuaterInfo;
-        var hq = hqObj.GetComponent<HeadQuater>();
+        Managers.Data.TryGetPrefabInfo((int)PrefabID.HeadQuarter, out var info);
+        var hqInfo = info as HeadQuarterInfo;
+        var hq = hqObj.GetComponent<HeadQuarter>();
         hq.Init(hqInfo, argTeam, !isPlayer, GetTargetSpawnerPos);
         
         if (isPlayer)
@@ -87,8 +87,8 @@ public class GameField : MonoBehaviour
     
     void DestroyHqs()
     {
-        Managers.Pool.Destroy(_playerHq, PrefabID.HeadQuater);
-        Managers.Pool.Destroy(_enemyHq, PrefabID.HeadQuater);
+        Managers.Pool.Destroy(_playerHq, PrefabID.HeadQuarter);
+        Managers.Pool.Destroy(_enemyHq, PrefabID.HeadQuarter);
         _playerHq.Destroy();
         _enemyHq.Destroy();
         _playerHq = null;

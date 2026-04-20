@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private const int DEFAULT_SLOT_COUNT = 1;
     private const int DEFAULT_GAME_SPEED = 1;
     private const int DEFAULT_STAGE = 1;
+    private const float ENTITY_ARRIVAL_GOLD_RATIO = 0.75f;
     
     private ulong _uid = INVALID_UID;
     private int _slotCountMax = DEFAULT_SLOT_COUNT;
@@ -194,6 +195,19 @@ public class GameManager : MonoBehaviour
             _isEnemyEmergencyTriggered = true;
             Debug.Log("Emergency triggered!");
             _aiScheduleHandler.Emergency();
+        }
+    }
+    
+    public void OnEntityArrivedAtDestination(Team argTeam, int argDamage, long argEntityGold)
+    {
+        if (argTeam == Team.Player)
+        {
+            GameField.EnemyHq.OnHqDamaged(argDamage);
+            GameField.PlayerHq.EarnGold((int)(argEntityGold * ENTITY_ARRIVAL_GOLD_RATIO));
+        }
+        else
+        {
+            GameField.PlayerHq.OnHqDamaged(argDamage);
         }
     }
 }

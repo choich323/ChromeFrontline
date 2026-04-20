@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 8216390324006289960}
   - component: {fileID: 8436826587721464402}
   m_Layer: 0
-  m_Name: HeadQuater
+  m_Name: HeadQuarter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
