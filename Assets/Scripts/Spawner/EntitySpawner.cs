@@ -7,22 +7,43 @@ public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
     
+    [SerializeField] private float SPAWN_POS_Y_OFFSET = 0.2f;
+    [SerializeField] private Transform _entityParent;
+    
     // slot과 coroutine의 인덱스를 동일하게 맞춰야 한다.
     private List<EntitySpawnSlot> _slotList = new List<EntitySpawnSlot>();
     private List<Coroutine> _coroutineList = new List<Coroutine>();
     private int _slotIndex = DEFAULT_SLOT_INDEX;
     private Team _team;
+    private Lane _lane;
+    private Transform _targetTransform;
+    private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
+    private Action<long> _earnGold;
+    private Action<int> _earnMineral;
+    private Action<long> _consumeGold;
+    private Action<int> _consumeMineral;
+    private Func<long> _getGold;
+    private Func<int> _getMineral;
     
-    private Action<AEntity> _onAddEntity;
-    private Action<AEntity> _onRemoveEntity;
+    public int SlotCount => _slotList.Count;
+    public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Action<AEntity> argOnAddEntity, Action<AEntity> argOnRemoveEntity)
+    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<int> argEarnMineral, Action<long> argConsumeGold, Func<long> argGetGold, Action<int> argConsumeMineral, Func<int> argGetMineral)
     {
         ResetSpawner();
         
         _team = argTeam;
-        _onAddEntity = argOnAddEntity;
-        _onRemoveEntity = argOnRemoveEntity;
+        _lane = argLane;
+        _targetTransform = argTargetTransform;
+        if (_team == Team.Player)
+        {
+            _earnGold = argEarnGold;
+            _earnMineral = argEarnMineral;
+            _consumeGold = argConsumeGold;
+            _getGold = argGetGold;
+            _consumeMineral = argConsumeMineral;
+            _getMineral = argGetMineral;
+        }
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
         {
@@ -39,22 +60,33 @@ public class EntitySpawner : MonoBehaviour
         _coroutineList.Add(null);
     }
 
-    public void ResetSpawner()
+    public EntitySpawnSlot GetSlot(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= _slotList.Count)
+            return null;
+        
+        return _slotList[slotIndex];
+    }
+    
+    void ResetSpawner()
     {
         StopAllCoroutines();
         _coroutineList.Clear();
         
         foreach (var slot in _slotList)
         {
-            slot.ResetSlot();
+            slot.Destroy();
         }
         _slotList.Clear();
         
         _slotIndex = DEFAULT_SLOT_INDEX;
         _team = Team.None;
-        
-        _onAddEntity = null;
-        _onRemoveEntity = null;
+        _lane = Lane.None;
+        _targetTransform = null;
+        _consumeGold = null;
+        _getGold = null;
+        _consumeMineral = null;
+        _getMineral = null;
     }
 
     void OnSlotTargetChanged(int argSlotIndex)
@@ -62,16 +94,24 @@ public class EntitySpawner : MonoBehaviour
         StartSpawn(argSlotIndex);
     }
 
-    public void StopSpawn(int argSlotIndex)
+    void StopSpawn(int argSlotIndex)
     {
         if (_coroutineList[argSlotIndex] != null)
         {
             StopCoroutine(_coroutineList[argSlotIndex]);
             _coroutineList[argSlotIndex] = null;
+            var slot = _slotList[argSlotIndex];
+            var targetId = slot.GetTargetId();
+            Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
+            if (info is EntityInfo entityInfo)
+            {
+                _earnGold?.Invoke(entityInfo.goldCost);
+                _earnMineral?.Invoke(entityInfo.mineralCost);
+            }
         }
     }
 
-    public void StartSpawn(int argSlotIndex)
+    void StartSpawn(int argSlotIndex)
     {
         if (argSlotIndex < 0 || argSlotIndex >= _slotList.Count)
         {
@@ -79,6 +119,7 @@ public class EntitySpawner : MonoBehaviour
         }
 
         StopSpawn(argSlotIndex);
+        
         _coroutineList[argSlotIndex] = StartCoroutine(CoStartSpawn(argSlotIndex));
     }
 
@@ -86,34 +127,63 @@ public class EntitySpawner : MonoBehaviour
     {
         var slot = _slotList[argSlotIndex];
         var targetId = slot.GetTargetId();
-        Managers.Data.TryGetPrefab((int)targetId, out var prefab);
-        if(prefab == null) 
-            yield break;
-
         while (true)
         {
-            var entity = prefab.GetComponent<AEntity>();
+            Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
+            if(info == null) 
+                yield break;
+            var entityInfo = info as EntityInfo;
+            var goldCost = entityInfo.goldCost;
+            var mineralCost = entityInfo.mineralCost;
+            while (_getGold?.Invoke() < goldCost || _getMineral?.Invoke() < mineralCost)
+            {
+                yield return null;
+            }
+            
+            _consumeGold?.Invoke(goldCost);
+            _consumeMineral?.Invoke(mineralCost);
+            float productionTime = entityInfo.productionTime;
             float elapsedTime = 0f;
-            float productionTime = entity.EntityInfo.productionTime;
             while (elapsedTime < productionTime) {
                 elapsedTime += Time.deltaTime;
-                slot.SetProgress(Mathf.Clamp01(elapsedTime / productionTime));
+                var progress = Mathf.Clamp01(elapsedTime / productionTime);
+                slot.SetProgress(progress);
                 yield return null;
             }
             
             slot.SetProgress(0);
-            Spawn(targetId);
+            Spawn(entityInfo);
+            yield return null;
         }
     }
     
-    void Spawn(PrefabID argPrefabId)
+    public void ForceSpawn(List<EntityInfo> entityInfoList)
     {
-        var entityObj = Managers.Pool.Instantiate<AEntity>(argPrefabId);
+        StartCoroutine(CoForceSpawn(entityInfoList));
+    }
+    
+    IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList)
+    {
+        var wait = new WaitForSeconds(1f);
+        foreach (var info in entityInfoList)
+        {
+            Spawn(info);
+
+            yield return wait;
+        }
+    }
+    
+    void Spawn(EntityInfo argEntityInfo)
+    {
+        var prefabId = argEntityInfo.GetPrefabID();
+        var entityObj = Managers.Pool.Instantiate(prefabId);
         if (entityObj != null)
         {
-            entityObj.transform.position = transform.position;
+            var randomYOffset = UnityEngine.Random.Range(-SPAWN_POS_Y_OFFSET, SPAWN_POS_Y_OFFSET);
+            entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
+            entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(argPrefabId, Managers.Game.GetNewUid(), _team);
+            entity.Init(prefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }
@@ -121,13 +191,69 @@ public class EntitySpawner : MonoBehaviour
 
     void OnSpawn(AEntity argEntity)
     {
-        _onAddEntity?.Invoke(argEntity);
+        AddEntity(argEntity);
     }
 
-    [ContextMenu("Spawn")]
-    void TestSpawn()
+    public void Destroy()
     {
-        _slotList[0].ChangeTarget(PrefabID.Pioneer);
-        _slotList[1].ChangeTarget(PrefabID.Alien);
+        DestroyEntities();
+        
+        ResetSpawner();
+    }
+    
+    void AddEntity(AEntity argEntity)
+    {
+        Type type = argEntity.GetType();
+        if (!_entityDict.ContainsKey(type))
+        {
+            _entityDict[type] = new HashSet<AEntity>();
+        }
+        _entityDict[type].Add(argEntity);
+    }
+
+    void RemoveEntity(AEntity argEntity)
+    {
+        Managers.Pool.Destroy(argEntity, argEntity.Id);
+        
+        Type type = argEntity.GetType();
+        if (_entityDict.TryGetValue(type, out var entitySet))
+        {
+            entitySet.Remove(argEntity);
+        }
+        argEntity.ResetEntity();
+    }
+    
+    public int GetEntitiesCount()
+    {
+        int count = 0;
+        foreach (var kvp in _entityDict)
+        {
+            count += kvp.Value.Count;
+        }
+
+        return count;
+    }
+    
+    void DestroyEntities()
+    {
+        List<AEntity> entityList = new List<AEntity>();
+        foreach(var kvp in _entityDict)
+        {
+            foreach (var entity in kvp.Value)
+            {
+                entityList.Add(entity);
+            }
+        }
+        _entityDict.Clear();
+
+        foreach (var entity in entityList)
+        {
+            DestroyEntity(entity);
+        }
+    }
+
+    public void DestroyEntity(AEntity argEntity)
+    {
+        RemoveEntity(argEntity);
     }
 }

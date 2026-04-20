@@ -1,93 +1,97 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class GameField : MonoBehaviour
 {
-    private const int DEFAULT_INDEX = 0;
-    private const int DEFAULT_SPAWNER_COUNT = 3;
-    
-    [SerializeField] private List<Transform> _playerEntitySpawnerPosList;
-    [SerializeField] private List<Transform> _enemyEntitySpawnerPosList;
+    [SerializeField] private Transform _hqParent;
+    [SerializeField] private Transform _playerHqPos;
+    [SerializeField] private Transform _enemyHqPos;
 
-    private int _playerSpawnerIndex = DEFAULT_INDEX;
-    private int _enemySpawnerIndex = DEFAULT_INDEX;
-    private Dictionary<Team, List<EntitySpawner>> _spawnerDict = new Dictionary<Team, List<EntitySpawner>>();
-    private Dictionary<Team, Dictionary<Type, HashSet<AEntity>>> _entityDict = new Dictionary<Team, Dictionary<Type, HashSet<AEntity>>>();
+    private HeadQuarter _playerHq;
+    private HeadQuarter _enemyHq;
+    
+    public HeadQuarter PlayerHq => _playerHq;
+    public HeadQuarter EnemyHq => _enemyHq;
     
     public void Init()
     {
-        InitDict();
-        
+        CreateHqs();
         CreateSpawners();
     }
 
-    void InitDict()
+    void CreateHqs()
     {
-        _spawnerDict[Team.Player] = new List<EntitySpawner>();
-        _spawnerDict[Team.Enemy] = new List<EntitySpawner>();
-        
-        _entityDict[Team.Player] = new Dictionary<Type, HashSet<AEntity>>();
-        _entityDict[Team.Enemy] = new Dictionary<Type, HashSet<AEntity>>();
+        CreateHq(Team.Player);
+        CreateHq(Team.Enemy);
     }
-    
+
     void CreateSpawners()
     {
-        for(int i = 0; i < _playerEntitySpawnerPosList.Count; i++)
-        {
-            CreateSpawner(Team.Player, ref _playerSpawnerIndex);
-            
-        }
-
-        for (int i = 0; i < _enemyEntitySpawnerPosList.Count; i++)
-        {
-            CreateSpawner(Team.Enemy, ref _enemySpawnerIndex);
-        }
-    }
-
-    EntitySpawner CreateSpawner(Team argTeam, ref int argSpawnerIndex)
-    {
-        var spawnerObj = Managers.Pool.Instantiate<EntitySpawner>(PrefabID.EntitySpawner);
-        if (spawnerObj == null)
-            return null;
-        
-        int spawnerPosIndex = argSpawnerIndex % DEFAULT_SPAWNER_COUNT;
-        var posList = argTeam == Team.Player ? _playerEntitySpawnerPosList : _enemyEntitySpawnerPosList;
-        var pos = posList[spawnerPosIndex].position;
-        spawnerObj.transform.position = pos;
-        var spawner = spawnerObj.GetComponent<EntitySpawner>();
-        argSpawnerIndex++;
-        spawner.Init(argTeam, AddEntity, RemoveEntity);
-        
-        return spawner;
+        _playerHq.CreateSpawners();
+        _enemyHq.CreateSpawners();
     }
     
-    public void AddEntity(AEntity argEntity)
+    void CreateHq(Team argTeam)
     {
-        var ei = argEntity.EntityInfo;
-        Team team = ei.team;
-        Type type = argEntity.GetType();
+        var hqObj = Managers.Pool.Instantiate(PrefabID.HeadQuarter);
+        if (hqObj == null)
+            return;
         
-        var teamDict = _entityDict[team];
-
-        if (!teamDict.ContainsKey(type))
-        {
-            teamDict[type] = new HashSet<AEntity>();
-        }
-
-        teamDict[type].Add(argEntity);
+        hqObj.transform.SetParent(_hqParent);
+        bool isPlayer = argTeam == Team.Player;
+        hqObj.transform.position = isPlayer ? _playerHqPos.position : _enemyHqPos.position;
+        Managers.Data.TryGetPrefabInfo((int)PrefabID.HeadQuarter, out var info);
+        var hqInfo = info as HeadQuarterInfo;
+        var hq = hqObj.GetComponent<HeadQuarter>();
+        hq.Init(hqInfo, argTeam, !isPlayer, GetTargetSpawnerPos);
+        
+        if (isPlayer)
+            _playerHq = hq;
+        else
+            _enemyHq = hq;
     }
 
-    public void RemoveEntity(AEntity argEntity)
+    Transform GetTargetSpawnerPos(Team argTeam, int argIndex)
     {
-        var ei = argEntity.EntityInfo;
-        Team team = ei.team;
-        Type type = argEntity.GetType();
-
-        if (_entityDict[team].TryGetValue(type, out var entitySet))
+        if (argTeam == Team.Enemy)
         {
-            entitySet.Remove(argEntity);
+            return _playerHq.GetTargetSpawnerTransform(argIndex);
         }
+        else
+        {
+            return _enemyHq.GetTargetSpawnerTransform(argIndex);
+        }
+    }
+    
+    public bool IsGameOver()
+    {
+        return _playerHq.Hp <= 0 || _enemyHq.Hp <= 0;
+    }
+    
+    public void ResetField()
+    {
+        DestroyAll();
+    }
+
+    public void Restart()
+    {
+        ResetField();
+        Init();
+    }
+    
+    void DestroyAll()
+    {
+        DestroyHqs();
+    }
+    
+    void DestroyHqs()
+    {
+        Managers.Pool.Destroy(_playerHq, PrefabID.HeadQuarter);
+        Managers.Pool.Destroy(_enemyHq, PrefabID.HeadQuarter);
+        _playerHq.Destroy();
+        _enemyHq.Destroy();
+        _playerHq = null;
+        _enemyHq = null;
     }
 }

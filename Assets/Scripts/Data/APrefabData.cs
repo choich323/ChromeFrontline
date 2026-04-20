@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct PrefabInfo
+public class APrefabInfo
 {
-    public PrefabID id;
     public GameObject prefab;
+
+    public PrefabID GetPrefabID()
+    {
+        return Managers.Data.ConvertStringToPrefabID(prefab.name);
+    }
 }
 
 public abstract class APrefabData : ScriptableObject
 {
-    public List<PrefabInfo> prefabInfoList;
+    public abstract IEnumerable<APrefabInfo> GetInfoList();
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb1cd494fd36de40855d2a2141266a0, type: 3}
+  m_Name: HeadQuarterData
+  m_EditorClassIdentifier: Assembly-CSharp::HqData
+  hqInfoList:
+  - prefab: {fileID: 6391996127989187439, guid: 159549eabdb56174db40bdc2876da3be, type: 3}
+    hp: 100
+    shield: 0

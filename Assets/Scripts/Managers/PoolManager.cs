@@ -44,17 +44,17 @@ public class PoolManager : MonoBehaviour
         Object.Destroy(argObject);
     }
     
-    public GameObject Instantiate<T>(PrefabID argPrefabId) where T : Component
+    public GameObject Instantiate(PrefabID argPrefabId)
     {
         int id = (int)argPrefabId;
-        if (!Managers.Data.TryGetPrefab(id, out var prefab))
-        { 
+        if (!Managers.Data.TryGetPrefabInfo(id, out var info))
+        {
             Debug.LogError($"No prefab found for id:{id}");
             return null;
         }
         if (!_pools.ContainsKey(id))
         {
-            _pools[id] = CreatePool(prefab);
+            _pools[id] = CreatePool(info.prefab);
         }
 
         GameObject go = _pools[id].Get();

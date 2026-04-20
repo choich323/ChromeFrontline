@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8208d205ad64ed54e876bbb8d7f9f454, type: 3}
+  m_Name: AIScheduleData
+  m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
+  scheduleInfoList:
+  - id: normal
+    tpInterval: 12
+    tpIntervalDecrementAmount: 0.5
+    tpIntervalDecrementInterval: 60
+    minInterval: 8
+    tpAmountCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 38
+        inSlope: 0.06353834
+        outSlope: 0.06353834
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 267.47717
+        value: 54.995056
+        inSlope: 0.11998475
+        outSlope: 0.11998475
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.3745527
+      - serializedVersion: 3
+        time: 699.1074
+        value: 186.04648
+        inSlope: 0.53184986
+        outSlope: 0.53184986
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 998.91547
+        value: 413.9246
+        inSlope: 1.1423638
+        outSlope: 1.1423638
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1244.2516
+        value: 787.9757
+        inSlope: 1.5246476
+        outSlope: 1.5246476
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    spendRateCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.9
+        inSlope: -0.00003535278
+        outSlope: -0.00003535278
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 460.37976
+        value: 0.8837243
+        inSlope: -0.000056174627
+        outSlope: -0.000056174627
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.38813573
+      - serializedVersion: 3
+        time: 875.3647
+        value: 0.8139409
+        inSlope: -0.00023040747
+        outSlope: -0.00023040747
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.25862092
+      - serializedVersion: 3
+        time: 1202.603
+        value: 0.7004639
+        inSlope: -0.00034677167
+        outSlope: -0.00034677167
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    burstInterval: 75
+    levelCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    emergencyHpThreshold: 0.25
+    emergencyTpMultiplier: 3
