@@ -10,35 +10,36 @@ public class StringDataExtension : Editor
 
     public override void OnInspectorGUI()
     {
-        // 1. 데이터 동기화 시작
         StringData data = (StringData)target;
         serializedObject.Update();
 
         SerializedProperty listProp = serializedObject.FindProperty("stringInfoList");
 
-        // --- 상단 컨트롤 바 (정렬 및 검색) ---
+        // --- 상단 컨트롤 바 ---
         EditorGUILayout.BeginVertical("helpbox");
         {
             EditorGUILayout.LabelField("🔤 String Data Manager", EditorStyles.boldLabel);
             
-            // [정렬 버튼] 클릭 시 Undo 기록 후 데이터 재배치
-            if (GUILayout.Button("ID 기준 알파벳 정렬 (A-Z)", GUILayout.Height(25)))
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("ID 정렬 (A-Z)")) SortByID(data);
+            
+            // [추가 버튼] 리스트 맨 뒤에 새 항목 추가
+            GUI.color = Color.green; // 버튼 색상 강조
+            if (GUILayout.Button("새 항목 추가 (+)"))
             {
-                SortByID(data);
+                Undo.RecordObject(data, "Add New String Info");
+                data.stringInfoList.Add(new StringInfo());
+                EditorUtility.SetDirty(data);
             }
+            GUI.color = Color.white;
+            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space(2);
 
             // [검색 필드]
             EditorGUILayout.BeginHorizontal();
-            {
-                EditorGUILayout.LabelField("검색", GUILayout.Width(40));
-                _searchString = EditorGUILayout.TextField(_searchString, EditorStyles.toolbarSearchField);
-                if (GUILayout.Button("Clear", EditorStyles.miniButton, GUILayout.Width(45)))
-                {
-                    _searchString = "";
-                }
-            }
+            _searchString = EditorGUILayout.TextField("검색 필터", _searchString, EditorStyles.toolbarSearchField);
+            if (GUILayout.Button("X", EditorStyles.miniButton, GUILayout.Width(20))) _searchString = "";
             EditorGUILayout.EndHorizontal();
         }
         EditorGUILayout.EndVertical();
@@ -52,48 +53,56 @@ public class StringDataExtension : Editor
         }
         else
         {
-            DrawFilteredList(listProp);
+            DrawFilteredList(data, listProp);
         }
 
-        // 2. 인스펙터 수정사항 적용 및 저장
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void DrawFilteredList(SerializedProperty listProp)
+    private void DrawFilteredList(StringData data, SerializedProperty listProp)
     {
         bool isFiltering = !string.IsNullOrEmpty(_searchString);
-        
+        int indexToRemove = -1; // 삭제할 인덱스 추적
+
         for (int i = 0; i < listProp.arraySize; i++)
         {
             SerializedProperty element = listProp.GetArrayElementAtIndex(i);
             SerializedProperty idProp = element.FindPropertyRelative("id");
 
-            // 검색어가 포함되지 않은 항목은 그리지 않고 스킵
             if (isFiltering && !idProp.stringValue.ToLower().Contains(_searchString.ToLower()))
                 continue;
 
             EditorGUILayout.BeginVertical("box");
             {
-                // StringInfo 내부의 모든 필드를 자동으로 그려줌
+                EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PropertyField(element, true);
+                
+                GUI.color = new Color(1f, 0.6f, 0.6f);
+                if (GUILayout.Button("X", GUILayout.Width(25)))
+                {
+                    indexToRemove = i;
+                }
+                GUI.color = Color.white;
+                EditorGUILayout.EndHorizontal();
             }
             EditorGUILayout.EndVertical();
+        }
+
+        if (indexToRemove != -1)
+        {
+            Undo.RecordObject(data, "Remove String Info");
+            data.stringInfoList.RemoveAt(indexToRemove);
+            EditorUtility.SetDirty(data);
         }
     }
 
     private void SortByID(StringData data)
     {
-        // 핵심: 수정 직전에 Undo 시스템에 현재 상태를 저장 (Ctrl+Z 가능하게 함)
         Undo.RecordObject(data, "Sort String Data By ID");
-        
         data.stringInfoList = data.stringInfoList
             .OrderBy(info => info?.id ?? string.Empty)
             .ToList();
-
         EditorUtility.SetDirty(data);
-        
-        serializedObject.Update(); 
-        
-        Debug.Log($"<color=cyan>[StringData]</color> '{data.name}' 정렬 완료 및 기록됨.");
+        serializedObject.Update();
     }
 }

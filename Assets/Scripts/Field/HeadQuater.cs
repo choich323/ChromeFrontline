@@ -14,6 +14,7 @@ public class HeadQuater : MonoBehaviour
     [SerializeField] private List<Transform> _entitySpawnerLeftPosList;
 
     private bool _useLeftSpawnerPos;
+    private int _level;
     private int _maxHp;
     private int _hp;
     private int _shield;
@@ -25,6 +26,7 @@ public class HeadQuater : MonoBehaviour
     private Coroutine _coroutineGoldPerSecond;
     private List<PrefabID> _usableEntityIDList = new List<PrefabID>();
     
+    public int Level => _level;
     public int Hp => _hp;
     public int Shield => _shield;
     public long Gold => _gold;

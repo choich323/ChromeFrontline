@@ -93,14 +93,14 @@ public class HUDController : MonoBehaviour
         float hpRatio = hq.GetHqHpRatio();
         float shieldRatio = hq.GetShieldRatio();
         long curGold = hq.Gold;
-        int curMineral = hq.Mineral;
+        //int curMineral = hq.Mineral;
         
         _hpSlider.value = hpRatio;
         _shieldSlider.value = shieldRatio;
         var shieldText = shieldRatio <= 0 ? "" : $"+{shieldRatio * HUNDRED_PERCENT:N0}%";
         _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%" + shieldText;
         _goldText.text = $"{curGold}";
-        _mineralText.text = $"{curMineral}";
+        //_mineralText.text = $"{curMineral}";
         
         UpdateHpBarColor(hpRatio);
     }

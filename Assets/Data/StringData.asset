@@ -242,3 +242,7 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
+  - id: Level
+    value:
+      en: Level
+      kr: "\uB808\uBCA8"

@@ -46,6 +46,7 @@ public enum StringID
     StopProducing,
     ConfirmStopProducing,
     NowProducingEntity,
+    Level,
     
     Victory = 401,
     Defeat,
