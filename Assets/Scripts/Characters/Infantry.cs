@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Infantry : AEntity
+public class Infantry : Pioneer
 {
     
 }

@@ -683,6 +683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7172084952567636178, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
+      propertyPath: '_dataList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ef62dc32786ed9041982a0ec99f63a9c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
