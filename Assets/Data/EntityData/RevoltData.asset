@@ -14,8 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
   - prefab: {fileID: 2181363908181298611, guid: 827c58c71e99f9e44ae577ffe471126d, type: 3}
+    id: RevoltSingle
+    attackAreaType: 1
     camp: 2
-    stringId: ShockBaton
+    level: 0
+    hp: 0
+    shield: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: -1
+    mineralCost: 0
+    typeTagStringId: 
+    combatRoleTagStringId: 
+  - prefab: {fileID: 0}
+    id: SteelBaton
+    attackAreaType: 1
+    camp: 2
     level: 1
     hp: 75
     shield: 0

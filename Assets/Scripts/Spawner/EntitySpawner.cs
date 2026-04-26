@@ -176,6 +176,11 @@ public class EntitySpawner : MonoBehaviour
     void Spawn(EntityInfo argEntityInfo)
     {
         var prefabId = argEntityInfo.GetPrefabID();
+        if (prefabId.Equals(PrefabID.None))
+        {
+            Debug.LogError($"Invalid prefab ID for entity: {prefabId}");
+            return;
+        }
         var entityObj = Managers.Pool.Instantiate(prefabId);
         if (entityObj != null)
         {

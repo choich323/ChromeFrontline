@@ -47,7 +47,7 @@ public class UIEntityUnit : MonoBehaviour
         var sm = Managers.String;
         var dm = Managers.Data;
         _levelText.text = sm.GetString(StringID.Lv, _entityInfo.level);
-        var stringId = dm.ConvertStringToStringID(_entityInfo.stringId);
+        var stringId = dm.ConvertStringToStringID(_entityInfo.id);
         _nameText.text = sm.GetString(stringId);
         _productionTimeText.text = $"{_entityInfo.productionTime}";
         _goldText.text = $"{_entityInfo.goldCost}";
@@ -98,7 +98,7 @@ public class UIEntityUnit : MonoBehaviour
         }
 
         var curSlotTargetId = slot.GetTargetId();
-        var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.prefab.name);
+        var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.id);
         if (curSlotTargetId == PrefabID.None || curSlotTargetId == id)
         {
             OnConfirm();

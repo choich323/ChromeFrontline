@@ -69,8 +69,8 @@ public enum StringID
     MainTank,
     
     // Entity - Pioneer Name
-    Infantry = 10001,
+    Police = 10001,
     
     // Entity - Revolt Name
-    ShockBaton = 20001,
+    SteelBaton = 20001,
 }

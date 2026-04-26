@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: GameFieldData
   m_EditorClassIdentifier: Assembly-CSharp::GameFieldData
   GameFieldInfoList:
-  - prefab: {fileID: 2371699528564399278, guid: a44b163ada49f9048ab0851eb4ed594b, type: 3}
+  - id: GameField
+    prefab: {fileID: 2371699528564399278, guid: a44b163ada49f9048ab0851eb4ed594b, type: 3}

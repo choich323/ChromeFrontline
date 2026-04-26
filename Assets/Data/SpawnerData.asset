@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SpawnerData
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerData
   spawnerInfoList:
-  - prefab: {fileID: 3243057903193463720, guid: d3c00fb6392af6843983cad3cf17ecc5, type: 3}
+  - id: EntitySpawner
+    prefab: {fileID: 3243057903193463720, guid: d3c00fb6392af6843983cad3cf17ecc5, type: 3}

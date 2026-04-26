@@ -8,6 +8,13 @@ public enum CampType
     Revolt,
 }
 
+public enum AttackAreaType
+{
+    None = 0,
+    Single,
+    Area,
+}
+
 public enum Team
 {
     None,

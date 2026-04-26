@@ -5,11 +5,12 @@ using UnityEngine;
 [Serializable]
 public class APrefabInfo
 {
+    public string id;
     public GameObject prefab;
 
-    public PrefabID GetPrefabID()
+    public virtual PrefabID GetPrefabID()
     {
-        return Managers.Data.ConvertStringToPrefabID(prefab.name);
+        return Managers.Data.ConvertStringToPrefabID(id);
     }
 }
 

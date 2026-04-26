@@ -106,10 +106,10 @@ MonoBehaviour:
     value:
       en: HQ Upgrade
       kr: "\uBCF8\uBD80 \uAC15\uD654"
-  - id: Infantry
+  - id: Police
     value:
-      en: Infantry
-      kr: "\uAC1C\uCC99 \uBCF4\uBCD1"
+      en: Police
+      kr: "\uACBD\uCC30"
   - id: LaneSelect
     value:
       en: Best
@@ -206,10 +206,10 @@ MonoBehaviour:
     value:
       en: Shield
       kr: "\uBCF4\uD638\uB9C9"
-  - id: ShockBaton
+  - id: SteelBaton
     value:
-      en: Shock Baton
-      kr: "\uC804\uACA9 \uD0C0\uACA9\uAFBC"
+      en: Steel Baton
+      kr: "\uC55E\uC7A1\uC774"
   - id: Slot
     value:
       en: Slot {0}

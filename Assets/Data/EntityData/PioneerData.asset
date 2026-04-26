@@ -14,8 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
   - prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
+    id: PioneerSingle
+    attackAreaType: 1
     camp: 1
-    stringId: Infantry
+    level: 0
+    hp: 0
+    shield: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: -1
+    mineralCost: 0
+    typeTagStringId: 
+    combatRoleTagStringId: 
+  - prefab: {fileID: 0}
+    id: Police
+    attackAreaType: 1
+    camp: 1
     level: 1
     hp: 50
     shield: 0
