@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: RevoltData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - prefab: {fileID: 2181363908181298611, guid: 827c58c71e99f9e44ae577ffe471126d, type: 3}
-    id: RevoltSingle
+  - id: RevoltSingle
+    prefab: {fileID: 2181363908181298611, guid: 827c58c71e99f9e44ae577ffe471126d, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 0
     attackAreaType: 1
     camp: 2
     level: 0
@@ -31,8 +34,11 @@ MonoBehaviour:
     mineralCost: 0
     typeTagStringId: 
     combatRoleTagStringId: 
-  - prefab: {fileID: 0}
-    id: SteelBaton
+  - id: SteelBaton
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
     attackAreaType: 1
     camp: 2
     level: 1

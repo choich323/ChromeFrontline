@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: PioneerData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
-    id: PioneerSingle
+  - id: PioneerSingle
+    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 0
     attackAreaType: 1
     camp: 1
     level: 0
@@ -31,8 +34,11 @@ MonoBehaviour:
     mineralCost: 0
     typeTagStringId: 
     combatRoleTagStringId: 
-  - prefab: {fileID: 0}
-    id: Police
+  - id: Police
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
     attackAreaType: 1
     camp: 1
     level: 1

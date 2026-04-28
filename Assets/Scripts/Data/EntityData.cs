@@ -5,6 +5,14 @@ using UnityEngine;
 [Serializable]
 public class EntityInfo : APrefabInfo
 {
+    [Header("Animation")]
+    public AnimatorOverrideController animatorOverrideController;
+
+    [Header("Visual Settings")]
+    public bool isOriginalSpriteFacingLeft;
+    public float dieAnimDuration;
+    
+    [Header("Stat")]
     public AttackAreaType attackAreaType = AttackAreaType.Single; 
     public CampType camp;
     public int level;
