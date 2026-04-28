@@ -1,0 +1,568 @@
+fileFormatVersion: 2
+guid: 06f8894b68f4c0e4cb78be8de6b47269
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8518475894746300223
+    second: ChainsawBot_die_0
+  - first:
+      213: 1908098083637239796
+    second: ChainsawBot_die_1
+  - first:
+      213: 5090657564941035856
+    second: ChainsawBot_die_2
+  - first:
+      213: -4939635215977460941
+    second: ChainsawBot_die_3
+  - first:
+      213: -3439880380546186138
+    second: ChainsawBot_die_4
+  - first:
+      213: 5821881685256705054
+    second: ChainsawBot_die_5
+  - first:
+      213: 58846544146323464
+    second: ChainsawBot_die_6
+  - first:
+      213: 7168942344016629449
+    second: ChainsawBot_die_7
+  - first:
+      213: 5164030593029858224
+    second: ChainsawBot_die_8
+  - first:
+      213: -6664110838609779674
+    second: ChainsawBot_die_9
+  - first:
+      213: 8665007222014332818
+    second: ChainsawBot_die_10
+  - first:
+      213: -6208360772229732974
+    second: ChainsawBot_die_11
+  - first:
+      213: -8921828769564937754
+    second: ChainsawBot_die_12
+  - first:
+      213: -3517792835450519886
+    second: ChainsawBot_die_13
+  - first:
+      213: -1802840144262460125
+    second: ChainsawBot_die_14
+  - first:
+      213: -6888421343526615095
+    second: ChainsawBot_die_15
+  - first:
+      213: 3526081587469193949
+    second: ChainsawBot_die_16
+  - first:
+      213: 4873620075646228747
+    second: ChainsawBot_die_17
+  - first:
+      213: -3146309986735795113
+    second: ChainsawBot_die_18
+  - first:
+      213: 5624940757338313933
+    second: ChainsawBot_die_19
+  - first:
+      213: 4415206215629179945
+    second: ChainsawBot_die_20
+  - first:
+      213: -3878798708671817732
+    second: ChainsawBot_die_21
+  - first:
+      213: 6461218516958645421
+    second: ChainsawBot_die_22
+  - first:
+      213: -3489702911184150683
+    second: ChainsawBot_die_23
+  - first:
+      213: 9136156444388782049
+    second: ChainsawBot_die_24
+  - first:
+      213: -401860164507507114
+    second: ChainsawBot_die_25
+  - first:
+      213: -63765464464503918
+    second: ChainsawBot_die_26
+  - first:
+      213: -3237117337684519334
+    second: ChainsawBot_die_27
+  - first:
+      213: -8750673074353821386
+    second: ChainsawBot_die_28
+  - first:
+      213: -4944270368987498681
+    second: ChainsawBot_die_29
+  - first:
+      213: 7252878520623247486
+    second: ChainsawBot_die_30
+  - first:
+      213: -3075466895639994589
+    second: ChainsawBot_die_31
+  - first:
+      213: 8121784208214315711
+    second: ChainsawBot_die_32
+  - first:
+      213: 6679106207179090404
+    second: ChainsawBot_die_33
+  - first:
+      213: -4985094752528964099
+    second: ChainsawBot_die_34
+  - first:
+      213: 7293460078171681057
+    second: ChainsawBot_die_35
+  - first:
+      213: -3326061362912669410
+    second: ChainsawBot_die_36
+  - first:
+      213: -2600188392790214915
+    second: ChainsawBot_die_37
+  - first:
+      213: -8152570193324926897
+    second: ChainsawBot_die_38
+  - first:
+      213: -8518006301467232680
+    second: ChainsawBot_die_39
+  - first:
+      213: -6063329167400837001
+    second: ChainsawBot_die_40
+  - first:
+      213: 2888004143164380664
+    second: ChainsawBot_die_41
+  - first:
+      213: -800608151962233113
+    second: ChainsawBot_die_42
+  - first:
+      213: 7354077561114793020
+    second: ChainsawBot_die_43
+  - first:
+      213: 9181162809743411360
+    second: ChainsawBot_die_44
+  - first:
+      213: 237441386261831669
+    second: ChainsawBot_die_45
+  - first:
+      213: 1157152574760662721
+    second: ChainsawBot_die_46
+  - first:
+      213: 5841975849428751586
+    second: ChainsawBot_die_47
+  - first:
+      213: 93076680911121461
+    second: ChainsawBot_die_48
+  - first:
+      213: 388030340393449864
+    second: ChainsawBot_die_49
+  - first:
+      213: -7105341923345235747
+    second: ChainsawBot_die_50
+  - first:
+      213: 7996775047575611050
+    second: ChainsawBot_die_51
+  - first:
+      213: -5798428010917353134
+    second: ChainsawBot_die_52
+  - first:
+      213: -2342032264108133500
+    second: ChainsawBot_die_53
+  - first:
+      213: 5893726068148796583
+    second: ChainsawBot_die_54
+  - first:
+      213: 2908319530664762347
+    second: ChainsawBot_die_55
+  - first:
+      213: -8008202258931294754
+    second: ChainsawBot_die_56
+  - first:
+      213: -108211989491985627
+    second: ChainsawBot_die_57
+  - first:
+      213: -6614524421787091790
+    second: ChainsawBot_die_58
+  - first:
+      213: 4576344434542534814
+    second: ChainsawBot_die_59
+  - first:
+      213: -4787902507156595917
+    second: ChainsawBot_die_60
+  - first:
+      213: -5611059882055732792
+    second: ChainsawBot_die_61
+  - first:
+      213: -2284174088740645592
+    second: ChainsawBot_die_62
+  - first:
+      213: -6859771622893486961
+    second: ChainsawBot_die_63
+  - first:
+      213: 183467631522234285
+    second: ChainsawBot_die_64
+  - first:
+      213: -985934498934374711
+    second: ChainsawBot_die_65
+  - first:
+      213: -6454076765689436895
+    second: ChainsawBot_die_66
+  - first:
+      213: -509259960385560311
+    second: ChainsawBot_die_67
+  - first:
+      213: 8653881323959452781
+    second: ChainsawBot_die_68
+  - first:
+      213: -588903559897016850
+    second: ChainsawBot_die_69
+  - first:
+      213: -800665758661512899
+    second: ChainsawBot_die_70
+  - first:
+      213: -5200130516495632594
+    second: ChainsawBot_die_71
+  - first:
+      213: 612426433881568145
+    second: ChainsawBot_die_72
+  - first:
+      213: -2774279396468361620
+    second: ChainsawBot_die_73
+  - first:
+      213: -2455949107083202211
+    second: ChainsawBot_die_74
+  - first:
+      213: -5712898420102309704
+    second: ChainsawBot_die_75
+  - first:
+      213: -2325774411097763164
+    second: ChainsawBot_die_76
+  - first:
+      213: -1620750761295912829
+    second: ChainsawBot_die_77
+  - first:
+      213: -3772991532241746880
+    second: ChainsawBot_die_78
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ChainsawBot_die_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c04be97e4b48c980800000000000000
+      internalID: -8518475894746300223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ff1dc7f81dea7a10800000000000000
+      internalID: 1908098083637239796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05927777516a5a640800000000000000
+      internalID: 5090657564941035856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b47af31f3e27bb0800000000000000
+      internalID: -4939635215977460941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66485b7e4071340d0800000000000000
+      internalID: -3439880380546186138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14141e0c8a7bc050800000000000000
+      internalID: 5821881685256705054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 808d910ce9011d000800000000000000
+      internalID: 58846544146323464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainsawBot_die_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47265625, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce0e5644133d7360800000000000000
+      internalID: 7168942344016629449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b87b6f54d809d904ca51fe1c900b6478
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: True
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.47265625,"y":0.3359375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ChainsawBot_die_0: -8518475894746300223
+      ChainsawBot_die_1: 1908098083637239796
+      ChainsawBot_die_2: 5090657564941035856
+      ChainsawBot_die_3: -4939635215977460941
+      ChainsawBot_die_4: -3439880380546186138
+      ChainsawBot_die_5: 5821881685256705054
+      ChainsawBot_die_6: 58846544146323464
+      ChainsawBot_die_7: 7168942344016629449
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
