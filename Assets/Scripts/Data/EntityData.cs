@@ -10,7 +10,9 @@ public class EntityInfo : APrefabInfo
 
     [Header("Visual Settings")]
     public bool isOriginalSpriteFacingLeft;
-    public float dieAnimDuration;
+    public float dieAnimDuration = 2f;
+    public float attackAnimDuration = 1f;
+    [Range(0, 1)] public float attackHitTiming = 0.8f;
     
     [Header("Stat")]
     public AttackAreaType attackAreaType = AttackAreaType.Single; 

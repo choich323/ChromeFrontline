@@ -18,6 +18,8 @@ MonoBehaviour:
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 0
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
     level: 0
@@ -38,7 +40,9 @@ MonoBehaviour:
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}
     isOriginalSpriteFacingLeft: 1
-    dieAnimDuration: 2
+    dieAnimDuration: 1.5
+    attackAnimDuration: 1
+    attackHitTiming: 0.85
     attackAreaType: 1
     camp: 2
     level: 1
@@ -47,11 +51,34 @@ MonoBehaviour:
     armor: 2
     attack: 7
     attackSpeed: 1
-    attackRange: 2
+    attackRange: 1
     criticalChance: 0
     moveSpeed: 1
     productionTime: 9
     goldCost: 30
     mineralCost: 0
     typeTagStringId: Melee
+    combatRoleTagStringId: 
+  - id: MasterGang
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 1.5
+    attackAnimDuration: 1
+    attackHitTiming: 0.75
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 50
+    shield: 0
+    armor: 0
+    attack: 6
+    attackSpeed: 0.88
+    attackRange: 4
+    criticalChance: 0
+    moveSpeed: 1
+    productionTime: 13
+    goldCost: 45
+    mineralCost: 0
+    typeTagStringId: Range
     combatRoleTagStringId: 

@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   _minX: -8
-  _maxX: 22
+  _maxX: 37
   _mainCam: {fileID: 810939475}
   _smoothSpeed: 0.22
   _slidingAmount: 3

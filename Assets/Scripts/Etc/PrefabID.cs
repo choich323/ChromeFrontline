@@ -14,10 +14,12 @@ public enum PrefabID
     PioneerSingle = 2001,
     PioneerArea,
     Police = 2011,
+    Security,
     
     RevoltSingle = 2501,
     RevoltArea,
     SteelBaton = 2511,
+    MasterGang,
     
     // spawner
     EntitySpawner = 5001,

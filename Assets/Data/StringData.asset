@@ -106,10 +106,6 @@ MonoBehaviour:
     value:
       en: HQ Upgrade
       kr: "\uBCF8\uBD80 \uAC15\uD654"
-  - id: Police
-    value:
-      en: Police
-      kr: "\uACBD\uCC30"
   - id: LaneSelect
     value:
       en: Best
@@ -126,6 +122,10 @@ MonoBehaviour:
     value:
       en: Language
       kr: "\uC5B8\uC5B4"
+  - id: Level
+    value:
+      en: Level
+      kr: "\uB808\uBCA8"
   - id: Lv
     value:
       en: Lv.{0}
@@ -138,6 +138,10 @@ MonoBehaviour:
     value:
       en: Main Tank
       kr: "\uBA54\uC778 \uD0F1\uCEE4"
+  - id: MasterGang
+    value:
+      en: MasterGang
+      kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
   - id: Melee
     value:
       en: Melee
@@ -166,6 +170,10 @@ MonoBehaviour:
     value:
       en: Option
       kr: "\uC124\uC815"
+  - id: Police
+    value:
+      en: Police
+      kr: "\uACBD\uCC30"
   - id: Produce
     value:
       en: Produce
@@ -198,6 +206,10 @@ MonoBehaviour:
     value:
       en: Retry
       kr: "\uB2E4\uC2DC\uD558\uAE30"
+  - id: Security
+    value:
+      en: Security
+      kr: "\uBCF4\uC548\uAD00"
   - id: Sensitivity
     value:
       en: Sensitivity
@@ -206,10 +218,6 @@ MonoBehaviour:
     value:
       en: Shield
       kr: "\uBCF4\uD638\uB9C9"
-  - id: SteelBaton
-    value:
-      en: Steel Baton
-      kr: "\uC55E\uC7A1\uC774"
   - id: Slot
     value:
       en: Slot {0}
@@ -222,6 +230,10 @@ MonoBehaviour:
     value:
       en: Sound
       kr: "\uC18C\uB9AC"
+  - id: SteelBaton
+    value:
+      en: Steel Baton
+      kr: "\uC55E\uC7A1\uC774"
   - id: StopProducing
     value:
       en: Stop Producing
@@ -242,7 +254,3 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
-  - id: Level
-    value:
-      en: Level
-      kr: "\uB808\uBCA8"

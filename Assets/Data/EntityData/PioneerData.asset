@@ -18,6 +18,8 @@ MonoBehaviour:
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 0
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
     attackAreaType: 1
     camp: 1
     level: 0
@@ -38,20 +40,45 @@ MonoBehaviour:
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
     isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 2
+    dieAnimDuration: 1.5
+    attackAnimDuration: 1
+    attackHitTiming: 0.7
     attackAreaType: 1
     camp: 1
     level: 1
     hp: 50
     shield: 0
     armor: 1
-    attack: 9
-    attackSpeed: 2
+    attack: 8
+    attackSpeed: 1
     attackRange: 1
     criticalChance: 0
-    moveSpeed: 1.5
+    moveSpeed: 1.2
     productionTime: 7
     goldCost: 30
     mineralCost: 0
     typeTagStringId: Melee
+    combatRoleTagStringId: 
+  - id: Security
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 58287f18e2f7e024fb1df385c5170cac, type: 2}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 1.5
+    attackAnimDuration: 1
+    attackHitTiming: 0.7
+    attackAreaType: 1
+    camp: 1
+    level: 1
+    hp: 40
+    shield: 0
+    armor: 1
+    attack: 5
+    attackSpeed: 0.9
+    attackRange: 4
+    criticalChance: 0
+    moveSpeed: 1
+    productionTime: 10
+    goldCost: 45
+    mineralCost: 0
+    typeTagStringId: Range
     combatRoleTagStringId: 
