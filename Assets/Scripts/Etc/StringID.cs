@@ -70,7 +70,17 @@ public enum StringID
     
     // Entity - Pioneer Name
     Police = 10001,
+    Security,
+    SpecialForce,
+    AssaultRifle,
+    HydroPuncher,
+    TheThunder,
     
     // Entity - Revolt Name
     SteelBaton = 20001,
+    MasterGang,
+    UnknownSamurai,
+    SharpShooter,
+    ChainsawBot,
+    CentauriCanon,
 }

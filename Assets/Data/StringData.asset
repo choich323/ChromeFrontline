@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: StringData
   m_EditorClassIdentifier: Assembly-CSharp::StringData
   stringInfoList:
+  - id: AssaultRifle
+    value:
+      en: Assault Rifle
+      kr: "\uAC15\uC2B5\uB300\uC6D0"
   - id: Best
     value:
       en: '(Best: {0})'
@@ -21,6 +25,14 @@ MonoBehaviour:
     value:
       en: Bottom
       kr: "\uD558\uB2E8"
+  - id: CentauriCanon
+    value:
+      en: Centauri Canon
+      kr: "\uCC9C\uB8B0\uD3EC\uB9C8"
+  - id: ChainsawBot
+    value:
+      en: Chainsaw Bot
+      kr: "\uCCB4\uC778\uC18C \uC0AC\uC6B0\uB974\uC2A4"
   - id: Clear
     value:
       en: Clear
@@ -106,6 +118,10 @@ MonoBehaviour:
     value:
       en: HQ Upgrade
       kr: "\uBCF8\uBD80 \uAC15\uD654"
+  - id: HydroPuncher
+    value:
+      en: Hydro Puncher
+      kr: "\uACA9\uB958\uC758 \uAD8C"
   - id: LaneSelect
     value:
       en: Best
@@ -214,6 +230,10 @@ MonoBehaviour:
     value:
       en: Sensitivity
       kr: "\uAC10\uB3C4"
+  - id: SharpShooter
+    value:
+      en: Sharp Shooter
+      kr: "\uC778\uAC04 \uC0AC\uB0E5\uAFBC"
   - id: Shield
     value:
       en: Shield
@@ -230,6 +250,10 @@ MonoBehaviour:
     value:
       en: Sound
       kr: "\uC18C\uB9AC"
+  - id: SpecialForce
+    value:
+      en: Special Force
+      kr: "\uD2B9\uACF5\uB300"
   - id: SteelBaton
     value:
       en: Steel Baton
@@ -242,10 +266,18 @@ MonoBehaviour:
     value:
       en: Success
       kr: "\uC131\uACF5"
+  - id: TheThunder
+    value:
+      en: The Thunder
+      kr: "\uC12C\uAD11"
   - id: Top
     value:
       en: Top
       kr: "\uC0C1\uB2E8"
+  - id: UnknownSamurai
+    value:
+      en: Unknown Samurai
+      kr: "\uC815\uCCB4\uBD88\uBA85\uC758 \uAC80\uAC1D"
   - id: Victory
     value:
       en: Victory

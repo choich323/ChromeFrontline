@@ -15,11 +15,19 @@ public enum PrefabID
     PioneerArea,
     Police = 2011,
     Security,
+    SpecialForce,
+    AssaultRifle,
+    HydroPuncher,
+    TheThunder,
     
     RevoltSingle = 2501,
     RevoltArea,
     SteelBaton = 2511,
     MasterGang,
+    UnknownSamurai,
+    SharpShooter,
+    ChainsawBot,
+    CentauriCanon,
     
     // spawner
     EntitySpawner = 5001,

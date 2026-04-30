@@ -62,7 +62,7 @@ MonoBehaviour:
   - id: MasterGang
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 1.5
     attackAnimDuration: 1
     attackHitTiming: 0.75
