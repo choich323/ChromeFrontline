@@ -82,3 +82,26 @@ MonoBehaviour:
     mineralCost: 0
     typeTagStringId: Range
     combatRoleTagStringId: 
+  - id: SpecialForce
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 410750326780766429b99a98a8d1c803, type: 2}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 1.5
+    attackAnimDuration: 1
+    attackHitTiming: 0.7
+    attackAreaType: 1
+    camp: 1
+    level: 1
+    hp: 40
+    shield: 0
+    armor: 1
+    attack: 5
+    attackSpeed: 0.9
+    attackRange: 4
+    criticalChance: 0
+    moveSpeed: 1
+    productionTime: 10
+    goldCost: 45
+    mineralCost: 0
+    typeTagStringId: Range
+    combatRoleTagStringId: 

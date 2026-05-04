@@ -46,7 +46,7 @@ public struct EntityStatus
     public Team team;
 
     public int curLevel;
-    public long reward;
+    public long goldCost;
     
     [Header("Life")]
     public int curHp;
@@ -120,7 +120,7 @@ public abstract class AEntity : MonoBehaviour
     public EntityStatus EntityStatus => _entityStatus;
     public PrefabID Id => _id;
     public ulong Uid => _uid;
-    public long Reward => _entityStatus.reward;
+    public long GoldCost => _entityStatus.goldCost;
     public bool IsDead => _entityStatus.curHp <= 0;
     public bool CanAction => _entityStatus.canAction;
     public Team Team => _entityStatus.team;
@@ -171,7 +171,7 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.criticalChance = argEntityInfo.criticalChance;
         _entityStatus.moveSpeed = argEntityInfo.moveSpeed;
         _entityStatus.canAction = true;
-        _entityStatus.reward = (int)(argEntityInfo.goldCost * REWARD_RATIO);
+        _entityStatus.goldCost = (int)(argEntityInfo.goldCost * REWARD_RATIO);
     }
     
     protected virtual void Update()
@@ -370,7 +370,7 @@ public abstract class AEntity : MonoBehaviour
             _entityStatus.curAction = EntityActionType.None;
             
             if(argAttacker != null)
-                argAttacker.OnKill(_entityStatus.reward);
+                argAttacker.OnKill(_entityStatus.goldCost);
             
             _attackTarget = null;
 
@@ -457,7 +457,7 @@ public abstract class AEntity : MonoBehaviour
         const float errorThreshold = 0.5f;
         if (dist < errorThreshold)
         {
-            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.attack, _entityStatus.reward);
+            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.attack, _entityStatus.goldCost);
             
             Destroy();
             return true;
