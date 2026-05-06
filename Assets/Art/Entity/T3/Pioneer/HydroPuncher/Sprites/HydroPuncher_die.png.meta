@@ -1,0 +1,527 @@
+fileFormatVersion: 2
+guid: 9e9cf203cbd07ca41973a69e3e4c38bd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6133988865322357297
+    second: HydroPuncher_die_0
+  - first:
+      213: 4611011883639628795
+    second: HydroPuncher_die_1
+  - first:
+      213: -3310904032989694881
+    second: HydroPuncher_die_2
+  - first:
+      213: 672322014718407695
+    second: HydroPuncher_die_3
+  - first:
+      213: 4596548791101733121
+    second: HydroPuncher_die_4
+  - first:
+      213: 2449132905137387802
+    second: HydroPuncher_die_5
+  - first:
+      213: 7014373000775805274
+    second: HydroPuncher_die_6
+  - first:
+      213: -3932738217903234675
+    second: HydroPuncher_die_7
+  - first:
+      213: 8436270179115496231
+    second: HydroPuncher_die_8
+  - first:
+      213: -2219877638845003427
+    second: HydroPuncher_die_9
+  - first:
+      213: -2844953088796119590
+    second: HydroPuncher_die_10
+  - first:
+      213: -2159489813247233408
+    second: HydroPuncher_die_11
+  - first:
+      213: -7008500142778987348
+    second: HydroPuncher_die_12
+  - first:
+      213: 1323621369438210320
+    second: HydroPuncher_die_13
+  - first:
+      213: 9022877386285769398
+    second: HydroPuncher_die_14
+  - first:
+      213: 592745216988341784
+    second: HydroPuncher_die_15
+  - first:
+      213: -8418582814614256674
+    second: HydroPuncher_die_16
+  - first:
+      213: -5842674331707842751
+    second: HydroPuncher_die_17
+  - first:
+      213: 6190533616807637592
+    second: HydroPuncher_die_18
+  - first:
+      213: -4542798624178658210
+    second: HydroPuncher_die_19
+  - first:
+      213: -3409450567720351447
+    second: HydroPuncher_die_20
+  - first:
+      213: -9017443125813480183
+    second: HydroPuncher_die_21
+  - first:
+      213: 2688862320761089865
+    second: HydroPuncher_die_22
+  - first:
+      213: 6495565071027670127
+    second: HydroPuncher_die_23
+  - first:
+      213: 1736007926873063214
+    second: HydroPuncher_die_24
+  - first:
+      213: -7519738642086788399
+    second: HydroPuncher_die_25
+  - first:
+      213: 9041527145808453818
+    second: HydroPuncher_die_26
+  - first:
+      213: 7019763863556891910
+    second: HydroPuncher_die_27
+  - first:
+      213: 6445242502855254647
+    second: HydroPuncher_die_28
+  - first:
+      213: 8892038681762690534
+    second: HydroPuncher_die_29
+  - first:
+      213: 4328670467692692516
+    second: HydroPuncher_die_30
+  - first:
+      213: 3179373427054306640
+    second: HydroPuncher_die_31
+  - first:
+      213: -8619456068862919095
+    second: HydroPuncher_die_32
+  - first:
+      213: -173286280807644561
+    second: HydroPuncher_die_33
+  - first:
+      213: -8728166899250000816
+    second: HydroPuncher_die_34
+  - first:
+      213: -4320070833625567961
+    second: HydroPuncher_die_35
+  - first:
+      213: 3488227199969069661
+    second: HydroPuncher_die_36
+  - first:
+      213: -1413671315049379806
+    second: HydroPuncher_die_37
+  - first:
+      213: -337060669930815517
+    second: HydroPuncher_die_38
+  - first:
+      213: -6942565386720636548
+    second: HydroPuncher_die_39
+  - first:
+      213: 3562821781005926000
+    second: HydroPuncher_die_40
+  - first:
+      213: -5473983863959400009
+    second: HydroPuncher_die_41
+  - first:
+      213: 8718046330300132236
+    second: HydroPuncher_die_42
+  - first:
+      213: 2080079402473957988
+    second: HydroPuncher_die_43
+  - first:
+      213: -6002167120239828911
+    second: HydroPuncher_die_44
+  - first:
+      213: 8593917309742061140
+    second: HydroPuncher_die_45
+  - first:
+      213: 3446356208868883765
+    second: HydroPuncher_die_46
+  - first:
+      213: -3479873957608225611
+    second: HydroPuncher_die_47
+  - first:
+      213: -6329869022761464162
+    second: HydroPuncher_die_48
+  - first:
+      213: -1149613484733442538
+    second: HydroPuncher_die_49
+  - first:
+      213: -5177964349800222635
+    second: HydroPuncher_die_50
+  - first:
+      213: 4578934682722356514
+    second: HydroPuncher_die_51
+  - first:
+      213: -6292161162545765792
+    second: HydroPuncher_die_52
+  - first:
+      213: -7301568529928278268
+    second: HydroPuncher_die_53
+  - first:
+      213: -3887829849523643632
+    second: HydroPuncher_die_54
+  - first:
+      213: 4224272546098698708
+    second: HydroPuncher_die_55
+  - first:
+      213: 855448342316647953
+    second: HydroPuncher_die_56
+  - first:
+      213: 6129246141093780862
+    second: HydroPuncher_die_57
+  - first:
+      213: -6877784153675722550
+    second: HydroPuncher_die_58
+  - first:
+      213: 4004724043524806171
+    second: HydroPuncher_die_59
+  - first:
+      213: -5056093137420241597
+    second: HydroPuncher_die_60
+  - first:
+      213: 7302711088577994695
+    second: HydroPuncher_die_61
+  - first:
+      213: 1958938899220638573
+    second: HydroPuncher_die_62
+  - first:
+      213: -1498431904319704898
+    second: HydroPuncher_die_63
+  - first:
+      213: 8349718930743743333
+    second: HydroPuncher_die_64
+  - first:
+      213: 3952418067748736621
+    second: HydroPuncher_die_65
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HydroPuncher_die_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1329dbdaf5e402550800000000000000
+      internalID: 6133988865322357297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf3e173c0ea9dff30800000000000000
+      internalID: 4611011883639628795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f54bd3ce25e4d02d0800000000000000
+      internalID: -3310904032989694881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0437fd6f41945900800000000000000
+      internalID: 672322014718407695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 109be5e95c83acf30800000000000000
+      internalID: 4596548791101733121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_5
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a193f62b6611df120800000000000000
+      internalID: 2449132905137387802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a592559941f085160800000000000000
+      internalID: 7014373000775805274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HydroPuncher_die_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5078125, y: 0.33203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8166476d6b1c69c0800000000000000
+      internalID: -3932738217903234675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4fbc93e7739c34743a597a89023f397c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5078125,"y":0.33203125},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      HydroPuncher_die_0: 6133988865322357297
+      HydroPuncher_die_1: 4611011883639628795
+      HydroPuncher_die_2: -3310904032989694881
+      HydroPuncher_die_3: 672322014718407695
+      HydroPuncher_die_4: 4596548791101733121
+      HydroPuncher_die_5: 2449132905137387802
+      HydroPuncher_die_6: 7014373000775805274
+      HydroPuncher_die_7: -3932738217903234675
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

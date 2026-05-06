@@ -85,7 +85,7 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
         var dm = Managers.Data;
         dm.TryGetPrefabInfo((int)_transitionContent.prefabID, out var info);
         var entityInfo = info as EntityInfo;
-        var nameStringId = dm.ConvertStringToStringID(entityInfo.stringId);
+        var nameStringId = dm.ConvertStringToStringID(entityInfo.id);
         var msg = sm.GetString(StringID.ConfirmStopProducing) + '\n' + sm.GetString(StringID.NowProducingEntity) + sm.GetString(nameStringId);
         string confirm = sm.GetString(StringID.Yes);
         string cancel = sm.GetString(StringID.No);

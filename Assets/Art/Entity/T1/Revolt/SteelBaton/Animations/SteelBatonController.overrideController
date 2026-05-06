@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SteelBatonController
+  m_Controller: {fileID: 9100000, guid: 6b1cccc857df0d0449803d158627a368, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1510f242844128b429cdd8f2cb6a81eb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6d0e0f17412ca304f8c06548c7c3f4b8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a961cac44ccdc1d4db7d23618cfa0f2b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5c20f237f94448049bbef44430b144bd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 007a3bb0ab6f1f34cbdd841a299a6f6c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 136d742576cc0a24caf56f84be6ec348, type: 2}

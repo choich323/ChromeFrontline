@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: StringData
   m_EditorClassIdentifier: Assembly-CSharp::StringData
   stringInfoList:
+  - id: AssaultRifle
+    value:
+      en: Assault Rifle
+      kr: "\uAC15\uC2B5\uB300\uC6D0"
   - id: Best
     value:
       en: '(Best: {0})'
@@ -21,6 +25,14 @@ MonoBehaviour:
     value:
       en: Bottom
       kr: "\uD558\uB2E8"
+  - id: CentauriCanon
+    value:
+      en: Centauri Canon
+      kr: "\uCC9C\uB8B0\uD3EC\uB9C8"
+  - id: ChainsawBot
+    value:
+      en: Chainsaw Bot
+      kr: "\uCCB4\uC778\uC18C \uC0AC\uC6B0\uB974\uC2A4"
   - id: Clear
     value:
       en: Clear
@@ -106,10 +118,10 @@ MonoBehaviour:
     value:
       en: HQ Upgrade
       kr: "\uBCF8\uBD80 \uAC15\uD654"
-  - id: Infantry
+  - id: HydroPuncher
     value:
-      en: Infantry
-      kr: "\uAC1C\uCC99 \uBCF4\uBCD1"
+      en: Hydro Puncher
+      kr: "\uACA9\uB958\uC758 \uAD8C"
   - id: LaneSelect
     value:
       en: Best
@@ -126,6 +138,10 @@ MonoBehaviour:
     value:
       en: Language
       kr: "\uC5B8\uC5B4"
+  - id: Level
+    value:
+      en: Level
+      kr: "\uB808\uBCA8"
   - id: Lv
     value:
       en: Lv.{0}
@@ -138,6 +154,10 @@ MonoBehaviour:
     value:
       en: Main Tank
       kr: "\uBA54\uC778 \uD0F1\uCEE4"
+  - id: MasterGang
+    value:
+      en: MasterGang
+      kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
   - id: Melee
     value:
       en: Melee
@@ -166,6 +186,10 @@ MonoBehaviour:
     value:
       en: Option
       kr: "\uC124\uC815"
+  - id: Police
+    value:
+      en: Police
+      kr: "\uACBD\uCC30"
   - id: Produce
     value:
       en: Produce
@@ -198,18 +222,22 @@ MonoBehaviour:
     value:
       en: Retry
       kr: "\uB2E4\uC2DC\uD558\uAE30"
+  - id: Security
+    value:
+      en: Security
+      kr: "\uBCF4\uC548\uAD00"
   - id: Sensitivity
     value:
       en: Sensitivity
       kr: "\uAC10\uB3C4"
+  - id: SharpShooter
+    value:
+      en: Sharp Shooter
+      kr: "\uC778\uAC04 \uC0AC\uB0E5\uAFBC"
   - id: Shield
     value:
       en: Shield
       kr: "\uBCF4\uD638\uB9C9"
-  - id: ShockBaton
-    value:
-      en: Shock Baton
-      kr: "\uC804\uACA9 \uD0C0\uACA9\uAFBC"
   - id: Slot
     value:
       en: Slot {0}
@@ -222,6 +250,14 @@ MonoBehaviour:
     value:
       en: Sound
       kr: "\uC18C\uB9AC"
+  - id: SpecialForce
+    value:
+      en: Special Force
+      kr: "\uD2B9\uACF5\uB300"
+  - id: SteelBaton
+    value:
+      en: Steel Baton
+      kr: "\uC55E\uC7A1\uC774"
   - id: StopProducing
     value:
       en: Stop Producing
@@ -230,10 +266,18 @@ MonoBehaviour:
     value:
       en: Success
       kr: "\uC131\uACF5"
+  - id: TheThunder
+    value:
+      en: The Thunder
+      kr: "\uC12C\uAD11"
   - id: Top
     value:
       en: Top
       kr: "\uC0C1\uB2E8"
+  - id: UnknownSamurai
+    value:
+      en: Unknown Samurai
+      kr: "\uC815\uCCB4\uBD88\uBA85\uC758 \uAC80\uAC1D"
   - id: Victory
     value:
       en: Victory
@@ -242,7 +286,3 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
-  - id: Level
-    value:
-      en: Level
-      kr: "\uB808\uBCA8"

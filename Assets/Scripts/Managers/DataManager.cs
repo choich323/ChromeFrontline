@@ -32,13 +32,15 @@ public class DataManager : MonoBehaviour
             foreach (var info in data.GetInfoList())
             {
                 if (info == null) continue;
-                if (info.prefab == null) continue;
-                var key = (int)info.GetPrefabID();
-                if (key == (int)PrefabID.None) continue;
                 
-                _prefabInfoDict.TryAdd(key, info);
+                var entityInfo = info as EntityInfo;
+                var isEntityInfo = entityInfo != null;
+                var key = isEntityInfo ? entityInfo.GetEntityID() : info.GetPrefabID();
+                if (key.Equals(PrefabID.None)) continue;
+                
+                _prefabInfoDict.TryAdd((int)key, info);
 
-                if (info is EntityInfo entityInfo)
+                if (isEntityInfo)
                 {
                     if (entityInfo.camp == CampType.Pioneer)
                     {
@@ -136,6 +138,7 @@ public class DataManager : MonoBehaviour
 
     public List<EntityInfo> GetRevoltInfoList(int argTpAmount)
     {
-        return _revoltInfoList.FindAll(entity => entity.goldCost <= argTpAmount);
+        // TODO: 임시로 Area 타입은 지정되지 않도록 수정
+        return _revoltInfoList.FindAll(entity => entity.goldCost >= 0 && entity.goldCost <= argTpAmount && entity.attackAreaType != AttackAreaType.Area);
     }
 }

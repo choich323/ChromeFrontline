@@ -59,7 +59,8 @@ public class HeadQuarter : MonoBehaviour
     {
         _usableEntityIDList.Clear();
         // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
-        _usableEntityIDList.Add(PrefabID.Infantry);
+        _usableEntityIDList.Add(PrefabID.Police);
+        _usableEntityIDList.Add((PrefabID.Security));
     }
     
     public IEnumerable<PrefabID> GetUsableEntityIDList()

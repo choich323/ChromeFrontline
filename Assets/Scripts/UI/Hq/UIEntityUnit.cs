@@ -47,20 +47,11 @@ public class UIEntityUnit : MonoBehaviour
         var sm = Managers.String;
         var dm = Managers.Data;
         _levelText.text = sm.GetString(StringID.Lv, _entityInfo.level);
-        var stringId = dm.ConvertStringToStringID(_entityInfo.stringId);
+        var stringId = dm.ConvertStringToStringID(_entityInfo.id);
         _nameText.text = sm.GetString(stringId);
         _productionTimeText.text = $"{_entityInfo.productionTime}";
         _goldText.text = $"{_entityInfo.goldCost}";
         _mineralText.text = $"{_entityInfo.mineralCost}";
-        _typeTagText.text = sm.GetString(dm.ConvertStringToStringID(_entityInfo.typeTagStringId));
-        if (string.IsNullOrEmpty(_entityInfo.combatRoleTagStringId))
-        {
-            _combatRole.SetActive(false);
-        }
-        else
-        {
-            _combatRoleTagText.text = sm.GetString(dm.ConvertStringToStringID(_entityInfo.combatRoleTagStringId));
-        }
     }
 
     void SetBtnSelect()
@@ -98,7 +89,7 @@ public class UIEntityUnit : MonoBehaviour
         }
 
         var curSlotTargetId = slot.GetTargetId();
-        var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.prefab.name);
+        var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.id);
         if (curSlotTargetId == PrefabID.None || curSlotTargetId == id)
         {
             OnConfirm();

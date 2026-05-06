@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HeadQuarterData
   m_EditorClassIdentifier: Assembly-CSharp::HqData
   hqInfoList:
-  - prefab: {fileID: 6391996127989187439, guid: 159549eabdb56174db40bdc2876da3be, type: 3}
+  - id: HeadQuarter
+    prefab: {fileID: 6391996127989187439, guid: 159549eabdb56174db40bdc2876da3be, type: 3}
     hp: 100
     shield: 0

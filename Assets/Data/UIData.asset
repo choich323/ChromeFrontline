@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: UIData
   m_EditorClassIdentifier: Assembly-CSharp::UIData
   uiInfoList:
-  - prefab: {fileID: 4624048158271565981, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
-  - prefab: {fileID: 4073832685670674997, guid: a441589a292665f4cba04d8a65ad7385, type: 3}
+  - id: UISlotUnit
+    prefab: {fileID: 4624048158271565981, guid: a9b76185fceb5c346998bce813e18ff1, type: 3}
+  - id: UIEntityUnit
+    prefab: {fileID: 4073832685670674997, guid: a441589a292665f4cba04d8a65ad7385, type: 3}

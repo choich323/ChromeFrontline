@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: PopupData
   m_EditorClassIdentifier: Assembly-CSharp::PopupData
   popupInfoList:
-  - prefab: {fileID: 8534312463349980150, guid: 74f0019c69ce13047a7b61c3e7c6e93c, type: 3}
-  - prefab: {fileID: 8534312463349980150, guid: 01cf223afb768154f84ea9c1e814d08a, type: 3}
-  - prefab: {fileID: 8534312463349980150, guid: ce0fc93e591693943952e9b7f7250ef2, type: 3}
-  - prefab: {fileID: 8534312463349980150, guid: cfdc7b8d8a86c9845947f03b84ca42a6, type: 3}
-  - prefab: {fileID: 8534312463349980150, guid: 692e6db9b89e5374b839cebe6fef7247, type: 3}
+  - id: UIConfirm
+    prefab: {fileID: 8534312463349980150, guid: 74f0019c69ce13047a7b61c3e7c6e93c, type: 3}
+  - id: UIOption
+    prefab: {fileID: 8534312463349980150, guid: 01cf223afb768154f84ea9c1e814d08a, type: 3}
+  - id: UIHqManagement
+    prefab: {fileID: 8534312463349980150, guid: ce0fc93e591693943952e9b7f7250ef2, type: 3}
+  - id: UIEntityStat
+    prefab: {fileID: 8534312463349980150, guid: cfdc7b8d8a86c9845947f03b84ca42a6, type: 3}
+  - id: UIResult
+    prefab: {fileID: 8534312463349980150, guid: 692e6db9b89e5374b839cebe6fef7247, type: 3}

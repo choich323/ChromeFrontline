@@ -1,0 +1,529 @@
+fileFormatVersion: 2
+guid: cc67e73edf2124c43a9d32d6b3e2ccf6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1709338021067637399
+    second: TheThunder_die_0
+  - first:
+      213: -8748116549577930933
+    second: TheThunder_die_1
+  - first:
+      213: -872464505838464623
+    second: TheThunder_die_2
+  - first:
+      213: -7690535659369198133
+    second: TheThunder_die_3
+  - first:
+      213: 7076135016435701688
+    second: TheThunder_die_4
+  - first:
+      213: 5646498924381795453
+    second: TheThunder_die_5
+  - first:
+      213: 810748321303001311
+    second: TheThunder_die_6
+  - first:
+      213: -7560328770589720191
+    second: TheThunder_die_7
+  - first:
+      213: 8865903385085229032
+    second: TheThunder_die_8
+  - first:
+      213: -3023406381247190665
+    second: TheThunder_die_9
+  - first:
+      213: -5245284048572842470
+    second: TheThunder_die_10
+  - first:
+      213: 4639068021257627538
+    second: TheThunder_die_11
+  - first:
+      213: 6636302197241090119
+    second: TheThunder_die_12
+  - first:
+      213: -2498018647909708932
+    second: TheThunder_die_13
+  - first:
+      213: 5579549943427985681
+    second: TheThunder_die_14
+  - first:
+      213: 7777795137176520125
+    second: TheThunder_die_15
+  - first:
+      213: -5046451873864311928
+    second: TheThunder_die_16
+  - first:
+      213: 8639902205963347573
+    second: TheThunder_die_17
+  - first:
+      213: 1252079348078463784
+    second: TheThunder_die_18
+  - first:
+      213: 5317454885613235215
+    second: TheThunder_die_19
+  - first:
+      213: 1178225932382242197
+    second: TheThunder_die_20
+  - first:
+      213: -8540194078602940623
+    second: TheThunder_die_21
+  - first:
+      213: -7280819463932568429
+    second: TheThunder_die_22
+  - first:
+      213: -1598444832238759067
+    second: TheThunder_die_23
+  - first:
+      213: 837576609284235097
+    second: TheThunder_die_24
+  - first:
+      213: 2206133781005118395
+    second: TheThunder_die_25
+  - first:
+      213: 2092648568177276530
+    second: TheThunder_die_26
+  - first:
+      213: 1910936788068529765
+    second: TheThunder_die_27
+  - first:
+      213: -5046993841316143976
+    second: TheThunder_die_28
+  - first:
+      213: 3731122698126416407
+    second: TheThunder_die_29
+  - first:
+      213: 3110804953500792287
+    second: TheThunder_die_30
+  - first:
+      213: -235813574976203282
+    second: TheThunder_die_31
+  - first:
+      213: -3960622391227488520
+    second: TheThunder_die_32
+  - first:
+      213: -9059902114731755349
+    second: TheThunder_die_33
+  - first:
+      213: -8114051900039094600
+    second: TheThunder_die_34
+  - first:
+      213: 5545387112343452212
+    second: TheThunder_die_35
+  - first:
+      213: -2423988586134123813
+    second: TheThunder_die_36
+  - first:
+      213: 2534387144929637184
+    second: TheThunder_die_37
+  - first:
+      213: 9051271108330075529
+    second: TheThunder_die_38
+  - first:
+      213: 2905973487595834272
+    second: TheThunder_die_39
+  - first:
+      213: 8987752865581408312
+    second: TheThunder_die_40
+  - first:
+      213: -3333482995308776896
+    second: TheThunder_die_41
+  - first:
+      213: 4947682762008134656
+    second: TheThunder_die_42
+  - first:
+      213: -379847155125767288
+    second: TheThunder_die_43
+  - first:
+      213: -1321318934179731526
+    second: TheThunder_die_44
+  - first:
+      213: -7091926753540485384
+    second: TheThunder_die_45
+  - first:
+      213: -6233455942888906485
+    second: TheThunder_die_46
+  - first:
+      213: -5155249620928480728
+    second: TheThunder_die_47
+  - first:
+      213: 3811503049988996757
+    second: TheThunder_die_48
+  - first:
+      213: -659489203184081626
+    second: TheThunder_die_49
+  - first:
+      213: 5431171422238657159
+    second: TheThunder_die_50
+  - first:
+      213: 2755963463697377127
+    second: TheThunder_die_51
+  - first:
+      213: 3210986235525479530
+    second: TheThunder_die_52
+  - first:
+      213: -1132232549558699787
+    second: TheThunder_die_53
+  - first:
+      213: -7702983114061456968
+    second: TheThunder_die_54
+  - first:
+      213: 1315864194315988766
+    second: TheThunder_die_55
+  - first:
+      213: 4272653580719051673
+    second: TheThunder_die_56
+  - first:
+      213: 3859396980553422515
+    second: TheThunder_die_57
+  - first:
+      213: 8958586618235456918
+    second: TheThunder_die_58
+  - first:
+      213: 695478678548910591
+    second: TheThunder_die_59
+  - first:
+      213: 7882616732955052879
+    second: TheThunder_die_60
+  - first:
+      213: 6464565488810096434
+    second: TheThunder_die_61
+  - first:
+      213: 2237275924691012169
+    second: TheThunder_die_62
+  - first:
+      213: -8206698271165613946
+    second: TheThunder_die_63
+  - first:
+      213: 2172365270764874860
+    second: TheThunder_die_64
+  - first:
+      213: 6894560769371189473
+    second: TheThunder_die_65
+  - first:
+      213: 2734629199770838241
+    second: TheThunder_die_66
+  - first:
+      213: -2439567950689733122
+    second: TheThunder_die_67
+  - first:
+      213: 8442550541706308868
+    second: TheThunder_die_68
+  - first:
+      213: -271317186530016962
+    second: TheThunder_die_69
+  - first:
+      213: -6511354191629322168
+    second: TheThunder_die_70
+  - first:
+      213: -5531951669546164170
+    second: TheThunder_die_71
+  - first:
+      213: 3214619827167378249
+    second: TheThunder_die_72
+  - first:
+      213: 4890739024347514923
+    second: TheThunder_die_73
+  - first:
+      213: 7933963576384448974
+    second: TheThunder_die_74
+  - first:
+      213: -6840738233799100397
+    second: TheThunder_die_75
+  - first:
+      213: -310912337053516743
+    second: TheThunder_die_76
+  - first:
+      213: 2978880856072635614
+    second: TheThunder_die_77
+  - first:
+      213: -6253805870632634596
+    second: TheThunder_die_78
+  - first:
+      213: -8918562816385389435
+    second: TheThunder_die_79
+  - first:
+      213: 1381482391454547828
+    second: TheThunder_die_80
+  - first:
+      213: -978283739510385967
+    second: TheThunder_die_81
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TheThunder_die_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7924ecaafd9c8b710800000000000000
+      internalID: 1709338021067637399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheThunder_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4701b00952789680800000000000000
+      internalID: -8748116549577930933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheThunder_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1919c5a872264e3f0800000000000000
+      internalID: -872464505838464623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheThunder_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcd03d2609ab54590800000000000000
+      internalID: -7690535659369198133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheThunder_die_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b75a557e4b733260800000000000000
+      internalID: 7076135016435701688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheThunder_die_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.3359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74f664fad46c5e40800000000000000
+      internalID: 5646498924381795453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3faed9e03d6a57a40bb62c0309f3056e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.4921875,"y":0.3359375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      TheThunder_die_0: 1709338021067637399
+      TheThunder_die_1: -8748116549577930933
+      TheThunder_die_2: -872464505838464623
+      TheThunder_die_3: -7690535659369198133
+      TheThunder_die_4: 7076135016435701688
+      TheThunder_die_5: 5646498924381795453
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

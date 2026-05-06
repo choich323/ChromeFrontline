@@ -1,0 +1,602 @@
+fileFormatVersion: 2
+guid: 8a37a51dfcf7cbd479e81fbc17d4c7e5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -378978032005156898
+    second: CentauriCanon_die_0
+  - first:
+      213: -8565554805300157452
+    second: CentauriCanon_die_1
+  - first:
+      213: 7391306472377277002
+    second: CentauriCanon_die_2
+  - first:
+      213: 795393188243005775
+    second: CentauriCanon_die_3
+  - first:
+      213: -8153666688716836891
+    second: CentauriCanon_die_4
+  - first:
+      213: -8330086727388139700
+    second: CentauriCanon_die_5
+  - first:
+      213: 8544338526580769276
+    second: CentauriCanon_die_6
+  - first:
+      213: -118717682886866880
+    second: CentauriCanon_die_7
+  - first:
+      213: 6799529623213640648
+    second: CentauriCanon_die_8
+  - first:
+      213: -4417112237642430593
+    second: CentauriCanon_die_9
+  - first:
+      213: -2614664095420632729
+    second: CentauriCanon_die_10
+  - first:
+      213: -4746289162488666990
+    second: CentauriCanon_die_11
+  - first:
+      213: -5111975812456389942
+    second: CentauriCanon_die_12
+  - first:
+      213: -4426805532010880392
+    second: CentauriCanon_die_13
+  - first:
+      213: -827874811613139814
+    second: CentauriCanon_die_14
+  - first:
+      213: 7064869362816980053
+    second: CentauriCanon_die_15
+  - first:
+      213: 3855516177460181800
+    second: CentauriCanon_die_16
+  - first:
+      213: -6179081884745523426
+    second: CentauriCanon_die_17
+  - first:
+      213: 468787438977409008
+    second: CentauriCanon_die_18
+  - first:
+      213: -2212878699767447741
+    second: CentauriCanon_die_19
+  - first:
+      213: 7512186228682096298
+    second: CentauriCanon_die_20
+  - first:
+      213: -8426214659103382427
+    second: CentauriCanon_die_21
+  - first:
+      213: 8786996307325504718
+    second: CentauriCanon_die_22
+  - first:
+      213: -8394455030327301057
+    second: CentauriCanon_die_23
+  - first:
+      213: -5203579388916357632
+    second: CentauriCanon_die_24
+  - first:
+      213: 392549544979716025
+    second: CentauriCanon_die_25
+  - first:
+      213: 3246011303743707127
+    second: CentauriCanon_die_26
+  - first:
+      213: 1720864896547909408
+    second: CentauriCanon_die_27
+  - first:
+      213: 1722513109284797436
+    second: CentauriCanon_die_28
+  - first:
+      213: 2155641980934951297
+    second: CentauriCanon_die_29
+  - first:
+      213: -2310251499583139795
+    second: CentauriCanon_die_30
+  - first:
+      213: -4356136237053754149
+    second: CentauriCanon_die_31
+  - first:
+      213: 943471777307133544
+    second: CentauriCanon_die_32
+  - first:
+      213: 4316823851376775255
+    second: CentauriCanon_die_33
+  - first:
+      213: -4374153650056611331
+    second: CentauriCanon_die_34
+  - first:
+      213: 8709214990132935796
+    second: CentauriCanon_die_35
+  - first:
+      213: 8180499716966135274
+    second: CentauriCanon_die_36
+  - first:
+      213: 1916754649210366576
+    second: CentauriCanon_die_37
+  - first:
+      213: -5666973307583783965
+    second: CentauriCanon_die_38
+  - first:
+      213: -5880077235922870803
+    second: CentauriCanon_die_39
+  - first:
+      213: -6660205768333093815
+    second: CentauriCanon_die_40
+  - first:
+      213: 4348031091733534917
+    second: CentauriCanon_die_41
+  - first:
+      213: -2051715923100881458
+    second: CentauriCanon_die_42
+  - first:
+      213: 3764276059986996479
+    second: CentauriCanon_die_43
+  - first:
+      213: 5445504747655607696
+    second: CentauriCanon_die_44
+  - first:
+      213: -919799517060963654
+    second: CentauriCanon_die_45
+  - first:
+      213: 8054545228492619698
+    second: CentauriCanon_die_46
+  - first:
+      213: 1803171939789293863
+    second: CentauriCanon_die_47
+  - first:
+      213: -8316944823952830997
+    second: CentauriCanon_die_48
+  - first:
+      213: -91457971524836183
+    second: CentauriCanon_die_49
+  - first:
+      213: 8623129590718581235
+    second: CentauriCanon_die_50
+  - first:
+      213: -6592535976867009382
+    second: CentauriCanon_die_51
+  - first:
+      213: -795521840174145741
+    second: CentauriCanon_die_52
+  - first:
+      213: 9171048067197948981
+    second: CentauriCanon_die_53
+  - first:
+      213: -1449297092313271251
+    second: CentauriCanon_die_54
+  - first:
+      213: -6254250306727950856
+    second: CentauriCanon_die_55
+  - first:
+      213: -3681767659326873374
+    second: CentauriCanon_die_56
+  - first:
+      213: -1849544102044322189
+    second: CentauriCanon_die_57
+  - first:
+      213: -5657373970865678057
+    second: CentauriCanon_die_58
+  - first:
+      213: -6954788918205769140
+    second: CentauriCanon_die_59
+  - first:
+      213: -3602747609898019092
+    second: CentauriCanon_die_60
+  - first:
+      213: 8222852015268308265
+    second: CentauriCanon_die_61
+  - first:
+      213: -2367543699726380723
+    second: CentauriCanon_die_62
+  - first:
+      213: -701756120324865050
+    second: CentauriCanon_die_63
+  - first:
+      213: -7844335980589395165
+    second: CentauriCanon_die_64
+  - first:
+      213: -6604995073234659499
+    second: CentauriCanon_die_65
+  - first:
+      213: 7262223178672614209
+    second: CentauriCanon_die_66
+  - first:
+      213: 2553388737179411704
+    second: CentauriCanon_die_67
+  - first:
+      213: 9132899779882411402
+    second: CentauriCanon_die_68
+  - first:
+      213: 5050944741266347734
+    second: CentauriCanon_die_69
+  - first:
+      213: 7302947149392515362
+    second: CentauriCanon_die_70
+  - first:
+      213: 7441971249835761198
+    second: CentauriCanon_die_71
+  - first:
+      213: 7939008504489746588
+    second: CentauriCanon_die_72
+  - first:
+      213: -4529846328193120674
+    second: CentauriCanon_die_73
+  - first:
+      213: 7422080765096830179
+    second: CentauriCanon_die_74
+  - first:
+      213: -2700820830240001078
+    second: CentauriCanon_die_75
+  - first:
+      213: 5787028996032014753
+    second: CentauriCanon_die_76
+  - first:
+      213: 354460159156024308
+    second: CentauriCanon_die_77
+  - first:
+      213: 4406451044300313725
+    second: CentauriCanon_die_78
+  - first:
+      213: -653957356995694248
+    second: CentauriCanon_die_79
+  - first:
+      213: -8384656072909958552
+    second: CentauriCanon_die_80
+  - first:
+      213: -1274041451540679835
+    second: CentauriCanon_die_81
+  - first:
+      213: -1256571351370894660
+    second: CentauriCanon_die_82
+  - first:
+      213: -5007083631912316598
+    second: CentauriCanon_die_83
+  - first:
+      213: 1526424354077610094
+    second: CentauriCanon_die_84
+  - first:
+      213: -6870977199961241725
+    second: CentauriCanon_die_85
+  - first:
+      213: 6606939607030145690
+    second: CentauriCanon_die_86
+  - first:
+      213: 3904774406413565685
+    second: CentauriCanon_die_87
+  - first:
+      213: 5249462276396004214
+    second: CentauriCanon_die_88
+  - first:
+      213: -5124634683454590490
+    second: CentauriCanon_die_89
+  - first:
+      213: -2816824214929363663
+    second: CentauriCanon_die_90
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CentauriCanon_die_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edfe7a0ec799dbaf0800000000000000
+      internalID: -378978032005156898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3a1fd6949012980800000000000000
+      internalID: -8565554805300157452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4ad7186312339660800000000000000
+      internalID: 7391306472377277002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f416df9f3edc90b00800000000000000
+      internalID: 795393188243005775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5efe81ab85b58de80800000000000000
+      internalID: -8153666688716836891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f65d19146956c80800000000000000
+      internalID: -8330086727388139700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1088dbe96939670800000000000000
+      internalID: 8544338526580769276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentauriCanon_die_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.31640625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04888fa75ea3a5ef0800000000000000
+      internalID: -118717682886866880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9a72683e23b0604469bbe25da483147a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.4921875,"y":0.31640625},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      CentauriCanon_die_0: -378978032005156898
+      CentauriCanon_die_1: -8565554805300157452
+      CentauriCanon_die_2: 7391306472377277002
+      CentauriCanon_die_3: 795393188243005775
+      CentauriCanon_die_4: -8153666688716836891
+      CentauriCanon_die_5: -8330086727388139700
+      CentauriCanon_die_6: 8544338526580769276
+      CentauriCanon_die_7: -118717682886866880
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

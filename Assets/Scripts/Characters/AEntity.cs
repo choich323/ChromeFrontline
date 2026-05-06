@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum CampType
@@ -6,6 +8,13 @@ public enum CampType
     None = 0,
     Pioneer,
     Revolt,
+}
+
+public enum AttackAreaType
+{
+    None = 0,
+    Single,
+    Area,
 }
 
 public enum Team
@@ -37,7 +46,7 @@ public struct EntityStatus
     public Team team;
 
     public int curLevel;
-    public long reward;
+    public long goldCost;
     
     [Header("Life")]
     public int curHp;
@@ -68,9 +77,26 @@ public abstract class AEntity : MonoBehaviour
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
     private const float REWARD_RATIO = 0.25f;
+    private const float BASE_MOVE_SPEED = 0.625f;
     private const int DEFAULT_RAYCAST_COUNT = 50;
     private const int INVALID_SPAWNER_INDEX = -1;
     private const string LAYER_NAME_ENTITY = "Entity";
+    
+    private const string ANIM_STATE_WALK = "isWalk";
+    private const string ANIM_STATE_ATTACK = "tAttack";
+    private const string ANIM_STATE_DIE = "tDie";
+    private const string ANIM_WALK_SPEED_RATIO = "walkSpeedRatio";
+    private const string ANIM_ATTACK_SPEED_RATIO = "attackSpeedRatio";
+    
+    private static readonly int IS_WALK = Animator.StringToHash(ANIM_STATE_WALK);
+    private static readonly int TRIGGER_ATTACK = Animator.StringToHash(ANIM_STATE_ATTACK);
+    private static readonly int TRIGGER_DIE = Animator.StringToHash(ANIM_STATE_DIE);
+    private static readonly int WALK_SPEED_RATIO = Animator.StringToHash(ANIM_WALK_SPEED_RATIO);
+    private static readonly int ATTACK_SPEED_RATIO = Animator.StringToHash(ANIM_ATTACK_SPEED_RATIO);
+    
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Transform _visualChild;
     
     private EntityStatus _entityStatus;
     private int _entityLayerMask;
@@ -81,15 +107,20 @@ public abstract class AEntity : MonoBehaviour
     private Transform _targetHqCoreTransform;
     private float _attackCooldownTimer;
     private float _retargetTimer;
+    private float _dieAnimDuration;
+    private float _attackAnimDuration;
+    private float _attackHitTiming;
     private AEntity _attackTarget;
     private RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
     private Action<AEntity> _onDie;
     private Action<long> _onKill;
+    private Coroutine _dieAnimCoroutine;
+    private Coroutine _attackAnimCoroutine;
     
     public EntityStatus EntityStatus => _entityStatus;
     public PrefabID Id => _id;
     public ulong Uid => _uid;
-    public long Reward => _entityStatus.reward;
+    public long GoldCost => _entityStatus.goldCost;
     public bool IsDead => _entityStatus.curHp <= 0;
     public bool CanAction => _entityStatus.canAction;
     public Team Team => _entityStatus.team;
@@ -99,6 +130,7 @@ public abstract class AEntity : MonoBehaviour
 
     public virtual void Init(PrefabID argId, ulong argUid, Team argTeam, EntityInfo argEntityInfo, int argHomeSpawnerIndex, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
     {
+        _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
         _id = argId;
@@ -108,12 +140,17 @@ public abstract class AEntity : MonoBehaviour
         if (_entityStatus.team == Team.Player)
         {
             _direction = Vector2.right;
+            _spriteRenderer.flipX = argEntityInfo.isOriginalSpriteFacingLeft;
         }
         else
         {
             _direction = Vector2.left;
+            _spriteRenderer.flipX = !argEntityInfo.isOriginalSpriteFacingLeft;
         }
         SetEntityInfo(argEntityInfo);
+        _dieAnimDuration = argEntityInfo.dieAnimDuration;
+        _attackAnimDuration = argEntityInfo.attackAnimDuration;
+        _attackHitTiming = argEntityInfo.attackHitTiming;
         _homeSpawnerIndex = argHomeSpawnerIndex;
         _targetHqCoreTransform = argTargetHqCoreTransform;
         _onDie = argOnDie;
@@ -134,7 +171,7 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.criticalChance = argEntityInfo.criticalChance;
         _entityStatus.moveSpeed = argEntityInfo.moveSpeed;
         _entityStatus.canAction = true;
-        _entityStatus.reward = (int)(argEntityInfo.goldCost * REWARD_RATIO);
+        _entityStatus.goldCost = (int)(argEntityInfo.goldCost * REWARD_RATIO);
     }
     
     protected virtual void Update()
@@ -188,6 +225,8 @@ public abstract class AEntity : MonoBehaviour
             
             if (target != null)
             {
+                _animator.SetBool(IS_WALK, false);
+                
                 if (_attackCooldownTimer <= 0)
                 {
                     Attack(target);
@@ -199,7 +238,10 @@ public abstract class AEntity : MonoBehaviour
         _retargetTimer = 0f;
         _attackTarget = null;
 
-        CheckArrival();
+        if (CheckArrival())
+        {
+            return;
+        }
         
         Move();
     }
@@ -240,11 +282,32 @@ public abstract class AEntity : MonoBehaviour
 
     protected virtual void Attack(AEntity argTarget)
     {
+        if (argTarget == null || argTarget.IsDead)
+            return;
+
+        if (_attackAnimCoroutine != null)
+        {
+            StopCoroutine(_attackAnimCoroutine);
+        }
+        
         _entityStatus.curAction = EntityActionType.Combat;
+        _animator.SetFloat(ATTACK_SPEED_RATIO, _entityStatus.attackSpeed);
+        _animator.SetTrigger(TRIGGER_ATTACK);
         
         var atkSpeed = Mathf.Max(MIN_ATTACK_SPEED, _entityStatus.attackSpeed);
         _attackCooldownTimer = 1f / atkSpeed;
 
+        _attackAnimCoroutine = StartCoroutine(CoAttack(argTarget));
+    }
+
+    IEnumerator CoAttack(AEntity argTarget)
+    {
+        _entityStatus.canAction = false;
+
+        var waitTime = _attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed;
+        
+        yield return new WaitForSeconds(waitTime);
+        
         float damage = _entityStatus.attack;
         float criticalChance = _entityStatus.criticalChance;
         if (criticalChance > 0f && UnityEngine.Random.value <= criticalChance)
@@ -253,8 +316,14 @@ public abstract class AEntity : MonoBehaviour
             Debug.Log("Critical!");
         }
         argTarget.GetEffect(EffectType.Attack, damage, this);
-    }
 
+        float remainTime = _attackAnimDuration * (1f - _attackHitTiming) / _entityStatus.attackSpeed;
+        yield return new WaitForSeconds(remainTime);
+        
+        _entityStatus.canAction = true;
+        _attackAnimCoroutine = null;
+    }
+    
     protected virtual void GetEffect(EffectType argEffectType, float argAmount, AEntity argSubject)
     {
         switch (argEffectType)
@@ -297,8 +366,15 @@ public abstract class AEntity : MonoBehaviour
         if (_entityStatus.curHp <= 0)
         {
             _entityStatus.curHp = 0;
-            argAttacker.OnKill(_entityStatus.reward);
-            Destroy();
+            _entityStatus.canAction = false;
+            _entityStatus.curAction = EntityActionType.None;
+            
+            if(argAttacker != null)
+                argAttacker.OnKill(_entityStatus.goldCost);
+            
+            _attackTarget = null;
+
+            _dieAnimCoroutine = StartCoroutine(CoDie());
         }
         else
         {
@@ -306,6 +382,23 @@ public abstract class AEntity : MonoBehaviour
         }
     }
 
+    IEnumerator CoDie()
+    {
+        if (_attackAnimCoroutine != null)
+        {
+            StopCoroutine(_attackAnimCoroutine);
+            _attackAnimCoroutine = null;
+        }
+        
+        _animator.SetBool(IS_WALK, false);
+        _animator.ResetTrigger(ANIM_STATE_ATTACK);
+        _animator.SetTrigger(TRIGGER_DIE);
+
+        yield return new WaitForSeconds(_dieAnimDuration);
+
+        Destroy();
+    }
+    
     protected virtual void OnKill(long argReward)
     {
         _onKill?.Invoke(argReward);
@@ -330,32 +423,58 @@ public abstract class AEntity : MonoBehaviour
         _attackCooldownTimer = 0f;
         _retargetTimer = 0f;
         _attackTarget = null;
+        // TODO: 상수화 필요
+        _dieAnimDuration = 2f;
+        _attackAnimDuration = 1f;
+        _attackHitTiming = 0.8f;
         _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
         EntityInfo emptyEntityInfo = new EntityInfo();
         SetEntityInfo(emptyEntityInfo);
         _targetHqCoreTransform = null;
         _homeSpawnerIndex = INVALID_SPAWNER_INDEX;
         _attackCooldownTimer = 0f;
+        
+        if (_dieAnimCoroutine != null)
+        {
+            StopCoroutine(_dieAnimCoroutine);
+        }
+        _dieAnimCoroutine = null;
+
+        if (_attackAnimCoroutine != null)
+        {
+            StopCoroutine(_attackAnimCoroutine);
+        }
+        _attackAnimCoroutine = null;
     }
 
-    protected virtual void CheckArrival()
+    protected virtual bool CheckArrival()
     {
-        if (_targetHqCoreTransform == null) return;
+        if (_targetHqCoreTransform == null)
+            return false;
         
         float dist = Mathf.Abs(transform.position.x - _targetHqCoreTransform.position.x);
         
         const float errorThreshold = 0.5f;
         if (dist < errorThreshold)
         {
-            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.attack, _entityStatus.reward);
+            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.attack, _entityStatus.goldCost);
             
             Destroy();
+            return true;
         }
+
+        return false;
     }
     
     protected virtual void Move()
     {
+        if (IsDead || !_entityStatus.canAction)
+            return;
+
         _entityStatus.curAction = EntityActionType.Move;
+        float animSpeedRatio = _entityStatus.moveSpeed * BASE_MOVE_SPEED;
+        _animator.SetFloat(WALK_SPEED_RATIO, animSpeedRatio);
+        _animator.SetBool(IS_WALK, true);
         transform.Translate(_direction * (_entityStatus.moveSpeed * Time.deltaTime));
     }
 }

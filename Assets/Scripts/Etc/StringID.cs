@@ -69,8 +69,18 @@ public enum StringID
     MainTank,
     
     // Entity - Pioneer Name
-    Infantry = 10001,
+    Police = 10001,
+    Security,
+    SpecialForce,
+    AssaultRifle,
+    HydroPuncher,
+    TheThunder,
     
     // Entity - Revolt Name
-    ShockBaton = 20001,
+    SteelBaton = 20001,
+    MasterGang,
+    UnknownSamurai,
+    SharpShooter,
+    ChainsawBot,
+    CentauriCanon,
 }
