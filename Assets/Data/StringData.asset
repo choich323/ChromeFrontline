@@ -146,22 +146,10 @@ MonoBehaviour:
     value:
       en: Lv.{0}
       kr: "\uB808\uBCA8{0}"
-  - id: MainDps
-    value:
-      en: Main DPS
-      kr: "\uBA54\uC778 \uB51C\uB7EC"
-  - id: MainTank
-    value:
-      en: Main Tank
-      kr: "\uBA54\uC778 \uD0F1\uCEE4"
   - id: MasterGang
     value:
       en: MasterGang
       kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
-  - id: Melee
-    value:
-      en: Melee
-      kr: "\uADFC\uAC70\uB9AC"
   - id: MenuSelect
     value:
       en: Menu Select
@@ -182,6 +170,10 @@ MonoBehaviour:
     value:
       en: 'Now Producing Unit:'
       kr: "\uD604\uC7AC \uC0DD\uC0B0 \uC911\uC778 \uC720\uB2DB:"
+  - id: Ok
+    value:
+      en: OK
+      kr: "\uD655\uC778"
   - id: Option
     value:
       en: Option
@@ -214,10 +206,6 @@ MonoBehaviour:
     value:
       en: Medium
       kr: "\uC911\uAC04"
-  - id: Range
-    value:
-      en: Range
-      kr: "\uC6D0\uAC70\uB9AC"
   - id: Retry
     value:
       en: Retry
@@ -286,3 +274,7 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
+  - id: NotEnoughGold
+    value:
+      en: Not Enough Gold
+      kr: "\uC790\uC6D0\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4"

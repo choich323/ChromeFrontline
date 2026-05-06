@@ -10,6 +10,11 @@ public class UIHqLeftPanel : MonoBehaviour
 
     public void Init()
     {
+        
+    }
+    
+    void Update()
+    {
         SetText();
     }
 

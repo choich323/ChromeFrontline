@@ -153,6 +153,6 @@ public class DataManager : MonoBehaviour
 
     public List<PrefabID> GetPrefabIdList(int argTier)
     {
-        return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetPrefabID()).ToList(); 
+        return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetEntityID()).ToList(); 
     }
 }

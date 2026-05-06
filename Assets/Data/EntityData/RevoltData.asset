@@ -62,7 +62,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
     tier: 1
     level: 1
@@ -79,11 +79,11 @@ MonoBehaviour:
   - id: MasterGang
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
     tier: 1
     level: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
     tier: 2
     level: 1
@@ -163,11 +163,11 @@ MonoBehaviour:
   - id: Sharpshooter
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 68ecb4731c959904c8366b580e4a8a94, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
     tier: 2
     level: 1
@@ -230,7 +230,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
     tier: 3
     level: 1
@@ -251,7 +251,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
     tier: 3
     level: 1
@@ -314,7 +314,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
     tier: 4
     level: 1
@@ -335,7 +335,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
     tier: 4
     level: 1

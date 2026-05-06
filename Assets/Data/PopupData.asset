@@ -23,3 +23,5 @@ MonoBehaviour:
     prefab: {fileID: 8534312463349980150, guid: cfdc7b8d8a86c9845947f03b84ca42a6, type: 3}
   - id: UIResult
     prefab: {fileID: 8534312463349980150, guid: 692e6db9b89e5374b839cebe6fef7247, type: 3}
+  - id: UINotice
+    prefab: {fileID: 8534312463349980150, guid: 7809c7412f72064439c49d53c27765cd, type: 3}

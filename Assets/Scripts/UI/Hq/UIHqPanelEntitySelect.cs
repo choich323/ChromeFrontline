@@ -33,19 +33,22 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
     void CreateEntityUnits()
     {
         var unlockEntityList = Managers.Game.GetPlayerUsableEntityIDList();
+        int idx = 0;
         foreach (var entityId in unlockEntityList)
         {
-            CreateEntityUnit(entityId);
+            CreateEntityUnit(entityId, idx);
+            idx++;
         }
     }
 
-    void CreateEntityUnit(PrefabID argPrefabID)
+    void CreateEntityUnit(PrefabID argPrefabID, int argIndex)
     {
         var entityUnitObj = Managers.Pool.Instantiate(PrefabID.UIEntityUnit);
         if (entityUnitObj == null)
             return;
 
         entityUnitObj.transform.SetParent(_entityParent);
+        entityUnitObj.transform.SetSiblingIndex(argIndex);
         entityUnitObj.transform.localScale = Vector3.one;
         var entityUnit = entityUnitObj.GetComponent<UIEntityUnit>();
         entityUnit.Init(_transitionContent.lane, _transitionContent.slotIndex, argPrefabID, OnSelectEntityUnit);

@@ -623,7 +623,6 @@ MonoBehaviour:
   _nameText: {fileID: 4791098656656751927}
   _productionTimeText: {fileID: 3424247519875465540}
   _goldText: {fileID: 6788236936070433770}
-  _mineralText: {fileID: 4458117825149967851}
   _typeTagText: {fileID: 5899362642700127665}
   _combatRoleTagText: {fileID: 7619627894658601323}
   _combatRole: {fileID: 7085410685710829346}
@@ -1436,6 +1435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mineral
       objectReference: {fileID: 0}
+    - target: {fileID: 2181155764000884162, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1450,7 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1458,7 +1461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1498,11 +1501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 402.5
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1533,17 +1536,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46437a9865367104394ea40c8b67670b, type: 3}
---- !u!114 &4458117825149967851 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
-  m_PrefabInstance: {fileID: 3797021475921548380}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &7403067196294831220 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5912452866170505256, guid: 46437a9865367104394ea40c8b67670b, type: 3}

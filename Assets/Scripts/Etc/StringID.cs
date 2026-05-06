@@ -59,14 +59,8 @@ public enum StringID
     HqHpMission,
     Retry,
     Exit,
-    
-    // type tag
-    Melee = 9001,
-    Range,
-    
-    // combat role tag
-    MainDps = 9101,
-    MainTank,
+    Ok,
+    NotEnoughGold,
     
     // Entity - Pioneer Name
     Police = 10001,

@@ -36,7 +36,7 @@ public class HeadQuarter : MonoBehaviour
     {
         _level = DEFAULT_LEVEL;
         _usableEntityIDList.Clear();
-        SetUsableEntityIdList();
+        AddUsableEntityIdList();
         _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_level);
         _maxHp = _hqUpgradeInfo.maxHp;
         _hp = _hqUpgradeInfo.maxHp;
@@ -55,17 +55,12 @@ public class HeadQuarter : MonoBehaviour
         }
     }
 
-    void SetUsableEntityIdList()
+    void AddUsableEntityIdList()
     {
-        // 새롭게 추가만 해도 좋지만, id 리스트 누락이 없도록 매번 재편성
-        _usableEntityIDList.Clear();
-        for (int i = _level; i > 0; i--)
+        var idList = dm.GetPrefabIdList(_level);
+        foreach (var id in idList)
         {
-            var idList = dm.GetPrefabIdList(i);
-            foreach (var id in idList)
-            {
-                _usableEntityIDList.Add(id);
-            }
+            _usableEntityIDList.Add(id);
         }
     }
     
@@ -74,15 +69,33 @@ public class HeadQuarter : MonoBehaviour
         return _usableEntityIDList;
     }
 
+    [ContextMenu("testUpgrade")]
     public void UpgradeHq()
     {
-        var newInfo = dm.GetHeadQuarterUpgradeInfo(_level);
+        var newInfo = dm.GetHeadQuarterUpgradeInfo(_level + 1);
+
+        if (_gold < newInfo.upgradeCost)
+        {
+            var ph = Managers.UI.PopupHandler;
+            var popup = ph.OpenPopup<UINotice>(PrefabID.UINotice);
+            string msg = Managers.String.GetString(StringID.NotEnoughGold);
+            popup.SetData(msg, ph.ClosePopup);
+            popup.SetOnClose(ph.ClosePopup);
+            return;
+        }
+        
         _level = newInfo.level;
-        var hpRatio = _maxHp / (float)_hp;
+        var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         _hp = (int)(_hp * hpRatio);
         _hqUpgradeInfo = newInfo;
-        SetUsableEntityIdList();
+        AddUsableEntityIdList();
+    }
+
+    [ContextMenu("TestEarnGold")]
+    void TestEarnGold()
+    {
+        EarnGold(100000);
     }
     
     IEnumerator CoEarnGoldPerSecond()

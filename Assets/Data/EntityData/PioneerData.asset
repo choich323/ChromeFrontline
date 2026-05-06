@@ -62,7 +62,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
     tier: 1
     level: 1
@@ -83,7 +83,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
     tier: 1
     level: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
     tier: 2
     level: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
     tier: 2
     level: 1
@@ -230,7 +230,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
     tier: 3
     level: 1
@@ -247,11 +247,11 @@ MonoBehaviour:
   - id: TheThunder
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a79f1ea836cbef44383f835eae86237e, type: 2}
-    isOriginalSpriteFacingLeft: 0
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
     tier: 3
     level: 1
@@ -314,7 +314,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
     tier: 4
     level: 1
@@ -335,7 +335,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
     tier: 4
     level: 1
