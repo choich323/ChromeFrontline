@@ -34,51 +34,339 @@ MonoBehaviour:
     productionTime: 0
     goldCost: -1
     mineralCost: 0
-    typeTagStringId: 
-    combatRoleTagStringId: 
-  - id: SteelBaton
+  - id: Steel Baton
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}
     isOriginalSpriteFacingLeft: 1
-    dieAnimDuration: 1.5
+    dieAnimDuration: 2
     attackAnimDuration: 1
-    attackHitTiming: 0.85
+    attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
     level: 1
-    hp: 75
+    hp: 650
     shield: 0
-    armor: 2
-    attack: 7
-    attackSpeed: 1
+    armor: 8
+    attack: 12
+    attackSpeed: 0.8
     attackRange: 1
     criticalChance: 0
-    moveSpeed: 1
-    productionTime: 9
-    goldCost: 30
+    moveSpeed: 0.4
+    productionTime: 1.9
+    goldCost: 7
     mineralCost: 0
-    typeTagStringId: Melee
-    combatRoleTagStringId: 
-  - id: MasterGang
+  - id: Wire Striker
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
-    isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 1.5
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
     attackAnimDuration: 1
-    attackHitTiming: 0.75
+    attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
     level: 1
-    hp: 50
+    hp: 800
     shield: 0
-    armor: 0
-    attack: 6
-    attackSpeed: 0.88
-    attackRange: 4
+    armor: 8
+    attack: 8
+    attackSpeed: 0.6
+    attackRange: 1.5
     criticalChance: 0
-    moveSpeed: 1
-    productionTime: 13
-    goldCost: 45
+    moveSpeed: 0.35
+    productionTime: 5
+    goldCost: 19
     mineralCost: 0
-    typeTagStringId: Range
-    combatRoleTagStringId: 
+  - id: Master Gang
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 250
+    shield: 0
+    armor: 4
+    attack: 25
+    attackSpeed: 0.8
+    attackRange: 5
+    criticalChance: 0.05
+    moveSpeed: 0.3
+    productionTime: 2.6
+    goldCost: 10
+    mineralCost: 0
+  - id: Mad Gas
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 250
+    shield: 0
+    armor: 4
+    attack: 10
+    attackSpeed: 0.6
+    attackRange: 5
+    criticalChance: 0
+    moveSpeed: 0.3
+    productionTime: 3
+    goldCost: 11
+    mineralCost: 0
+  - id: Unknown Samurai
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 4eee107496c7063409f5c13734b8059d, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 2000
+    shield: 0
+    armor: 20
+    attack: 35
+    attackSpeed: 0.8
+    attackRange: 1
+    criticalChance: 0
+    moveSpeed: 0.45
+    productionTime: 2.8
+    goldCost: 21
+    mineralCost: 0
+  - id: Steel Wall
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 2500
+    shield: 0
+    armor: 20
+    attack: 18
+    attackSpeed: 0.6
+    attackRange: 1.5
+    criticalChance: 0
+    moveSpeed: 0.4
+    productionTime: 5.9
+    goldCost: 44
+    mineralCost: 0
+  - id: Sharpshooter
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 68ecb4731c959904c8366b580e4a8a94, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 900
+    shield: 0
+    armor: 10
+    attack: 80
+    attackSpeed: 0.8
+    attackRange: 6
+    criticalChance: 0.05
+    moveSpeed: 0.35
+    productionTime: 5.3
+    goldCost: 39
+    mineralCost: 0
+  - id: Drone Bomber
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 900
+    shield: 0
+    armor: 10
+    attack: 35
+    attackSpeed: 0.6
+    attackRange: 6
+    criticalChance: 0
+    moveSpeed: 0.35
+    productionTime: 6.6
+    goldCost: 49
+    mineralCost: 0
+  - id: Chainsaw Bot
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 3b156ec6ed4c5384390a71b679ae1331, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 6000
+    shield: 0
+    armor: 50
+    attack: 110
+    attackSpeed: 0.8
+    attackRange: 1
+    criticalChance: 0.05
+    moveSpeed: 0.5
+    productionTime: 7.9
+    goldCost: 105
+    mineralCost: 0
+  - id: Pyro Maniac
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 7500
+    shield: 0
+    armor: 50
+    attack: 55
+    attackSpeed: 0.6
+    attackRange: 1.5
+    criticalChance: 0.05
+    moveSpeed: 0.4
+    productionTime: 14.5
+    goldCost: 193
+    mineralCost: 0
+  - id: Centauri Canon
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 169c4acedf968e04d8aa0b237f7ff942, type: 2}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 2800
+    shield: 0
+    armor: 25
+    attack: 240
+    attackSpeed: 0.8
+    attackRange: 7
+    criticalChance: 0.1
+    moveSpeed: 0.35
+    productionTime: 13
+    goldCost: 173
+    mineralCost: 0
+  - id: Multi Launcher
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 2800
+    shield: 0
+    armor: 25
+    attack: 100
+    attackSpeed: 0.6
+    attackRange: 7
+    criticalChance: 0.05
+    moveSpeed: 0.35
+    productionTime: 15.5
+    goldCost: 206
+    mineralCost: 0
+  - id: Stinger
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 14000
+    shield: 0
+    armor: 120
+    attack: 300
+    attackSpeed: 0.8
+    attackRange: 1
+    criticalChance: 0.1
+    moveSpeed: 0.5
+    productionTime: 14
+    goldCost: 350
+    mineralCost: 0
+  - id: Overload
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 1
+    camp: 2
+    level: 1
+    hp: 18000
+    shield: 0
+    armor: 120
+    attack: 140
+    attackSpeed: 0.6
+    attackRange: 1.5
+    criticalChance: 0.1
+    moveSpeed: 0.45
+    productionTime: 27.8
+    goldCost: 695
+    mineralCost: 0
+  - id: Void Bullet
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 6500
+    shield: 0
+    armor: 60
+    attack: 600
+    attackSpeed: 0.8
+    attackRange: 8
+    criticalChance: 0.15
+    moveSpeed: 0.4
+    productionTime: 22.4
+    goldCost: 560
+    mineralCost: 0
+  - id: Laser Sweeper
+    prefab: {fileID: 0}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 1
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    attackAreaType: 2
+    camp: 2
+    level: 1
+    hp: 6500
+    shield: 0
+    armor: 60
+    attack: 250
+    attackSpeed: 0.6
+    attackRange: 8
+    criticalChance: 0.1
+    moveSpeed: 0.4
+    productionTime: 26.8
+    goldCost: 670
+    mineralCost: 0

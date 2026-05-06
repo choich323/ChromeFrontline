@@ -52,15 +52,6 @@ public class UIEntityUnit : MonoBehaviour
         _productionTimeText.text = $"{_entityInfo.productionTime}";
         _goldText.text = $"{_entityInfo.goldCost}";
         _mineralText.text = $"{_entityInfo.mineralCost}";
-        _typeTagText.text = sm.GetString(dm.ConvertStringToStringID(_entityInfo.typeTagStringId));
-        if (string.IsNullOrEmpty(_entityInfo.combatRoleTagStringId))
-        {
-            _combatRole.SetActive(false);
-        }
-        else
-        {
-            _combatRoleTagText.text = sm.GetString(dm.ConvertStringToStringID(_entityInfo.combatRoleTagStringId));
-        }
     }
 
     void SetBtnSelect()
