@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -8,16 +9,16 @@ public class DataManager : MonoBehaviour
     [SerializeField] private StringData _stringData;
     [SerializeField] private AIScheduleData _aiScheduleData;
     [SerializeField] private PlayerCurrencyData _playerCurrencyData;
+    [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
     private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
     private List<EntityInfo> _pioneerInfoList = new List<EntityInfo>();
     private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
-    private int _curGoldPerSecond;
+    private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
 
     public int StartGold => _playerCurrencyData.startGold;
-    public int CurGoldPerSecond => _curGoldPerSecond;
     
     public void Init()
     {
@@ -65,7 +66,10 @@ public class DataManager : MonoBehaviour
             _aiScheduleInfoList.Add(info);
         }
 
-        _curGoldPerSecond = _playerCurrencyData.goldPerSecond;
+        foreach (var info in _hqUpgradeData.GetInfoList())
+        {
+            _hqUpgradeInfoList.Add(info);
+        }
     }
 
     public PrefabID ConvertStringToPrefabID(string argPrefabId)
@@ -140,5 +144,15 @@ public class DataManager : MonoBehaviour
     {
         // TODO: 임시로 Area 타입은 지정되지 않도록 수정
         return _revoltInfoList.FindAll(entity => entity.goldCost >= 0 && entity.goldCost <= argTpAmount && entity.attackAreaType != AttackAreaType.Area);
+    }
+
+    public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argLevel)
+    {
+        return _hqUpgradeInfoList[argLevel - 1];
+    }
+
+    public List<PrefabID> GetPrefabIdList(int argTier)
+    {
+        return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetPrefabID()).ToList(); 
     }
 }

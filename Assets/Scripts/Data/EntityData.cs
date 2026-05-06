@@ -17,6 +17,7 @@ public class EntityInfo : APrefabInfo
     [Header("Stat")]
     public AttackAreaType attackAreaType = AttackAreaType.Single; 
     public CampType camp;
+    public int tier;
     public int level;
     public int hp;
     public int shield;
@@ -32,7 +33,6 @@ public class EntityInfo : APrefabInfo
 
     public float productionTime;
     public int goldCost;
-    public int mineralCost;
 
     public override PrefabID GetPrefabID()
     {

@@ -42,10 +42,8 @@ public class GameField : MonoBehaviour
         hqObj.transform.SetParent(_hqParent);
         bool isPlayer = argTeam == Team.Player;
         hqObj.transform.position = isPlayer ? _playerHqPos.position : _enemyHqPos.position;
-        Managers.Data.TryGetPrefabInfo((int)PrefabID.HeadQuarter, out var info);
-        var hqInfo = info as HeadQuarterInfo;
         var hq = hqObj.GetComponent<HeadQuarter>();
-        hq.Init(hqInfo, argTeam, !isPlayer, GetTargetSpawnerPos);
+        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos);
         
         if (isPlayer)
             _playerHq = hq;

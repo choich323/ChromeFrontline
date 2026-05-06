@@ -4,5 +4,4 @@ using UnityEngine;
 public class PlayerCurrencyData : ScriptableObject
 {
     public int startGold = 300;
-    public int goldPerSecond = 5;
 }

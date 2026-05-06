@@ -5,8 +5,7 @@ using UnityEngine;
 [Serializable]
 public class HeadQuarterInfo : APrefabInfo
 {
-    public int hp;
-    public int shield;
+    
 }
 
 [CreateAssetMenu(fileName = "HeadQuarterData", menuName = "Custom/HeadQuarterData")]

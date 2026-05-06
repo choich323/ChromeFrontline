@@ -15,13 +15,11 @@ public class HUDController : MonoBehaviour
     
     [Header("Player HQ UI")] 
     [SerializeField] private Slider _hpSlider;
-    [SerializeField] private Slider _shieldSlider;
     [SerializeField] private Image _hpBarFillImage; // 색상 변경용
     [SerializeField] private TextMeshProUGUI _hpText;
 
     [Header("Capital UI")] 
     [SerializeField] private TextMeshProUGUI _goldText;
-    [SerializeField] private TextMeshProUGUI _mineralText;
     
     [Header("Info UI")]
     [SerializeField] private TextMeshProUGUI _timerText;
@@ -91,16 +89,11 @@ public class HUDController : MonoBehaviour
     {
         var hq = Managers.Game.GameField.PlayerHq;
         float hpRatio = hq.GetHqHpRatio();
-        float shieldRatio = hq.GetShieldRatio();
         long curGold = hq.Gold;
-        //int curMineral = hq.Mineral;
         
         _hpSlider.value = hpRatio;
-        _shieldSlider.value = shieldRatio;
-        var shieldText = shieldRatio <= 0 ? "" : $"+{shieldRatio * HUNDRED_PERCENT:N0}%";
-        _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%" + shieldText;
+        _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
         _goldText.text = $"{curGold}";
-        //_mineralText.text = $"{curMineral}";
         
         UpdateHpBarColor(hpRatio);
     }

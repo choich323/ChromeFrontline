@@ -310,6 +310,7 @@ public class EntityDataImporter : EditorWindow
             AssignEnum(row, headerIndex, "attackAreaType", ref entity.attackAreaType);
             AssignEnum(row, headerIndex, "camp", ref entity.camp);
             
+            AssignInt(row, headerIndex, "tier", ref entity.tier);
             AssignInt(row, headerIndex, "level", ref entity.level);
             AssignInt(row, headerIndex, "hp", ref entity.hp);
             AssignInt(row, headerIndex, "shield", ref entity.shield);
@@ -323,7 +324,6 @@ public class EntityDataImporter : EditorWindow
             AssignFloat(row, headerIndex, "moveSpeed", ref entity.moveSpeed);
             AssignFloat(row, headerIndex, "productionTime", ref entity.productionTime);
             AssignInt(row, headerIndex, "goldCost", ref entity.goldCost);
-            AssignInt(row, headerIndex, "mineralCost", ref entity.mineralCost);
             
             targetSO.entityInfoList.Add(entity);
             
