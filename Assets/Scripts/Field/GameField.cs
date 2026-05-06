@@ -16,6 +16,7 @@ public class GameField : MonoBehaviour
     
     public void Init()
     {
+        Managers.Sound.PlayIngameBgm();
         CreateHqs();
         CreateSpawners();
     }
