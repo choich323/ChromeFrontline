@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b864030466134a54997f8bd881aead32, type: 3}
   m_Name: IngameBgmData
   m_EditorClassIdentifier: Assembly-CSharp::BGMData
-  bgmList: []
+  bgmList:
+  - name: 2
+    clip: {fileID: 8300000, guid: 8ad3285ddc625e94abab69e979f5e60c, type: 3}
+  - name: 3
+    clip: {fileID: 8300000, guid: 07a835246ac33774b906e3d962dd39e6, type: 3}
+  - name: 4
+    clip: {fileID: 8300000, guid: e575665c62f4b374593c95386753f918, type: 3}
+  - name: 5
+    clip: {fileID: 8300000, guid: ab0125e1d557a1d4d8fa2c80c3060810, type: 3}
+  - name: 6
+    clip: {fileID: 8300000, guid: ba8d5ca263de82e4ba6c2d9e4420bdb2, type: 3}
