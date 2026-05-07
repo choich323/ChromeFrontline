@@ -70,7 +70,7 @@ public class HeadQuarter : MonoBehaviour
     }
 
     [ContextMenu("testUpgrade")]
-    public void UpgradeHq()
+    public bool UpgradeHq()
     {
         var newInfo = dm.GetHeadQuarterUpgradeInfo(_level + 1);
 
@@ -80,8 +80,7 @@ public class HeadQuarter : MonoBehaviour
             var popup = ph.OpenPopup<UINotice>(PrefabID.UINotice);
             string msg = Managers.String.GetString(StringID.NotEnoughGold);
             popup.SetData(msg, ph.ClosePopup);
-            popup.SetOnClose(ph.ClosePopup);
-            return;
+            return false;
         }
         
         _level = newInfo.level;
@@ -90,6 +89,7 @@ public class HeadQuarter : MonoBehaviour
         _hp = (int)(_hp * hpRatio);
         _hqUpgradeInfo = newInfo;
         AddUsableEntityIdList();
+        return true;
     }
 
     [ContextMenu("TestEarnGold")]

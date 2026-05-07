@@ -1,14 +1,24 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[Serializable]
+public class InspectorStringGroup
+{
+    public string stringId;
+    public TextMeshProUGUI text;
+}
+
 public class InspectorStringHandler : MonoBehaviour
 {
-    [SerializeField] private string _stringId;
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private List<InspectorStringGroup> _stringGroupList;
 
     private void OnEnable()
     {
-        _text.text = Managers.String.GetString(_stringId);
+        foreach (var group in _stringGroupList)
+        {
+            group.text.text = Managers.String.GetString(group.stringId);
+        }
     }
 }

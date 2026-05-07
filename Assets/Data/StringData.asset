@@ -50,6 +50,10 @@ MonoBehaviour:
     value:
       en: Are you sure to exit stage?
       kr: "\uD604\uC7AC \uC2A4\uD14C\uC774\uC9C0\uC5D0\uC11C\\n \uB098\uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  - id: ConfirmHqUpgrade
+    value:
+      en: Are you sure to upgrade HQ?
+      kr: "HQ\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uD569\uB2C8\uB2E4."
   - id: ConfirmRestartStage
     value:
       en: Are you sure to restart stage?
@@ -102,10 +106,14 @@ MonoBehaviour:
     value:
       en: Max
       kr: "\uC81C\uD55C\uC5C6\uC74C"
+  - id: Gps
+    value:
+      en: Gold per Second
+      kr: "\uCD08\uB2F9 \uACE8\uB4DC \uD68D\uB4DD"
   - id: Hp
     value:
       en: Hp
-      kr: "\uC0DD\uBA85\uB825"
+      kr: "\uCCB4\uB825"
   - id: HqHpMission
     value:
       en: HQ HP {0}%
@@ -117,7 +125,7 @@ MonoBehaviour:
   - id: HqUpgrade
     value:
       en: HQ Upgrade
-      kr: "\uBCF8\uBD80 \uAC15\uD654"
+      kr: "\uBCF8\uBD80 \uC5C5\uADF8\uB808\uC774\uB4DC"
   - id: HydroPuncher
     value:
       en: Hydro Puncher
@@ -150,6 +158,22 @@ MonoBehaviour:
     value:
       en: MasterGang
       kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
+  - id: MaxHp
+    value:
+      en: Max Hp
+      kr: "\uCD5C\uB300 \uCCB4\uB825"
+  - id: MaxLevel
+    value:
+      en: Max Level
+      kr: "\uCD5C\uB300 \uB808\uBCA8"
+  - id: MaxSlot
+    value:
+      en: Max Slot Count
+      kr: "\uCD5C\uB300 \uC2AC\uB86F \uAC2F\uC218"
+  - id: MaxTier
+    value:
+      en: Max Tier
+      kr: "\uC720\uB2DB \uCD5C\uACE0 \uD2F0\uC5B4"
   - id: MenuSelect
     value:
       en: Menu Select
@@ -166,6 +190,10 @@ MonoBehaviour:
     value:
       en: No
       kr: "\uC544\uB2C8\uC624"
+  - id: NotEnoughGold
+    value:
+      en: Not Enough Gold
+      kr: "\uC790\uC6D0\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4"
   - id: NowProducingEntity
     value:
       en: 'Now Producing Unit:'
@@ -190,6 +218,10 @@ MonoBehaviour:
     value:
       en: Producing..
       kr: "\uC0DD\uC0B0 \uC911.."
+  - id: ProductionBonus
+    value:
+      en: Production Bonus
+      kr: "\uC0DD\uC0B0 \uC2DC\uAC04 \uBCF4\uB108\uC2A4"
   - id: Quality
     value:
       en: Quality
@@ -266,6 +298,10 @@ MonoBehaviour:
     value:
       en: Unknown Samurai
       kr: "\uC815\uCCB4\uBD88\uBA85\uC758 \uAC80\uAC1D"
+  - id: Upgrade
+    value:
+      en: Upgrade
+      kr: "\uC5C5\uADF8\uB808\uC774\uB4DC"
   - id: Victory
     value:
       en: Victory
@@ -274,7 +310,3 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
-  - id: NotEnoughGold
-    value:
-      en: Not Enough Gold
-      kr: "\uC790\uC6D0\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4"

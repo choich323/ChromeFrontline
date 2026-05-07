@@ -148,6 +148,10 @@ public class DataManager : MonoBehaviour
 
     public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argLevel)
     {
+        if (argLevel > _hqUpgradeInfoList.Count)
+        {
+            return null;
+        }
         return _hqUpgradeInfoList[argLevel - 1];
     }
 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 606198905663775899}
   - component: {fileID: 1772898823520774996}
   - component: {fileID: 4806576021364194081}
-  - component: {fileID: 2883313945180641196}
   m_Layer: 5
   m_Name: ButtonProduce
   m_TagString: Untagged
@@ -122,20 +121,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2883313945180641196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131249218371001216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: Produce
-  _text: {fileID: 1285545111518259829}
 --- !u!1 &316928748086324125
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +132,7 @@ GameObject:
   - component: {fileID: 2546041907838605804}
   - component: {fileID: 4139885133651889793}
   - component: {fileID: 2738044131728479336}
+  - component: {fileID: 6338508326276076641}
   m_Layer: 5
   m_Name: ButtonGroup
   m_TagString: Untagged
@@ -216,6 +202,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &6338508326276076641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316928748086324125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringGroupList:
+  - stringId: Produce
+    text: {fileID: 1285545111518259829}
+  - stringId: EntityUpgrade
+    text: {fileID: 1483775048931177560}
+  - stringId: HqUpgrade
+    text: {fileID: 5893368078325163992}
 --- !u!1 &484609055770018993
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,8 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: MenuSelect
-  _text: {fileID: 6894811726186751639}
+  _stringGroupList:
+  - stringId: MenuSelect
+    text: {fileID: 6894811726186751639}
 --- !u!1 &882727954186260328
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,7 +874,6 @@ GameObject:
   - component: {fileID: 8497507246505937615}
   - component: {fileID: 8117093255943772645}
   - component: {fileID: 5540650045108713473}
-  - component: {fileID: 7410761101029543926}
   m_Layer: 5
   m_Name: ButtonEntityUpgrade
   m_TagString: Untagged
@@ -978,20 +983,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7410761101029543926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4298690259810902414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: EntityUpgrade
-  _text: {fileID: 1483775048931177560}
 --- !u!1 &6516745079355333017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,7 +995,6 @@ GameObject:
   - component: {fileID: 5664692792978696946}
   - component: {fileID: 6726148516204430496}
   - component: {fileID: 4728022848457201340}
-  - component: {fileID: 3073468624046949602}
   m_Layer: 5
   m_Name: ButtonHqUpgrade
   m_TagString: Untagged
@@ -1114,20 +1104,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3073468624046949602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6516745079355333017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: HqUpgrade
-  _text: {fileID: 5893368078325163992}
 --- !u!1 &7670921089024722423
 GameObject:
   m_ObjectHideFlags: 0

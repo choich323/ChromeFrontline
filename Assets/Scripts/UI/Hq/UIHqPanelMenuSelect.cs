@@ -16,6 +16,7 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
     protected override void OnInit()
     {
         _btnProduce.onClick.AddListener(OnBtnProduce);
+        _btnHqUpgrade.onClick.AddListener(OnBtnHqUpgrade);
     }
     
     public override void SetPanel()
@@ -28,6 +29,11 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
         _goToPanel?.Invoke(HqRightPanelType.Lane, null);
     }
 
+    void OnBtnHqUpgrade()
+    {
+        _goToPanel?.Invoke(HqRightPanelType.HqUpgrade, null);
+    }
+    
     public override void Clear()
     {
         
@@ -36,5 +42,6 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
     public override void Destroy()
     {
         _btnProduce.onClick.RemoveAllListeners();
+        _btnHqUpgrade.onClick.RemoveAllListeners();
     }
 }

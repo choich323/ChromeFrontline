@@ -11,12 +11,9 @@ public class UINotice : APopup
     public void SetData(string argMessage, Action argConfirmAction)
     {
         _msg.text = argMessage;
+        _onClose = argConfirmAction;
         
         _confirmBtn.onClick.RemoveAllListeners();
-        _confirmBtn.onClick.AddListener(() =>
-        {
-            argConfirmAction?.Invoke();
-            Close();
-        });
+        _confirmBtn.onClick.AddListener(Close);
     }
 }

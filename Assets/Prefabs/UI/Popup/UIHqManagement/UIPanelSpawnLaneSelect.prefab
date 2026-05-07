@@ -286,7 +286,6 @@ GameObject:
   - component: {fileID: 3201350675168978893}
   - component: {fileID: 2366714772866244241}
   - component: {fileID: 5515117303169108846}
-  - component: {fileID: 4453687645326474299}
   m_Layer: 5
   m_Name: ButtonBottom
   m_TagString: Untagged
@@ -396,20 +395,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4453687645326474299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718642810625870755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: Bottom
-  _text: {fileID: 8273223525277657121}
 --- !u!1 &2087553228209066982
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +407,6 @@ GameObject:
   - component: {fileID: 7913043644176227569}
   - component: {fileID: 6511626112512969717}
   - component: {fileID: 818381369929905921}
-  - component: {fileID: 7020213560145668524}
   m_Layer: 5
   m_Name: ButtonMid
   m_TagString: Untagged
@@ -532,20 +516,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7020213560145668524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087553228209066982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: Mid
-  _text: {fileID: 9015471222451979650}
 --- !u!1 &2248050840908846066
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +527,7 @@ GameObject:
   - component: {fileID: 6714567434720924287}
   - component: {fileID: 5051972698726966495}
   - component: {fileID: 7118831427931523377}
+  - component: {fileID: 8462191014253164999}
   m_Layer: 5
   m_Name: ButtonGroup
   m_TagString: Untagged
@@ -626,6 +597,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &8462191014253164999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2248050840908846066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringGroupList:
+  - stringId: Top
+    text: {fileID: 6239391878463571070}
+  - stringId: Mid
+    text: {fileID: 9015471222451979650}
+  - stringId: Bottom
+    text: {fileID: 8273223525277657121}
 --- !u!1 &2887469763416332088
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +628,6 @@ GameObject:
   - component: {fileID: 2704411975641580360}
   - component: {fileID: 6108152648301611274}
   - component: {fileID: 2605974868724125138}
-  - component: {fileID: 4064993168468162500}
   m_Layer: 5
   m_Name: ButtonTop
   m_TagString: Untagged
@@ -748,20 +737,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4064993168468162500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2887469763416332088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: Top
-  _text: {fileID: 6239391878463571070}
 --- !u!1 &3512625763913002972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,5 +1244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: LaneSelect
-  _text: {fileID: 3644751632986080814}
+  _stringGroupList:
+  - stringId: LaneSelect
+    text: {fileID: 3644751632986080814}

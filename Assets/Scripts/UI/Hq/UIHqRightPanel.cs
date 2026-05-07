@@ -10,6 +10,7 @@ public enum HqRightPanelType
     Lane,
     Slot,
     Entity,
+    HqUpgrade,
 }
 
 public class HqPanelTransitionContent

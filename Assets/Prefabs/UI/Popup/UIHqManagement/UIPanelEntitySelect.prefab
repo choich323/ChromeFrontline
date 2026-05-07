@@ -772,8 +772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: EntitySelect
-  _text: {fileID: 4623024985426695208}
+  _stringGroupList:
+  - stringId: EntitySelect
+    text: {fileID: 4623024985426695208}
 --- !u!1 &6268957126345118986
 GameObject:
   m_ObjectHideFlags: 0

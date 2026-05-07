@@ -47,8 +47,17 @@ public enum StringID
     ConfirmStopProducing,
     NowProducingEntity,
     Level,
+    NotEnoughGold,
+    Upgrade,
+    MaxHp,
+    Gps,
+    MaxTier,
+    MaxSlot,
+    ProductionBonus,
+    ConfirmHqUpgrade,
+    MaxLevel,
     
-    Victory = 401,
+    Victory = 501,
     Defeat,
     Clear,
     Success,
@@ -60,7 +69,6 @@ public enum StringID
     Retry,
     Exit,
     Ok,
-    NotEnoughGold,
     
     // Entity - Pioneer Name
     Police = 10001,
