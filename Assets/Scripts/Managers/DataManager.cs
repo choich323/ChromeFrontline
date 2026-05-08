@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private AIScheduleData _aiScheduleData;
     [SerializeField] private PlayerCurrencyData _playerCurrencyData;
     [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
+    [SerializeField] private AddSlotCostData _addSlotCostData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -17,6 +18,7 @@ public class DataManager : MonoBehaviour
     private List<EntityInfo> _pioneerInfoList = new List<EntityInfo>();
     private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
+    private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
 
     public int StartGold => _playerCurrencyData.startGold;
     
@@ -69,6 +71,11 @@ public class DataManager : MonoBehaviour
         foreach (var info in _hqUpgradeData.GetInfoList())
         {
             _hqUpgradeInfoList.Add(info);
+        }
+
+        foreach (var info in _addSlotCostData.GetInfoList())
+        {
+            _addSlotCostInfoList.Add(info);
         }
     }
 
@@ -158,5 +165,10 @@ public class DataManager : MonoBehaviour
     public List<PrefabID> GetPrefabIdList(int argTier)
     {
         return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetEntityID()).ToList(); 
+    }
+
+    public int GetAddSlotCost(int argSlotNumber)
+    {
+        return _addSlotCostInfoList[argSlotNumber].cost;
     }
 }

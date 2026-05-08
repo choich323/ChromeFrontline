@@ -188,7 +188,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 30
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -545,6 +545,7 @@ MonoBehaviour:
   _entityParent: {fileID: 6095621304794960866}
   _stopBtn: {fileID: 5753919094730030499}
   _stopBtnText: {fileID: 8298372629797087219}
+  _scrollRect: {fileID: 4868672882311371251}
 --- !u!1 &4904637672778302405
 GameObject:
   m_ObjectHideFlags: 0

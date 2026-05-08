@@ -5,13 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private const ulong INVALID_UID = 0;
-    private const int DEFAULT_SLOT_COUNT = 2;
     private const int DEFAULT_GAME_SPEED = 1;
     private const int DEFAULT_STAGE = 1;
     private const float ENTITY_ARRIVAL_GOLD_RATIO = 0.75f;
     
     private ulong _uid = INVALID_UID;
-    private int _slotCountMax = DEFAULT_SLOT_COUNT;
     private int _curGameSpeed = DEFAULT_GAME_SPEED;
     private int _stage = DEFAULT_STAGE;
     private float _elapsedPlayTime = 0f;
@@ -26,7 +24,7 @@ public class GameManager : MonoBehaviour
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
-    public int SlotCountMax => _slotCountMax;
+    public int SlotCountMax => _gameField.PlayerHq.MaxSlotCount;
     public int Stage => _stage;
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
@@ -116,11 +114,6 @@ public class GameManager : MonoBehaviour
         return _uid;
     }
 
-    public void SetSlotCountMax(int argCount)
-    {
-        _slotCountMax = argCount;
-    }
-
     public IEnumerable<PrefabID> GetPlayerUsableEntityIDList()
     {
         return GameField.PlayerHq.GetUsableEntityIDList();
@@ -160,7 +153,6 @@ public class GameManager : MonoBehaviour
     public void RestartStage()
     {
         _uid = INVALID_UID;
-        _slotCountMax = DEFAULT_SLOT_COUNT;
         _curGameSpeed = DEFAULT_GAME_SPEED;
         _elapsedPlayTime = 0f;
         _isEnemyEmergencyTriggered = false;

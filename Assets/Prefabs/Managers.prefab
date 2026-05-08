@@ -227,6 +227,7 @@ MonoBehaviour:
   _aiScheduleData: {fileID: 11400000, guid: f4bf989beb0c8ab44aacccc8f9f8e94b, type: 2}
   _playerCurrencyData: {fileID: 11400000, guid: 58fd167f25ef6a44397b4c23cd4e19a3, type: 2}
   _hqUpgradeData: {fileID: 11400000, guid: 6ca75e479de89fb4f8560e18413e1255, type: 2}
+  _addSlotCostData: {fileID: 11400000, guid: 334bcc9880022e64289feea706f16d13, type: 2}
 --- !u!114 &9124406171102656420
 MonoBehaviour:
   m_ObjectHideFlags: 0

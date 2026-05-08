@@ -10,6 +10,7 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
     [SerializeField] private Transform _entityParent;
     [SerializeField] private Button _stopBtn;
     [SerializeField] private TextMeshProUGUI _stopBtnText;
+    [SerializeField] private ScrollRect _scrollRect;
     
     private List<UIEntityUnit> _entityUnitList = new List<UIEntityUnit>();
 
@@ -26,10 +27,17 @@ public class UIHqPanelEntitySelect : AUIHqPanelSelect
     public override void SetPanel()
     {
         DestroyEntityUnits();
+        ResetScrollRect();
         CreateEntityUnits();
         SetText();
     }
 
+    void ResetScrollRect()
+    {
+        Canvas.ForceUpdateCanvases();
+        _scrollRect.verticalNormalizedPosition = 1f;
+    }
+    
     void CreateEntityUnits()
     {
         var unlockEntityList = Managers.Game.GetPlayerUsableEntityIDList();

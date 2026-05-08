@@ -310,3 +310,11 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
+  - id: ConfirmAddSlot
+    value:
+      en: Are you sure to add one more slot?
+      kr: "\uC2AC\uB86F\uC744 \uCD94\uAC00\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  - id: AddSlot
+    value:
+      en: Add Slot
+      kr: "\uC2AC\uB86F \uCD94\uAC00"

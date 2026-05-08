@@ -56,6 +56,8 @@ public enum StringID
     ProductionBonus,
     ConfirmHqUpgrade,
     MaxLevel,
+    ConfirmAddSlot,
+    AddSlot,
     
     Victory = 501,
     Defeat,
