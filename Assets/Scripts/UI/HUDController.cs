@@ -23,11 +23,6 @@ public class HUDController : MonoBehaviour
     
     [Header("Info UI")]
     [SerializeField] private TextMeshProUGUI _timerText;
-    
-    [Header("Hp Color Set")]
-    [SerializeField] private Color _highHpColor = Color.green;
-    [SerializeField] private Color _mediumHpColor = Color.yellow;
-    [SerializeField] private Color _lowHpColor = Color.red;
 
     [Header("Menu Button")]
     [SerializeField] private Button _hqBtn;
@@ -94,24 +89,6 @@ public class HUDController : MonoBehaviour
         _hpSlider.value = hpRatio;
         _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
         _goldText.text = $"{curGold}";
-        
-        UpdateHpBarColor(hpRatio);
-    }
-
-    void UpdateHpBarColor(float argRatio)
-    {
-        if (argRatio > HP_MEDIUM)
-        {
-            _hpBarFillImage.color = _highHpColor;
-        }
-        else if (argRatio > HP_LOW)
-        {
-            _hpBarFillImage.color = _mediumHpColor;
-        }
-        else
-        {
-            _hpBarFillImage.color = _lowHpColor;
-        }
     }
 
     void UpdateTimer()

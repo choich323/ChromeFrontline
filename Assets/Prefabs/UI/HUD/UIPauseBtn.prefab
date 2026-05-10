@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPauseBtn
   _pauseBtnImage: {fileID: 2050676935343095247}
-  _pauseBtnSprite: {fileID: -708245964, guid: a37e8466236089c45b610370218b5353, type: 3}
-  _playBtnSprite: {fileID: 177566260, guid: a37e8466236089c45b610370218b5353, type: 3}
+  _pauseBtnSprite: {fileID: -6556048636756018613, guid: 624e14ad007f6a54ba0f70f0046ebccd, type: 3}
+  _playBtnSprite: {fileID: -2619720427332394950, guid: a703ff27b9ede684fbcc5f61e44ae54e, type: 3}
   _pauseBtn: {fileID: 7113631493198511735}
 --- !u!1 &6312826930906588102
 GameObject:
@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6081268121307570875}
   - component: {fileID: 2050676935343095247}
   - component: {fileID: 7113631493198511735}
+  - component: {fileID: 3546496036533393899}
   m_Layer: 5
   m_Name: Btn
   m_TagString: Untagged
@@ -98,7 +99,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -50, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 60, y: 80}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6081268121307570875
 CanvasRenderer:
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -708245964, guid: a37e8466236089c45b610370218b5353, type: 3}
+  m_Sprite: {fileID: -6556048636756018613, guid: 624e14ad007f6a54ba0f70f0046ebccd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -194,3 +195,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3546496036533393899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6312826930906588102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: -5}
+  m_UseGraphicAlpha: 1
