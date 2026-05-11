@@ -72,6 +72,7 @@ public enum StringID
     Retry,
     Exit,
     Ok,
+    Selected,
     
     // Entity - Pioneer Name
     Police = 10001,

@@ -13,6 +13,7 @@ public class EntityInfo : APrefabInfo
     public float dieAnimDuration = 2f;
     public float attackAnimDuration = 1f;
     [Range(0, 1)] public float attackHitTiming = 0.8f;
+    public Sprite iconImage;
     
     [Header("Stat")]
     public AttackAreaType attackAreaType = AttackAreaType.Single; 

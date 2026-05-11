@@ -8,7 +8,6 @@ public class UISlotUnit : MonoBehaviour
     private const int INVALID_SLOT_INDEX = -1;
 
     [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _slotText;
     [SerializeField] private TextMeshProUGUI _progressText;
     [SerializeField] private TextMeshProUGUI _stateText;
@@ -55,19 +54,15 @@ public class UISlotUnit : MonoBehaviour
         dm.TryGetPrefabInfo((int)id, out var info);
         if (info == null)
         {
-            _levelText.text = string.Empty;
-            // TODO: icon image setting
-            
+            _icon.gameObject.SetActive(false);
             return;
         }
         
         _targetId = id;
         var entityInfo = info as EntityInfo;
         _targetLevel = entityInfo.level;
-        // TODO: icon 이미지도 세팅해야 한다.
-        
-        var sm = Managers.String;
-        _levelText.text = _targetLevel > 0 ? sm.GetString(StringID.Lv, _targetLevel) : string.Empty;
+        _icon.gameObject.SetActive(true);
+        _icon.sprite = entityInfo.iconImage;
     }
     
     public void RefreshProgress(float argProgress)

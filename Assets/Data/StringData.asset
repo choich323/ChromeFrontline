@@ -322,3 +322,7 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
+  - id: Selected
+    value:
+      en: Selected
+      kr: "\uC120\uD0DD\uB428"
