@@ -180,6 +180,10 @@ public class UIResult : APopup
         // HqHp Mission
         _hqHpMissionText.text = Sm.GetString(StringID.HqHpMission, CLEAR_HQ_HP_RATIO);
         var hpRatio = Gm.GameField.PlayerHq.GetHqHpRatio() * HUNDRED_PERCENT;
+        if (hpRatio < 0)
+        {
+            hpRatio = 0f;
+        }
         _hqHpText.text = $"{hpRatio:N0}%";
         var bestHpText = _isBestHqHpChanged ? _hqHpText.text : stageRecord.hqhpRatio + "%";
         _hqHpBestText.text = Sm.GetString(StringID.Best, bestHpText);

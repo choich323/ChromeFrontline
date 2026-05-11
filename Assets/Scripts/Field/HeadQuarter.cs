@@ -25,6 +25,8 @@ public class HeadQuarter : MonoBehaviour
     private Coroutine _coroutineGoldPerSecond;
     private List<PrefabID> _usableEntityIDList = new List<PrefabID>();
     private HeadQuarterUpgradeInfo _hqUpgradeInfo;
+    private Action _onGoldChanged;
+    private Action _onHealthChanged;
 
     private DataManager dm => Managers.Data;
     
@@ -56,6 +58,16 @@ public class HeadQuarter : MonoBehaviour
         }
     }
 
+    public void SetOnGoldChanged(Action argOnGoldChanged)
+    {
+        _onGoldChanged = argOnGoldChanged;
+    }
+
+    public void SetOnHealthChanged(Action argOnHealthChanged)
+    {
+        _onHealthChanged = argOnHealthChanged;
+    }
+    
     void AddUsableEntityIdList()
     {
         var idList = dm.GetPrefabIdList(_level);
@@ -118,6 +130,7 @@ public class HeadQuarter : MonoBehaviour
             return;
         
         _hp -= argDamage;
+        _onHealthChanged?.Invoke();
         if (_team == Team.Enemy)
         {
             gm.OnEnemyHqHpChanged(_hp, _maxHp);
@@ -142,11 +155,13 @@ public class HeadQuarter : MonoBehaviour
     public void EarnGold(long argGold)
     {
         _gold += argGold;
+        _onGoldChanged?.Invoke();
     }
 
     public void ConsumeGold(long argGold)
     {
         _gold -= argGold;
+        _onGoldChanged?.Invoke();
     }
 
     float GetProductionBonus()

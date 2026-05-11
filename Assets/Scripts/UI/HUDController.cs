@@ -15,8 +15,11 @@ public class HUDController : MonoBehaviour
     
     [Header("Player HQ UI")] 
     [SerializeField] private Slider _hpSlider;
-    [SerializeField] private Image _hpBarFillImage; // 색상 변경용
     [SerializeField] private TextMeshProUGUI _hpText;
+
+    [Header("Enemy HQ UI")] 
+    [SerializeField] private Slider _enemyHpSlider;
+    [SerializeField] private TextMeshProUGUI _enemyHpText;
 
     [Header("Capital UI")] 
     [SerializeField] private TextMeshProUGUI _goldText;
@@ -47,6 +50,12 @@ public class HUDController : MonoBehaviour
         _optionBtn.onClick.AddListener(OnBtnOption);
         _restartBtn.onClick.AddListener(OnBtnReStart);
         _exitBtn.onClick.AddListener(OnBtnExit);
+
+        var gf = Managers.Game.GameField;
+        gf.PlayerHq.SetOnGoldChanged(UpdateGold);
+        gf.PlayerHq.SetOnHealthChanged(UpdatePlayerHp);
+        gf.EnemyHq.SetOnHealthChanged(UpdateEnemyHp);
+        UpdateText();
     }
 
     public void Clear()
@@ -76,18 +85,37 @@ public class HUDController : MonoBehaviour
         if (_isRestarting || IsPaused)
             return;
         
-        UpdatePlayerStatus();
         UpdateTimer();
     }
 
-    void UpdatePlayerStatus()
+    public void UpdateText()
+    {
+        UpdateTimer();
+        UpdateGold();
+        UpdatePlayerHp();
+        UpdateEnemyHp();
+    }
+    
+    void UpdatePlayerHp()
     {
         var hq = Managers.Game.GameField.PlayerHq;
         float hpRatio = hq.GetHqHpRatio();
-        long curGold = hq.Gold;
         
         _hpSlider.value = hpRatio;
         _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
+    }
+
+    void UpdateEnemyHp()
+    {
+        var hq = Managers.Game.GameField.EnemyHq;
+        var hpRatio = hq.GetHqHpRatio();
+        _enemyHpSlider.value = hpRatio;
+        _enemyHpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
+    }
+    
+    void UpdateGold()
+    {
+        var curGold = Managers.Game.GameField.PlayerHq.Gold;
         _goldText.text = $"{curGold}";
     }
 

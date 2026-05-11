@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public void Init()
     {
         CreatePopupHandler();
-        CreateHUD();
+        CreateTopHUD();
     }
 
     void Update()
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         _popupHandler.Init();
     }
     
-    void CreateHUD()
+    void CreateTopHUD()
     {
         CreatTopHUD();
         CreatePauseBtn();
@@ -76,6 +76,16 @@ public class UIManager : MonoBehaviour
         _pauseBtn.Init();
     }
 
+    public void RefreshUI()
+    {
+        UpdateTopHUDText();
+    }
+    
+    void UpdateTopHUDText()
+    {
+        _topHUDController.UpdateText();
+    }
+    
     public GameObject InstantiateUIWithoutPool(PrefabID argPrefabID)
     {
         Managers.Data.TryGetPrefabInfo((int)argPrefabID, out var info);

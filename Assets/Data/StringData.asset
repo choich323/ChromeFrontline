@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: StringData
   m_EditorClassIdentifier: Assembly-CSharp::StringData
   stringInfoList:
+  - id: AddSlot
+    value:
+      en: Add Slot
+      kr: "\uC2AC\uB86F \uCD94\uAC00"
   - id: AssaultRifle
     value:
       en: Assault Rifle
@@ -41,6 +45,10 @@ MonoBehaviour:
     value:
       en: Clear in {0}
       kr: "{0}\uBD84 \uC774\uB0B4 \uD074\uB9AC\uC5B4"
+  - id: ConfirmAddSlot
+    value:
+      en: Are you sure to add one more slot?
+      kr: "\uC2AC\uB86F\uC744 \uCD94\uAC00\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   - id: ConfirmEntitySelect
     value:
       en: Are you sure to stop current producing and switch to the selected unit?
@@ -106,6 +114,10 @@ MonoBehaviour:
     value:
       en: Max
       kr: "\uC81C\uD55C\uC5C6\uC74C"
+  - id: Gold
+    value:
+      en: Gold
+      kr: "\uACE8\uB4DC"
   - id: Gps
     value:
       en: Gold per Second
@@ -310,11 +322,3 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
-  - id: ConfirmAddSlot
-    value:
-      en: Are you sure to add one more slot?
-      kr: "\uC2AC\uB86F\uC744 \uCD94\uAC00\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
-  - id: AddSlot
-    value:
-      en: Add Slot
-      kr: "\uC2AC\uB86F \uCD94\uAC00"

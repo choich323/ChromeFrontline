@@ -55,6 +55,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSelect
         var slot = slotObj.GetComponent<UISlotUnit>();
         _slotUnitList.Add(slot);
         var slotIndex = _slotUnitList.Count - 1;
+        slotObj.transform.SetSiblingIndex(slotIndex);
         slot.Init(slotIndex, _transitionContent.lane);
         SetBtn(slot);
         SubscribeSlotProgress(slotIndex);

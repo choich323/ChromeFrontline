@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
         ResumeGame();
         StartAIScheduleHandler();
         _gameField.Restart();
+        Managers.UI.RefreshUI();
     }
 
     public void ExitStage()
@@ -181,7 +182,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isEnemyEmergencyTriggered || _aiScheduleHandler == null) return;
         
-        float hpRatio = argHp / argMaxHp;
+        float hpRatio = argHp / (float)argMaxHp;
         if (hpRatio <= _aiScheduleHandler.ScheduleInfo.emergencyHpThreshold)
         {
             _isEnemyEmergencyTriggered = true;
