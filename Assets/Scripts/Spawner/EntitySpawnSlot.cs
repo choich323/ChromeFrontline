@@ -8,9 +8,12 @@ public class EntitySpawnSlot
     private const int INVALID_SLOT_INDEX = -1;
 
     private int _slotIndex;
+    private Grade _grade = Grade.Standard;
     private PrefabID _targetId;
     private float _progress;
     private Action<int> _onTargetChange;
+    
+    public Grade Grade => _grade;
     
     private Action<int, float> _onSlotProgressChanged;
     public event Action<int, float> OnSlotProgressChanged
@@ -27,6 +30,11 @@ public class EntitySpawnSlot
         _onTargetChange = argOnTargetChange;
     }
 
+    public void SetGrade(Grade argGrade)
+    {
+        _grade = argGrade;
+    }
+    
     public void ChangeTarget(PrefabID argTargetId)
     {
         if (argTargetId == _targetId)

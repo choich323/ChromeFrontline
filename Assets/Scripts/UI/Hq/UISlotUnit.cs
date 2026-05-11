@@ -7,6 +7,7 @@ public class UISlotUnit : MonoBehaviour
 {
     private const int INVALID_SLOT_INDEX = -1;
 
+    [SerializeField] private Image _bg;
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _slotText;
     [SerializeField] private TextMeshProUGUI _progressText;
@@ -27,6 +28,7 @@ public class UISlotUnit : MonoBehaviour
         SetSlotIndex(argSlotIndex);
         SetLane(argLane);
         SetEntityInfo();
+        SetColor();
 
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)argLane);
         if (spawner == null) return;
@@ -63,6 +65,18 @@ public class UISlotUnit : MonoBehaviour
         _targetLevel = entityInfo.level;
         _icon.gameObject.SetActive(true);
         _icon.sprite = entityInfo.iconImage;
+    }
+
+    void SetColor()
+    {
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        if (spawner == null) return;
+        
+        var slot = spawner.GetSlot(_slotIndex);
+        if (slot == null) return;
+
+        var grade = slot.Grade;
+        _bg.color = Managers.Data.GetEntityGradeInfo(grade).color;
     }
     
     public void RefreshProgress(float argProgress)

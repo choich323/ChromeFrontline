@@ -313,7 +313,6 @@ public class EntityDataImporter : EditorWindow
             AssignInt(row, headerIndex, "tier", ref entity.tier);
             AssignInt(row, headerIndex, "level", ref entity.level);
             AssignInt(row, headerIndex, "hp", ref entity.hp);
-            AssignInt(row, headerIndex, "shield", ref entity.shield);
             AssignFloat(row, headerIndex, "armor", ref entity.armor);
 
             AssignFloat(row, headerIndex, "attack", ref entity.attack);

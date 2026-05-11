@@ -37,6 +37,16 @@ public enum EntityActionType
     Combat,
 }
 
+public enum Grade
+{
+    None = 0,
+    Standard,
+    Enhanced,
+    Elite,
+    Vanguard,
+    Ultimate,
+}
+
 [Serializable]
 public struct EntityStatus
 {
@@ -47,10 +57,10 @@ public struct EntityStatus
 
     public int curLevel;
     public long goldCost;
+    public Grade grade;
     
     [Header("Life")]
     public int curHp;
-    public int curShield;
     public float armor;
 
     [Header("Attack")]
@@ -100,7 +110,6 @@ public abstract class AEntity : MonoBehaviour
     
     private EntityStatus _entityStatus;
     private int _entityLayerMask;
-    private int _homeSpawnerIndex;
     private PrefabID _id;
     private ulong _uid;
     private Vector2 _direction;
@@ -125,15 +134,15 @@ public abstract class AEntity : MonoBehaviour
     public bool CanAction => _entityStatus.canAction;
     public Team Team => _entityStatus.team;
     public float CurHp => _entityStatus.curHp;
-    public float CurShield => _entityStatus.curShield;
+    public Grade Grade => _entityStatus.grade;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(PrefabID argId, ulong argUid, Team argTeam, EntityInfo argEntityInfo, int argHomeSpawnerIndex, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
+    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
     {
         _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
-        _id = argId;
+        _id = argEntityInfo.GetEntityID();
         _uid = argUid;
         _entityStatus.team = argTeam;
 
@@ -151,7 +160,6 @@ public abstract class AEntity : MonoBehaviour
         _dieAnimDuration = argEntityInfo.dieAnimDuration;
         _attackAnimDuration = argEntityInfo.attackAnimDuration;
         _attackHitTiming = argEntityInfo.attackHitTiming;
-        _homeSpawnerIndex = argHomeSpawnerIndex;
         _targetHqCoreTransform = argTargetHqCoreTransform;
         _onDie = argOnDie;
         _onKill = argOnKill;
@@ -161,15 +169,17 @@ public abstract class AEntity : MonoBehaviour
     void SetEntityInfo(EntityInfo argEntityInfo)
     {
         _entityStatus.camp = argEntityInfo.camp;
+        var grade = argEntityInfo.grade;
+        var gradeInfo = Managers.Data.GetEntityGradeInfo(grade);
+        _entityStatus.grade = grade;
         _entityStatus.curLevel = argEntityInfo.level;
-        _entityStatus.curHp = argEntityInfo.hp;
-        _entityStatus.curShield = argEntityInfo.shield;
-        _entityStatus.armor = argEntityInfo.armor;
-        _entityStatus.attack = argEntityInfo.attack;
-        _entityStatus.attackSpeed = argEntityInfo.attackSpeed;
+        _entityStatus.curHp = (int)(argEntityInfo.hp * gradeInfo.hpRatio);
+        _entityStatus.armor = argEntityInfo.armor * gradeInfo.armorRatio;
+        _entityStatus.attack = argEntityInfo.attack * gradeInfo.attackRatio;
+        _entityStatus.attackSpeed = argEntityInfo.attackSpeed * gradeInfo.attackSpeedRatio;
         _entityStatus.attackRange = argEntityInfo.attackRange;
         _entityStatus.criticalChance = argEntityInfo.criticalChance;
-        _entityStatus.moveSpeed = argEntityInfo.moveSpeed;
+        _entityStatus.moveSpeed = argEntityInfo.moveSpeed * gradeInfo.moveSpeedRatio;
         _entityStatus.canAction = true;
         _entityStatus.goldCost = (int)(argEntityInfo.goldCost * REWARD_RATIO);
     }
@@ -345,21 +355,6 @@ public abstract class AEntity : MonoBehaviour
 
         float armor = Mathf.Max(_entityStatus.armor, MIN_ARMOR);
         float reducedDamage = argDamage * (100f / (100f + armor));
-
-        // shield 계산
-        if (_entityStatus.curShield > 0)
-        {
-            if (_entityStatus.curShield >= reducedDamage)
-            {
-                _entityStatus.curShield -= (int)reducedDamage;
-                reducedDamage = 0;
-            }
-            else
-            {
-                reducedDamage -= _entityStatus.curShield;
-                _entityStatus.curShield = 0;
-            }
-        }
         
         // 체력 계산
         _entityStatus.curHp -= (int)reducedDamage;
@@ -423,7 +418,6 @@ public abstract class AEntity : MonoBehaviour
         _attackCooldownTimer = 0f;
         _retargetTimer = 0f;
         _attackTarget = null;
-        // TODO: 상수화 필요
         _dieAnimDuration = 2f;
         _attackAnimDuration = 1f;
         _attackHitTiming = 0.8f;
@@ -431,7 +425,6 @@ public abstract class AEntity : MonoBehaviour
         EntityInfo emptyEntityInfo = new EntityInfo();
         SetEntityInfo(emptyEntityInfo);
         _targetHqCoreTransform = null;
-        _homeSpawnerIndex = INVALID_SPAWNER_INDEX;
         _attackCooldownTimer = 0f;
         
         if (_dieAnimCoroutine != null)

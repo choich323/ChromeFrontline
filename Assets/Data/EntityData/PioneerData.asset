@@ -24,6 +24,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 0
+    grade: 0
     level: 1
     hp: 950
     shield: 0
@@ -46,6 +47,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 300
     shield: 0
@@ -68,6 +70,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 350
     shield: 0
@@ -90,6 +93,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 150
     shield: 0
@@ -112,6 +116,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 150
     shield: 0
@@ -134,6 +139,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 900
     shield: 0
@@ -156,6 +162,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 1050
     shield: 0
@@ -178,6 +185,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 400
     shield: 0
@@ -200,6 +208,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 400
     shield: 0
@@ -222,6 +231,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 2200
     shield: 0
@@ -244,6 +254,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 2600
     shield: 0
@@ -258,7 +269,7 @@ MonoBehaviour:
   - id: TheThunder
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a79f1ea836cbef44383f835eae86237e, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
@@ -266,6 +277,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 950
     shield: 0
@@ -288,6 +300,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 950
     shield: 0
@@ -310,6 +323,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 4500
     shield: 0
@@ -332,6 +346,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 5500
     shield: 0
@@ -354,6 +369,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 1800
     shield: 0
@@ -376,6 +392,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 1800
     shield: 0

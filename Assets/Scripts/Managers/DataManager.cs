@@ -11,6 +11,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private PlayerCurrencyData _playerCurrencyData;
     [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
     [SerializeField] private AddSlotCostData _addSlotCostData;
+    [SerializeField] private EntityGradeData _entityGradeData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -19,7 +20,8 @@ public class DataManager : MonoBehaviour
     private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
-
+    private List<EntityGradeInfo> _entityGradeInfoList = new List<EntityGradeInfo>();
+    
     public int StartGold => _playerCurrencyData.startGold;
     
     public void Init()
@@ -77,6 +79,11 @@ public class DataManager : MonoBehaviour
         {
             _addSlotCostInfoList.Add(info);
         }
+
+        foreach (var data in _entityGradeData.GetInfoList())
+        {
+            _entityGradeInfoList.Add(data);
+        }
     }
 
     public PrefabID ConvertStringToPrefabID(string argPrefabId)
@@ -85,7 +92,7 @@ public class DataManager : MonoBehaviour
         {
             return prefabId;
         }
-        Debug.LogError("Invalid prefab ID");
+        Debug.LogError($"Invalid prefab ID. ID:{argPrefabId}");
         return PrefabID.None;
     }
 
@@ -164,11 +171,17 @@ public class DataManager : MonoBehaviour
 
     public List<PrefabID> GetPrefabIdList(int argTier)
     {
-        return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetEntityID()).ToList(); 
+        // TODO: 임시로 Area 타입은 지정되지 않도록 수정
+        return _pioneerInfoList.Where(entity => entity.tier == argTier && entity.attackAreaType == AttackAreaType.Single).Select(item => item.GetEntityID()).ToList(); 
     }
 
     public int GetAddSlotCost(int argSlotNumber)
     {
         return _addSlotCostInfoList[argSlotNumber].cost;
+    }
+
+    public EntityGradeInfo GetEntityGradeInfo(Grade argGrade)
+    {
+        return _entityGradeInfoList.Find(entity => entity.grade == argGrade);
     }
 }

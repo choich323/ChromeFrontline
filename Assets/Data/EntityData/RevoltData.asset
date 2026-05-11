@@ -24,6 +24,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 0
+    grade: 0
     level: 0
     hp: 0
     shield: 0
@@ -46,6 +47,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 1
+    grade: 0
     level: 1
     hp: 650
     shield: 0
@@ -68,6 +70,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 1
+    grade: 0
     level: 1
     hp: 800
     shield: 0
@@ -82,7 +85,7 @@ MonoBehaviour:
   - id: MasterGang
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
-    isOriginalSpriteFacingLeft: 0
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
@@ -90,6 +93,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 1
+    grade: 0
     level: 1
     hp: 250
     shield: 0
@@ -112,6 +116,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 1
+    grade: 0
     level: 1
     hp: 250
     shield: 0
@@ -134,6 +139,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 2
+    grade: 0
     level: 1
     hp: 2000
     shield: 0
@@ -156,6 +162,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 2
+    grade: 0
     level: 1
     hp: 2500
     shield: 0
@@ -170,7 +177,7 @@ MonoBehaviour:
   - id: Sharpshooter
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 68ecb4731c959904c8366b580e4a8a94, type: 2}
-    isOriginalSpriteFacingLeft: 0
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
@@ -178,6 +185,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 2
+    grade: 0
     level: 1
     hp: 900
     shield: 0
@@ -200,6 +208,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 2
+    grade: 0
     level: 1
     hp: 900
     shield: 0
@@ -222,6 +231,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 3
+    grade: 0
     level: 1
     hp: 6000
     shield: 0
@@ -244,6 +254,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 3
+    grade: 0
     level: 1
     hp: 7500
     shield: 0
@@ -266,6 +277,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 3
+    grade: 0
     level: 1
     hp: 2800
     shield: 0
@@ -288,6 +300,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 3
+    grade: 0
     level: 1
     hp: 2800
     shield: 0
@@ -299,7 +312,7 @@ MonoBehaviour:
     moveSpeed: 0.35
     productionTime: 15.5
     goldCost: 206
-  - id: Stinger
+  - id: Whiplash
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
@@ -310,6 +323,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 4
+    grade: 0
     level: 1
     hp: 14000
     shield: 0
@@ -332,6 +346,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 4
+    grade: 0
     level: 1
     hp: 18000
     shield: 0
@@ -354,6 +369,7 @@ MonoBehaviour:
     attackAreaType: 1
     camp: 2
     tier: 4
+    grade: 0
     level: 1
     hp: 6500
     shield: 0
@@ -365,7 +381,7 @@ MonoBehaviour:
     moveSpeed: 0.4
     productionTime: 22.4
     goldCost: 560
-  - id: LaserSweeper
+  - id: DestroyLaser
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
@@ -376,6 +392,7 @@ MonoBehaviour:
     attackAreaType: 2
     camp: 2
     tier: 4
+    grade: 0
     level: 1
     hp: 6500
     shield: 0

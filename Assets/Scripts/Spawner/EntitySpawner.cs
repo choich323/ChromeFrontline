@@ -119,6 +119,7 @@ public class EntitySpawner : MonoBehaviour
     IEnumerator CoStartSpawn(int argSlotIndex)
     {
         var slot = _slotList[argSlotIndex];
+        var grade = slot.Grade;
         var targetId = slot.GetTargetId();
         while (true)
         {
@@ -144,6 +145,7 @@ public class EntitySpawner : MonoBehaviour
             }
             
             slot.SetProgress(0);
+            entityInfo.grade = grade;
             Spawn(entityInfo);
             yield return null;
         }
@@ -180,7 +182,7 @@ public class EntitySpawner : MonoBehaviour
             entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(prefabId, Managers.Game.GetNewUid(), _team, argEntityInfo, _slotIndex, _targetTransform, DestroyEntity, _earnGold);
+            entity.Init(Managers.Game.GetNewUid(), _team, argEntityInfo, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }
