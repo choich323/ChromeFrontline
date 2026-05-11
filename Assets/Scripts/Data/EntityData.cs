@@ -19,7 +19,7 @@ public class EntityInfo : APrefabInfo
     public AttackAreaType attackAreaType = AttackAreaType.Single; 
     public CampType camp;
     public int tier;
-    public Grade grade;
+    public Grade grade = Grade.Standard;
     public int level;
     public int hp;
     public float armor;

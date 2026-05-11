@@ -27,7 +27,6 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 950
-    shield: 0
     armor: 10
     attack: 25
     attackSpeed: 0
@@ -50,10 +49,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 300
-    shield: 0
     armor: 5
-    attack: 15
-    attackSpeed: 1.6
+    attack: 24
+    attackSpeed: 1
     attackRange: 1
     criticalChance: 0
     moveSpeed: 1.5
@@ -73,10 +71,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 350
-    shield: 0
     armor: 8
-    attack: 6
-    attackSpeed: 1
+    attack: 10
+    attackSpeed: 0.6
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.25
@@ -96,10 +93,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 150
-    shield: 0
     armor: 1
-    attack: 18
-    attackSpeed: 1.8
+    attack: 27
+    attackSpeed: 1.2
     attackRange: 5
     criticalChance: 0
     moveSpeed: 1
@@ -119,10 +115,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 150
-    shield: 0
     armor: 1
-    attack: 9
-    attackSpeed: 0.9
+    attack: 13.5
+    attackSpeed: 0.6
     attackRange: 5
     criticalChance: 0
     moveSpeed: 1
@@ -142,10 +137,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 900
-    shield: 0
     armor: 15
-    attack: 40
-    attackSpeed: 1.8
+    attack: 60
+    attackSpeed: 1.2
     attackRange: 1
     criticalChance: 0.05
     moveSpeed: 1.6
@@ -165,10 +159,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 1050
-    shield: 0
     armor: 20
-    attack: 18
-    attackSpeed: 1.05
+    attack: 27
+    attackSpeed: 0.7
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.35
@@ -188,10 +181,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 400
-    shield: 0
     armor: 3
-    attack: 55
-    attackSpeed: 2
+    attack: 88
+    attackSpeed: 1.25
     attackRange: 6
     criticalChance: 0.1
     moveSpeed: 1.05
@@ -211,10 +203,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 400
-    shield: 0
     armor: 3
-    attack: 28
-    attackSpeed: 1.1
+    attack: 44
+    attackSpeed: 0.7
     attackRange: 6
     criticalChance: 0
     moveSpeed: 1.05
@@ -234,10 +225,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 2200
-    shield: 0
     armor: 40
-    attack: 90
-    attackSpeed: 1.8
+    attack: 135
+    attackSpeed: 1.2
     attackRange: 1
     criticalChance: 0.1
     moveSpeed: 1.75
@@ -257,10 +247,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 2600
-    shield: 0
     armor: 50
-    attack: 37
-    attackSpeed: 1.2
+    attack: 55.5
+    attackSpeed: 0.8
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.45
@@ -269,7 +258,7 @@ MonoBehaviour:
   - id: TheThunder
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a79f1ea836cbef44383f835eae86237e, type: 2}
-    isOriginalSpriteFacingLeft: 0
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
@@ -280,10 +269,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 950
-    shield: 0
     armor: 10
-    attack: 155
-    attackSpeed: 2.2
+    attack: 244
+    attackSpeed: 1.4
     attackRange: 7
     criticalChance: 0.15
     moveSpeed: 1.1
@@ -303,10 +291,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 950
-    shield: 0
     armor: 10
-    attack: 81
-    attackSpeed: 1.2
+    attack: 122
+    attackSpeed: 0.8
     attackRange: 7
     criticalChance: 0
     moveSpeed: 1.1
@@ -326,10 +313,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 4500
-    shield: 0
     armor: 80
-    attack: 180
-    attackSpeed: 2
+    attack: 300
+    attackSpeed: 1.2
     attackRange: 1
     criticalChance: 0.2
     moveSpeed: 2
@@ -349,10 +335,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 5500
-    shield: 0
     armor: 100
-    attack: 72
-    attackSpeed: 1.5
+    attack: 120
+    attackSpeed: 0.9
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.6
@@ -372,10 +357,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 1800
-    shield: 0
     armor: 25
-    attack: 280
-    attackSpeed: 2.5
+    attack: 500
+    attackSpeed: 1.4
     attackRange: 8
     criticalChance: 0.25
     moveSpeed: 1.25
@@ -395,10 +379,9 @@ MonoBehaviour:
     grade: 0
     level: 1
     hp: 1800
-    shield: 0
     armor: 25
-    attack: 156
-    attackSpeed: 1.4
+    attack: 273
+    attackSpeed: 0.8
     attackRange: 8
     criticalChance: 0
     moveSpeed: 1.25

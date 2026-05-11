@@ -39,8 +39,7 @@ public enum EntityActionType
 
 public enum Grade
 {
-    None = 0,
-    Standard,
+    Standard = 0,
     Enhanced,
     Elite,
     Vanguard,
