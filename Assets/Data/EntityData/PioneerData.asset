@@ -22,6 +22,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 1
+    tier: 0
     level: 1
     hp: 950
     shield: 0
@@ -33,7 +34,6 @@ MonoBehaviour:
     moveSpeed: 0
     productionTime: 0
     goldCost: 0
-    mineralCost: 0
   - id: Police
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
@@ -43,6 +43,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 1
+    tier: 1
     level: 1
     hp: 300
     shield: 0
@@ -54,7 +55,6 @@ MonoBehaviour:
     moveSpeed: 1.5
     productionTime: 8
     goldCost: 30
-    mineralCost: 0
   - id: Phalanx
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -62,8 +62,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
+    tier: 1
     level: 1
     hp: 350
     shield: 0
@@ -75,7 +76,6 @@ MonoBehaviour:
     moveSpeed: 1.25
     productionTime: 8
     goldCost: 30
-    mineralCost: 0
   - id: Security
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 58287f18e2f7e024fb1df385c5170cac, type: 2}
@@ -83,8 +83,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
+    tier: 1
     level: 1
     hp: 150
     shield: 0
@@ -96,7 +97,6 @@ MonoBehaviour:
     moveSpeed: 1
     productionTime: 8
     goldCost: 30
-    mineralCost: 0
   - id: Agent
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 1
+    tier: 1
     level: 1
     hp: 150
     shield: 0
@@ -117,7 +118,6 @@ MonoBehaviour:
     moveSpeed: 1
     productionTime: 8
     goldCost: 30
-    mineralCost: 0
   - id: SpecialForce
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 410750326780766429b99a98a8d1c803, type: 2}
@@ -127,6 +127,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 1
+    tier: 2
     level: 1
     hp: 900
     shield: 0
@@ -138,7 +139,6 @@ MonoBehaviour:
     moveSpeed: 1.6
     productionTime: 12
     goldCost: 90
-    mineralCost: 0
   - id: Breacher
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -146,8 +146,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
+    tier: 2
     level: 1
     hp: 1050
     shield: 0
@@ -159,7 +160,6 @@ MonoBehaviour:
     moveSpeed: 1.35
     productionTime: 12
     goldCost: 90
-    mineralCost: 0
   - id: AssaultRifle
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b29e9e0b4f01b9a41b13be6aa06ca26d, type: 2}
@@ -167,8 +167,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
+    tier: 2
     level: 1
     hp: 400
     shield: 0
@@ -180,7 +181,6 @@ MonoBehaviour:
     moveSpeed: 1.05
     productionTime: 12
     goldCost: 90
-    mineralCost: 0
   - id: Commander
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -190,6 +190,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 1
+    tier: 2
     level: 1
     hp: 400
     shield: 0
@@ -201,7 +202,6 @@ MonoBehaviour:
     moveSpeed: 1.05
     productionTime: 12
     goldCost: 90
-    mineralCost: 0
   - id: HydroPuncher
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: fc0fbe6dfc5d17549a9c840cadc64d88, type: 2}
@@ -211,6 +211,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 1
+    tier: 3
     level: 1
     hp: 2200
     shield: 0
@@ -222,7 +223,6 @@ MonoBehaviour:
     moveSpeed: 1.75
     productionTime: 18
     goldCost: 240
-    mineralCost: 0
   - id: ShadowReaper
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -230,8 +230,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
+    tier: 3
     level: 1
     hp: 2600
     shield: 0
@@ -243,16 +244,16 @@ MonoBehaviour:
     moveSpeed: 1.45
     productionTime: 18
     goldCost: 240
-    mineralCost: 0
   - id: TheThunder
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a79f1ea836cbef44383f835eae86237e, type: 2}
-    isOriginalSpriteFacingLeft: 0
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
+    tier: 3
     level: 1
     hp: 950
     shield: 0
@@ -264,7 +265,6 @@ MonoBehaviour:
     moveSpeed: 1.1
     productionTime: 18
     goldCost: 240
-    mineralCost: 0
   - id: AegisStorm
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -274,6 +274,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 1
+    tier: 3
     level: 1
     hp: 950
     shield: 0
@@ -285,7 +286,6 @@ MonoBehaviour:
     moveSpeed: 1.1
     productionTime: 18
     goldCost: 240
-    mineralCost: 0
   - id: ElectroBlade
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -295,6 +295,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 1
+    tier: 4
     level: 1
     hp: 4500
     shield: 0
@@ -306,7 +307,6 @@ MonoBehaviour:
     moveSpeed: 2
     productionTime: 24
     goldCost: 600
-    mineralCost: 0
   - id: PlasmaSlasher
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -314,8 +314,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 1
+    tier: 4
     level: 1
     hp: 5500
     shield: 0
@@ -327,7 +328,6 @@ MonoBehaviour:
     moveSpeed: 1.6
     productionTime: 24
     goldCost: 600
-    mineralCost: 0
   - id: BloodyCanon
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -335,8 +335,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 1
+    tier: 4
     level: 1
     hp: 1800
     shield: 0
@@ -348,7 +349,6 @@ MonoBehaviour:
     moveSpeed: 1.25
     productionTime: 24
     goldCost: 600
-    mineralCost: 0
   - id: SonicDisruptor
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -358,6 +358,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 1
+    tier: 4
     level: 1
     hp: 1800
     shield: 0
@@ -369,4 +370,3 @@ MonoBehaviour:
     moveSpeed: 1.25
     productionTime: 24
     goldCost: 600
-    mineralCost: 0

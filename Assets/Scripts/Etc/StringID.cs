@@ -47,8 +47,20 @@ public enum StringID
     ConfirmStopProducing,
     NowProducingEntity,
     Level,
+    NotEnoughGold,
+    Upgrade,
+    MaxHp,
+    Gps,
+    MaxTier,
+    MaxSlot,
+    ProductionBonus,
+    ConfirmHqUpgrade,
+    MaxLevel,
+    ConfirmAddSlot,
+    AddSlot,
+    Gold,
     
-    Victory = 401,
+    Victory = 501,
     Defeat,
     Clear,
     Success,
@@ -59,14 +71,7 @@ public enum StringID
     HqHpMission,
     Retry,
     Exit,
-    
-    // type tag
-    Melee = 9001,
-    Range,
-    
-    // combat role tag
-    MainDps = 9101,
-    MainTank,
+    Ok,
     
     // Entity - Pioneer Name
     Police = 10001,

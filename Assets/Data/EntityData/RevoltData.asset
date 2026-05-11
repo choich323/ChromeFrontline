@@ -22,6 +22,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
+    tier: 0
     level: 0
     hp: 0
     shield: 0
@@ -33,8 +34,7 @@ MonoBehaviour:
     moveSpeed: 0
     productionTime: 0
     goldCost: -1
-    mineralCost: 0
-  - id: Steel Baton
+  - id: SteelBaton
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}
     isOriginalSpriteFacingLeft: 1
@@ -43,6 +43,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
+    tier: 1
     level: 1
     hp: 650
     shield: 0
@@ -54,16 +55,16 @@ MonoBehaviour:
     moveSpeed: 0.4
     productionTime: 1.9
     goldCost: 7
-    mineralCost: 0
-  - id: Wire Striker
+  - id: WireStriker
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
+    tier: 1
     level: 1
     hp: 800
     shield: 0
@@ -75,16 +76,16 @@ MonoBehaviour:
     moveSpeed: 0.35
     productionTime: 5
     goldCost: 19
-    mineralCost: 0
-  - id: Master Gang
+  - id: MasterGang
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b19e2f963b6b3de4fac67428c0df74f5, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
+    tier: 1
     level: 1
     hp: 250
     shield: 0
@@ -96,8 +97,7 @@ MonoBehaviour:
     moveSpeed: 0.3
     productionTime: 2.6
     goldCost: 10
-    mineralCost: 0
-  - id: Mad Gas
+  - id: MadGas
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
@@ -106,6 +106,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 2
+    tier: 1
     level: 1
     hp: 250
     shield: 0
@@ -117,8 +118,7 @@ MonoBehaviour:
     moveSpeed: 0.3
     productionTime: 3
     goldCost: 11
-    mineralCost: 0
-  - id: Unknown Samurai
+  - id: UnknownSamurai
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 4eee107496c7063409f5c13734b8059d, type: 2}
     isOriginalSpriteFacingLeft: 1
@@ -127,6 +127,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
+    tier: 2
     level: 1
     hp: 2000
     shield: 0
@@ -138,16 +139,16 @@ MonoBehaviour:
     moveSpeed: 0.45
     productionTime: 2.8
     goldCost: 21
-    mineralCost: 0
-  - id: Steel Wall
+  - id: SteelWall
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
+    tier: 2
     level: 1
     hp: 2500
     shield: 0
@@ -159,16 +160,16 @@ MonoBehaviour:
     moveSpeed: 0.4
     productionTime: 5.9
     goldCost: 44
-    mineralCost: 0
   - id: Sharpshooter
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 68ecb4731c959904c8366b580e4a8a94, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
+    tier: 2
     level: 1
     hp: 900
     shield: 0
@@ -180,8 +181,7 @@ MonoBehaviour:
     moveSpeed: 0.35
     productionTime: 5.3
     goldCost: 39
-    mineralCost: 0
-  - id: Drone Bomber
+  - id: DroneBomber
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
@@ -190,6 +190,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 2
+    tier: 2
     level: 1
     hp: 900
     shield: 0
@@ -201,8 +202,7 @@ MonoBehaviour:
     moveSpeed: 0.35
     productionTime: 6.6
     goldCost: 49
-    mineralCost: 0
-  - id: Chainsaw Bot
+  - id: ChainsawBot
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 3b156ec6ed4c5384390a71b679ae1331, type: 2}
     isOriginalSpriteFacingLeft: 1
@@ -211,6 +211,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
+    tier: 3
     level: 1
     hp: 6000
     shield: 0
@@ -222,16 +223,16 @@ MonoBehaviour:
     moveSpeed: 0.5
     productionTime: 7.9
     goldCost: 105
-    mineralCost: 0
-  - id: Pyro Maniac
+  - id: PyroManiac
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
+    tier: 3
     level: 1
     hp: 7500
     shield: 0
@@ -243,16 +244,16 @@ MonoBehaviour:
     moveSpeed: 0.4
     productionTime: 14.5
     goldCost: 193
-    mineralCost: 0
-  - id: Centauri Canon
+  - id: CentauriCanon
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 169c4acedf968e04d8aa0b237f7ff942, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
+    tier: 3
     level: 1
     hp: 2800
     shield: 0
@@ -264,8 +265,7 @@ MonoBehaviour:
     moveSpeed: 0.35
     productionTime: 13
     goldCost: 173
-    mineralCost: 0
-  - id: Multi Launcher
+  - id: MultiLauncher
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
@@ -274,6 +274,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 2
+    tier: 3
     level: 1
     hp: 2800
     shield: 0
@@ -285,7 +286,6 @@ MonoBehaviour:
     moveSpeed: 0.35
     productionTime: 15.5
     goldCost: 206
-    mineralCost: 0
   - id: Stinger
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -295,6 +295,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 1
     camp: 2
+    tier: 4
     level: 1
     hp: 14000
     shield: 0
@@ -306,7 +307,6 @@ MonoBehaviour:
     moveSpeed: 0.5
     productionTime: 14
     goldCost: 350
-    mineralCost: 0
   - id: Overload
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -314,8 +314,9 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 1
+    attackAreaType: 2
     camp: 2
+    tier: 4
     level: 1
     hp: 18000
     shield: 0
@@ -327,16 +328,16 @@ MonoBehaviour:
     moveSpeed: 0.45
     productionTime: 27.8
     goldCost: 695
-    mineralCost: 0
-  - id: Void Bullet
+  - id: VoidBullet
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    attackAreaType: 2
+    attackAreaType: 1
     camp: 2
+    tier: 4
     level: 1
     hp: 6500
     shield: 0
@@ -348,8 +349,7 @@ MonoBehaviour:
     moveSpeed: 0.4
     productionTime: 22.4
     goldCost: 560
-    mineralCost: 0
-  - id: Laser Sweeper
+  - id: LaserSweeper
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1
@@ -358,6 +358,7 @@ MonoBehaviour:
     attackHitTiming: 0.8
     attackAreaType: 2
     camp: 2
+    tier: 4
     level: 1
     hp: 6500
     shield: 0
@@ -369,4 +370,3 @@ MonoBehaviour:
     moveSpeed: 0.4
     productionTime: 26.8
     goldCost: 670
-    mineralCost: 0

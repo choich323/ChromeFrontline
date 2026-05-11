@@ -18,30 +18,33 @@ public class HeadQuarter : MonoBehaviour
     private int _level = DEFAULT_LEVEL;
     private int _maxHp;
     private int _hp;
-    private int _shield;
     private long _gold;
-    private int _mineral;
     private Team _team;
     private List<EntitySpawner> _spawnerList = new List<EntitySpawner>();
     private Func<Team, int, Transform> _getTargetSpawnerPos;
     private Coroutine _coroutineGoldPerSecond;
     private List<PrefabID> _usableEntityIDList = new List<PrefabID>();
+    private HeadQuarterUpgradeInfo _hqUpgradeInfo;
+    private Action _onGoldChanged;
+    private Action _onHealthChanged;
+
+    private DataManager dm => Managers.Data;
     
     public int Level => _level;
     public int Hp => _hp;
-    public int Shield => _shield;
+    public int MaxSlotCount => _hqUpgradeInfo.maxSlotCount;
     public long Gold => _gold;
-    public int Mineral => _mineral;
     
-    public void Init(HeadQuarterInfo argInfo, Team argTeam, bool argUseLeftSpawnerPos, Func<Team, int, Transform> argGetTargetSpawnerPos)
+    public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, int, Transform> argGetTargetSpawnerPos)
     {
-        SetUsableEntityIdList();
         _level = DEFAULT_LEVEL;
-        _maxHp = argInfo.hp;
-        _hp = argInfo.hp;
-        _shield = argInfo.shield;
+        _usableEntityIDList.Clear();
+        AddUsableEntityIdList();
+        _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_level);
+        _maxHp = _hqUpgradeInfo.maxHp;
+        _hp = _hqUpgradeInfo.maxHp;
         _team = argTeam;
-        _gold = Managers.Data.StartGold;
+        _gold = dm.StartGold;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
 
@@ -55,17 +58,58 @@ public class HeadQuarter : MonoBehaviour
         }
     }
 
-    void SetUsableEntityIdList()
+    public void SetOnGoldChanged(Action argOnGoldChanged)
     {
-        _usableEntityIDList.Clear();
-        // TODO: 임시로 넣었지만, 시작 엔티티 데이터를 만들어서 구성해야 할듯?
-        _usableEntityIDList.Add(PrefabID.Police);
-        _usableEntityIDList.Add((PrefabID.Security));
+        _onGoldChanged = argOnGoldChanged;
+    }
+
+    public void SetOnHealthChanged(Action argOnHealthChanged)
+    {
+        _onHealthChanged = argOnHealthChanged;
+    }
+    
+    void AddUsableEntityIdList()
+    {
+        var idList = dm.GetPrefabIdList(_level);
+        foreach (var id in idList)
+        {
+            _usableEntityIDList.Add(id);
+        }
     }
     
     public IEnumerable<PrefabID> GetUsableEntityIDList()
     {
         return _usableEntityIDList;
+    }
+
+    public bool UpgradeHq()
+    {
+        var newInfo = dm.GetHeadQuarterUpgradeInfo(_level + 1);
+
+        if (_gold < newInfo.upgradeCost)
+        {
+            var ph = Managers.UI.PopupHandler;
+            var popup = ph.OpenPopup<UINotice>(PrefabID.UINotice);
+            string msg = Managers.String.GetString(StringID.NotEnoughGold);
+            popup.SetData(msg, ph.ClosePopup);
+            return false;
+        }
+        
+        ConsumeGold(newInfo.upgradeCost);
+        
+        _level = newInfo.level;
+        var hpRatio = newInfo.maxHp / (float)_maxHp;
+        _maxHp = newInfo.maxHp;
+        _hp = (int)(_hp * hpRatio);
+        _hqUpgradeInfo = newInfo;
+        AddUsableEntityIdList();
+        return true;
+    }
+
+    [ContextMenu("TestEarnGold")]
+    void TestEarnGold()
+    {
+        EarnGold(100000);
     }
     
     IEnumerator CoEarnGoldPerSecond()
@@ -75,7 +119,7 @@ public class HeadQuarter : MonoBehaviour
         {
             yield return wait;
             
-            EarnGold(Managers.Data.CurGoldPerSecond);
+            EarnGold(_hqUpgradeInfo.goldPerSecond);
         }
     }
 
@@ -84,22 +128,9 @@ public class HeadQuarter : MonoBehaviour
         var gm = Managers.Game;
         if (gm.IsGameOver)
             return;
-
-        if (_shield > 0)
-        {
-            if (_shield > argDamage)
-            {
-                _shield -= argDamage;
-                argDamage = 0;
-            }
-            else
-            {
-                argDamage -= _shield;
-                _shield = 0;
-            }
-        }
         
         _hp -= argDamage;
+        _onHealthChanged?.Invoke();
         if (_team == Team.Enemy)
         {
             gm.OnEnemyHqHpChanged(_hp, _maxHp);
@@ -116,11 +147,6 @@ public class HeadQuarter : MonoBehaviour
         return (float)_hp / _maxHp;
     }
 
-    public float GetShieldRatio()
-    {
-        return (float)_shield / _maxHp;
-    }
-
     public long GetGold()
     {
         return _gold;
@@ -129,28 +155,20 @@ public class HeadQuarter : MonoBehaviour
     public void EarnGold(long argGold)
     {
         _gold += argGold;
+        _onGoldChanged?.Invoke();
     }
 
     public void ConsumeGold(long argGold)
     {
         _gold -= argGold;
+        _onGoldChanged?.Invoke();
     }
 
-    public int GetMineral()
+    float GetProductionBonus()
     {
-        return _mineral;
+        return _hqUpgradeInfo.productionTimeBonus;
     }
     
-    public void EarnMineral(int argMineral)
-    {
-        _mineral += argMineral;
-    }
-
-    public void ConsumeMineral(int argMineral)
-    {
-        _mineral -= argMineral;
-    }
-
     public Transform GetTargetSpawnerTransform(int argSpawnerIndex)
     {
         var posList = _useLeftSpawnerPos ? _entitySpawnerLeftPosList : _entitySpawnerRightPosList;
@@ -173,14 +191,12 @@ public class HeadQuarter : MonoBehaviour
     void Clear()
     {
         DestroySpawners();
-        SetUsableEntityIdList();
+        _usableEntityIDList.Clear();
         _useLeftSpawnerPos = false;
         _level = DEFAULT_LEVEL;
         _maxHp = 0;
         _hp = 0;
-        _shield = 0;
         _gold = 0;
-        _mineral = 0;
         _team = Team.None;
     }
     
@@ -208,10 +224,38 @@ public class HeadQuarter : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         var spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team, argSpawnerIndex);
-        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos, EarnGold, EarnMineral, ConsumeGold, GetGold, ConsumeMineral, GetMineral);
+        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionBonus);
         _spawnerList.Add(spawner);
         
         return spawner;
+    }
+
+    public bool AddSlot()
+    {
+        var curSlotCount = _spawnerList[0].SlotCount;
+        if (curSlotCount >= MaxSlotCount)
+        {
+            return false;
+        }
+        
+        // gold check
+        var cost = dm.GetAddSlotCost(curSlotCount);
+        if (cost > _gold)
+        {
+            var ph = Managers.UI.PopupHandler;
+            var popup = ph.OpenPopup<UINotice>(PrefabID.UINotice);
+            string msg = Managers.String.GetString(StringID.NotEnoughGold);
+            popup.SetData(msg, ph.ClosePopup);
+            return false;
+        }
+
+        ConsumeGold(cost);
+        
+        foreach (var spawner in _spawnerList)
+        {
+            spawner.AddSlot();
+        }
+        return true;
     }
 
     public void ForceSpawn(List<SpawnRequest> spawnRequestList)

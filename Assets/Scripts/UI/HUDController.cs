@@ -15,21 +15,17 @@ public class HUDController : MonoBehaviour
     
     [Header("Player HQ UI")] 
     [SerializeField] private Slider _hpSlider;
-    [SerializeField] private Slider _shieldSlider;
-    [SerializeField] private Image _hpBarFillImage; // 색상 변경용
     [SerializeField] private TextMeshProUGUI _hpText;
+
+    [Header("Enemy HQ UI")] 
+    [SerializeField] private Slider _enemyHpSlider;
+    [SerializeField] private TextMeshProUGUI _enemyHpText;
 
     [Header("Capital UI")] 
     [SerializeField] private TextMeshProUGUI _goldText;
-    [SerializeField] private TextMeshProUGUI _mineralText;
     
     [Header("Info UI")]
     [SerializeField] private TextMeshProUGUI _timerText;
-    
-    [Header("Hp Color Set")]
-    [SerializeField] private Color _highHpColor = Color.green;
-    [SerializeField] private Color _mediumHpColor = Color.yellow;
-    [SerializeField] private Color _lowHpColor = Color.red;
 
     [Header("Menu Button")]
     [SerializeField] private Button _hqBtn;
@@ -54,6 +50,12 @@ public class HUDController : MonoBehaviour
         _optionBtn.onClick.AddListener(OnBtnOption);
         _restartBtn.onClick.AddListener(OnBtnReStart);
         _exitBtn.onClick.AddListener(OnBtnExit);
+
+        var gf = Managers.Game.GameField;
+        gf.PlayerHq.SetOnGoldChanged(UpdateGold);
+        gf.PlayerHq.SetOnHealthChanged(UpdatePlayerHp);
+        gf.EnemyHq.SetOnHealthChanged(UpdateEnemyHp);
+        UpdateText();
     }
 
     public void Clear()
@@ -83,42 +85,38 @@ public class HUDController : MonoBehaviour
         if (_isRestarting || IsPaused)
             return;
         
-        UpdatePlayerStatus();
         UpdateTimer();
     }
 
-    void UpdatePlayerStatus()
+    public void UpdateText()
+    {
+        UpdateTimer();
+        UpdateGold();
+        UpdatePlayerHp();
+        UpdateEnemyHp();
+    }
+    
+    void UpdatePlayerHp()
     {
         var hq = Managers.Game.GameField.PlayerHq;
         float hpRatio = hq.GetHqHpRatio();
-        float shieldRatio = hq.GetShieldRatio();
-        long curGold = hq.Gold;
-        //int curMineral = hq.Mineral;
         
         _hpSlider.value = hpRatio;
-        _shieldSlider.value = shieldRatio;
-        var shieldText = shieldRatio <= 0 ? "" : $"+{shieldRatio * HUNDRED_PERCENT:N0}%";
-        _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%" + shieldText;
-        _goldText.text = $"{curGold}";
-        //_mineralText.text = $"{curMineral}";
-        
-        UpdateHpBarColor(hpRatio);
+        _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
     }
 
-    void UpdateHpBarColor(float argRatio)
+    void UpdateEnemyHp()
     {
-        if (argRatio > HP_MEDIUM)
-        {
-            _hpBarFillImage.color = _highHpColor;
-        }
-        else if (argRatio > HP_LOW)
-        {
-            _hpBarFillImage.color = _mediumHpColor;
-        }
-        else
-        {
-            _hpBarFillImage.color = _lowHpColor;
-        }
+        var hq = Managers.Game.GameField.EnemyHq;
+        var hpRatio = hq.GetHqHpRatio();
+        _enemyHpSlider.value = hpRatio;
+        _enemyHpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
+    }
+    
+    void UpdateGold()
+    {
+        var curGold = Managers.Game.GameField.PlayerHq.Gold;
+        _goldText.text = $"{curGold}";
     }
 
     void UpdateTimer()

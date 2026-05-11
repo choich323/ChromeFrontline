@@ -13,7 +13,6 @@ public class UIEntityUnit : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _productionTimeText;
     [SerializeField] private TextMeshProUGUI _goldText;
-    [SerializeField] private TextMeshProUGUI _mineralText;
     [SerializeField] private TextMeshProUGUI _typeTagText;
     [SerializeField] private TextMeshProUGUI _combatRoleTagText;
     [SerializeField] private GameObject _combatRole;
@@ -51,7 +50,6 @@ public class UIEntityUnit : MonoBehaviour
         _nameText.text = sm.GetString(stringId);
         _productionTimeText.text = $"{_entityInfo.productionTime}";
         _goldText.text = $"{_entityInfo.goldCost}";
-        _mineralText.text = $"{_entityInfo.mineralCost}";
     }
 
     void SetBtnSelect()

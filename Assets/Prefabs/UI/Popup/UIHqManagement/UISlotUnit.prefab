@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: 280, y: 45}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5328948289175112722
@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -12}
+  m_AnchoredPosition: {x: 50, y: -22}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &4304694431507317588
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -228637625, guid: a37e8466236089c45b610370218b5353, type: 3}
+  m_Sprite: {fileID: 482729247, guid: a37e8466236089c45b610370218b5353, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -542,7 +542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5725097324180413914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -744,7 +744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5859497330044464513, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5859497330044464513, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -773,41 +773,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7357567946078275117, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 298460841195419312}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
 --- !u!114 &38586889407217256 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7495368860132376393, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
   m_PrefabInstance: {fileID: 7533942555397603617}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051209836893013772}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!1 &1051209836893013772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7357567946078275117, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
-  m_PrefabInstance: {fileID: 7533942555397603617}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &298460841195419312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051209836893013772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
-  _stringId: Producing
-  _text: {fileID: 7171708938636319144}
 --- !u!224 &4169468011151502496 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5859497330044464513, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}

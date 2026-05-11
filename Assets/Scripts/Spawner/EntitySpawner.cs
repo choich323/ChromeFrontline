@@ -19,16 +19,14 @@ public class EntitySpawner : MonoBehaviour
     private Transform _targetTransform;
     private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
     private Action<long> _earnGold;
-    private Action<int> _earnMineral;
     private Action<long> _consumeGold;
-    private Action<int> _consumeMineral;
     private Func<long> _getGold;
-    private Func<int> _getMineral;
+    private Func<float> _getProductionBonus;
     
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<int> argEarnMineral, Action<long> argConsumeGold, Func<long> argGetGold, Action<int> argConsumeMineral, Func<int> argGetMineral)
+    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Func<float> argGetProductionBonus)
     {
         ResetSpawner();
         
@@ -38,11 +36,9 @@ public class EntitySpawner : MonoBehaviour
         if (_team == Team.Player)
         {
             _earnGold = argEarnGold;
-            _earnMineral = argEarnMineral;
             _consumeGold = argConsumeGold;
             _getGold = argGetGold;
-            _consumeMineral = argConsumeMineral;
-            _getMineral = argGetMineral;
+            _getProductionBonus = argGetProductionBonus;
         }
         
         for (int i = 0; i < Managers.Game.SlotCountMax; i++)
@@ -85,8 +81,6 @@ public class EntitySpawner : MonoBehaviour
         _targetTransform = null;
         _consumeGold = null;
         _getGold = null;
-        _consumeMineral = null;
-        _getMineral = null;
     }
 
     void OnSlotTargetChanged(int argSlotIndex)
@@ -106,7 +100,6 @@ public class EntitySpawner : MonoBehaviour
             if (info is EntityInfo entityInfo)
             {
                 _earnGold?.Invoke(entityInfo.goldCost);
-                _earnMineral?.Invoke(entityInfo.mineralCost);
             }
         }
     }
@@ -134,15 +127,14 @@ public class EntitySpawner : MonoBehaviour
                 yield break;
             var entityInfo = info as EntityInfo;
             var goldCost = entityInfo.goldCost;
-            var mineralCost = entityInfo.mineralCost;
-            while (_getGold?.Invoke() < goldCost || _getMineral?.Invoke() < mineralCost)
+            while (_getGold?.Invoke() < goldCost)
             {
                 yield return null;
             }
             
             _consumeGold?.Invoke(goldCost);
-            _consumeMineral?.Invoke(mineralCost);
             float productionTime = entityInfo.productionTime;
+            productionTime *= (1 - _getProductionBonus?.Invoke() ?? 0f);
             float elapsedTime = 0f;
             while (elapsedTime < productionTime) {
                 elapsedTime += Time.deltaTime;
