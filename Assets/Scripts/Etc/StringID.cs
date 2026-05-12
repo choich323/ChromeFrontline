@@ -59,6 +59,8 @@ public enum StringID
     ConfirmAddSlot,
     AddSlot,
     Gold,
+    MaxGrade,
+    SlotUpgrade,
     
     Victory = 501,
     Defeat,

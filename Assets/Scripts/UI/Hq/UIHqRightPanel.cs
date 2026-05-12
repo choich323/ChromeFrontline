@@ -11,6 +11,7 @@ public enum HqRightPanelType
     Slot,
     Entity,
     HqUpgrade,
+    SlotUpgrade,
 }
 
 public class HqPanelTransitionContent
@@ -34,9 +35,9 @@ public class UIHqRightPanel : MonoBehaviour
     [SerializeField] private Button _btnPrev;
     [SerializeField] private float _transitionDuration = 0.2f;
     [SerializeField] private float _slideDistance = 120f;
-    [SerializeField] private List<AUIHqPanelSelect> _panelList = new List<AUIHqPanelSelect>();
+    [SerializeField] private List<AUIHqRightPanelSelect> _panelList = new List<AUIHqRightPanelSelect>();
     
-    private Dictionary<HqRightPanelType, AUIHqPanelSelect> _panelDict = new Dictionary<HqRightPanelType, AUIHqPanelSelect>();
+    private Dictionary<HqRightPanelType, AUIHqRightPanelSelect> _panelDict = new Dictionary<HqRightPanelType, AUIHqRightPanelSelect>();
     private Stack<HqRightPanelType> _panelStack = new Stack<HqRightPanelType>();
     private HqRightPanelType _curType;
     private Action _actionClose;

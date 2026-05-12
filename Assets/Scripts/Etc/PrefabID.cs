@@ -62,6 +62,7 @@ public enum PrefabID
     UIEntityUnit,
     UIPauseBtn,
     UINotice,
+    UISlotUpgradeUnit,
     
     UIEntityStat = 10011,
     UIResult,

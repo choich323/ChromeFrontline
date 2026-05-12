@@ -169,7 +169,7 @@ public abstract class AEntity : MonoBehaviour
     {
         _entityStatus.camp = argEntityInfo.camp;
         var grade = argEntityInfo.grade;
-        var gradeInfo = Managers.Data.GetEntityGradeInfo(grade);
+        var gradeInfo = Managers.Data.GetGradeInfo(grade);
         _entityStatus.grade = grade;
         _entityStatus.curLevel = argEntityInfo.level;
         _entityStatus.curHp = (int)(argEntityInfo.hp * gradeInfo.hpRatio);

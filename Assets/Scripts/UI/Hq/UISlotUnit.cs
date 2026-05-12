@@ -16,7 +16,6 @@ public class UISlotUnit : MonoBehaviour
     [SerializeField] private Slider _progressSlider;
 
     private int _slotIndex;
-    private int _targetLevel;
     private PrefabID _targetId;
     private Lane _lane;
     private Action<HqRightPanelType, HqPanelTransitionContent> _onSlotAction;
@@ -62,7 +61,6 @@ public class UISlotUnit : MonoBehaviour
         
         _targetId = id;
         var entityInfo = info as EntityInfo;
-        _targetLevel = entityInfo.level;
         _icon.gameObject.SetActive(true);
         _icon.sprite = entityInfo.iconImage;
     }
@@ -76,7 +74,7 @@ public class UISlotUnit : MonoBehaviour
         if (slot == null) return;
 
         var grade = slot.Grade;
-        _bg.color = Managers.Data.GetEntityGradeInfo(grade).color;
+        _bg.color = Managers.Data.GetGradeInfo(grade).color;
     }
     
     public void RefreshProgress(float argProgress)
@@ -87,7 +85,7 @@ public class UISlotUnit : MonoBehaviour
         _progressText.text = $"{(argProgress * 100):N0}%";
         _progressSlider.value = argProgress;
 
-        if (_targetId != PrefabID.None && _targetLevel > 0)
+        if (_targetId != PrefabID.None)
         {
             _stateText.text = sm.GetString(StringID.Producing);
         }
@@ -125,10 +123,9 @@ public class UISlotUnit : MonoBehaviour
     
     public void Destroy()
     {
-        SetEntityInfo();
         RefreshProgress(0);
+        _bg.color = Color.white;
         _slotIndex = INVALID_SLOT_INDEX;
-        _targetLevel = 0;
         _targetId = PrefabID.None;
         SetLane(Lane.None);
         _onSlotAction = null;

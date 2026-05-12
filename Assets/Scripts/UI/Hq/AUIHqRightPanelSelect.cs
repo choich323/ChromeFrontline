@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class AUIHqPanelSelect : MonoBehaviour
+public abstract class AUIHqRightPanelSelect : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private RectTransform _rectTransform;
@@ -43,6 +43,8 @@ public abstract class AUIHqPanelSelect : MonoBehaviour
     
     public abstract void SetType();
     public abstract void SetPanel();
+    // panel을 앞뒤로 이동할 때 호출
     public abstract void Clear();
+    // 팝업 자체가 닫힐 때 호출
     public abstract void Destroy();
 }

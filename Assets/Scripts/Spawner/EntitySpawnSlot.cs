@@ -32,6 +32,11 @@ public class EntitySpawnSlot
 
     public void SetGrade(Grade argGrade)
     {
+        // 하위 등급이면
+        if (argGrade <= _grade)
+        {
+            return;
+        }
         _grade = argGrade;
     }
     

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHqPanelEntitySelect : AUIHqPanelSelect
+public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
 {
     [SerializeField] private Transform _entityParent;
     [SerializeField] private Button _stopBtn;

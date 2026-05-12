@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private PlayerCurrencyData _playerCurrencyData;
     [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
     [SerializeField] private AddSlotCostData _addSlotCostData;
-    [SerializeField] private EntityGradeData _entityGradeData;
+    [SerializeField] private GradeData _gradeData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -20,7 +20,7 @@ public class DataManager : MonoBehaviour
     private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
-    private List<EntityGradeInfo> _entityGradeInfoList = new List<EntityGradeInfo>();
+    private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     
     public int StartGold => _playerCurrencyData.startGold;
     
@@ -80,9 +80,9 @@ public class DataManager : MonoBehaviour
             _addSlotCostInfoList.Add(info);
         }
 
-        foreach (var data in _entityGradeData.GetInfoList())
+        foreach (var data in _gradeData.GetInfoList())
         {
-            _entityGradeInfoList.Add(data);
+            _gradeInfoList.Add(data);
         }
     }
 
@@ -180,8 +180,13 @@ public class DataManager : MonoBehaviour
         return _addSlotCostInfoList[argSlotNumber].cost;
     }
 
-    public EntityGradeInfo GetEntityGradeInfo(Grade argGrade)
+    public GradeInfo GetGradeInfo(Grade argGrade)
     {
-        return _entityGradeInfoList.Find(entity => entity.grade == argGrade);
+        return _gradeInfoList.Find(entity => entity.grade == argGrade);
+    }
+
+    public IEnumerable<GradeInfo> GetGradeInfoList()
+    {
+        return _gradeInfoList;
     }
 }

@@ -206,6 +206,10 @@ MonoBehaviour:
     value:
       en: MasterGang
       kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
+  - id: MaxGrade
+    value:
+      en: Max Grade
+      kr: "\uCD5C\uB300 \uB4F1\uAE09 \uB2EC\uC131"
   - id: MaxHp
     value:
       en: Max Hp
@@ -342,6 +346,10 @@ MonoBehaviour:
     value:
       en: Slot Select
       kr: "\uC2AC\uB86F \uC120\uD0DD"
+  - id: SlotUpgrade
+    value:
+      en: Slot Upgrade
+      kr: "\uC2AC\uB86F \uAC15\uD654"
   - id: SonicDisruptor
     value:
       en: Sonic Disruptor
