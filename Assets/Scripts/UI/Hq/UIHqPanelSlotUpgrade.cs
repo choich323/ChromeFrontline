@@ -1,9 +1,35 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
+[Serializable]
+public struct UIGradeInfo
+{
+    public Image img;
+    public TextMeshProUGUI probabilityText;
+}
 
 public class UIHqPanelSlotUpgrade : AUIHqPanelSlot
 {
+    [SerializeField] private List<UIGradeInfo> _gradeInfoList;
+    
     private List<UISlotUpgradeUnit> _slotUnitList = new List<UISlotUpgradeUnit>();
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+
+        var infoList = Managers.Data.GetGradeInfoList();
+        int i = 0;
+        foreach (var info in infoList)
+        {
+            var uiInfo = _gradeInfoList[i++];
+            uiInfo.img.color = info.color;
+            uiInfo.probabilityText.text = $"{info.probability}%";
+        }
+    }
     
     public override void SetType()
     {

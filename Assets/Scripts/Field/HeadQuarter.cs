@@ -109,7 +109,7 @@ public class HeadQuarter : MonoBehaviour
     [ContextMenu("TestEarnGold")]
     void TestEarnGold()
     {
-        EarnGold(100000);
+        EarnGold(10000000);
     }
     
     IEnumerator CoEarnGoldPerSecond()

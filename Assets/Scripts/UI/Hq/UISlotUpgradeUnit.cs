@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +14,7 @@ public class UISlotUpgradeUnit : MonoBehaviour
     [SerializeField] private GameObject _gradeMax;
     [SerializeField] private TextMeshProUGUI _goldText;
     [SerializeField] private Button _btnSlot;
+    [SerializeField] private ShakeEffect _shakeEffect;
 
     private int _slotIndex;
     private Grade _grade;
@@ -48,19 +51,51 @@ public class UISlotUpgradeUnit : MonoBehaviour
             _canUpgrade.SetActive(true);
             _gradeMax.SetActive(false);
             _goldText.text = $"{gradeInfo.gold}";
+            _btnSlot.interactable = true;
         }
         else
         {
             _canUpgrade.SetActive(false);
             _gradeMax.SetActive(true);
+            _btnSlot.interactable = false;
         }
     }
     
     void OnBtn()
     {
         var cost = Managers.Data.GetGradeInfo(_grade).gold;
-        Managers.Game.SetRandomGrade(cost, _slotIndex);
+        bool isSuccess = Managers.Game.SetRandomGrade(cost, _slotIndex);
+        if (!isSuccess)
+        {
+            _shakeEffect.PlayShakeAnimation();
+            return;
+        }
         SetInfo();
+    }
+
+    [ContextMenu("Upgrade")]
+    void TestUpgrade()
+    {
+        StartCoroutine(CoTestUpgrade());
+    }
+    
+    IEnumerator CoTestUpgrade()
+    {
+        int count = 0;
+        while (_grade != Grade.Ultimate)
+        {
+            bool isSuccess = Managers.Game.SetRandomGrade(0, _slotIndex);
+            count++;
+            if (!isSuccess)
+            {
+                _shakeEffect.PlayShakeAnimation();
+                yield return null;
+            }
+            SetInfo();
+
+            yield return null;
+        }
+        Debug.Log($"{count}");
     }
     
     public void Destroy()

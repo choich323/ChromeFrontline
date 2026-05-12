@@ -342,6 +342,10 @@ MonoBehaviour:
     value:
       en: Slot {0}
       kr: "\uC2AC\uB86F {0}"
+  - id: SlotDowngradeNotice
+    value:
+      en: No Downgrade on Failure
+      kr: "\uC2E4\uD328 \uC2DC \uB4F1\uAE09\uC774 \uD558\uB77D\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
   - id: SlotSelect
     value:
       en: Slot Select

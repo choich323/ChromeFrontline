@@ -61,6 +61,7 @@ public enum StringID
     Gold,
     MaxGrade,
     SlotUpgrade,
+    SlotDowngradeNotice,
     
     Victory = 501,
     Defeat,

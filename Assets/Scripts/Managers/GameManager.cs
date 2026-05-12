@@ -117,17 +117,17 @@ public class GameManager : MonoBehaviour
         _slotUpgradeHandler.Init();
     }
 
-    public void SetRandomGrade(int argCost, int argIndex)
+    public bool SetRandomGrade(int argCost, int argIndex)
     {
         var hq = GameField.PlayerHq;
         if (hq.Gold < argCost)
         {
-            // Toast 필요
-            return;
+            return false;
         }
         hq.ConsumeGold(argCost);
         var grade = _slotUpgradeHandler.GetRandomGrade();
         hq.SetSlotGrade(argIndex, grade);
+        return true;
     }
     
     public ulong GetNewUid()
