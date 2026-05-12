@@ -39,14 +39,15 @@ public class UIOption : APopup
         RefreshText();
         
         _soundSlider.onValueChanged.AddListener(OnSoundChanged);
-        _soundSlider.value = Managers.Sound.MasterVolume;
+        var volume = Managers.Sound.MasterVolume;
+        _soundSlider.value = volume;
+        _soundValueText.text = $"{volume * 100:F0}";
         
         _sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
         var camController = Managers.CamController;
-        if (camController != null)
-        {
-            _sensitivitySlider.value = camController.Sensitivity;
-        }
+        var sensitivity = camController.Sensitivity;
+        _sensitivitySlider.value = sensitivity;
+        _sensitivityValueText.text = $"{sensitivity * 100:F0}";
 
         var pm = Managers.Prefs;
         _frameRateSelector.Init(
@@ -90,11 +91,8 @@ public class UIOption : APopup
     void OnSensitivityChanged(float argValue)
     {
         var camController = Managers.CamController;
-        if (camController != null)
-        {
-            camController.SetSensitivity(argValue);
-            _sensitivityValueText.text = $"{argValue * 100:F0}";
-        }
+        camController.SetSensitivity(argValue);
+        _sensitivityValueText.text = $"{argValue * 100:F0}";
     }
 
     public override void Clear()
