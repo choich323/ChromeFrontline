@@ -17,6 +17,14 @@ MonoBehaviour:
     value:
       en: Add Slot
       kr: "\uC2AC\uB86F \uCD94\uAC00"
+  - id: AegisStorm
+    value:
+      en: Aegis Storm
+      kr: "\uC218\uD638\uC758 \uD3ED\uD48D"
+  - id: Agent
+    value:
+      en: Agent
+      kr: "\uC694\uC6D0"
   - id: AssaultRifle
     value:
       en: Assault Rifle
@@ -25,10 +33,18 @@ MonoBehaviour:
     value:
       en: '(Best: {0})'
       kr: "(\uCD5C\uACE0 \uAE30\uB85D: {0})"
+  - id: BloodyCanon
+    value:
+      en: Bloody Canon
+      kr: "\uD53C\uC758 \uCD94\uC801\uC790"
   - id: Bottom
     value:
       en: Bottom
       kr: "\uD558\uB2E8"
+  - id: Breacher
+    value:
+      en: Breacher
+      kr: "\uD2B9\uC218 \uAC15\uC2B5 \uB300\uC6D0"
   - id: CentauriCanon
     value:
       en: Centauri Canon
@@ -45,6 +61,10 @@ MonoBehaviour:
     value:
       en: Clear in {0}
       kr: "{0}\uBD84 \uC774\uB0B4 \uD074\uB9AC\uC5B4"
+  - id: Commander
+    value:
+      en: Commander
+      kr: "\uC804\uC220 \uC9C0\uD718\uAD00"
   - id: ConfirmAddSlot
     value:
       en: Are you sure to add one more slot?
@@ -74,6 +94,18 @@ MonoBehaviour:
     value:
       en: Defeat
       kr: "\uD328\uBC30"
+  - id: DestroyLaser
+    value:
+      en: Destroy Laser
+      kr: "\uBA78\uB9DD\uC758 \uC778\uB3C4\uC790"
+  - id: DroneBomber
+    value:
+      en: Drone Bomber
+      kr: "\uB4DC\uB860 \uD3ED\uACA9\uAE30"
+  - id: ElectroBlade
+    value:
+      en: Electro Blade
+      kr: "\uD30C\uB3D9\uC758 \uAC80"
   - id: Entity
     value:
       en: Unit
@@ -166,10 +198,18 @@ MonoBehaviour:
     value:
       en: Lv.{0}
       kr: "\uB808\uBCA8{0}"
+  - id: MadGas
+    value:
+      en: Mad Gas
+      kr: "\uAC00\uC2A4 \uC0B4\uD3EC\uC790"
   - id: MasterGang
     value:
       en: MasterGang
       kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
+  - id: MaxGrade
+    value:
+      en: Max Grade
+      kr: "\uCD5C\uB300 \uB4F1\uAE09 \uB2EC\uC131"
   - id: MaxHp
     value:
       en: Max Hp
@@ -194,6 +234,10 @@ MonoBehaviour:
     value:
       en: Mid
       kr: "\uC911\uB2E8"
+  - id: MultiLauncher
+    value:
+      en: Multi Launcher
+      kr: "\uB2E4\uC5F0\uBC1C \uB85C\uCF13 \uB7F0\uCCD0"
   - id: NewRecord
     value:
       en: New!
@@ -218,6 +262,18 @@ MonoBehaviour:
     value:
       en: Option
       kr: "\uC124\uC815"
+  - id: Overload
+    value:
+      en: Overload
+      kr: "\uC624\uBC84\uB85C\uB4DC"
+  - id: Phalanx
+    value:
+      en: Phalanx
+      kr: "\uBC29\uD328\uBCD1"
+  - id: PlasmaSlasher
+    value:
+      en: Plasma Slasher
+      kr: "\uD50C\uB77C\uC988\uB9C8 \uC808\uB2E8\uC790"
   - id: Police
     value:
       en: Police
@@ -234,6 +290,10 @@ MonoBehaviour:
     value:
       en: Production Bonus
       kr: "\uC0DD\uC0B0 \uC2DC\uAC04 \uBCF4\uB108\uC2A4"
+  - id: PyroManiac
+    value:
+      en: Pyro Maniac
+      kr: "\uD654\uC5FC \uAD11\uC778"
   - id: Quality
     value:
       en: Quality
@@ -258,10 +318,18 @@ MonoBehaviour:
     value:
       en: Security
       kr: "\uBCF4\uC548\uAD00"
+  - id: Selected
+    value:
+      en: Selected
+      kr: "\uC120\uD0DD\uB428"
   - id: Sensitivity
     value:
       en: Sensitivity
       kr: "\uAC10\uB3C4"
+  - id: ShadowReaper
+    value:
+      en: Shadow Reaper
+      kr: "\uC554\uC601\uC758 \uC218\uD655\uC790"
   - id: SharpShooter
     value:
       en: Sharp Shooter
@@ -274,10 +342,22 @@ MonoBehaviour:
     value:
       en: Slot {0}
       kr: "\uC2AC\uB86F {0}"
+  - id: SlotDowngradeNotice
+    value:
+      en: No Downgrade on Failure
+      kr: "\uC2E4\uD328 \uC2DC \uB4F1\uAE09\uC774 \uD558\uB77D\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
   - id: SlotSelect
     value:
       en: Slot Select
       kr: "\uC2AC\uB86F \uC120\uD0DD"
+  - id: SlotUpgrade
+    value:
+      en: Slot Upgrade
+      kr: "\uC2AC\uB86F \uAC15\uD654"
+  - id: SonicDisruptor
+    value:
+      en: Sonic Disruptor
+      kr: "\uCE68\uBB35\uC758 \uC678\uCE68"
   - id: Sound
     value:
       en: Sound
@@ -290,6 +370,10 @@ MonoBehaviour:
     value:
       en: Steel Baton
       kr: "\uC55E\uC7A1\uC774"
+  - id: SteelWall
+    value:
+      en: Steel Wall
+      kr: "\uAC15\uCCA0 \uC7A5\uBCBD"
   - id: StopProducing
     value:
       en: Stop Producing
@@ -318,6 +402,18 @@ MonoBehaviour:
     value:
       en: Victory
       kr: "\uC2B9\uB9AC"
+  - id: VoidBullet
+    value:
+      en: Void Bullet
+      kr: "\uACF5\uD5C8\uC758 \uD0C4\uD658"
+  - id: Whiplash
+    value:
+      en: Whiplash
+      kr: "\uC804\uD558 \uADE0\uC5F4"
+  - id: WireStriker
+    value:
+      en: Wire Striker
+      kr: "\uD6FC\uBC29\uAFBC"
   - id: Yes
     value:
       en: Yes

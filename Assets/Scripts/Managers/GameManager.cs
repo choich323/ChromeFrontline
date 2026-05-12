@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
+    private SlotUpgradeHandler _slotUpgradeHandler;
     private UserRecord _userRecord;
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
     public int SlotCountMax => _gameField.PlayerHq.MaxSlotCount;
+    public int CurSlotCount => _gameField.PlayerHq.GetSlotCount();
     public int Stage => _stage;
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
@@ -82,7 +84,8 @@ public class GameManager : MonoBehaviour
         }
         
         _isInGame = true;
-        StartAIScheduleHandler();
+        InitAIScheduleHandler();
+        InitSlotUpgradeHandler();
         _gameField = gameFieldObj.GetComponent<GameField>();
         _gameField.Init();
     }
@@ -94,7 +97,7 @@ public class GameManager : MonoBehaviour
         sm.SaveRecord(_userRecord);
     }
 
-    void StartAIScheduleHandler()
+    void InitAIScheduleHandler()
     {
         _aiScheduleHandler = new AIScheduleHandler();
         _aiScheduleHandler.Init();
@@ -106,6 +109,25 @@ public class GameManager : MonoBehaviour
         {
             _aiScheduleHandler.Update();
         }
+    }
+    
+    void InitSlotUpgradeHandler()
+    {
+        _slotUpgradeHandler = new SlotUpgradeHandler();
+        _slotUpgradeHandler.Init();
+    }
+
+    public bool SetRandomGrade(int argCost, int argIndex)
+    {
+        var hq = GameField.PlayerHq;
+        if (hq.Gold < argCost)
+        {
+            return false;
+        }
+        hq.ConsumeGold(argCost);
+        var grade = _slotUpgradeHandler.GetRandomGrade();
+        hq.SetSlotGrade(argIndex, grade);
+        return true;
     }
     
     public ulong GetNewUid()
@@ -158,7 +180,7 @@ public class GameManager : MonoBehaviour
         _isEnemyEmergencyTriggered = false;
         Managers.UI.PopupHandler.CloseAllPopup();
         ResumeGame();
-        StartAIScheduleHandler();
+        InitAIScheduleHandler();
         _gameField.Restart();
         Managers.UI.RefreshUI();
     }

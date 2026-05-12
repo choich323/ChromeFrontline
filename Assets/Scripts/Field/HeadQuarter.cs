@@ -109,7 +109,7 @@ public class HeadQuarter : MonoBehaviour
     [ContextMenu("TestEarnGold")]
     void TestEarnGold()
     {
-        EarnGold(100000);
+        EarnGold(10000000);
     }
     
     IEnumerator CoEarnGoldPerSecond()
@@ -258,6 +258,14 @@ public class HeadQuarter : MonoBehaviour
         return true;
     }
 
+    public void SetSlotGrade(int argIndex, Grade argGrade)
+    {
+        foreach (var spawner in _spawnerList)
+        {
+            spawner.SetSlotGrade(argIndex, argGrade);
+        }
+    }
+    
     public void ForceSpawn(List<SpawnRequest> spawnRequestList)
     {
         foreach (var req in spawnRequestList)

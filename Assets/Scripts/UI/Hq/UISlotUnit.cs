@@ -7,8 +7,8 @@ public class UISlotUnit : MonoBehaviour
 {
     private const int INVALID_SLOT_INDEX = -1;
 
+    [SerializeField] private Image _bg;
     [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _slotText;
     [SerializeField] private TextMeshProUGUI _progressText;
     [SerializeField] private TextMeshProUGUI _stateText;
@@ -16,7 +16,6 @@ public class UISlotUnit : MonoBehaviour
     [SerializeField] private Slider _progressSlider;
 
     private int _slotIndex;
-    private int _targetLevel;
     private PrefabID _targetId;
     private Lane _lane;
     private Action<HqRightPanelType, HqPanelTransitionContent> _onSlotAction;
@@ -28,6 +27,7 @@ public class UISlotUnit : MonoBehaviour
         SetSlotIndex(argSlotIndex);
         SetLane(argLane);
         SetEntityInfo();
+        SetColor();
 
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)argLane);
         if (spawner == null) return;
@@ -55,19 +55,26 @@ public class UISlotUnit : MonoBehaviour
         dm.TryGetPrefabInfo((int)id, out var info);
         if (info == null)
         {
-            _levelText.text = string.Empty;
-            // TODO: icon image setting
-            
+            _icon.gameObject.SetActive(false);
             return;
         }
         
         _targetId = id;
         var entityInfo = info as EntityInfo;
-        _targetLevel = entityInfo.level;
-        // TODO: icon 이미지도 세팅해야 한다.
+        _icon.gameObject.SetActive(true);
+        _icon.sprite = entityInfo.iconImage;
+    }
+
+    void SetColor()
+    {
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        if (spawner == null) return;
         
-        var sm = Managers.String;
-        _levelText.text = _targetLevel > 0 ? sm.GetString(StringID.Lv, _targetLevel) : string.Empty;
+        var slot = spawner.GetSlot(_slotIndex);
+        if (slot == null) return;
+
+        var grade = slot.Grade;
+        _bg.color = Managers.Data.GetGradeInfo(grade).color;
     }
     
     public void RefreshProgress(float argProgress)
@@ -78,7 +85,7 @@ public class UISlotUnit : MonoBehaviour
         _progressText.text = $"{(argProgress * 100):N0}%";
         _progressSlider.value = argProgress;
 
-        if (_targetId != PrefabID.None && _targetLevel > 0)
+        if (_targetId != PrefabID.None)
         {
             _stateText.text = sm.GetString(StringID.Producing);
         }
@@ -116,10 +123,9 @@ public class UISlotUnit : MonoBehaviour
     
     public void Destroy()
     {
-        SetEntityInfo();
         RefreshProgress(0);
+        _bg.color = Color.white;
         _slotIndex = INVALID_SLOT_INDEX;
-        _targetLevel = 0;
         _targetId = PrefabID.None;
         SetLane(Lane.None);
         _onSlotAction = null;

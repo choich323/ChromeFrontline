@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHqPanelHqUpgrade : AUIHqPanelSelect
+public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
 {
     private const float HUNDRED_PERCENT = 100f;
     

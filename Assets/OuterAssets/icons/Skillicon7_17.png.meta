@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: bd5032734b5b8bb4da414f484442e171
+guid: 9fac350f99ace5c4eb232e80e4026b5d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1736326233518769972
-    second: Skillicon7_24_0
+      213: 6766840999840905961
+    second: Skillicon7_17_0
+  - first:
+      213: -7605147967056005096
+    second: Skillicon7_17_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +129,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skillicon7_24_0
+      name: Skillicon7_17_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 5
-        width: 16
-        height: 22
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc8fbe47d7457e7e0800000000000000
-      internalID: -1736326233518769972
+      spriteID: 9eaf01f7906a8ed50800000000000000
+      internalID: 6766840999840905961
       vertices: []
       indices: 
       edges: []
@@ -151,7 +154,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4d1cb541ed0eaa44eaeeb2f7db073b5e
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +162,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Skillicon7_24_0: -1736326233518769972
+      Skillicon7_17_0: 6766840999840905961
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

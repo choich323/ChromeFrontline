@@ -9,19 +9,17 @@ public class UIEntityUnit : MonoBehaviour
     
     [SerializeField] private Button _btnSelect;
     [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _productionTimeText;
     [SerializeField] private TextMeshProUGUI _goldText;
-    [SerializeField] private TextMeshProUGUI _typeTagText;
-    [SerializeField] private TextMeshProUGUI _combatRoleTagText;
-    [SerializeField] private GameObject _combatRole;
     [SerializeField] private UILongPressDetector _detector;
+    [SerializeField] private GameObject _selectedTextObj; 
 
     private Action<PrefabID> _onSelectEntity;
     private EntityInfo _entityInfo;
     private Lane _lane;
     private int _slotIndex;
+    private bool _selected;
     
     public void Init(Lane argLane, int argSlotIndex, PrefabID argPrefabID, Action<PrefabID> argOnSelectEntity)
     {
@@ -38,14 +36,47 @@ public class UIEntityUnit : MonoBehaviour
     {
         Managers.Data.TryGetPrefabInfo((int)argPrefabID, out var info);
         _entityInfo = info as EntityInfo;
-        // TODO: 마찬가지로 icon 이미지 등록 필요
+        _icon.sprite = _entityInfo.iconImage;
+        CheckSelected();
+    }
+
+    void CheckSelected()
+    {
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        if (spawner == null)
+        {
+            Debug.LogError($"Can't find spawner. Lane:{_lane}, Slot:{_slotIndex}");
+            _selected = false;
+            _selectedTextObj.SetActive(false);
+            return;
+        }
+
+        var slot = spawner.GetSlot(_slotIndex);
+        if (slot == null)
+        {
+            Debug.LogError($"Can't find slot. Lane:{_lane}, Slot:{_slotIndex}");
+            _selected = false;
+            _selectedTextObj.SetActive(false);
+            return;
+        }
+
+        var curSlotTargetId = slot.GetTargetId();
+        var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.id);
+        if (curSlotTargetId == id)
+        {
+            _selected = true;
+            _selectedTextObj.SetActive(true);
+            return;
+        }
+        
+        _selected = false;
+        _selectedTextObj.SetActive(false);
     }
 
     void SetText()
     {
         var sm = Managers.String;
         var dm = Managers.Data;
-        _levelText.text = sm.GetString(StringID.Lv, _entityInfo.level);
         var stringId = dm.ConvertStringToStringID(_entityInfo.id);
         _nameText.text = sm.GetString(stringId);
         _productionTimeText.text = $"{_entityInfo.productionTime}";
@@ -73,19 +104,7 @@ public class UIEntityUnit : MonoBehaviour
     void OnBtnSelect()
     {
         var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
-        if (spawner == null)
-        {
-            Debug.LogError($"Can't find spawner. Lane:{_lane}, Slot:{_slotIndex}");
-            return;
-        }
-
         var slot = spawner.GetSlot(_slotIndex);
-        if (slot == null)
-        {
-            Debug.LogError($"Can't find slot. Lane:{_lane}, Slot:{_slotIndex}");
-            return;
-        }
-
         var curSlotTargetId = slot.GetTargetId();
         var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.id);
         if (curSlotTargetId == PrefabID.None || curSlotTargetId == id)

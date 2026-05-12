@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHqPanelMenuSelect : AUIHqPanelSelect
+public class UIHqPanelMenuSelect : AUIHqRightPanelSelect
 {
     [SerializeField] private Button _btnProduce;
-    [SerializeField] private Button _btnEntityUpgrade;
+    [SerializeField] private Button _btnSlotUpgrade;
     [SerializeField] private Button _btnHqUpgrade;
 
     public override void SetType()
@@ -16,6 +16,7 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
     protected override void OnInit()
     {
         _btnProduce.onClick.AddListener(OnBtnProduce);
+        _btnSlotUpgrade.onClick.AddListener(OnBtnSlotUpgrade);
         _btnHqUpgrade.onClick.AddListener(OnBtnHqUpgrade);
     }
     
@@ -29,6 +30,11 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
         _goToPanel?.Invoke(HqRightPanelType.Lane, null);
     }
 
+    void OnBtnSlotUpgrade()
+    {
+        _goToPanel?.Invoke(HqRightPanelType.SlotUpgrade, null);
+    }
+    
     void OnBtnHqUpgrade()
     {
         _goToPanel?.Invoke(HqRightPanelType.HqUpgrade, null);
@@ -42,6 +48,7 @@ public class UIHqPanelMenuSelect : AUIHqPanelSelect
     public override void Destroy()
     {
         _btnProduce.onClick.RemoveAllListeners();
+        _btnSlotUpgrade.onClick.RemoveAllListeners();
         _btnHqUpgrade.onClick.RemoveAllListeners();
     }
 }

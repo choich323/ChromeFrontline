@@ -78,7 +78,6 @@ public class PoolManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"{id} does not exist");
             Object.Destroy(argType.gameObject);
         }
     }

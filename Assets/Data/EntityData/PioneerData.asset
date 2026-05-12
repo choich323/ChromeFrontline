@@ -20,12 +20,13 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 1
     camp: 1
     tier: 0
+    grade: 0
     level: 1
     hp: 950
-    shield: 0
     armor: 10
     attack: 25
     attackSpeed: 0
@@ -41,15 +42,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 6794477976926947158, guid: 23854bb377818634e84b527786b600cc, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 300
-    shield: 0
     armor: 5
-    attack: 15
-    attackSpeed: 1.6
+    attack: 24
+    attackSpeed: 1
     attackRange: 1
     criticalChance: 0
     moveSpeed: 1.5
@@ -62,15 +64,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 350
-    shield: 0
     armor: 8
-    attack: 6
-    attackSpeed: 1
+    attack: 10
+    attackSpeed: 0.6
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.25
@@ -83,15 +86,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 6646255255615770599, guid: c77fb5db6f368f346925b3102730977b, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 150
-    shield: 0
     armor: 1
-    attack: 18
-    attackSpeed: 1.8
+    attack: 27
+    attackSpeed: 1.2
     attackRange: 5
     criticalChance: 0
     moveSpeed: 1
@@ -104,15 +108,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 1
+    grade: 0
     level: 1
     hp: 150
-    shield: 0
     armor: 1
-    attack: 9
-    attackSpeed: 0.9
+    attack: 13.5
+    attackSpeed: 0.6
     attackRange: 5
     criticalChance: 0
     moveSpeed: 1
@@ -125,15 +130,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: -5508048981103802954, guid: 385e64ab3a97d3a42a16b97405d25cfd, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 900
-    shield: 0
     armor: 15
-    attack: 40
-    attackSpeed: 1.8
+    attack: 60
+    attackSpeed: 1.2
     attackRange: 1
     criticalChance: 0.05
     moveSpeed: 1.6
@@ -146,15 +152,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 1050
-    shield: 0
     armor: 20
-    attack: 18
-    attackSpeed: 1.05
+    attack: 27
+    attackSpeed: 0.7
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.35
@@ -167,15 +174,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 5853106075300031787, guid: c22a801a117c6f942b1f7939c3c591d9, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 400
-    shield: 0
     armor: 3
-    attack: 55
-    attackSpeed: 2
+    attack: 88
+    attackSpeed: 1.25
     attackRange: 6
     criticalChance: 0.1
     moveSpeed: 1.05
@@ -188,15 +196,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 2
+    grade: 0
     level: 1
     hp: 400
-    shield: 0
     armor: 3
-    attack: 28
-    attackSpeed: 1.1
+    attack: 44
+    attackSpeed: 0.7
     attackRange: 6
     criticalChance: 0
     moveSpeed: 1.05
@@ -209,15 +218,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 4611943116442212008, guid: cccb7ce33dafed0498fedc7b991ee9bd, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 2200
-    shield: 0
     armor: 40
-    attack: 90
-    attackSpeed: 1.8
+    attack: 135
+    attackSpeed: 1.2
     attackRange: 1
     criticalChance: 0.1
     moveSpeed: 1.75
@@ -230,15 +240,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 2600
-    shield: 0
     armor: 50
-    attack: 37
-    attackSpeed: 1.2
+    attack: 55.5
+    attackSpeed: 0.8
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.45
@@ -251,15 +262,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 5383902674494576732, guid: ff1741bcd452e894ea4a63ebbe2df73a, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 950
-    shield: 0
     armor: 10
-    attack: 155
-    attackSpeed: 2.2
+    attack: 244
+    attackSpeed: 1.4
     attackRange: 7
     criticalChance: 0.15
     moveSpeed: 1.1
@@ -272,15 +284,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 3
+    grade: 0
     level: 1
     hp: 950
-    shield: 0
     armor: 10
-    attack: 81
-    attackSpeed: 1.2
+    attack: 122
+    attackSpeed: 0.8
     attackRange: 7
     criticalChance: 0
     moveSpeed: 1.1
@@ -293,15 +306,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 1
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 4500
-    shield: 0
     armor: 80
-    attack: 180
-    attackSpeed: 2
+    attack: 300
+    attackSpeed: 1.2
     attackRange: 1
     criticalChance: 0.2
     moveSpeed: 2
@@ -314,15 +328,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 5500
-    shield: 0
     armor: 100
-    attack: 72
-    attackSpeed: 1.5
+    attack: 120
+    attackSpeed: 0.9
     attackRange: 1.5
     criticalChance: 0
     moveSpeed: 1.6
@@ -335,15 +350,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 1
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 1800
-    shield: 0
     armor: 25
-    attack: 280
-    attackSpeed: 2.5
+    attack: 500
+    attackSpeed: 1.4
     attackRange: 8
     criticalChance: 0.25
     moveSpeed: 1.25
@@ -356,15 +372,16 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
+    iconImage: {fileID: 0}
     attackAreaType: 2
     camp: 1
     tier: 4
+    grade: 0
     level: 1
     hp: 1800
-    shield: 0
     armor: 25
-    attack: 156
-    attackSpeed: 1.4
+    attack: 273
+    attackSpeed: 0.8
     attackRange: 8
     criticalChance: 0
     moveSpeed: 1.25

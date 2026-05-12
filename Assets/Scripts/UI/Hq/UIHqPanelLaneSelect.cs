@@ -10,7 +10,7 @@ public enum Lane
     Bottom,
 }
 
-public class UIHqPanelLaneSelect : AUIHqPanelSelect
+public class UIHqPanelLaneSelect : AUIHqRightPanelSelect
 {
     [SerializeField] private Button _btnTop;
     [SerializeField] private Button _btnMid;
