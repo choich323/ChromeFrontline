@@ -15,7 +15,6 @@ public class EntitySpawner : MonoBehaviour
     private List<Coroutine> _coroutineList = new List<Coroutine>();
     private int _slotIndex = DEFAULT_SLOT_INDEX;
     private Team _team;
-    private Lane _lane;
     private Transform _targetTransform;
     private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
     private Action<long> _earnGold;
@@ -26,12 +25,11 @@ public class EntitySpawner : MonoBehaviour
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Func<float> argGetProductionBonus)
+    public void Init(Team argTeam, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Func<float> argGetProductionBonus)
     {
         ResetSpawner();
         
         _team = argTeam;
-        _lane = argLane;
         _targetTransform = argTargetTransform;
         if (_team == Team.Player)
         {
@@ -82,26 +80,30 @@ public class EntitySpawner : MonoBehaviour
         
         _slotIndex = DEFAULT_SLOT_INDEX;
         _team = Team.None;
-        _lane = Lane.None;
         _targetTransform = null;
         _consumeGold = null;
         _getGold = null;
     }
 
-    void OnSlotTargetChanged(int argSlotIndex)
+    void OnSlotTargetChanged(int argSlotIndex, bool argIsStop, int argPrevTargetId)
     {
-        StartSpawn(argSlotIndex);
+        if (argIsStop)
+        {
+            StopSpawn(argSlotIndex, argPrevTargetId);
+            return;
+        }
+        
+        StartSpawn(argSlotIndex, argPrevTargetId);
     }
 
-    void StopSpawn(int argSlotIndex)
+    void StopSpawn(int argSlotIndex, int argPrevTargetId)
     {
         if (_coroutineList[argSlotIndex] != null)
         {
             StopCoroutine(_coroutineList[argSlotIndex]);
             _coroutineList[argSlotIndex] = null;
-            var slot = _slotList[argSlotIndex];
-            var targetId = slot.GetTargetId();
-            Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
+            
+            Managers.Data.TryGetPrefabInfo(argPrevTargetId, out var info);
             if (info is EntityInfo entityInfo)
             {
                 _earnGold?.Invoke(entityInfo.goldCost);
@@ -109,14 +111,14 @@ public class EntitySpawner : MonoBehaviour
         }
     }
 
-    void StartSpawn(int argSlotIndex)
+    void StartSpawn(int argSlotIndex, int argPrevTargetId)
     {
         if (argSlotIndex < 0 || argSlotIndex >= _slotList.Count)
         {
             return;
         }
 
-        StopSpawn(argSlotIndex);
+        StopSpawn(argSlotIndex, argPrevTargetId);
         
         _coroutineList[argSlotIndex] = StartCoroutine(CoStartSpawn(argSlotIndex));
     }

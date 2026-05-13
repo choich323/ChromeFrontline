@@ -123,7 +123,6 @@ public class AIScheduleHandler
         var playTime = Managers.Game.PlayTime;
         var tpAmount = _aiScheduleInfo.tpAmountCurve.Evaluate(playTime);
         int emergencyTp = (int)(tpAmount * _aiScheduleInfo.emergencyTpMultiplier);
-        SpendTp(emergencyTp, out int changeAmount);
-        //_accumulatedTp += changeAmount;
+        SpendTp(emergencyTp, out int _);
     }
 }

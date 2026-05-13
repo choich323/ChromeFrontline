@@ -29,8 +29,8 @@ public class GameField : MonoBehaviour
 
     void CreateSpawners()
     {
-        _playerHq.CreateSpawners();
-        _enemyHq.CreateSpawners();
+        _playerHq.CreateSpawner();
+        _enemyHq.CreateSpawner();
     }
     
     void CreateHq(Team argTeam)
@@ -51,15 +51,15 @@ public class GameField : MonoBehaviour
             _enemyHq = hq;
     }
 
-    Transform GetTargetSpawnerPos(Team argTeam, int argIndex)
+    Transform GetTargetSpawnerPos(Team argTeam)
     {
         if (argTeam == Team.Enemy)
         {
-            return _playerHq.GetTargetSpawnerTransform(argIndex);
+            return _playerHq.GetTargetSpawnerTransform();
         }
         else
         {
-            return _enemyHq.GetTargetSpawnerTransform(argIndex);
+            return _enemyHq.GetTargetSpawnerTransform();
         }
     }
     

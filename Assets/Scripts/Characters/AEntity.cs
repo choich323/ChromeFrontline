@@ -88,7 +88,6 @@ public abstract class AEntity : MonoBehaviour
     private const float REWARD_RATIO = 0.25f;
     private const float BASE_MOVE_SPEED = 0.625f;
     private const int DEFAULT_RAYCAST_COUNT = 50;
-    private const int INVALID_SPAWNER_INDEX = -1;
     private const string LAYER_NAME_ENTITY = "Entity";
     
     private const string ANIM_STATE_WALK = "isWalk";
