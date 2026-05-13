@@ -54,7 +54,7 @@ MonoBehaviour:
     attackSpeed: 0.8
     attackRange: 1
     criticalChance: 0
-    moveSpeed: 0.6
+    moveSpeed: 0.7
     productionTime: 2.9
     goldCost: 11
   - id: WireStriker
@@ -98,7 +98,7 @@ MonoBehaviour:
     attackSpeed: 0.8
     attackRange: 5
     criticalChance: 0.05
-    moveSpeed: 0.45
+    moveSpeed: 0.5
     productionTime: 3.9
     goldCost: 15
   - id: MadGas

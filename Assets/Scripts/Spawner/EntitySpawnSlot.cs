@@ -11,7 +11,7 @@ public class EntitySpawnSlot
     private Grade _grade = Grade.Standard;
     private PrefabID _targetId;
     private float _progress;
-    private Action<int> _onTargetChange;
+    private Action<int, bool, int> _onTargetChange;
     
     public Grade Grade => _grade;
     
@@ -22,7 +22,7 @@ public class EntitySpawnSlot
         remove => _onSlotProgressChanged -= value;
     }
     
-    public void Init(int argSlotIndex, Action<int> argOnTargetChange)
+    public void Init(int argSlotIndex, Action<int, bool, int> argOnTargetChange)
     {
         ResetSlot();
 
@@ -47,8 +47,10 @@ public class EntitySpawnSlot
             return;
         }
         _progress = DEFALUT_PROGRESS;
+        var prevTargetId = _targetId;
         _targetId = argTargetId;
-        _onTargetChange?.Invoke(_slotIndex);
+        bool isStop = _targetId == INVALID_TARGET_ID;
+        _onTargetChange?.Invoke(_slotIndex, isStop, (int)prevTargetId);
     }
     
     public void SetTargetId(PrefabID argId)

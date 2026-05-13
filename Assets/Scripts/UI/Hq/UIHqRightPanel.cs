@@ -7,7 +7,6 @@ using DG.Tweening;
 public enum HqRightPanelType
 {
     Menu = 0,
-    Lane,
     Slot,
     Entity,
     HqUpgrade,
@@ -16,16 +15,8 @@ public enum HqRightPanelType
 
 public class HqPanelTransitionContent
 {
-    public Lane lane;
     public int slotIndex;
     public PrefabID prefabID;
-
-    public void Clear()
-    {
-        lane = Lane.None;
-        slotIndex = -1;
-        prefabID = PrefabID.None;
-    }
 }
 
 public class UIHqRightPanel : MonoBehaviour

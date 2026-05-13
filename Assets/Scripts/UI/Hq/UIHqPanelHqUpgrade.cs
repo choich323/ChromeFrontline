@@ -20,8 +20,8 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
     
     protected override void OnInit()
     {
-        var level = Managers.Game.GameField.PlayerHq.Level;
-        _hqUpgradeInfo = Managers.Data.GetHeadQuarterUpgradeInfo(level);
+        var tier = Managers.Game.GameField.PlayerHq.Tier;
+        _hqUpgradeInfo = Managers.Data.GetHeadQuarterUpgradeInfo(tier);
         _btnUpgrade.interactable = true;
         _btnUpgrade.onClick.AddListener(OnBtnUpgrade);
         _costIcon.SetActive(true);

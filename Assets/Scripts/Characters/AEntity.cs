@@ -85,10 +85,9 @@ public abstract class AEntity : MonoBehaviour
     private const float RETARGET_INTERVAL = 5f;
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
-    private const float REWARD_RATIO = 0.25f;
+    private const float REWARD_RATIO = 0.7f;
     private const float BASE_MOVE_SPEED = 0.625f;
     private const int DEFAULT_RAYCAST_COUNT = 50;
-    private const int INVALID_SPAWNER_INDEX = -1;
     private const string LAYER_NAME_ENTITY = "Entity";
     
     private const string ANIM_STATE_WALK = "isWalk";
@@ -106,9 +105,11 @@ public abstract class AEntity : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Transform _visualChild;
+    [SerializeField] private float _targetSearchYOffset = 5f;
     
     private EntityStatus _entityStatus;
     private int _entityLayerMask;
+    private ContactFilter2D _contactFilter;
     private PrefabID _id;
     private ulong _uid;
     private Vector2 _direction;
@@ -141,6 +142,10 @@ public abstract class AEntity : MonoBehaviour
         _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
+        _contactFilter.useLayerMask = true;
+        _contactFilter.SetLayerMask(_entityLayerMask);
+        _contactFilter.useTriggers = false; // 만약 트리거 콜라이더는 무시하고 싶다면 false (필요에 따라 설정)
+        
         _id = argEntityInfo.GetEntityID();
         _uid = argUid;
         _entityStatus.team = argTeam;
@@ -163,6 +168,8 @@ public abstract class AEntity : MonoBehaviour
         _onDie = argOnDie;
         _onKill = argOnKill;
         _attackCooldownTimer = 0f;
+        
+        Physics2D.SyncTransforms();
     }
     
     void SetEntityInfo(EntityInfo argEntityInfo)
@@ -203,16 +210,16 @@ public abstract class AEntity : MonoBehaviour
     protected virtual void DoAction()
     {
         var scanOrigin = (Vector2)transform.position;
-        
-        int hitCount = Physics2D.RaycastNonAlloc(
+        Vector2 boxSize = new Vector2(0.1f, _targetSearchYOffset);
+        int hitCount = Physics2D.BoxCast(
             scanOrigin,
+            boxSize,
+            0f,
             _direction,
+            _contactFilter,
             _scanResults,
-            _entityStatus.attackRange,
-            _entityLayerMask
+            _entityStatus.attackRange
         );
-
-        //Debug.DrawRay(scanOrigin, _direction * _entityStatus.attackRange, hitCount > 0 ? Color.red : Color.green);
         
         if (hitCount > 0)
         {
@@ -220,7 +227,7 @@ public abstract class AEntity : MonoBehaviour
             bool isTargetInvalid = true;
             if (target != null)
             {
-                float distance = Vector2.Distance(transform.position, target.transform.position);
+                float distance = Mathf.Abs(transform.position.x - target.transform.position.x);
                 bool outOfRange = distance > _entityStatus.attackRange;
                 isTargetInvalid = target == null || target.IsDead || outOfRange;
             }
@@ -272,7 +279,17 @@ public abstract class AEntity : MonoBehaviour
             if (target.Team == _entityStatus.team)
                 continue;
 
-            float distance = scanResult.distance;
+            float xDiff = target.transform.position.x - transform.position.x;
+            if (xDiff * _direction.x < 0)
+            {
+                continue;
+            }
+            float distance = Mathf.Abs(xDiff);
+            if (distance > _entityStatus.attackRange)
+            {
+                continue;
+            }
+            
             float hp = target.CurHp;
 
             bool isCloserTarget = distance < minDistance - EPSILON;
@@ -309,7 +326,7 @@ public abstract class AEntity : MonoBehaviour
         _attackAnimCoroutine = StartCoroutine(CoAttack(argTarget));
     }
 
-    IEnumerator CoAttack(AEntity argTarget)
+    protected virtual IEnumerator CoAttack(AEntity argTarget)
     {
         _entityStatus.canAction = false;
 
@@ -468,5 +485,44 @@ public abstract class AEntity : MonoBehaviour
         _animator.SetFloat(WALK_SPEED_RATIO, animSpeedRatio);
         _animator.SetBool(IS_WALK, true);
         transform.Translate(_direction * (_entityStatus.moveSpeed * Time.deltaTime));
+    }
+    
+    void OnDrawGizmosSelected()
+    {
+        // 1. 기본 BoxCast 스캔 영역 시각화 (초록색)
+        Gizmos.color = Color.green;
+    
+        Vector2 scanOrigin = (Vector2)transform.position;
+        Vector2 boxSize = new Vector2(0.1f, 5f); // DoAction에서 사용하는 크기와 동일하게 맞춤
+    
+        // 에디터에서 플레이 모드가 아닐 때를 대비한 기본값 처리
+        Vector2 dir = _direction != Vector2.zero ? _direction : Vector2.right;
+        float range = _entityStatus.attackRange > 0 ? _entityStatus.attackRange : 2f;
+
+        // 시작 지점 박스와 끝 지점 박스
+        Vector2 endPosition = scanOrigin + (dir * range);
+        Gizmos.DrawWireCube(scanOrigin, boxSize);
+        Gizmos.DrawWireCube(endPosition, boxSize);
+
+        // 박스가 이동하는 궤적 (위/아래 선)
+        Vector2 topOffset = new Vector2(0, boxSize.y / 2f);
+        Vector2 bottomOffset = new Vector2(0, -boxSize.y / 2f);
+        Gizmos.DrawLine(scanOrigin + topOffset, endPosition + topOffset);
+        Gizmos.DrawLine(scanOrigin + bottomOffset, endPosition + bottomOffset);
+
+        // 2. 현재 타겟팅된 적이 있을 경우 시각화 (빨간색)
+        if (_attackTarget != null && !_attackTarget.IsDead)
+        {
+            Gizmos.color = Color.red;
+        
+            // 내 중심점에서 타겟 중심점까지의 실제 대각선 선
+            Gizmos.DrawLine(transform.position, _attackTarget.transform.position);
+
+            // 중심점 기준 X축 거리를 확인하기 위한 포인트 (노란색)
+            Gizmos.color = Color.yellow;
+            Vector2 xDistancePoint = new Vector2(_attackTarget.transform.position.x, transform.position.y);
+            Gizmos.DrawLine(transform.position, xDistancePoint);
+            Gizmos.DrawWireSphere(xDistancePoint, 0.2f);
+        }
     }
 }

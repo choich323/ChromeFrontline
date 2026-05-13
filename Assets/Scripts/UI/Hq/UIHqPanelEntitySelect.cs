@@ -59,13 +59,13 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
         entityUnitObj.transform.SetSiblingIndex(argIndex);
         entityUnitObj.transform.localScale = Vector3.one;
         var entityUnit = entityUnitObj.GetComponent<UIEntityUnit>();
-        entityUnit.Init(_transitionContent.lane, _transitionContent.slotIndex, argPrefabID, OnSelectEntityUnit);
+        entityUnit.Init(_transitionContent.slotIndex, argPrefabID, OnSelectEntityUnit);
         _entityUnitList.Add(entityUnit);
     }
 
     void OnSelectEntityUnit(PrefabID argPrefabID)
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_transitionContent.lane);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_transitionContent.slotIndex);

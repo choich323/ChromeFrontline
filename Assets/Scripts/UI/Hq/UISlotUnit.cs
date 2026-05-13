@@ -17,19 +17,17 @@ public class UISlotUnit : MonoBehaviour
 
     private int _slotIndex;
     private PrefabID _targetId;
-    private Lane _lane;
     private Action<HqRightPanelType, HqPanelTransitionContent> _onSlotAction;
     
     public int SlotIndex => _slotIndex;
 
-    public void Init(int argSlotIndex, Lane argLane)
+    public void Init(int argSlotIndex)
     {
         SetSlotIndex(argSlotIndex);
-        SetLane(argLane);
         SetEntityInfo();
         SetColor();
 
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)argLane);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         if (spawner == null) return;
         var slot = spawner.GetSlot(argSlotIndex);
         if (slot == null) return;
@@ -43,7 +41,7 @@ public class UISlotUnit : MonoBehaviour
 
     public void SetEntityInfo()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_slotIndex);
@@ -67,7 +65,7 @@ public class UISlotUnit : MonoBehaviour
 
     void SetColor()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_slotIndex);
@@ -100,17 +98,11 @@ public class UISlotUnit : MonoBehaviour
         _onSlotAction = argGoToPanel;
         SetListener();
     }
-
-    public void SetLane(Lane argLane)
-    {
-        _lane = argLane;
-    }
     
     void OnBtn()
     {
         var transitionContent = new HqPanelTransitionContent();
         transitionContent.slotIndex = _slotIndex;
-        transitionContent.lane = _lane;
         transitionContent.prefabID = _targetId;
         _onSlotAction?.Invoke(HqRightPanelType.Entity, transitionContent);
     }
@@ -127,7 +119,6 @@ public class UISlotUnit : MonoBehaviour
         _bg.color = Color.white;
         _slotIndex = INVALID_SLOT_INDEX;
         _targetId = PrefabID.None;
-        SetLane(Lane.None);
         _onSlotAction = null;
         _btnSlot.onClick.RemoveAllListeners();
     }

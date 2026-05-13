@@ -5,23 +5,22 @@ using UnityEngine;
 
 public class HeadQuarter : MonoBehaviour
 {
-    private const int DEFAULT_SPAWNER_COUNT = 3;
-    private const int DEFAULT_LEVEL = 1;
+    private const int DEFAULT_TIER = 1;
     private const float SECOND = 1f;
     
     [SerializeField] private Transform _spawnerParent;
     // 플레이어 진영이 좌우 어느 쪽인지는 변할 수 있다.
-    [SerializeField] private List<Transform> _entitySpawnerRightPosList;
-    [SerializeField] private List<Transform> _entitySpawnerLeftPosList;
+    [SerializeField] private Transform _entitySpawnerRightPos;
+    [SerializeField] private Transform _entitySpawnerLeftPos;
 
     private bool _useLeftSpawnerPos;
-    private int _level = DEFAULT_LEVEL;
+    private int _tier = DEFAULT_TIER;
     private int _maxHp;
     private int _hp;
     private long _gold;
     private Team _team;
-    private List<EntitySpawner> _spawnerList = new List<EntitySpawner>();
-    private Func<Team, int, Transform> _getTargetSpawnerPos;
+    private EntitySpawner _spawner;
+    private Func<Team, Transform> _getTargetSpawnerPos;
     private Coroutine _coroutineGoldPerSecond;
     private List<PrefabID> _usableEntityIDList = new List<PrefabID>();
     private HeadQuarterUpgradeInfo _hqUpgradeInfo;
@@ -30,17 +29,17 @@ public class HeadQuarter : MonoBehaviour
 
     private DataManager dm => Managers.Data;
     
-    public int Level => _level;
+    public int Tier => _tier;
     public int Hp => _hp;
     public int MaxSlotCount => _hqUpgradeInfo.maxSlotCount;
     public long Gold => _gold;
     
-    public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, int, Transform> argGetTargetSpawnerPos)
+    public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, Transform> argGetTargetSpawnerPos)
     {
-        _level = DEFAULT_LEVEL;
+        _tier = DEFAULT_TIER;
         _usableEntityIDList.Clear();
         AddUsableEntityIdList();
-        _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_level);
+        _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_tier);
         _maxHp = _hqUpgradeInfo.maxHp;
         _hp = _hqUpgradeInfo.maxHp;
         _team = argTeam;
@@ -70,7 +69,7 @@ public class HeadQuarter : MonoBehaviour
     
     void AddUsableEntityIdList()
     {
-        var idList = dm.GetPrefabIdList(_level);
+        var idList = dm.GetPrefabIdList(_tier);
         foreach (var id in idList)
         {
             _usableEntityIDList.Add(id);
@@ -84,7 +83,7 @@ public class HeadQuarter : MonoBehaviour
 
     public bool UpgradeHq()
     {
-        var newInfo = dm.GetHeadQuarterUpgradeInfo(_level + 1);
+        var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
 
         if (_gold < newInfo.upgradeCost)
         {
@@ -97,7 +96,7 @@ public class HeadQuarter : MonoBehaviour
         
         ConsumeGold(newInfo.upgradeCost);
         
-        _level = newInfo.level;
+        _tier = newInfo.level;
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         _hp = (int)(_hp * hpRatio);
@@ -106,6 +105,16 @@ public class HeadQuarter : MonoBehaviour
         return true;
     }
 
+    public void ForceUpgradeHq()
+    {
+        var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
+        _tier = newInfo.level;
+        var hpRatio = newInfo.maxHp / (float)_maxHp;
+        _maxHp = newInfo.maxHp;
+        _hp = (int)(_hp * hpRatio);
+        _hqUpgradeInfo = newInfo;
+    }
+    
     [ContextMenu("TestEarnGold")]
     void TestEarnGold()
     {
@@ -169,23 +178,15 @@ public class HeadQuarter : MonoBehaviour
         return _hqUpgradeInfo.productionTimeBonus;
     }
     
-    public Transform GetTargetSpawnerTransform(int argSpawnerIndex)
+    public Transform GetTargetSpawnerTransform()
     {
-        var posList = _useLeftSpawnerPos ? _entitySpawnerLeftPosList : _entitySpawnerRightPosList;
-        if (argSpawnerIndex < 0 || argSpawnerIndex >= posList.Count)
-        {
-            return null;
-        }
-        return posList[argSpawnerIndex];
+        var pos = _useLeftSpawnerPos ? _entitySpawnerLeftPos : _entitySpawnerRightPos;
+        return pos;
     }
 
-    public EntitySpawner GetSpawner(int argSpawnerIndex)
+    public EntitySpawner GetSpawner()
     {
-        if (argSpawnerIndex < 0 || argSpawnerIndex >= _spawnerList.Count)
-        {
-            return null;
-        }
-        return _spawnerList[argSpawnerIndex];
+        return _spawner;
     }
     
     void Clear()
@@ -193,7 +194,7 @@ public class HeadQuarter : MonoBehaviour
         DestroySpawners();
         _usableEntityIDList.Clear();
         _useLeftSpawnerPos = false;
-        _level = DEFAULT_LEVEL;
+        _tier = DEFAULT_TIER;
         _maxHp = 0;
         _hp = 0;
         _gold = 0;
@@ -204,35 +205,26 @@ public class HeadQuarter : MonoBehaviour
     {
         Clear();
     }
-    
-    public void CreateSpawners()
-    {
-        for(int i = 0; i < DEFAULT_SPAWNER_COUNT; i++)
-        {
-            CreateSpawner(i);
-        }
-    }
 
-    EntitySpawner CreateSpawner(int argSpawnerIndex)
+    public EntitySpawner CreateSpawner()
     {
         var spawnerObj = Managers.Pool.Instantiate(PrefabID.EntitySpawner);
         if (spawnerObj == null)
             return null;
         
-        var pos = _useLeftSpawnerPos ? _entitySpawnerLeftPosList[argSpawnerIndex].position : _entitySpawnerRightPosList[argSpawnerIndex].position;
+        var pos = _useLeftSpawnerPos ? _entitySpawnerLeftPos.position : _entitySpawnerRightPos.position;
         spawnerObj.transform.position = pos;
         spawnerObj.transform.SetParent(_spawnerParent);
-        var spawner = spawnerObj.GetComponent<EntitySpawner>();
-        var targetPos = _getTargetSpawnerPos?.Invoke(_team, argSpawnerIndex);
-        spawner.Init(_team, (Lane)argSpawnerIndex, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionBonus);
-        _spawnerList.Add(spawner);
+        _spawner = spawnerObj.GetComponent<EntitySpawner>();
+        var targetPos = _getTargetSpawnerPos?.Invoke(_team);
+        _spawner.Init(_team, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionBonus);
         
-        return spawner;
+        return _spawner;
     }
 
     public bool AddSlot()
     {
-        var curSlotCount = _spawnerList[0].SlotCount;
+        var curSlotCount = _spawner.SlotCount;
         if (curSlotCount >= MaxSlotCount)
         {
             return false;
@@ -251,56 +243,35 @@ public class HeadQuarter : MonoBehaviour
 
         ConsumeGold(cost);
         
-        foreach (var spawner in _spawnerList)
-        {
-            spawner.AddSlot();
-        }
+        _spawner.AddSlot();
+        
         return true;
     }
 
     public void SetSlotGrade(int argIndex, Grade argGrade)
     {
-        foreach (var spawner in _spawnerList)
-        {
-            spawner.SetSlotGrade(argIndex, argGrade);
-        }
+        _spawner.SetSlotGrade(argIndex, argGrade);
     }
     
-    public void ForceSpawn(List<SpawnRequest> spawnRequestList)
+    public void ForceSpawn(SpawnRequest spawnRequest)
     {
-        foreach (var req in spawnRequestList)
-        {
-            var spawner = _spawnerList[req.laneIndex];
-            spawner.ForceSpawn(req.infoList);
-        }
+        var spawner = _spawner;
+        spawner.ForceSpawn(spawnRequest.infoList);
     }
     
     void DestroySpawners()
     {
-        foreach (var spawner in _spawnerList)
-        {
-            Managers.Pool.Destroy(spawner, PrefabID.EntitySpawner);
-            spawner.Destroy();
-        }
-        _spawnerList.Clear();
+        Managers.Pool.Destroy(_spawner, PrefabID.EntitySpawner);
+        _spawner.Destroy();
     }
     
     public int GetSlotCount()
     {
-        if (_spawnerList.Count == 0)
-            return 0;
-        
-        return _spawnerList[0].SlotCount;
+        return _spawner.SlotCount;
     }
 
     public int GetEntitiesCount()
     {
-        int count = 0;
-        foreach (var spawner in _spawnerList)
-        {
-            count += spawner.GetEntitiesCount();
-        }
-
-        return count;
+        return _spawner.GetEntitiesCount();
     }
 }

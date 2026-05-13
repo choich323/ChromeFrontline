@@ -27,7 +27,7 @@ public class UIHqPanelMenuSelect : AUIHqRightPanelSelect
     
     void OnBtnProduce()
     {
-        _goToPanel?.Invoke(HqRightPanelType.Lane, null);
+        _goToPanel?.Invoke(HqRightPanelType.Slot, null);
     }
 
     void OnBtnSlotUpgrade()

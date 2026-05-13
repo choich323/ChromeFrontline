@@ -7,7 +7,8 @@ public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
     
-    [SerializeField] private float SPAWN_POS_Y_OFFSET = 0.2f;
+    [SerializeField] private float _spawnerPosYOffset = 1.5f;
+    [SerializeField] private float _enemySpawnWaitTime = 1f;
     [SerializeField] private Transform _entityParent;
     
     // slot과 coroutine의 인덱스를 동일하게 맞춰야 한다.
@@ -15,7 +16,6 @@ public class EntitySpawner : MonoBehaviour
     private List<Coroutine> _coroutineList = new List<Coroutine>();
     private int _slotIndex = DEFAULT_SLOT_INDEX;
     private Team _team;
-    private Lane _lane;
     private Transform _targetTransform;
     private Dictionary<Type, HashSet<AEntity>> _entityDict = new Dictionary<Type, HashSet<AEntity>>();
     private Action<long> _earnGold;
@@ -26,12 +26,11 @@ public class EntitySpawner : MonoBehaviour
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
     
-    public void Init(Team argTeam, Lane argLane, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Func<float> argGetProductionBonus)
+    public void Init(Team argTeam, Transform argTargetTransform, Action<long> argEarnGold, Action<long> argConsumeGold, Func<long> argGetGold, Func<float> argGetProductionBonus)
     {
         ResetSpawner();
         
         _team = argTeam;
-        _lane = argLane;
         _targetTransform = argTargetTransform;
         if (_team == Team.Player)
         {
@@ -82,26 +81,30 @@ public class EntitySpawner : MonoBehaviour
         
         _slotIndex = DEFAULT_SLOT_INDEX;
         _team = Team.None;
-        _lane = Lane.None;
         _targetTransform = null;
         _consumeGold = null;
         _getGold = null;
     }
 
-    void OnSlotTargetChanged(int argSlotIndex)
+    void OnSlotTargetChanged(int argSlotIndex, bool argIsStop, int argPrevTargetId)
     {
-        StartSpawn(argSlotIndex);
+        if (argIsStop)
+        {
+            StopSpawn(argSlotIndex, argPrevTargetId);
+            return;
+        }
+        
+        StartSpawn(argSlotIndex, argPrevTargetId);
     }
 
-    void StopSpawn(int argSlotIndex)
+    void StopSpawn(int argSlotIndex, int argPrevTargetId)
     {
         if (_coroutineList[argSlotIndex] != null)
         {
             StopCoroutine(_coroutineList[argSlotIndex]);
             _coroutineList[argSlotIndex] = null;
-            var slot = _slotList[argSlotIndex];
-            var targetId = slot.GetTargetId();
-            Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
+            
+            Managers.Data.TryGetPrefabInfo(argPrevTargetId, out var info);
             if (info is EntityInfo entityInfo)
             {
                 _earnGold?.Invoke(entityInfo.goldCost);
@@ -109,14 +112,14 @@ public class EntitySpawner : MonoBehaviour
         }
     }
 
-    void StartSpawn(int argSlotIndex)
+    void StartSpawn(int argSlotIndex, int argPrevTargetId)
     {
         if (argSlotIndex < 0 || argSlotIndex >= _slotList.Count)
         {
             return;
         }
 
-        StopSpawn(argSlotIndex);
+        StopSpawn(argSlotIndex, argPrevTargetId);
         
         _coroutineList[argSlotIndex] = StartCoroutine(CoStartSpawn(argSlotIndex));
     }
@@ -163,7 +166,7 @@ public class EntitySpawner : MonoBehaviour
     
     IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList)
     {
-        var wait = new WaitForSeconds(1f);
+        var wait = new WaitForSeconds(_enemySpawnWaitTime);
         foreach (var info in entityInfoList)
         {
             Spawn(info);
@@ -183,11 +186,13 @@ public class EntitySpawner : MonoBehaviour
         var entityObj = Managers.Pool.Instantiate(prefabId);
         if (entityObj != null)
         {
-            var randomYOffset = UnityEngine.Random.Range(-SPAWN_POS_Y_OFFSET, SPAWN_POS_Y_OFFSET);
+            var randomYOffset = UnityEngine.Random.Range(-_spawnerPosYOffset, _spawnerPosYOffset);
             entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
             entityObj.transform.SetParent(_entityParent);
+            var uid = Managers.Game.GetNewUid();
+            entityObj.name = $"{argEntityInfo.id}_{uid}";
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(Managers.Game.GetNewUid(), _team, argEntityInfo, _targetTransform, DestroyEntity, _earnGold);
+            entity.Init(uid, _team, argEntityInfo, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }

@@ -24,25 +24,25 @@ MonoBehaviour:
     moveSpeedRatio: 1
   - grade: 1
     probability: 25
-    gold: 500
+    gold: 600
     color: {r: 0.34901962, g: 0.8509804, b: 0.5568628, a: 1}
-    attackRatio: 1.5
-    hpRatio: 1.5
-    armorRatio: 1.5
+    attackRatio: 1.35
+    hpRatio: 1.2
+    armorRatio: 1.2
     attackSpeedRatio: 1.1
     moveSpeedRatio: 1.1
   - grade: 2
     probability: 6.9
-    gold: 700
+    gold: 900
     color: {r: 0.2901961, g: 0.5529412, b: 1, a: 1}
-    attackRatio: 2.5
-    hpRatio: 2.5
-    armorRatio: 2.5
+    attackRatio: 2
+    hpRatio: 2
+    armorRatio: 2
     attackSpeedRatio: 1.28
     moveSpeedRatio: 1.28
   - grade: 3
     probability: 2
-    gold: 1000
+    gold: 1500
     color: {r: 0.65882355, g: 0.33333334, b: 0.96862745, a: 1}
     attackRatio: 5
     hpRatio: 5

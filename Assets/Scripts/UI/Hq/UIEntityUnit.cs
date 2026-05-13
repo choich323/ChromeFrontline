@@ -17,13 +17,11 @@ public class UIEntityUnit : MonoBehaviour
 
     private Action<PrefabID> _onSelectEntity;
     private EntityInfo _entityInfo;
-    private Lane _lane;
     private int _slotIndex;
     private bool _selected;
     
-    public void Init(Lane argLane, int argSlotIndex, PrefabID argPrefabID, Action<PrefabID> argOnSelectEntity)
+    public void Init(int argSlotIndex, PrefabID argPrefabID, Action<PrefabID> argOnSelectEntity)
     {
-        _lane = argLane;
         _slotIndex = argSlotIndex;
         SetInfo(argPrefabID);
         SetText();
@@ -42,10 +40,10 @@ public class UIEntityUnit : MonoBehaviour
 
     void CheckSelected()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         if (spawner == null)
         {
-            Debug.LogError($"Can't find spawner. Lane:{_lane}, Slot:{_slotIndex}");
+            Debug.LogError($"Can't find spawner. Slot:{_slotIndex}");
             _selected = false;
             _selectedTextObj.SetActive(false);
             return;
@@ -54,7 +52,7 @@ public class UIEntityUnit : MonoBehaviour
         var slot = spawner.GetSlot(_slotIndex);
         if (slot == null)
         {
-            Debug.LogError($"Can't find slot. Lane:{_lane}, Slot:{_slotIndex}");
+            Debug.LogError($"Can't find slot. Slot:{_slotIndex}");
             _selected = false;
             _selectedTextObj.SetActive(false);
             return;
@@ -103,7 +101,7 @@ public class UIEntityUnit : MonoBehaviour
 
     void OnBtnSelect()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)_lane);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         var slot = spawner.GetSlot(_slotIndex);
         var curSlotTargetId = slot.GetTargetId();
         var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.id);
@@ -147,7 +145,6 @@ public class UIEntityUnit : MonoBehaviour
     
     public void Destroy()
     {
-        _lane = Lane.None;
         _slotIndex = INVALID_INDEX;
         _onSelectEntity = null;
         _entityInfo = null;

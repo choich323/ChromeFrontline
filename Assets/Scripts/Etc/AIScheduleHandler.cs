@@ -5,16 +5,14 @@ using Random = UnityEngine.Random;
 
 public struct SpawnRequest
 {
-    public int laneIndex;
     public List<EntityInfo> infoList;
 }
 
 public class AIScheduleHandler
 {
-    private const int DEFAULT_SPAWNER_COUNT = 3;
-    
     private AIScheduleInfo _aiScheduleInfo;
     private int _accumulatedTp = 0;
+    private float _nextUpgradeTimer = 0f;
     private float _nextTpSupplyTimer = 0f;
     private float _nextBurstTimer = 0f;
     
@@ -23,24 +21,27 @@ public class AIScheduleHandler
     public void Init()
     {
         _aiScheduleInfo = Managers.Data.GetAIScheduleInfo();
+        _nextUpgradeTimer = _aiScheduleInfo.upgradeInterval;
         _nextTpSupplyTimer = _aiScheduleInfo.tpInterval;
         _nextBurstTimer = _aiScheduleInfo.burstInterval;
     }
 
     public void Update()
     {
-        HandleEnemyLevel();
+        HandleUpgrade();
         HandleTpSupply();
         HandleBurst();
     }
 
-    void HandleEnemyLevel()
+    void HandleUpgrade()
     {
+        _nextUpgradeTimer -= Time.deltaTime;
         var gm = Managers.Game;
-        var playTime = gm.PlayTime;
-        var level = Mathf.FloorToInt(_aiScheduleInfo.levelCurve.Evaluate(playTime));
-        
-        // TODO: enemy의 level 상승 필요. DataManager에 수정 요청을 해야할 듯
+        if (_nextUpgradeTimer <= 0)
+        {
+            gm.GameField.EnemyHq.ForceUpgradeHq();
+            _nextUpgradeTimer = _aiScheduleInfo.upgradeInterval;
+        }
     }
     
     void HandleTpSupply()
@@ -61,7 +62,7 @@ public class AIScheduleHandler
             var nextInterval = _aiScheduleInfo.tpInterval - decrementCount * _aiScheduleInfo.tpIntervalDecrementAmount;
             _nextTpSupplyTimer = Mathf.Max(_aiScheduleInfo.minInterval, nextInterval);
 
-            SpendTp(spendAmount, out int changeAmount);
+            SpendTp(spendAmount, out int _);
 
             _accumulatedTp += saveAmount;
         }
@@ -88,34 +89,28 @@ public class AIScheduleHandler
         outChangeAmount = 0;
         var dm = Managers.Data;
 
-        List<SpawnRequest> reqList = new List<SpawnRequest>();
-        for (int i = 0; i < DEFAULT_SPAWNER_COUNT; i++)
+        var spendTp = argTp;
+        SpawnRequest req;
+        List<EntityInfo> infoList = new List<EntityInfo>();
+        while (true)
         {
-            var spendTp = argTp;
-            var req = new SpawnRequest();
-            List<EntityInfo> infoList = new List<EntityInfo>();
-            while (true)
+            var spawnableEntityInfoList = dm.GetRevoltInfoList(spendTp);
+            if (spawnableEntityInfoList.Count <= 0)
             {
-                var spawnableEntityInfoList = dm.GetRevoltInfoList(spendTp);
-                if (spawnableEntityInfoList.Count <= 0)
-                {
-                    break;
-                }
-                int randIndex = Random.Range(0, spawnableEntityInfoList.Count);
-                var selectedEntityInfo = spawnableEntityInfoList[randIndex];
-                var cost = selectedEntityInfo.goldCost;
-                infoList.Add(selectedEntityInfo);
-            
-                spendTp -= cost;
+                break;
             }
-
-            req.laneIndex = i;
-            req.infoList = infoList;
-            reqList.Add(req);
-            outChangeAmount += spendTp;
+            int randIndex = Random.Range(0, spawnableEntityInfoList.Count);
+            var selectedEntityInfo = spawnableEntityInfoList[randIndex];
+            var cost = selectedEntityInfo.goldCost;
+            infoList.Add(selectedEntityInfo);
+            
+            spendTp -= cost;
         }
+
+        req.infoList = infoList;
+        outChangeAmount += spendTp;
         
-        Managers.Game.ForceSpawn(reqList);
+        Managers.Game.ForceSpawn(req);
     }
 
     public void Emergency()
@@ -123,7 +118,14 @@ public class AIScheduleHandler
         var playTime = Managers.Game.PlayTime;
         var tpAmount = _aiScheduleInfo.tpAmountCurve.Evaluate(playTime);
         int emergencyTp = (int)(tpAmount * _aiScheduleInfo.emergencyTpMultiplier);
-        SpendTp(emergencyTp, out int changeAmount);
-        //_accumulatedTp += changeAmount;
+        SpendTp(emergencyTp, out int _);
+    }
+
+    public void Destroy()
+    {
+        _aiScheduleInfo = null;
+        _accumulatedTp = 0;
+        _nextTpSupplyTimer = 0f;
+        _nextBurstTimer = 0f;
     }
 }

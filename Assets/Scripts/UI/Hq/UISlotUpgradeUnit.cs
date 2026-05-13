@@ -35,7 +35,7 @@ public class UISlotUpgradeUnit : MonoBehaviour
 
     void SetInfo()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner((int)Lane.Top);
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_slotIndex);

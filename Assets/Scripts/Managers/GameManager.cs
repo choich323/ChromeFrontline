@@ -99,6 +99,10 @@ public class GameManager : MonoBehaviour
 
     void InitAIScheduleHandler()
     {
+        if (_aiScheduleHandler != null)
+        {
+            _aiScheduleHandler.Destroy();
+        }
         _aiScheduleHandler = new AIScheduleHandler();
         _aiScheduleHandler.Init();
     }
@@ -195,9 +199,9 @@ public class GameManager : MonoBehaviour
         // UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby Scene");
     }
 
-    public void ForceSpawn(List<SpawnRequest> argSpawnRequestList)
+    public void ForceSpawn(SpawnRequest argSpawnRequest)
     {
-        GameField.EnemyHq.ForceSpawn(argSpawnRequestList);
+        GameField.EnemyHq.ForceSpawn(argSpawnRequest);
     }
 
     public void OnEnemyHqHpChanged(int argHp, int argMaxHp)
