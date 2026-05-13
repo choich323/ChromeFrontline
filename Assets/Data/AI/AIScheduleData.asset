@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    upgradeInterval: 180
+    upgradeInterval: 120
     tpInterval: 10
     tpIntervalDecrementAmount: 0
     tpIntervalDecrementInterval: 60
@@ -24,7 +24,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 30
+        value: 32.465683
         inSlope: 0.01968448
         outSlope: 0.01968448
         tangentMode: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.8089364
       - serializedVersion: 3
-        time: 165.01805
-        value: 43.48333
+        time: 114.17912
+        value: 46.442146
         inSlope: 0.12977777
         outSlope: 0.12977777
         tangentMode: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
         inWeight: 0.5739761
         outWeight: 0.26223657
       - serializedVersion: 3
-        time: 612.1813
-        value: 95.57819
+        time: 581.678
+        value: 107.41346
         inSlope: 0.1626613
         outSlope: 0.1626613
         tangentMode: 0

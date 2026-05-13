@@ -7,7 +7,7 @@ public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
     
-    [SerializeField] private float _spawnerPosYOffset = 2f;
+    [SerializeField] private float _spawnerPosYOffset = 1.5f;
     [SerializeField] private float _enemySpawnWaitTime = 1f;
     [SerializeField] private Transform _entityParent;
     
@@ -189,8 +189,10 @@ public class EntitySpawner : MonoBehaviour
             var randomYOffset = UnityEngine.Random.Range(-_spawnerPosYOffset, _spawnerPosYOffset);
             entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
             entityObj.transform.SetParent(_entityParent);
+            var uid = Managers.Game.GetNewUid();
+            entityObj.name = $"{argEntityInfo.id}_{uid}";
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(Managers.Game.GetNewUid(), _team, argEntityInfo, _targetTransform, DestroyEntity, _earnGold);
+            entity.Init(uid, _team, argEntityInfo, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }
