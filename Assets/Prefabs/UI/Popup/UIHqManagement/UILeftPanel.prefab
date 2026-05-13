@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93274a88a7bc65488977d2f5d811fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIHqLeftPanel
-  _levelText: {fileID: 9097990929531124679}
+  _tierText: {fileID: 9097990929531124679}
   _hpValueText: {fileID: 9014369467130595882}
   _entityCountValueText: {fileID: 2742952713238834957}
   _goldValueText: {fileID: 4236374907283716624}

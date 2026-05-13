@@ -6,7 +6,7 @@ using UnityEngine;
 public class AIScheduleInfo
 {
     public string id;
-    
+    public float upgradeInterval = 180f;
     public float tpInterval = 10f;
     public float tpIntervalDecrementAmount = 0.4f; // tp 충전 주기 감소시 얼마나 감소할지
     public float tpIntervalDecrementInterval = 60f; // 감소가 발생하는 주기
@@ -18,9 +18,6 @@ public class AIScheduleInfo
     public AnimationCurve spendRateCurve;
     // 빅 웨이브 주기
     public float burstInterval = 60f;
-
-    // x:시간, y:엔티티 레벨
-    public AnimationCurve levelCurve;
 
     [Range(0f, 1f)]
     public float emergencyHpThreshold = 0.3f; // 발악 패턴 체력 기준

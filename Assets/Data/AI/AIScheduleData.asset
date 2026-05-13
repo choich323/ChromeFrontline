@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    tpInterval: 12
-    tpIntervalDecrementAmount: 0.5
+    upgradeInterval: 180
+    tpInterval: 10
+    tpIntervalDecrementAmount: 0
     tpIntervalDecrementInterval: 60
     minInterval: 8
     tpAmountCurve:
@@ -23,40 +24,40 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 15.311951
-        inSlope: 0.06665483
-        outSlope: 0.06665483
+        value: 30
+        inSlope: 0.01968448
+        outSlope: 0.01968448
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.81907207
+        outWeight: 0.8089364
       - serializedVersion: 3
-        time: 192.70976
-        value: 35.171844
-        inSlope: 0.14999045
-        outSlope: 0.14999045
+        time: 165.01805
+        value: 43.48333
+        inSlope: 0.12977777
+        outSlope: 0.12977777
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.6098313
-        outWeight: 0.22891048
+        inWeight: 0.5739761
+        outWeight: 0.26223657
       - serializedVersion: 3
-        time: 480
-        value: 120
-        inSlope: 0.19932464
-        outSlope: 0.19932464
+        time: 612.1813
+        value: 95.57819
+        inSlope: 0.1626613
+        outSlope: 0.1626613
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.3773172
-        outWeight: 0.33333334
+        outWeight: 0.41831115
       - serializedVersion: 3
-        time: 720
-        value: 175
-        inSlope: 0.09299645
-        outSlope: 0.09299645
+        time: 862.349
+        value: 157.7714
+        inSlope: 0.17775933
+        outSlope: 0.17775933
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.5682831
-        outWeight: 0.28573328
+        outWeight: 0.4168502
       - serializedVersion: 3
         time: 1171.838
         value: 289.14316
@@ -75,15 +76,15 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0.9
-        inSlope: -0.00003535278
-        outSlope: -0.00003535278
+        inSlope: -0.000041591164
+        outSlope: -0.000041591164
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 460.37976
-        value: 0.8837243
+        time: 455.16238
+        value: 0.88106924
         inSlope: -0.000056174627
         outSlope: -0.000056174627
         tangentMode: 0
@@ -112,29 +113,5 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     burstInterval: 75
-    levelCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
     emergencyHpThreshold: 0.25
     emergencyTpMultiplier: 3

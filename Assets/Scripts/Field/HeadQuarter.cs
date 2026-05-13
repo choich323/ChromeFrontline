@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HeadQuarter : MonoBehaviour
 {
-    private const int DEFAULT_LEVEL = 1;
+    private const int DEFAULT_TIER = 1;
     private const float SECOND = 1f;
     
     [SerializeField] private Transform _spawnerParent;
@@ -14,7 +14,7 @@ public class HeadQuarter : MonoBehaviour
     [SerializeField] private Transform _entitySpawnerLeftPos;
 
     private bool _useLeftSpawnerPos;
-    private int _level = DEFAULT_LEVEL;
+    private int _tier = DEFAULT_TIER;
     private int _maxHp;
     private int _hp;
     private long _gold;
@@ -29,17 +29,17 @@ public class HeadQuarter : MonoBehaviour
 
     private DataManager dm => Managers.Data;
     
-    public int Level => _level;
+    public int Tier => _tier;
     public int Hp => _hp;
     public int MaxSlotCount => _hqUpgradeInfo.maxSlotCount;
     public long Gold => _gold;
     
     public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, Transform> argGetTargetSpawnerPos)
     {
-        _level = DEFAULT_LEVEL;
+        _tier = DEFAULT_TIER;
         _usableEntityIDList.Clear();
         AddUsableEntityIdList();
-        _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_level);
+        _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_tier);
         _maxHp = _hqUpgradeInfo.maxHp;
         _hp = _hqUpgradeInfo.maxHp;
         _team = argTeam;
@@ -69,7 +69,7 @@ public class HeadQuarter : MonoBehaviour
     
     void AddUsableEntityIdList()
     {
-        var idList = dm.GetPrefabIdList(_level);
+        var idList = dm.GetPrefabIdList(_tier);
         foreach (var id in idList)
         {
             _usableEntityIDList.Add(id);
@@ -83,7 +83,7 @@ public class HeadQuarter : MonoBehaviour
 
     public bool UpgradeHq()
     {
-        var newInfo = dm.GetHeadQuarterUpgradeInfo(_level + 1);
+        var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
 
         if (_gold < newInfo.upgradeCost)
         {
@@ -96,7 +96,7 @@ public class HeadQuarter : MonoBehaviour
         
         ConsumeGold(newInfo.upgradeCost);
         
-        _level = newInfo.level;
+        _tier = newInfo.level;
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         _hp = (int)(_hp * hpRatio);
@@ -105,6 +105,16 @@ public class HeadQuarter : MonoBehaviour
         return true;
     }
 
+    public void ForceUpgradeHq()
+    {
+        var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
+        _tier = newInfo.level;
+        var hpRatio = newInfo.maxHp / (float)_maxHp;
+        _maxHp = newInfo.maxHp;
+        _hp = (int)(_hp * hpRatio);
+        _hqUpgradeInfo = newInfo;
+    }
+    
     [ContextMenu("TestEarnGold")]
     void TestEarnGold()
     {
@@ -184,7 +194,7 @@ public class HeadQuarter : MonoBehaviour
         DestroySpawners();
         _usableEntityIDList.Clear();
         _useLeftSpawnerPos = false;
-        _level = DEFAULT_LEVEL;
+        _tier = DEFAULT_TIER;
         _maxHp = 0;
         _hp = 0;
         _gold = 0;
@@ -243,13 +253,10 @@ public class HeadQuarter : MonoBehaviour
         _spawner.SetSlotGrade(argIndex, argGrade);
     }
     
-    public void ForceSpawn(List<SpawnRequest> spawnRequestList)
+    public void ForceSpawn(SpawnRequest spawnRequest)
     {
-        foreach (var req in spawnRequestList)
-        {
-            var spawner = _spawner;
-            spawner.ForceSpawn(req.infoList);
-        }
+        var spawner = _spawner;
+        spawner.ForceSpawn(spawnRequest.infoList);
     }
     
     void DestroySpawners()

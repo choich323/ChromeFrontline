@@ -7,7 +7,8 @@ public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
     
-    [SerializeField] private float SPAWN_POS_Y_OFFSET = 0.2f;
+    [SerializeField] private float _spawnerPosYOffset = 2f;
+    [SerializeField] private float _enemySpawnWaitTime = 1f;
     [SerializeField] private Transform _entityParent;
     
     // slot과 coroutine의 인덱스를 동일하게 맞춰야 한다.
@@ -165,7 +166,7 @@ public class EntitySpawner : MonoBehaviour
     
     IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList)
     {
-        var wait = new WaitForSeconds(1f);
+        var wait = new WaitForSeconds(_enemySpawnWaitTime);
         foreach (var info in entityInfoList)
         {
             Spawn(info);
@@ -185,7 +186,7 @@ public class EntitySpawner : MonoBehaviour
         var entityObj = Managers.Pool.Instantiate(prefabId);
         if (entityObj != null)
         {
-            var randomYOffset = UnityEngine.Random.Range(-SPAWN_POS_Y_OFFSET, SPAWN_POS_Y_OFFSET);
+            var randomYOffset = UnityEngine.Random.Range(-_spawnerPosYOffset, _spawnerPosYOffset);
             entityObj.transform.position = new Vector2(transform.position.x, transform.position.y + randomYOffset);
             entityObj.transform.SetParent(_entityParent);
             var entity = entityObj.GetComponent<AEntity>();

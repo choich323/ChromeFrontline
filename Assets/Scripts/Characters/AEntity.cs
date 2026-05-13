@@ -85,7 +85,7 @@ public abstract class AEntity : MonoBehaviour
     private const float RETARGET_INTERVAL = 5f;
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
-    private const float REWARD_RATIO = 0.25f;
+    private const float REWARD_RATIO = 0.3f;
     private const float BASE_MOVE_SPEED = 0.625f;
     private const int DEFAULT_RAYCAST_COUNT = 50;
     private const string LAYER_NAME_ENTITY = "Entity";
@@ -108,6 +108,7 @@ public abstract class AEntity : MonoBehaviour
     
     private EntityStatus _entityStatus;
     private int _entityLayerMask;
+    private ContactFilter2D _contactFilter;
     private PrefabID _id;
     private ulong _uid;
     private Vector2 _direction;
@@ -139,6 +140,10 @@ public abstract class AEntity : MonoBehaviour
     {
         _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
+        
+        _contactFilter.useLayerMask = true;
+        _contactFilter.SetLayerMask(_entityLayerMask);
+        _contactFilter.useTriggers = false; // 만약 트리거 콜라이더는 무시하고 싶다면 false (필요에 따라 설정)
         
         _id = argEntityInfo.GetEntityID();
         _uid = argUid;
@@ -202,16 +207,16 @@ public abstract class AEntity : MonoBehaviour
     protected virtual void DoAction()
     {
         var scanOrigin = (Vector2)transform.position;
-        
-        int hitCount = Physics2D.RaycastNonAlloc(
+        Vector2 boxSize = new Vector2(0.1f, 5f);
+        int hitCount = Physics2D.BoxCast(
             scanOrigin,
+            boxSize,
+            0f,
             _direction,
+            _contactFilter,
             _scanResults,
-            _entityStatus.attackRange,
-            _entityLayerMask
+            _entityStatus.attackRange
         );
-
-        //Debug.DrawRay(scanOrigin, _direction * _entityStatus.attackRange, hitCount > 0 ? Color.red : Color.green);
         
         if (hitCount > 0)
         {
@@ -219,7 +224,7 @@ public abstract class AEntity : MonoBehaviour
             bool isTargetInvalid = true;
             if (target != null)
             {
-                float distance = Vector2.Distance(transform.position, target.transform.position);
+                float distance = Mathf.Abs(transform.position.x - target.transform.position.x);
                 bool outOfRange = distance > _entityStatus.attackRange;
                 isTargetInvalid = target == null || target.IsDead || outOfRange;
             }
@@ -271,7 +276,7 @@ public abstract class AEntity : MonoBehaviour
             if (target.Team == _entityStatus.team)
                 continue;
 
-            float distance = scanResult.distance;
+            float distance = Mathf.Abs(transform.position.x - target.transform.position.x);
             float hp = target.CurHp;
 
             bool isCloserTarget = distance < minDistance - EPSILON;
@@ -308,7 +313,7 @@ public abstract class AEntity : MonoBehaviour
         _attackAnimCoroutine = StartCoroutine(CoAttack(argTarget));
     }
 
-    IEnumerator CoAttack(AEntity argTarget)
+    protected virtual IEnumerator CoAttack(AEntity argTarget)
     {
         _entityStatus.canAction = false;
 
