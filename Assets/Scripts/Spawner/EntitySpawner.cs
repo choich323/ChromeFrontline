@@ -6,7 +6,8 @@ using UnityEngine;
 public class EntitySpawner : MonoBehaviour
 {
     private const int DEFAULT_SLOT_INDEX = 0;
-    
+
+    [SerializeField] private int _startSlotCount = 2;
     [SerializeField] private float _spawnerPosYOffset = 1.5f;
     [SerializeField] private float _enemySpawnWaitTime = 1f;
     [SerializeField] private Transform _entityParent;
@@ -40,7 +41,7 @@ public class EntitySpawner : MonoBehaviour
             _getProductionBonus = argGetProductionBonus;
         }
         
-        for (int i = 0; i < Managers.Game.SlotCountMax; i++)
+        for (int i = 0; i < _startSlotCount; i++)
         {
             AddSlot();
         }
