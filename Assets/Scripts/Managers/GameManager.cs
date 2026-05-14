@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private const ulong INVALID_UID = 0;
-    private const int DEFAULT_GAME_SPEED = 1;
     private const int DEFAULT_STAGE = 1;
+    private const float DEFAULT_GAME_SPEED = 1f;
     private const float ENTITY_ARRIVAL_GOLD_RATIO = 0.75f;
     
     private ulong _uid = INVALID_UID;
-    private int _curGameSpeed = DEFAULT_GAME_SPEED;
     private int _stage = DEFAULT_STAGE;
+    private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
     private GameField _gameField;
     private bool _isPaused = false;
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
     public bool IsInGame => _isInGame;
+    public float CurGameSpeed  => _curGameSpeed;
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
     public UserRecord UserRecord => _userRecord;
@@ -157,7 +158,7 @@ public class GameManager : MonoBehaviour
         popup.SetData(resultData);
     }
 
-    public void SetGameSpeed(int argSpeed)
+    public void SetGameSpeed(float argSpeed)
     {
         _curGameSpeed = argSpeed;
     }
@@ -179,10 +180,10 @@ public class GameManager : MonoBehaviour
     public void RestartStage()
     {
         _uid = INVALID_UID;
-        _curGameSpeed = DEFAULT_GAME_SPEED;
         _elapsedPlayTime = 0f;
         _isEnemyEmergencyTriggered = false;
         Managers.UI.PopupHandler.CloseAllPopup();
+        _curGameSpeed = DEFAULT_GAME_SPEED;
         ResumeGame();
         InitAIScheduleHandler();
         _gameField.Restart();

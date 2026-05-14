@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd0a8d2c59474f4f9ee08c179bbe7a5, type: 3}
+  m_Name: GameSpeedData
+  m_EditorClassIdentifier: Assembly-CSharp::GameSpeedData
+  speedInfoList:
+  - id: 1
+    speed: 1
+    color: {r: 1, g: 0.43137255, b: 0.39215687, a: 1}
+  - id: 2
+    speed: 2
+    color: {r: 1, g: 0.31764707, b: 0.27058825, a: 1}
+  - id: 3
+    speed: 3
+    color: {r: 1, g: 0.19215687, b: 0.13725491, a: 1}

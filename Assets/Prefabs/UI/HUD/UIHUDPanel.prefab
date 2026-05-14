@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6873629088448585005}
   - component: {fileID: 2581822257932498297}
   m_Layer: 5
-  m_Name: UITopHUDPanel
+  m_Name: UIHUDPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

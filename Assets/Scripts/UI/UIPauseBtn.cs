@@ -6,6 +6,8 @@ public class UIPauseBtn : MonoBehaviour
     [SerializeField] private Image _pauseBtnImage;
     [SerializeField] private Sprite _pauseBtnSprite;
     [SerializeField] private Sprite _playBtnSprite;
+    [SerializeField] private Color _pauseBtnColor;
+    [SerializeField] private Color _playBtnColor;
     [SerializeField] private Button _pauseBtn;
     
     bool IsPaused => Managers.Game.IsPaused;
@@ -43,10 +45,12 @@ public class UIPauseBtn : MonoBehaviour
     void OnPauseGame()
     {
         _pauseBtnImage.sprite = _playBtnSprite;
+        _pauseBtnImage.color = _playBtnColor;
     }
     
     void OnResumeGame()
     {
         _pauseBtnImage.sprite = _pauseBtnSprite;
+        _pauseBtnImage.color = _pauseBtnColor;
     }
 }

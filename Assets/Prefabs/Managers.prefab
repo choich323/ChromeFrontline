@@ -229,6 +229,7 @@ MonoBehaviour:
   _hqUpgradeData: {fileID: 11400000, guid: 6ca75e479de89fb4f8560e18413e1255, type: 2}
   _addSlotCostData: {fileID: 11400000, guid: 334bcc9880022e64289feea706f16d13, type: 2}
   _gradeData: {fileID: 11400000, guid: b62a32bb9ac0277409a80076fe1d743b, type: 2}
+  _gameSpeedData: {fileID: 11400000, guid: 5ec4da9e8b2d61840aea3c6e0e1207b9, type: 2}
 --- !u!114 &9124406171102656420
 MonoBehaviour:
   m_ObjectHideFlags: 0
