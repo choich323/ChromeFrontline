@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -38,16 +37,13 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        var pointer = Pointer.current;
-        if (pointer == null) return;
-
-        Vector2 screenPos = pointer.position.ReadValue();
+        Vector2 screenPos = Input.mousePosition;
         // 방금 터치했는지
-        bool wasPressed = pointer.press.wasPressedThisFrame;
+        bool wasPressed = Input.GetMouseButtonDown(0);
         // 지금 터치 중인지
-        bool isPressed = pointer.press.isPressed;
+        bool isPressed = Input.GetMouseButton(0);
         // 방금 터치를 해제했는지
-        bool wasReleased = pointer.press.wasReleasedThisFrame;
+        bool wasReleased = Input.GetMouseButtonUp(0);
 
         if (wasPressed)
         {
