@@ -394,7 +394,7 @@ MonoBehaviour:
   _maxX: 30
   _mainCam: {fileID: 810939475}
   _smoothSpeed: 30
-  _slidingAmount: 10
+  _slidingAmount: 5
 --- !u!1 &893747126
 GameObject:
   m_ObjectHideFlags: 0

@@ -91,7 +91,7 @@ public class CameraController : MonoBehaviour
     {
         // Time.deltaTime을 곱해 프레임 변동폭 보정. 
         // (기존 _smoothSpeed 수치 체감이 달라질 수 있으므로 뒤에 보정값(예: 10f)을 곱해줍니다)
-        float smoothedX = Mathf.Lerp(transform.position.x, _targetX, _smoothSpeed * Time.deltaTime);
+        float smoothedX = Mathf.Lerp(transform.position.x, _targetX, _smoothSpeed * Time.unscaledDeltaTime);
         transform.position = new Vector3(smoothedX, transform.position.y, transform.position.z);
     }
 
