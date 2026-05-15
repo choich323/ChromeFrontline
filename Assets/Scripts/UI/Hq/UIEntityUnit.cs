@@ -141,6 +141,7 @@ public class UIEntityUnit : MonoBehaviour
         popup.SetData(_entityInfo);
         popup.SetOnClose(ph.ClosePopup);
         popup.SetPos(Input.mousePosition);
+        
     }
     
     public void Destroy()

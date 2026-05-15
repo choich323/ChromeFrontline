@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     void CheckEscapeKey()
     {
+        //
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // TODO: 게임 종료 팝업 호출
@@ -153,7 +154,7 @@ public class GameManager : MonoBehaviour
         var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
         popup.Init();
         var resultData = new ResultData();
-        resultData.isVictory = argIsPlayerWin;
+        resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         popup.SetData(resultData);
     }
@@ -161,6 +162,10 @@ public class GameManager : MonoBehaviour
     public void SetGameSpeed(float argSpeed)
     {
         _curGameSpeed = argSpeed;
+        if (!_isPaused)
+        {
+            Time.timeScale = argSpeed;
+        }
     }
 
     public void PauseGame()

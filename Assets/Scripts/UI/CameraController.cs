@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,38 +14,48 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera _mainCam;
 
     [Range(0.01f, 1f)]
-    [SerializeField] private float _smoothSpeed = DEFAULT_SENSITIVITY; // 낮을수록 부드러움
+    [SerializeField] private float _smoothSpeed = DEFAULT_SENSITIVITY;
     [Range(0f, 50f)]
-    [SerializeField] private float _slidingAmount = DEFAULT_SLIDING_AMOUNT; // 슬라이딩 강도
+    [SerializeField] private float _slidingAmount = DEFAULT_SLIDING_AMOUNT;
     
     public float Sensitivity => _smoothSpeed;
     
     private Vector2 _lastScreenPos;
     private bool _isDragging = false;
     private float _targetX;
-    private float _lastDeltaX; // 마지막 프레임의 이동량
+    private float _lastDeltaX;
 
-    private void Awake()
+    public void Init()
     {
-        if(_mainCam == null)
-            _mainCam = Camera.main;
+        if (_mainCam == null) _mainCam = Camera.main;
         _targetX = transform.position.x;
         SetSensitivity(DEFAULT_SENSITIVITY);
     }
 
     void Update()
     {
+        HandleInput();
+        MoveCamera();
+    }
+
+    // drag 상태가 멈추지 않는 경우 방어
+    public void ResetDragging()
+    {
+        
+    }
+
+    // 1. 입력 처리 및 드래그 계산 로직
+    private void HandleInput()
+    {
         Vector2 screenPos = Input.mousePosition;
-        // 방금 터치했는지
         bool wasPressed = Input.GetMouseButtonDown(0);
-        // 지금 터치 중인지
         bool isPressed = Input.GetMouseButton(0);
-        // 방금 터치를 해제했는지
         bool wasReleased = Input.GetMouseButtonUp(0);
 
+        // 드래그 시작
         if (wasPressed)
         {
-            if (IsPointerOverUI(screenPos))
+            if (IsPointerOverUI())
             {
                 _isDragging = false;
             }
@@ -59,12 +67,12 @@ public class CameraController : MonoBehaviour
             }
         }
 
+        // 드래그 중
         if (isPressed && _isDragging)
         {
             Vector3 lastWorldPos = ScreenToWorld(_lastScreenPos);
             Vector3 curWorldPos = ScreenToWorld(screenPos);
             
-            // screen을 얼마나 이동시킨 것인지 계산
             _lastDeltaX = lastWorldPos.x - curWorldPos.x;
             _targetX += _lastDeltaX;
             _targetX = Mathf.Clamp(_targetX, _minX, _maxX);
@@ -72,33 +80,37 @@ public class CameraController : MonoBehaviour
             _lastScreenPos = screenPos;
         }
 
+        // 드래그 종료 및 관성 적용
         if (wasReleased && _isDragging)
         {
-            // 관성 가중치만큼 목적지를 재설정
             _targetX += _lastDeltaX * _slidingAmount;
             _targetX = Mathf.Clamp(_targetX, _minX, _maxX);
             _isDragging = false;
         }
-        
+    }
+    
+    private void MoveCamera()
+    {
         float smoothedX = Mathf.Lerp(transform.position.x, _targetX, _smoothSpeed);
         transform.position = new Vector3(smoothedX, transform.position.y, transform.position.z);
     }
 
-    Vector3 ScreenToWorld(Vector2 argScreenPos)
+    private Vector3 ScreenToWorld(Vector2 argScreenPos)
     {
-        return _mainCam.ScreenToWorldPoint(new Vector3(argScreenPos.x, argScreenPos.y, _mainCam.nearClipPlane));
+        float zDepth = Mathf.Abs(_mainCam.transform.position.z);
+        return _mainCam.ScreenToWorldPoint(new Vector3(argScreenPos.x, argScreenPos.y, zDepth));
     }
 
-    bool IsPointerOverUI(Vector2 argScreenPos)
+    private bool IsPointerOverUI()
     {
         if (EventSystem.current == null) return false;
-        PointerEventData eventData = new PointerEventData(EventSystem.current)
+
+        if (Application.isMobilePlatform && Input.touchCount > 0)
         {
-            position = argScreenPos
-        };
-        var results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
-        return results.Count > 0;
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+        }
+        
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     public void SetSensitivity(float argSensitivity)

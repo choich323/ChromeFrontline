@@ -19,6 +19,7 @@ public class PopupHandler
 
     void HandleEscapeKey()
     {
+        //
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_popupStack.Count > 0 && _popupStack.Peek().InputMode == PopupInputMode.Modeless)

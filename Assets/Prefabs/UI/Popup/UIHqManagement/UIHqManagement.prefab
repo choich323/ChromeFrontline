@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIHqRightPanel
   _btnPrev: {fileID: 4664118403334900574}
-  _transitionDuration: 0.2
+  _transitionDuration: 0.1
   _slideDistance: 85
   _panelList:
   - {fileID: 7664356508532864194}
