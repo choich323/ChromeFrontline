@@ -8,6 +8,7 @@ public class UIOption : APopup
     private const int FRAME30 = 30;
     private const int FRAME60 = 60;
     private const int FRAME_MAX = -1;
+    private const int SENSITIVITY_MULTIPLIER = 100;
     
     [Header("Sliders")]
     [SerializeField] private Slider _soundSlider;
@@ -46,8 +47,8 @@ public class UIOption : APopup
         _sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
         var camController = Managers.CamController;
         var sensitivity = camController.Sensitivity;
-        _sensitivitySlider.value = sensitivity;
-        _sensitivityValueText.text = $"{sensitivity * 100:F0}";
+        _sensitivitySlider.value = sensitivity / SENSITIVITY_MULTIPLIER;
+        _sensitivityValueText.text = $"{sensitivity:F0}";
 
         var pm = Managers.Prefs;
         _frameRateSelector.Init(
@@ -90,9 +91,10 @@ public class UIOption : APopup
     
     void OnSensitivityChanged(float argValue)
     {
+        argValue *= SENSITIVITY_MULTIPLIER;
         var camController = Managers.CamController;
         camController.SetSensitivity(argValue);
-        _sensitivityValueText.text = $"{argValue * 100:F0}";
+        _sensitivityValueText.text = $"{argValue:F0}";
     }
 
     public override void Clear()
