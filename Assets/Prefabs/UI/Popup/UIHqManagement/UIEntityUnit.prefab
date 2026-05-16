@@ -643,7 +643,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -827,6 +827,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4429860903441001332}
     m_Modifications:
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_overflowMode
       value: 3
@@ -980,6 +984,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4429860903441001332}
     m_Modifications:
+    - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 679991181676104119, guid: 46437a9865367104394ea40c8b67670b, type: 3}
       propertyPath: m_overflowMode
       value: 3
