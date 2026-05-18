@@ -16,4 +16,11 @@ public class UINotice : APopup
         _confirmBtn.onClick.RemoveAllListeners();
         _confirmBtn.onClick.AddListener(Close);
     }
+
+    public override void Close()
+    {
+        Managers.Sound.PlaySelectSfx();
+
+        base.Close();
+    }
 }

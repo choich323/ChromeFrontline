@@ -26,6 +26,7 @@ public class UIGameSpeedBtn : MonoBehaviour
     
     void OnBtn()
     {
+        Managers.Sound.PlaySelectSfx();
         var gm = Managers.Game;
         _index++;
         var info = Managers.Data.GetGameSpeedInfo(_index);

@@ -83,6 +83,9 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
 
     public void OnBtnStopProducing()
     {
+        var sound = Managers.Sound;
+        sound.PlaySelectSfx();
+        
         if (_transitionContent.prefabID == PrefabID.None)
         {
             _goBack?.Invoke();
@@ -102,11 +105,18 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
         string cancel = sm.GetString(StringID.No);
         var ph = Managers.UI.PopupHandler;
         popup.Init();
-        popup.SetData(msg, OnConfirm, ph.ClosePopup, confirm, cancel);
+        popup.SetData(msg, OnConfirm, OnClose, confirm, cancel);
 
         void OnConfirm()
         {
+            sound.PlaySelectSfx();
             OnSelectEntityUnit(PrefabID.None);
+        }
+
+        void OnClose()
+        {
+            ph.ClosePopup();
+            sound.PlaySelectSfx();
         }
     }
     

@@ -32,6 +32,7 @@ public class UIPauseBtn : MonoBehaviour
             return;
         }
         
+        Managers.Sound.PlaySelectSfx();
         if (!IsPaused)
         {
             gm.PauseGame();

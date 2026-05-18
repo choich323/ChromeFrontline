@@ -8,6 +8,8 @@ public class UIHqPanelMenuSelect : AUIHqRightPanelSelect
     [SerializeField] private Button _btnSlotUpgrade;
     [SerializeField] private Button _btnHqUpgrade;
 
+    private SoundManager Sm => Managers.Sound;
+    
     public override void SetType()
     {
         _panelType = HqRightPanelType.Menu;
@@ -27,16 +29,19 @@ public class UIHqPanelMenuSelect : AUIHqRightPanelSelect
     
     void OnBtnProduce()
     {
+        Sm.PlaySelectSfx();
         _goToPanel?.Invoke(HqRightPanelType.Slot, null);
     }
 
     void OnBtnSlotUpgrade()
     {
+        Sm.PlaySelectSfx();
         _goToPanel?.Invoke(HqRightPanelType.SlotUpgrade, null);
     }
     
     void OnBtnHqUpgrade()
     {
+        Sm.PlaySelectSfx();
         _goToPanel?.Invoke(HqRightPanelType.HqUpgrade, null);
     }
     

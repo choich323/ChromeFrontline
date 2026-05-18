@@ -63,6 +63,9 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
 
     void OnBtnUpgrade()
     {
+        var sound = Managers.Sound;
+        sound.PlaySelectSfx();
+        
         var ph = Managers.UI.PopupHandler;
         var popup = ph.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         popup.Init();
@@ -80,6 +83,7 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
 
         void OnClose()
         {
+            sound.PlaySelectSfx();
             ph.ClosePopup();
             
             if (isConfirm)
@@ -87,6 +91,7 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
                 var success = Managers.Game.GameField.PlayerHq.UpgradeHq();
                 if (success)
                 {
+                    sound.PlayUpgradeSfx(true);
                     _hqUpgradeInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.level + 1);
                     SetPanel();
                 }

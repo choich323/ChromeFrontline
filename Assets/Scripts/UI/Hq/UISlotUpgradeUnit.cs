@@ -67,12 +67,15 @@ public class UISlotUpgradeUnit : MonoBehaviour
         bool isSuccess = Managers.Game.SetRandomGrade(cost, _slotIndex);
         if (!isSuccess)
         {
+            Managers.Sound.PlayUpgradeSfx(false);
             _shakeEffect.PlayShakeAnimation();
             return;
         }
+        Managers.Sound.PlayUpgradeSfx(true);
         SetInfo();
     }
 
+    /*
     [ContextMenu("Upgrade")]
     void TestUpgrade()
     {
@@ -97,6 +100,7 @@ public class UISlotUpgradeUnit : MonoBehaviour
         }
         Debug.Log($"{count}");
     }
+    */
     
     public void Destroy()
     {

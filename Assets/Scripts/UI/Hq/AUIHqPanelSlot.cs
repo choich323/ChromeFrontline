@@ -62,6 +62,9 @@ public abstract class AUIHqPanelSlot : AUIHqRightPanelSelect
     
     protected virtual void AddSlot()
     {
+        var sound = Managers.Sound;
+        sound.PlaySelectSfx();
+        
         var ph = Managers.UI.PopupHandler;
         var popup = ph.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         popup.Init();
@@ -89,6 +92,7 @@ public abstract class AUIHqPanelSlot : AUIHqRightPanelSelect
                     CreateSlot();
                     SetAddSlotBtn();
                 }
+                sound.PlaySelectSfx();
             }
         }
     }

@@ -62,6 +62,11 @@ public class UIResult : APopup
     private bool _isBestClearTimeChanged = false;
     private bool _isBestHqHpChanged = false;
     
+    private void OnEnable()
+    {
+        PlaySfx(_resultData.isClear);
+    }
+
     public void SetData(ResultData argResultData)
     {
         Clear();
@@ -89,6 +94,11 @@ public class UIResult : APopup
         _clearIcon.SetActive(false);
         _clearTimeIcon.SetActive(false);
         _hqHpIcon.SetActive(false);
+    }
+
+    void PlaySfx(bool argIsVictory)
+    {
+        Managers.Sound.PlayResultSfx(argIsVictory);
     }
     
     void CheckSave()
@@ -130,8 +140,20 @@ public class UIResult : APopup
         _retryBtn.onClick.RemoveAllListeners();
         _exitBtn.onClick.RemoveAllListeners();
         
-        _retryBtn.onClick.AddListener(Managers.Game.RestartStage);
-        _exitBtn.onClick.AddListener(Managers.Game.ExitStage);
+        _retryBtn.onClick.AddListener(Restart);
+        _exitBtn.onClick.AddListener(Exit);
+    }
+
+    void Restart()
+    {
+        Managers.Sound.PlaySelectSfx();
+        Managers.Game.RestartStage();
+    }
+
+    void Exit()
+    {
+        Managers.Sound.PlaySelectSfx();
+        Managers.Game.ExitStage();
     }
     
     void SetText()

@@ -17,7 +17,7 @@ public class UISlotUnit : MonoBehaviour
 
     private int _slotIndex;
     private PrefabID _targetId;
-    private Action<HqRightPanelType, HqPanelTransitionContent> _onSlotAction;
+    private Action<HqRightPanelType, HqPanelTransitionContent> _onSlotTransitionAction;
     
     public int SlotIndex => _slotIndex;
 
@@ -93,18 +93,19 @@ public class UISlotUnit : MonoBehaviour
         }
     }
 
-    public void SetBtnAction(Action<HqRightPanelType, HqPanelTransitionContent> argGoToPanel)
+    public void SetTransitionAction(Action<HqRightPanelType, HqPanelTransitionContent> argGoToPanel)
     {
-        _onSlotAction = argGoToPanel;
+        _onSlotTransitionAction = argGoToPanel;
         SetListener();
     }
     
     void OnBtn()
     {
+        Managers.Sound.PlaySelectSfx();
         var transitionContent = new HqPanelTransitionContent();
         transitionContent.slotIndex = _slotIndex;
         transitionContent.prefabID = _targetId;
-        _onSlotAction?.Invoke(HqRightPanelType.Entity, transitionContent);
+        _onSlotTransitionAction?.Invoke(HqRightPanelType.Entity, transitionContent);
     }
     
     void SetListener()
@@ -119,7 +120,7 @@ public class UISlotUnit : MonoBehaviour
         _bg.color = Color.white;
         _slotIndex = INVALID_SLOT_INDEX;
         _targetId = PrefabID.None;
-        _onSlotAction = null;
+        _onSlotTransitionAction = null;
         _btnSlot.onClick.RemoveAllListeners();
     }
 }

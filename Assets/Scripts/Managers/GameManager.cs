@@ -200,9 +200,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("out from stage.");
         _isInGame = false;
         Managers.UI.PopupHandler.CloseAllPopup();
-        
-        // TODO: 실제 씬 이름을 가져오도록 수정 필요
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby Scene");
     }
 
     public void ForceSpawn(SpawnRequest argSpawnRequest)

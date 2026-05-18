@@ -118,11 +118,17 @@ public class UIEntityUnit : MonoBehaviour
         string msg = sm.GetString(StringID.ConfirmEntitySelect);
         string confirm = sm.GetString(StringID.Yes);
         string cancel = sm.GetString(StringID.No);
-        popup.SetData(msg, OnConfirm, ph.ClosePopup, confirm, cancel);
+        popup.SetData(msg, OnConfirm, OnClose, confirm, cancel);
 
         void OnConfirm()
         {
             _onSelectEntity?.Invoke(id);
+        }
+
+        void OnClose()
+        {
+            Managers.Sound.PlaySelectSfx();
+            ph.ClosePopup();
         }
     }
 

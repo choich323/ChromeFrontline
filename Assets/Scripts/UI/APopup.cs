@@ -41,6 +41,7 @@ public abstract class APopup : MonoBehaviour
         if (_closeButton != null)
         {
             _closeButton.onClick.AddListener(Close);
+            _closeButton.onClick.AddListener(Managers.Sound.PlaySelectSfx);
         }
 
         if (_dimmedBg != null && _inputMode == PopupInputMode.Modeless)
@@ -48,6 +49,7 @@ public abstract class APopup : MonoBehaviour
             if(_dimmedBg.TryGetComponent<Button>(out var btn))
             {
                 btn.onClick.AddListener(Close);
+                btn.onClick.AddListener(Managers.Sound.PlaySelectSfx);
             }
         }
     }
