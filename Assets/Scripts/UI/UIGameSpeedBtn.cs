@@ -14,11 +14,18 @@ public class UIGameSpeedBtn : MonoBehaviour
     {
         _btn.onClick.RemoveAllListeners();
         _btn.onClick.AddListener(OnBtn);
+        Reset();
+    }
+
+    public void Reset()
+    {
+        _index = 0;
         var info = Managers.Data.GetGameSpeedInfo(_index);
+        Managers.Game.SetGameSpeed(info.speed);
         _btnImage.color = info.color;
         SetText();
     }
-
+    
     void SetText()
     {
         _speedText.text = $"x{Managers.Game.CurGameSpeed}";

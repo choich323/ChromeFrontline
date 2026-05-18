@@ -188,9 +188,9 @@ public class GameManager : MonoBehaviour
         _isEnemyEmergencyTriggered = false;
         Managers.UI.PopupHandler.CloseAllPopup();
         _curGameSpeed = DEFAULT_GAME_SPEED;
+        _gameField.Restart();
         ResumeGame();
         InitAIScheduleHandler();
-        _gameField.Restart();
         Managers.UI.RefreshUI();
     }
 

@@ -61,11 +61,6 @@ public class UIResult : APopup
     private bool _isClearChanged = false;
     private bool _isBestClearTimeChanged = false;
     private bool _isBestHqHpChanged = false;
-    
-    private void OnEnable()
-    {
-        PlaySfx(_resultData.isClear);
-    }
 
     public void SetData(ResultData argResultData)
     {
@@ -94,11 +89,6 @@ public class UIResult : APopup
         _clearIcon.SetActive(false);
         _clearTimeIcon.SetActive(false);
         _hqHpIcon.SetActive(false);
-    }
-
-    void PlaySfx(bool argIsVictory)
-    {
-        Managers.Sound.PlayResultSfx(argIsVictory);
     }
     
     void CheckSave()

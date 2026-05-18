@@ -70,10 +70,11 @@ public class UIManager : MonoBehaviour
 
     public void RefreshUI()
     {
-        UpdateTopHUDText();
+        RefreshTopHUDText();
+        _gameSpeedBtn.Reset();
     }
     
-    void UpdateTopHUDText()
+    void RefreshTopHUDText()
     {
         _topHUDController.UpdateText();
     }

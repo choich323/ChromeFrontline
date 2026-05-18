@@ -11,8 +11,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _selectSfxClip;
     [SerializeField] private AudioClip _upgradeSuccessSfxClip;
     [SerializeField] private AudioClip _upgradeFailSfxClip;
-    [SerializeField] private AudioClip _victorySfxClip;
-    [SerializeField] private AudioClip _defeatSfxClip;
     
     private int _playlistIndex = 0;
     private Coroutine _playlistCoroutine;
@@ -87,10 +85,5 @@ public class SoundManager : MonoBehaviour
     public void PlayUpgradeSfx(bool argIsSuccess)
     {
         _sfxSource.PlayOneShot(argIsSuccess ? _upgradeSuccessSfxClip : _upgradeFailSfxClip);
-    }
-    
-    public void PlayResultSfx(bool argIsVictory)
-    {
-        _sfxSource.PlayOneShot(argIsVictory ? _victorySfxClip : _defeatSfxClip);
     }
 }
