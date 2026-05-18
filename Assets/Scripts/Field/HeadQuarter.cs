@@ -255,9 +255,9 @@ public class HeadQuarter : MonoBehaviour
         return true;
     }
 
-    public void SetSlotGrade(int argIndex, Grade argGrade)
+    public bool SetSlotGrade(int argIndex, Grade argGrade)
     {
-        _spawner.SetSlotGrade(argIndex, argGrade);
+        return _spawner.SetSlotGrade(argIndex, argGrade);
     }
     
     public void ForceSpawn(SpawnRequest spawnRequest)

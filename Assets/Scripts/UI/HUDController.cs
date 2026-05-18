@@ -153,6 +153,8 @@ public class HUDController : MonoBehaviour
             StopCoroutine(_menuAnimCoroutine);
         }
 
+        Managers.Sound.PlaySelectSfx();
+        
         _isSubMenuOpen = !_isSubMenuOpen;
         _menuAnimCoroutine = StartCoroutine(CoAnimateSubMenu(_isSubMenuOpen));
     }

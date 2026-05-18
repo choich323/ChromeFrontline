@@ -132,8 +132,7 @@ public class GameManager : MonoBehaviour
         }
         hq.ConsumeGold(argCost);
         var grade = _slotUpgradeHandler.GetRandomGrade();
-        hq.SetSlotGrade(argIndex, grade);
-        return true;
+        return hq.SetSlotGrade(argIndex, grade);
     }
     
     public ulong GetNewUid()
