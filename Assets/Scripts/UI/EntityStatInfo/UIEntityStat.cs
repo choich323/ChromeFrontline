@@ -4,6 +4,8 @@ using DG.Tweening;
 
 public class UIEntityStat : APopup
 {
+    private const int MULTIPLIER = 100;
+    
     [SerializeField] private TextMeshProUGUI _titleText;
     [SerializeField] private TextMeshProUGUI _hpText;
     [SerializeField] private TextMeshProUGUI _armorText;
@@ -37,9 +39,9 @@ public class UIEntityStat : APopup
         _hpText.text = $"{_entityInfo.hp}";
         _armorText.text = $"{_entityInfo.armor}";
         _attackText.text = $"{_entityInfo.attack}";
-        _criticalText.text = $"{_entityInfo.criticalChance:F0}";
-        _attackSpeedText.text = $"{_entityInfo.attackSpeed}";
-        _moveSpeedText.text = $"{_entityInfo.moveSpeed:F0}";
+        _criticalText.text = $"{_entityInfo.criticalChance * MULTIPLIER:F0}";
+        _attackSpeedText.text = $"{_entityInfo.attackSpeed:F2}";
+        _moveSpeedText.text = $"{_entityInfo.moveSpeed:F2}";
     }
 
     public void SetPos(Vector2 argMousePos)
