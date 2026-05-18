@@ -81,7 +81,7 @@ MonoBehaviour:
   - id: ConfirmHqUpgrade
     value:
       en: Are you sure to upgrade HQ?
-      kr: "HQ\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uD569\uB2C8\uB2E4."
+      kr: "\uAE30\uC9C0\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uD569\uB2C8\uB2E4."
   - id: ConfirmRestartStage
     value:
       en: Are you sure to restart stage?
@@ -161,7 +161,7 @@ MonoBehaviour:
   - id: HqHpMission
     value:
       en: HQ HP {0}%
-      kr: "HQ \uCCB4\uB825 {0}%"
+      kr: "\uAE30\uC9C0 \uCCB4\uB825 {0}%"
   - id: HqInfo
     value:
       en: HQ Info
@@ -169,7 +169,7 @@ MonoBehaviour:
   - id: HqUpgrade
     value:
       en: HQ Upgrade
-      kr: "\uBCF8\uBD80 \uC5C5\uADF8\uB808\uC774\uB4DC"
+      kr: "\uAE30\uC9C0 \uC5C5\uADF8\uB808\uC774\uB4DC"
   - id: HydroPuncher
     value:
       en: Hydro Puncher

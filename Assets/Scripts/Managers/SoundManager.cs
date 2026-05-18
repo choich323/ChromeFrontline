@@ -6,6 +6,11 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private BGMData _ingameBgmData;
     [SerializeField] private AudioSource _bgmSource;
+    [SerializeField] private AudioSource _sfxSource;
+
+    [SerializeField] private AudioClip _selectSfxClip;
+    [SerializeField] private AudioClip _upgradeSuccessSfxClip;
+    [SerializeField] private AudioClip _upgradeFailSfxClip;
     
     private int _playlistIndex = 0;
     private Coroutine _playlistCoroutine;
@@ -46,7 +51,7 @@ public class SoundManager : MonoBehaviour
         _bgmSource.Stop();
     }
 
-    private IEnumerator CoPlayIngameBgm()
+    IEnumerator CoPlayIngameBgm()
     {
         while (true)
         {
@@ -70,5 +75,15 @@ public class SoundManager : MonoBehaviour
             // 다음 인덱스로 이동 (마지막 곡 다음에는 다시 0으로)
             _playlistIndex = (_playlistIndex + 1) % _ingameBgmData.bgmList.Length;
         }
+    }
+    
+    public void PlaySelectSfx()
+    {
+        _sfxSource.PlayOneShot(_selectSfxClip);
+    }
+
+    public void PlayUpgradeSfx(bool argIsSuccess)
+    {
+        _sfxSource.PlayOneShot(argIsSuccess ? _upgradeSuccessSfxClip : _upgradeFailSfxClip);
     }
 }

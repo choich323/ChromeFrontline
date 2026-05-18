@@ -20,7 +20,7 @@ public class AIScheduleHandler
     
     public void Init()
     {
-        _aiScheduleInfo = Managers.Data.GetAIScheduleInfo();
+        _aiScheduleInfo = Managers.Data.GetRandomAIScheduleInfo();
         _nextUpgradeTimer = _aiScheduleInfo.upgradeInterval;
         _nextTpSupplyTimer = _aiScheduleInfo.tpInterval;
         _nextBurstTimer = _aiScheduleInfo.burstInterval;

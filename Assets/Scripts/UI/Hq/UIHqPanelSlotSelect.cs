@@ -71,7 +71,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSlot
 
     void SetBtn(UISlotUnit argSlot)
     {
-        argSlot.SetBtnAction(_goToPanel);
+        argSlot.SetTransitionAction(_goToPanel);
     }
     
     protected override void DestroySlotUnits()

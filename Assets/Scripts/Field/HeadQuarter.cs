@@ -108,6 +108,9 @@ public class HeadQuarter : MonoBehaviour
     public void ForceUpgradeHq()
     {
         var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
+        if (newInfo == null)
+            return;
+        
         _tier = newInfo.level;
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
@@ -139,6 +142,10 @@ public class HeadQuarter : MonoBehaviour
             return;
         
         _hp -= argDamage;
+        if (_hp < 0)
+        {
+            _hp = 0;
+        }
         _onHealthChanged?.Invoke();
         if (_team == Team.Enemy)
         {
@@ -248,9 +255,9 @@ public class HeadQuarter : MonoBehaviour
         return true;
     }
 
-    public void SetSlotGrade(int argIndex, Grade argGrade)
+    public bool SetSlotGrade(int argIndex, Grade argGrade)
     {
-        _spawner.SetSlotGrade(argIndex, argGrade);
+        return _spawner.SetSlotGrade(argIndex, argGrade);
     }
     
     public void ForceSpawn(SpawnRequest spawnRequest)

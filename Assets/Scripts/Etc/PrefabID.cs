@@ -54,13 +54,13 @@ public enum PrefabID
     
     
     // UI
-    UITopHUDPanel = 10001,
+    UIHUDPanel = 10001,
     UIConfirm,
     UIOption,
     UIHqManagement,
     UISlotUnit,
     UIEntityUnit,
-    UIPauseBtn,
+    UIPlayBtnGroup,
     UINotice,
     UISlotUpgradeUnit,
     

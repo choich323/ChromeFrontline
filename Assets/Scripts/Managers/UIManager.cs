@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
     private UIPauseBtn _pauseBtn;
+    private UIGameSpeedBtn _gameSpeedBtn;
     
     public PopupHandler PopupHandler => _popupHandler;
     
@@ -33,12 +34,12 @@ public class UIManager : MonoBehaviour
     void CreateTopHUD()
     {
         CreatTopHUD();
-        CreatePauseBtn();
+        CreatePlayBtnGroup();
     }
 
     void CreatTopHUD()
     {
-        var obj = InstantiateUIWithoutPool(PrefabID.UITopHUDPanel);
+        var obj = InstantiateUIWithoutPool(PrefabID.UIHUDPanel);
         if (obj == null)
         {
             Debug.LogError("top HUD instantiate failed");
@@ -46,19 +47,13 @@ public class UIManager : MonoBehaviour
         }
         _topHUDController = obj.GetComponent<HUDController>();
         var hudTransform = _topHUDController.transform;
-        hudTransform.SetParent(_hudParent);
-        var rect = obj.GetComponent<RectTransform>();
-        if (rect != null)
-        {
-            rect.offsetMin = Vector2.zero;
-            rect.offsetMax = Vector2.zero;
-        }
+        hudTransform.SetParent(_hudParent, false);
         _topHUDController.Init();
     }
 
-    void CreatePauseBtn()
+    void CreatePlayBtnGroup()
     {
-        var obj = InstantiateUIWithoutPool(PrefabID.UIPauseBtn);
+        var obj = InstantiateUIWithoutPool(PrefabID.UIPlayBtnGroup);
         if (obj == null)
         {
             Debug.LogError("pause btn instantiate failed");
@@ -66,22 +61,20 @@ public class UIManager : MonoBehaviour
         }
         _pauseBtn = obj.GetComponent<UIPauseBtn>();
         var btnTransform = _pauseBtn.transform;
-        btnTransform.SetParent(_pauseBtnParent);
-        var rect = obj.GetComponent<RectTransform>();
-        if (rect != null)
-        {
-            rect.offsetMin = Vector2.zero;
-            rect.offsetMax = Vector2.zero;
-        }
+        btnTransform.SetParent(_pauseBtnParent, false);
         _pauseBtn.Init();
+        
+        _gameSpeedBtn = obj.GetComponent<UIGameSpeedBtn>();
+        _gameSpeedBtn.Init();
     }
 
     public void RefreshUI()
     {
-        UpdateTopHUDText();
+        RefreshTopHUDText();
+        _gameSpeedBtn.Reset();
     }
     
-    void UpdateTopHUDText()
+    void RefreshTopHUDText()
     {
         _topHUDController.UpdateText();
     }

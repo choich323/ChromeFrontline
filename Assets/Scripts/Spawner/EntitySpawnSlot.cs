@@ -30,14 +30,15 @@ public class EntitySpawnSlot
         _onTargetChange = argOnTargetChange;
     }
 
-    public void SetGrade(Grade argGrade)
+    public bool SetGrade(Grade argGrade)
     {
         // 하위 등급이면
         if (argGrade <= _grade)
         {
-            return;
+            return false;
         }
         _grade = argGrade;
+        return true;
     }
     
     public void ChangeTarget(PrefabID argTargetId)

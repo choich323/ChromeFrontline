@@ -33,6 +33,7 @@ public class UIHqManagement : APopup
     // esc 키를 누르는 경우 실행
     public override void Close()
     {
+        Managers.Sound.PlaySelectSfx();
         _rightPanel.GoBack();
     }
     

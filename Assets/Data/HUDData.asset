@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HUDData
   m_EditorClassIdentifier: Assembly-CSharp::HUDData
   hudInfoList:
-  - id: UITopHUDPanel
+  - id: UIHUDPanel
     prefab: {fileID: 4763895593107326412, guid: ef11085cc9dd10b4bba8d20383353558, type: 3}
-  - id: UIPauseBtn
+  - id: UIPlayBtnGroup
     prefab: {fileID: 5033326681454855315, guid: 17fa3d349e4b2f948b53b87c55102ed0, type: 3}

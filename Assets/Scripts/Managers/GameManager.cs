@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private const ulong INVALID_UID = 0;
-    private const int DEFAULT_GAME_SPEED = 1;
     private const int DEFAULT_STAGE = 1;
+    private const float DEFAULT_GAME_SPEED = 1f;
     private const float ENTITY_ARRIVAL_GOLD_RATIO = 0.75f;
     
     private ulong _uid = INVALID_UID;
-    private int _curGameSpeed = DEFAULT_GAME_SPEED;
     private int _stage = DEFAULT_STAGE;
+    private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
     private GameField _gameField;
     private bool _isPaused = false;
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
     public bool IsInGame => _isInGame;
+    public float CurGameSpeed  => _curGameSpeed;
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
     public UserRecord UserRecord => _userRecord;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     void CheckEscapeKey()
     {
+        //
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // TODO: 게임 종료 팝업 호출
@@ -130,8 +132,7 @@ public class GameManager : MonoBehaviour
         }
         hq.ConsumeGold(argCost);
         var grade = _slotUpgradeHandler.GetRandomGrade();
-        hq.SetSlotGrade(argIndex, grade);
-        return true;
+        return hq.SetSlotGrade(argIndex, grade);
     }
     
     public ulong GetNewUid()
@@ -152,14 +153,18 @@ public class GameManager : MonoBehaviour
         var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
         popup.Init();
         var resultData = new ResultData();
-        resultData.isVictory = argIsPlayerWin;
+        resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         popup.SetData(resultData);
     }
 
-    public void SetGameSpeed(int argSpeed)
+    public void SetGameSpeed(float argSpeed)
     {
         _curGameSpeed = argSpeed;
+        if (!_isPaused)
+        {
+            Time.timeScale = argSpeed;
+        }
     }
 
     public void PauseGame()
@@ -179,13 +184,13 @@ public class GameManager : MonoBehaviour
     public void RestartStage()
     {
         _uid = INVALID_UID;
-        _curGameSpeed = DEFAULT_GAME_SPEED;
         _elapsedPlayTime = 0f;
         _isEnemyEmergencyTriggered = false;
         Managers.UI.PopupHandler.CloseAllPopup();
+        _curGameSpeed = DEFAULT_GAME_SPEED;
+        _gameField.Restart();
         ResumeGame();
         InitAIScheduleHandler();
-        _gameField.Restart();
         Managers.UI.RefreshUI();
     }
 
@@ -194,9 +199,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("out from stage.");
         _isInGame = false;
         Managers.UI.PopupHandler.CloseAllPopup();
-        
-        // TODO: 실제 씬 이름을 가져오도록 수정 필요
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby Scene");
     }
 
     public void ForceSpawn(SpawnRequest argSpawnRequest)

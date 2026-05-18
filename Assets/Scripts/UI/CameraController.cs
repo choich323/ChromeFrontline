@@ -1,57 +1,59 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
     private const float MIN_BOUNDARY_X = -8f;
-    private const float MAX_BOUNDARY_X = 22f;
-    private const float DEFAULT_SENSITIVITY = 0.22f;
-    private const float DEFAULT_SLIDING_AMOUNT = 3.0f;
+    private const float MAX_BOUNDARY_X = 30f;
+    private const float DEFAULT_SENSITIVITY = 30f;
+    private const float DEFAULT_SLIDING_AMOUNT = 10.0f;
     
     [Header("Boundary Settings")]
     [SerializeField] private float _minX = MIN_BOUNDARY_X;
     [SerializeField] private float _maxX = MAX_BOUNDARY_X;
     [SerializeField] private Camera _mainCam;
 
-    [Range(0.01f, 1f)]
-    [SerializeField] private float _smoothSpeed = DEFAULT_SENSITIVITY; // 낮을수록 부드러움
+    [Range(1f, 100f)]
+    [SerializeField] private float _smoothSpeed = DEFAULT_SENSITIVITY;
     [Range(0f, 50f)]
-    [SerializeField] private float _slidingAmount = DEFAULT_SLIDING_AMOUNT; // 슬라이딩 강도
+    [SerializeField] private float _slidingAmount = DEFAULT_SLIDING_AMOUNT;
     
     public float Sensitivity => _smoothSpeed;
     
     private Vector2 _lastScreenPos;
     private bool _isDragging = false;
     private float _targetX;
-    private float _lastDeltaX; // 마지막 프레임의 이동량
+    private float _lastDeltaX;
 
-    private void Awake()
+    public void Init()
     {
-        if(_mainCam == null)
-            _mainCam = Camera.main;
+        if (_mainCam == null) _mainCam = Camera.main;
         _targetX = transform.position.x;
-        SetSensitivity(DEFAULT_SENSITIVITY);
     }
 
     void Update()
     {
-        var pointer = Pointer.current;
-        if (pointer == null) return;
+        HandleInput();
+    }
 
-        Vector2 screenPos = pointer.position.ReadValue();
-        // 방금 터치했는지
-        bool wasPressed = pointer.press.wasPressedThisFrame;
-        // 지금 터치 중인지
-        bool isPressed = pointer.press.isPressed;
-        // 방금 터치를 해제했는지
-        bool wasReleased = pointer.press.wasReleasedThisFrame;
+    void LateUpdate()
+    {
+        MoveCamera();
+    }
 
+    // 1. 입력 처리 및 드래그 계산 로직
+    void HandleInput()
+    {
+        Vector2 screenPos = Input.mousePosition;
+        bool wasPressed = Input.GetMouseButtonDown(0);
+        bool isPressed = Input.GetMouseButton(0);
+        bool wasReleased = Input.GetMouseButtonUp(0);
+
+        // 드래그 시작
         if (wasPressed)
         {
-            if (IsPointerOverUI(screenPos))
+            if (IsPointerOverUI())
             {
                 _isDragging = false;
             }
@@ -63,12 +65,12 @@ public class CameraController : MonoBehaviour
             }
         }
 
+        // 드래그 중
         if (isPressed && _isDragging)
         {
             Vector3 lastWorldPos = ScreenToWorld(_lastScreenPos);
             Vector3 curWorldPos = ScreenToWorld(screenPos);
             
-            // screen을 얼마나 이동시킨 것인지 계산
             _lastDeltaX = lastWorldPos.x - curWorldPos.x;
             _targetX += _lastDeltaX;
             _targetX = Mathf.Clamp(_targetX, _minX, _maxX);
@@ -76,32 +78,45 @@ public class CameraController : MonoBehaviour
             _lastScreenPos = screenPos;
         }
 
+        // 드래그 종료 및 관성 적용
         if (wasReleased && _isDragging)
         {
-            // 관성 가중치만큼 목적지를 재설정
             _targetX += _lastDeltaX * _slidingAmount;
             _targetX = Mathf.Clamp(_targetX, _minX, _maxX);
             _isDragging = false;
         }
-        
-        float smoothedX = Mathf.Lerp(transform.position.x, _targetX, _smoothSpeed);
+    }
+    
+    void MoveCamera()
+    {
+        // Time.deltaTime을 곱해 프레임 변동폭 보정. 
+        // (기존 _smoothSpeed 수치 체감이 달라질 수 있으므로 뒤에 보정값(예: 10f)을 곱해줍니다)
+        float smoothedX = Mathf.Lerp(transform.position.x, _targetX, _smoothSpeed * Time.unscaledDeltaTime);
         transform.position = new Vector3(smoothedX, transform.position.y, transform.position.z);
     }
 
     Vector3 ScreenToWorld(Vector2 argScreenPos)
     {
-        return _mainCam.ScreenToWorldPoint(new Vector3(argScreenPos.x, argScreenPos.y, _mainCam.nearClipPlane));
+        float zDepth = Mathf.Abs(_mainCam.transform.position.z);
+        return _mainCam.ScreenToWorldPoint(new Vector3(argScreenPos.x, argScreenPos.y, zDepth));
     }
 
-    bool IsPointerOverUI(Vector2 argScreenPos)
+    bool IsPointerOverUI()
     {
         if (EventSystem.current == null) return false;
-        PointerEventData eventData = new PointerEventData(EventSystem.current)
+
+        // 모바일 환경 (실기기): 터치 ID 기반 내장 함수가 가장 정확함
+        if (Application.isMobilePlatform && Input.touchCount > 0)
         {
-            position = argScreenPos
-        };
-        var results = new List<RaycastResult>();
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+        }
+        
+        // PC/에디터 환경: 1프레임 딜레이를 무시하고 마우스 위치에 물리적으로 직접 레이캐스트를 쏨
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        var results = new System.Collections.Generic.List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
+        
         return results.Count > 0;
     }
 

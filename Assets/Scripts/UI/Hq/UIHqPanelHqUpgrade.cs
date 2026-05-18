@@ -10,7 +10,6 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
     [SerializeField] private TextMeshProUGUI _hpText;
     [SerializeField] private TextMeshProUGUI _gpsText;
     [SerializeField] private TextMeshProUGUI _tierText;
-    [SerializeField] private TextMeshProUGUI _slotText;
     [SerializeField] private TextMeshProUGUI _productionTimeText;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private GameObject _costIcon;
@@ -45,7 +44,6 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
             _hpText.text = $"{_hqUpgradeInfo.maxHp}";
             _gpsText.text = $"{_hqUpgradeInfo.goldPerSecond}";
             _tierText.text = $"{_hqUpgradeInfo.level}";
-            _slotText.text = $"{_hqUpgradeInfo.maxSlotCount}";
             _productionTimeText.text = $"{_hqUpgradeInfo.productionTimeBonus * HUNDRED_PERCENT}%";
             _costText.text = Managers.String.GetString(StringID.MaxLevel);
             _costIcon.SetActive(false);
@@ -57,7 +55,6 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
         _hpText.text = $"{_hqUpgradeInfo.maxHp} -> <color=#{colorHex}>{newInfo.maxHp}</color>";
         _gpsText.text = $"{_hqUpgradeInfo.goldPerSecond} -> <color=#{colorHex}>{newInfo.goldPerSecond}</color>";
         _tierText.text = $"{_hqUpgradeInfo.level} -> <color=#{colorHex}>{newInfo.level}</color>";
-        _slotText.text = $"{_hqUpgradeInfo.maxSlotCount} -> <color=#{colorHex}>{newInfo.maxSlotCount}</color>";
         _productionTimeText.text = $"{_hqUpgradeInfo.productionTimeBonus*HUNDRED_PERCENT}% -> <color=#{colorHex}>{newInfo.productionTimeBonus*HUNDRED_PERCENT}%</color>";
         
         _costIcon.SetActive(true);
@@ -66,6 +63,9 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
 
     void OnBtnUpgrade()
     {
+        var sound = Managers.Sound;
+        sound.PlaySelectSfx();
+        
         var ph = Managers.UI.PopupHandler;
         var popup = ph.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         popup.Init();
@@ -83,6 +83,7 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
 
         void OnClose()
         {
+            sound.PlaySelectSfx();
             ph.ClosePopup();
             
             if (isConfirm)
@@ -90,6 +91,7 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
                 var success = Managers.Game.GameField.PlayerHq.UpgradeHq();
                 if (success)
                 {
+                    sound.PlayUpgradeSfx(true);
                     _hqUpgradeInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.level + 1);
                     SetPanel();
                 }

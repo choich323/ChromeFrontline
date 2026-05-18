@@ -1,13 +1,12 @@
 using System;
 using TMPro;
-using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UI;
 
 public struct ResultData
 {
     public int stage;
-    public bool isVictory;
+    public bool isClear;
 }
 
 public class UIResult : APopup
@@ -62,7 +61,7 @@ public class UIResult : APopup
     private bool _isClearChanged = false;
     private bool _isBestClearTimeChanged = false;
     private bool _isBestHqHpChanged = false;
-    
+
     public void SetData(ResultData argResultData)
     {
         Clear();
@@ -99,13 +98,13 @@ public class UIResult : APopup
         var oldUserRecord = Gm.UserRecord;
 
         var stageBestRecord = oldUserRecord.GetStageBestRecord(_resultData.stage);
-        if (!stageBestRecord.clear && _resultData.isVictory)
+        if (!stageBestRecord.clear && _resultData.isClear)
         {
             _isClearChanged = true;
             stageBestRecord.clear = true;
         }
 
-        if (_resultData.isVictory && _playTime < stageBestRecord.clearTime)
+        if (_resultData.isClear && _playTime < stageBestRecord.clearTime)
         {
             _isBestClearTimeChanged = true;
             stageBestRecord.clearTime = _playTime;
@@ -131,8 +130,20 @@ public class UIResult : APopup
         _retryBtn.onClick.RemoveAllListeners();
         _exitBtn.onClick.RemoveAllListeners();
         
-        _retryBtn.onClick.AddListener(Managers.Game.RestartStage);
-        _exitBtn.onClick.AddListener(Managers.Game.ExitStage);
+        _retryBtn.onClick.AddListener(Restart);
+        _exitBtn.onClick.AddListener(Exit);
+    }
+
+    void Restart()
+    {
+        Managers.Sound.PlaySelectSfx();
+        Managers.Game.RestartStage();
+    }
+
+    void Exit()
+    {
+        Managers.Sound.PlaySelectSfx();
+        Managers.Game.ExitStage();
     }
     
     void SetText()
@@ -145,7 +156,7 @@ public class UIResult : APopup
 
     void SetTitleText()
     {
-        _titleText.text = _resultData.isVictory ? Sm.GetString(StringID.Victory) : Sm.GetString(StringID.Defeat);
+        _titleText.text = _resultData.isClear ? Sm.GetString(StringID.Victory) : Sm.GetString(StringID.Defeat);
     }
 
     void SetMissionText()
@@ -156,25 +167,29 @@ public class UIResult : APopup
         
         // Clear Mission
         _clearMissionText.text = Sm.GetString(StringID.Clear);
-        var clearText = _resultData.isVictory ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
+        var clearText = _resultData.isClear ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
         _clearText.text = clearText;
-        var bestClear = stageRecord.clear ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
-        _clearBestText.text = Sm.GetString(StringID.Best, bestClear);
+
         if (_isClearChanged)
         {
             _clearNewTextObject.SetActive(true);
+        }
+        else
+        {
+            _clearNewTextObject.SetActive(false);
         }
 
         // Clear Time Mission
         var clearMissionTimeThreshold = GetConvertedTimeText(CLEAR_TIME_THRESHOLD);
         _clearTimeMissionText.text = Sm.GetString(StringID.ClearTimeMission, clearMissionTimeThreshold);
         _clearTimeText.text = GetConvertedTimeText(Gm.PlayTime);
-        string bestClearTimeText = _isBestClearTimeChanged ? _clearTimeText.text : GetConvertedTimeText(stageRecord.clearTime);
-        _clearTimeBestText.text = Sm.GetString(StringID.Best, bestClearTimeText);
-        
         if (_isBestClearTimeChanged)
         {
             _clearTimeNewTextObject.SetActive(true);
+        }
+        else
+        {
+            _clearTimeNewTextObject.SetActive(false);
         }
         
         // HqHp Mission
@@ -185,11 +200,36 @@ public class UIResult : APopup
             hpRatio = 0f;
         }
         _hqHpText.text = $"{hpRatio:N0}%";
-        var bestHpText = _isBestHqHpChanged ? _hqHpText.text : stageRecord.hqhpRatio + "%";
-        _hqHpBestText.text = Sm.GetString(StringID.Best, bestHpText);
         if (_isBestHqHpChanged)
         {
             _hqHpNewTextObject.SetActive(true);
+        }
+        else
+        {
+            _hqHpNewTextObject.SetActive(false);
+        }
+        
+        
+        bool hasCleared = stageRecord.clear;
+        if (hasCleared)
+        {
+            var bestClear = Sm.GetString(StringID.Success);
+            _clearBestText.text = Sm.GetString(StringID.Best, bestClear);
+            _clearBestText.gameObject.SetActive(true);
+            
+            string bestClearTimeText = _isBestClearTimeChanged ? _clearTimeText.text : GetConvertedTimeText(stageRecord.clearTime);
+            _clearTimeBestText.text = Sm.GetString(StringID.Best, bestClearTimeText);
+            _clearTimeBestText.gameObject.SetActive(true);
+            
+            var bestHpText = _isBestHqHpChanged ? _hqHpText.text : stageRecord.hqhpRatio + "%";
+            _hqHpBestText.text = Sm.GetString(StringID.Best, bestHpText);
+            _hqHpBestText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _clearBestText.gameObject.SetActive(false);
+            _clearTimeBestText.gameObject.SetActive(false);
+            _hqHpBestText.gameObject.SetActive(false);
         }
     }
 
@@ -224,25 +264,38 @@ public class UIResult : APopup
     {
         var ur = Gm.UserRecord;
         var stage = _resultData.stage;
+        
         if (ur.IsClear(stage))
         {
             _clearIcon.SetActive(true);
+        }
+        else
+        {
+            _clearIcon.SetActive(false);
         }
 
         if (ur.IsClearInTime(stage))
         {
             _clearTimeIcon.SetActive(true);
         }
+        else
+        {
+            _clearTimeIcon.SetActive(false);
+        }
 
         if (ur.IsClearHqHp(stage))
         {
             _hqHpIcon.SetActive(true);
         }
+        else
+        {
+            _hqHpIcon.SetActive(false);
+        }
     }
     
     void SetColor()
     {
-        if (_resultData.isVictory)
+        if (_resultData.isClear)
         {
             _bgImage.color = _bgVictoryColor;
             _titleText.color = _victoryTextColor;

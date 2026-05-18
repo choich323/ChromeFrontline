@@ -82,6 +82,7 @@ public class UIHqRightPanel : MonoBehaviour
 
     public void GoBack()
     {
+        Managers.Sound.PlaySelectSfx();
         if (_panelStack.Count > 0)
         {
             var nextPanelType = _panelStack.Pop();

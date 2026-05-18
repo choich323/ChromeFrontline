@@ -42,6 +42,7 @@ public class UISelector : MonoBehaviour
     
     void OnLeftClick()
     {
+        Managers.Sound.PlaySelectSfx();
         _curIndex--;
         if (_curIndex < 0)
         {
@@ -54,6 +55,7 @@ public class UISelector : MonoBehaviour
 
     void OnRightClick()
     {
+        Managers.Sound.PlaySelectSfx();
         _curIndex++;
         if (_curIndex >= _options.Count)
         {

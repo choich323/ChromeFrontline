@@ -40,7 +40,8 @@ public class HUDController : MonoBehaviour
     private bool _isRestarting = false;
     private Coroutine _menuAnimCoroutine;
 
-    bool IsPaused => Managers.Game.IsPaused;
+    private bool IsPaused => Managers.Game.IsPaused;
+    private SoundManager Sm => Managers.Sound;
 
     public void Init()
     {
@@ -139,6 +140,8 @@ public class HUDController : MonoBehaviour
 
     void OnBtnHq()
     {
+        Sm.PlaySelectSfx();
+        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIHqManagement>(PrefabID.UIHqManagement);
         popup.SetOnClose(OnBtnPopupClose);
     }
@@ -150,6 +153,8 @@ public class HUDController : MonoBehaviour
             StopCoroutine(_menuAnimCoroutine);
         }
 
+        Managers.Sound.PlaySelectSfx();
+        
         _isSubMenuOpen = !_isSubMenuOpen;
         _menuAnimCoroutine = StartCoroutine(CoAnimateSubMenu(_isSubMenuOpen));
     }
@@ -192,12 +197,16 @@ public class HUDController : MonoBehaviour
 
     void OnBtnOption()
     {
+        Sm.PlaySelectSfx();
+        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIOption>(PrefabID.UIOption);
         popup.SetOnClose(OnBtnPopupClose);
     }
     
     void OnBtnReStart()
     {
+        Sm.PlaySelectSfx();
+        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmRestartStage);
@@ -216,6 +225,7 @@ public class HUDController : MonoBehaviour
 
     void OnBtnPopupClose()
     {
+        Sm.PlaySelectSfx();
         Managers.UI.PopupHandler.ClosePopup();
     }
     

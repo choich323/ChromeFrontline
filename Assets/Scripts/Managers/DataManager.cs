@@ -12,6 +12,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
     [SerializeField] private AddSlotCostData _addSlotCostData;
     [SerializeField] private GradeData _gradeData;
+    [SerializeField] private GameSpeedData _gameSpeedData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -21,6 +22,7 @@ public class DataManager : MonoBehaviour
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
+    private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
     
     public int StartGold => _playerCurrencyData.startGold;
     
@@ -80,9 +82,14 @@ public class DataManager : MonoBehaviour
             _addSlotCostInfoList.Add(info);
         }
 
-        foreach (var data in _gradeData.GetInfoList())
+        foreach (var info in _gradeData.GetInfoList())
         {
-            _gradeInfoList.Add(data);
+            _gradeInfoList.Add(info);
+        }
+
+        foreach (var info in _gameSpeedData.GetInfoList())
+        {
+            _gameSpeedInfoList.Add(info);
         }
     }
 
@@ -138,7 +145,7 @@ public class DataManager : MonoBehaviour
         return isFind;
     }
 
-    public AIScheduleInfo GetAIScheduleInfo()
+    public AIScheduleInfo GetRandomAIScheduleInfo()
     {
         int randIndex = UnityEngine.Random.Range(0, _aiScheduleInfoList.Count);
         return _aiScheduleInfoList[randIndex];
@@ -188,5 +195,14 @@ public class DataManager : MonoBehaviour
     public IEnumerable<GradeInfo> GetGradeInfoList()
     {
         return _gradeInfoList;
+    }
+
+    public GameSpeedInfo GetGameSpeedInfo(int argIndex)
+    {
+        if (argIndex >= _gameSpeedInfoList.Count)
+        {
+            argIndex = 0;
+        }
+        return _gameSpeedInfoList[argIndex];
     }
 }

@@ -59,6 +59,7 @@ namespace TMPro.Examples
 
             if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
                 Input.simulateMouseWithTouches = false;
+            
 
             cameraTransform = transform;
             previousSmoothing = MovementSmoothing;

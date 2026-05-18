@@ -42,6 +42,7 @@ public class Managers : MonoBehaviour
             if (Camera.main != null)
             {
                 _cameraController = Camera.main.GetComponent<CameraController>();
+                _cameraController.Init();
             }
         }
         else
