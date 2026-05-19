@@ -28,7 +28,7 @@ public class UIGameSpeedBtn : MonoBehaviour
     
     void SetText()
     {
-        _speedText.text = $"x{Managers.Game.CurGameSpeed}";
+        _speedText.SetText($"x{Managers.Game.CurGameSpeed}");
     }
     
     void OnBtn()

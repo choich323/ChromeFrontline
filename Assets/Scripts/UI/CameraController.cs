@@ -105,7 +105,6 @@ public class CameraController : MonoBehaviour
     {
         if (EventSystem.current == null) return false;
 
-        // 모바일 환경 (실기기): 터치 ID 기반 내장 함수가 가장 정확함
         if (Application.isMobilePlatform && Input.touchCount > 0)
         {
             return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);

@@ -76,9 +76,9 @@ public class UIEntityUnit : MonoBehaviour
         var sm = Managers.String;
         var dm = Managers.Data;
         var stringId = dm.ConvertStringToStringID(_entityInfo.id);
-        _nameText.text = sm.GetString(stringId);
-        _productionTimeText.text = $"{_entityInfo.productionTime}";
-        _goldText.text = $"{_entityInfo.goldCost}";
+        _nameText.SetText(sm.GetString(stringId));
+        _productionTimeText.SetText($"{_entityInfo.productionTime}");
+        _goldText.SetText($"{_entityInfo.goldCost}");
     }
 
     void SetBtnSelect()

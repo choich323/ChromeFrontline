@@ -68,7 +68,7 @@ public class UISelector : MonoBehaviour
 
     public void RefreshText()
     {
-        _valueText.text = _options[_curIndex];
+        _valueText.SetText(_options[_curIndex]);
     }
 
     public void SetOptions(List<string> argOptions)

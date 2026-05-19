@@ -41,24 +41,24 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
         var newInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.level + 1);
         if (newInfo == null)
         {
-            _hpText.text = $"{_hqUpgradeInfo.maxHp}";
-            _gpsText.text = $"{_hqUpgradeInfo.goldPerSecond}";
-            _tierText.text = $"{_hqUpgradeInfo.level}";
-            _productionTimeText.text = $"{_hqUpgradeInfo.productionTimeBonus * HUNDRED_PERCENT}%";
-            _costText.text = Managers.String.GetString(StringID.MaxLevel);
+            _hpText.SetText($"{_hqUpgradeInfo.maxHp}");
+            _gpsText.SetText($"{_hqUpgradeInfo.goldPerSecond}");
+            _tierText.SetText($"{_hqUpgradeInfo.level}");
+            _productionTimeText.SetText($"{_hqUpgradeInfo.productionTimeBonus * HUNDRED_PERCENT}%");
+            _costText.SetText(Managers.String.GetString(StringID.MaxLevel));
             _costIcon.SetActive(false);
             _btnUpgrade.interactable = false;
             return;
         }
         
         var colorHex = ColorUtility.ToHtmlStringRGB(_upgradeHighlightColor);
-        _hpText.text = $"{_hqUpgradeInfo.maxHp} -> <color=#{colorHex}>{newInfo.maxHp}</color>";
-        _gpsText.text = $"{_hqUpgradeInfo.goldPerSecond} -> <color=#{colorHex}>{newInfo.goldPerSecond}</color>";
-        _tierText.text = $"{_hqUpgradeInfo.level} -> <color=#{colorHex}>{newInfo.level}</color>";
-        _productionTimeText.text = $"{_hqUpgradeInfo.productionTimeBonus*HUNDRED_PERCENT}% -> <color=#{colorHex}>{newInfo.productionTimeBonus*HUNDRED_PERCENT}%</color>";
+        _hpText.SetText($"{_hqUpgradeInfo.maxHp} -> <color=#{colorHex}>{newInfo.maxHp}</color>");
+        _gpsText.SetText($"{_hqUpgradeInfo.goldPerSecond} -> <color=#{colorHex}>{newInfo.goldPerSecond}</color>");
+        _tierText.SetText($"{_hqUpgradeInfo.level} -> <color=#{colorHex}>{newInfo.level}</color>");
+        _productionTimeText.SetText($"{_hqUpgradeInfo.productionTimeBonus*HUNDRED_PERCENT}% -> <color=#{colorHex}>{newInfo.productionTimeBonus*HUNDRED_PERCENT}%</color>");
         
         _costIcon.SetActive(true);
-        _costText.text = $"{newInfo.upgradeCost}";
+        _costText.SetText($"{newInfo.upgradeCost}");
     }
 
     void OnBtnUpgrade()

@@ -38,6 +38,7 @@ public class HUDController : MonoBehaviour
     
     private bool _isSubMenuOpen = false;
     private bool _isRestarting = false;
+    private int _lastTotalSeconds = -1;
     private Coroutine _menuAnimCoroutine;
 
     private bool IsPaused => Managers.Game.IsPaused;
@@ -103,7 +104,7 @@ public class HUDController : MonoBehaviour
         float hpRatio = hq.GetHqHpRatio();
         
         _hpSlider.value = hpRatio;
-        _hpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
+        _hpText.SetText($"{(hpRatio * HUNDRED_PERCENT):N0}%");
     }
 
     void UpdateEnemyHp()
@@ -111,30 +112,36 @@ public class HUDController : MonoBehaviour
         var hq = Managers.Game.GameField.EnemyHq;
         var hpRatio = hq.GetHqHpRatio();
         _enemyHpSlider.value = hpRatio;
-        _enemyHpText.text = $"{(hpRatio * HUNDRED_PERCENT):N0}%";
+        _enemyHpText.SetText($"{(hpRatio * HUNDRED_PERCENT):N0}%");
     }
     
     void UpdateGold()
     {
         var curGold = Managers.Game.GameField.PlayerHq.Gold;
-        _goldText.text = $"{curGold}";
+        _goldText.SetText($"{curGold}");
     }
 
     void UpdateTimer()
     {
-        var playTime = Managers.Game.PlayTime;
+        var totalSeconds = Mathf.FloorToInt(Managers.Game.PlayTime);
+        if (totalSeconds == _lastTotalSeconds)
+        {
+            return;
+        }
+
+        _lastTotalSeconds = totalSeconds;
         
-        int hours = Mathf.FloorToInt(playTime / HOUR_TO_SECOND);
-        int minutes = Mathf.FloorToInt((playTime % HOUR_TO_SECOND) / MINUTE_TO_SECOND);
-        int seconds = Mathf.FloorToInt(playTime % MINUTE_TO_SECOND);
+        int hours = Mathf.FloorToInt(totalSeconds / HOUR_TO_SECOND);
+        int minutes = Mathf.FloorToInt((totalSeconds % HOUR_TO_SECOND) / MINUTE_TO_SECOND);
+        int seconds = Mathf.FloorToInt(totalSeconds % MINUTE_TO_SECOND);
 
         if (hours > 0)
         {
-            _timerText.text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
+            _timerText.SetText($"{hours:D2}:{minutes:D2}:{seconds:D2}");
         }
         else
         {
-            _timerText.text = $"{minutes:D2}:{seconds:D2}";
+            _timerText.SetText($"{minutes:D2}:{seconds:D2}");
         }
     }
 

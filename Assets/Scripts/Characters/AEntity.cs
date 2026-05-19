@@ -125,6 +125,9 @@ public abstract class AEntity : MonoBehaviour
     private Action<long> _onKill;
     private Coroutine _dieAnimCoroutine;
     private Coroutine _attackAnimCoroutine;
+    private WaitForSeconds _attackWaitTime;
+    private WaitForSeconds _attackRemainTime;
+    private WaitForSeconds _dieWaitTime;
     
     public EntityStatus EntityStatus => _entityStatus;
     public PrefabID Id => _id;
@@ -168,6 +171,10 @@ public abstract class AEntity : MonoBehaviour
         _onDie = argOnDie;
         _onKill = argOnKill;
         _attackCooldownTimer = 0f;
+        
+        _attackWaitTime = new WaitForSeconds(_attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed);
+        _attackRemainTime = new WaitForSeconds(_attackAnimDuration * (1f - _attackHitTiming) / _entityStatus.attackSpeed);
+        _dieWaitTime = new WaitForSeconds(_dieAnimDuration);
         
         Physics2D.SyncTransforms();
     }
@@ -332,7 +339,7 @@ public abstract class AEntity : MonoBehaviour
 
         var waitTime = _attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed;
         
-        yield return new WaitForSeconds(waitTime);
+        yield return _attackWaitTime;
         
         float damage = _entityStatus.attack;
         float criticalChance = _entityStatus.criticalChance;
@@ -344,7 +351,7 @@ public abstract class AEntity : MonoBehaviour
         argTarget.GetEffect(EffectType.Attack, damage, this);
 
         float remainTime = _attackAnimDuration * (1f - _attackHitTiming) / _entityStatus.attackSpeed;
-        yield return new WaitForSeconds(remainTime);
+        yield return _attackRemainTime;
         
         _entityStatus.canAction = true;
         _attackAnimCoroutine = null;
@@ -405,7 +412,7 @@ public abstract class AEntity : MonoBehaviour
         _animator.ResetTrigger(ANIM_STATE_ATTACK);
         _animator.SetTrigger(TRIGGER_DIE);
 
-        yield return new WaitForSeconds(_dieAnimDuration);
+        yield return _dieWaitTime;
 
         Destroy();
     }
@@ -454,6 +461,10 @@ public abstract class AEntity : MonoBehaviour
             StopCoroutine(_attackAnimCoroutine);
         }
         _attackAnimCoroutine = null;
+
+        _attackWaitTime = null;
+        _attackRemainTime = null;
+        _dieWaitTime = null;
     }
 
     protected virtual bool CheckArrival()

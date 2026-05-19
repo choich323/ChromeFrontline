@@ -35,13 +35,13 @@ public class UIEntityStat : APopup
     void SetText()
     {
         var sm = Managers.String;
-        _titleText.text = sm.GetString(StringID.EntityStat);
-        _hpText.text = $"{_entityInfo.hp}";
-        _armorText.text = $"{_entityInfo.armor}";
-        _attackText.text = $"{_entityInfo.attack}";
-        _criticalText.text = $"{_entityInfo.criticalChance * MULTIPLIER:F0}";
-        _attackSpeedText.text = $"{_entityInfo.attackSpeed:F2}";
-        _moveSpeedText.text = $"{_entityInfo.moveSpeed:F2}";
+        _titleText.SetText(sm.GetString(StringID.EntityStat));
+        _hpText.SetText($"{_entityInfo.hp}");
+        _armorText.SetText($"{_entityInfo.armor}");
+        _attackText.SetText($"{_entityInfo.attack}");
+        _criticalText.SetText($"{_entityInfo.criticalChance * MULTIPLIER:F0}");
+        _attackSpeedText.SetText($"{_entityInfo.attackSpeed:F2}");
+        _moveSpeedText.SetText($"{_entityInfo.moveSpeed:F2}");
     }
 
     public void SetPos(Vector2 argMousePos)

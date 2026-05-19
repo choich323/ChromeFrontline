@@ -45,12 +45,12 @@ public class UISlotUpgradeUnit : MonoBehaviour
         var gradeInfo = Managers.Data.GetGradeInfo(_grade);
         _bg.color = gradeInfo.color;
         
-        _slotNumber.text = $"{_slotIndex + 1:D2}";
+        _slotNumber.SetText($"{_slotIndex + 1:D2}");
         if(_grade < Grade.Ultimate)
         {
             _canUpgrade.SetActive(true);
             _gradeMax.SetActive(false);
-            _goldText.text = $"{gradeInfo.gold}";
+            _goldText.SetText($"{gradeInfo.gold}");
             _btnSlot.interactable = true;
         }
         else

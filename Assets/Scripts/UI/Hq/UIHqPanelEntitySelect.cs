@@ -78,7 +78,7 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
 
     void SetText()
     {
-        _stopBtnText.text = Managers.String.GetString(StringID.StopProducing);
+        _stopBtnText.SetText(Managers.String.GetString(StringID.StopProducing));
     }
 
     public void OnBtnStopProducing()

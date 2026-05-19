@@ -29,12 +29,12 @@ public class UIConfirm : APopup
 
     public void SetData(string argMsg, Action argConfirmAction, Action argCancelAction, string argConfirmText, string argCancelText)
     {
-        _msgText.text = argMsg;
+        _msgText.SetText(argMsg);
         _confirmAction = argConfirmAction;
         _onClose = argCancelAction;
         
-        _confirmText.text = argConfirmText;
-        _cancelText.text = argCancelText;
+        _confirmText.SetText(argConfirmText);
+        _cancelText.SetText(argCancelText);
         
         _confirmBtn.onClick.RemoveAllListeners();
         _confirmBtn.onClick.AddListener(() =>

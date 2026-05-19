@@ -12,7 +12,7 @@ public class UIAddSlotUnit : MonoBehaviour
     
     public void SetText(int argCost)
     {
-        _costText.text = $"{argCost}";
+        _costText.SetText($"{argCost}");
     }
 
     public void Init(Action argOnAddBtn)
