@@ -50,7 +50,7 @@ public class UISlotUpgradeUnit : MonoBehaviour
         {
             _canUpgrade.SetActive(true);
             _gradeMax.SetActive(false);
-            _goldText.SetText($"{gradeInfo.gold}");
+            _goldText.SetText("{0}", gradeInfo.gold);
             _btnSlot.interactable = true;
         }
         else

@@ -140,7 +140,7 @@ public abstract class AEntity : MonoBehaviour
     public Grade Grade => _entityStatus.grade;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
+    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Grade argGrade, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
     {
         _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
@@ -163,7 +163,7 @@ public abstract class AEntity : MonoBehaviour
             _direction = Vector2.left;
             _spriteRenderer.flipX = !argEntityInfo.isOriginalSpriteFacingLeft;
         }
-        SetEntityInfo(argEntityInfo);
+        SetEntityInfo(argEntityInfo, argGrade);
         _dieAnimDuration = argEntityInfo.dieAnimDuration;
         _attackAnimDuration = argEntityInfo.attackAnimDuration;
         _attackHitTiming = argEntityInfo.attackHitTiming;
@@ -179,10 +179,10 @@ public abstract class AEntity : MonoBehaviour
         Physics2D.SyncTransforms();
     }
     
-    void SetEntityInfo(EntityInfo argEntityInfo)
+    void SetEntityInfo(EntityInfo argEntityInfo, Grade argGrade)
     {
         _entityStatus.camp = argEntityInfo.camp;
-        var grade = argEntityInfo.grade;
+        var grade = argGrade;
         var gradeInfo = Managers.Data.GetGradeInfo(grade);
         _entityStatus.grade = grade;
         _entityStatus.curLevel = argEntityInfo.level;
@@ -446,7 +446,7 @@ public abstract class AEntity : MonoBehaviour
         _attackHitTiming = 0.8f;
         _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
         EntityInfo emptyEntityInfo = new EntityInfo();
-        SetEntityInfo(emptyEntityInfo);
+        SetEntityInfo(emptyEntityInfo, Grade.Standard);
         _targetHqCoreTransform = null;
         _attackCooldownTimer = 0f;
         

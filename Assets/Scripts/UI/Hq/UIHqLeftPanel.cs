@@ -10,21 +10,45 @@ public class UIHqLeftPanel : MonoBehaviour
 
     public void Init()
     {
-        
-    }
-    
-    void Update()
-    {
-        SetText();
+        var hq = Managers.Game.GameField.PlayerHq;
+        hq.OnGoldChanged -= SetGoldText;
+        hq.OnGoldChanged += SetGoldText;
+        hq.OnHealthChanged -= SetHpText;
+        hq.OnHealthChanged += SetHpText;
+        hq.OnEntityCountChanged -= SetEntityCountText;
+        hq.OnEntityCountChanged += SetEntityCountText;
+        hq.OnTierChanged -= SetTier;
+        hq.OnTierChanged += SetTier;
+        RefreshText();
     }
 
-    void SetText()
+    void RefreshText()
     {
         var hq = Managers.Game.GameField.PlayerHq;
-        _tierText.SetText($"{hq.Tier}");
-        _hpValueText.SetText($"{hq.Hp}");
-        _entityCountValueText.SetText($"{hq.GetEntitiesCount()}");
-        _goldValueText.SetText($"{hq.Gold}");
+        SetTier(hq.Tier);
+        SetGoldText(hq.Gold);
+        _hpValueText.SetText("{0}", hq.Hp);
+        SetEntityCountText(hq.GetEntitiesCount());
+    }
+    
+    void SetTier(int argTier)
+    {
+        _tierText.SetText("{0}", argTier);
+    }
+
+    void SetGoldText(long argGold)
+    {
+        _goldValueText.SetText("{0}", argGold);
+    }
+
+    void SetHpText(int argHp, int _)
+    {
+        _hpValueText.SetText("{0}", argHp);
+    }
+
+    void SetEntityCountText(int argEntityCount)
+    {
+        _entityCountValueText.SetText("{0}", argEntityCount);
     }
 
     public void Destroy()

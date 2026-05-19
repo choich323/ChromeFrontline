@@ -20,20 +20,20 @@ MonoBehaviour:
     maxSlotCount: 8
     productionTimeBonus: 0
   - level: 2
-    upgradeCost: 1000
+    upgradeCost: 900
     maxHp: 1500
     goldPerSecond: 20
     maxSlotCount: 8
     productionTimeBonus: 0.05
   - level: 3
-    upgradeCost: 2500
+    upgradeCost: 1500
     maxHp: 4000
     goldPerSecond: 40
     maxSlotCount: 8
     productionTimeBonus: 0.1
   - level: 4
-    upgradeCost: 4500
-    maxHp: 10000
+    upgradeCost: 2200
+    maxHp: 8000
     goldPerSecond: 70
     maxSlotCount: 8
     productionTimeBonus: 0.15

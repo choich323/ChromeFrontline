@@ -15,9 +15,9 @@ MonoBehaviour:
   slotCostInfoList:
   - cost: 0
   - cost: 0
+  - cost: 400
   - cost: 500
+  - cost: 800
   - cost: 1000
-  - cost: 3000
-  - cost: 5500
-  - cost: 10000
-  - cost: 15500
+  - cost: 1300
+  - cost: 1600

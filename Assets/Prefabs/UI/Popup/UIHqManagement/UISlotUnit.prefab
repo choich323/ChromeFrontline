@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 3340863111751874521}
   - component: {fileID: 9127071485834224844}
   - component: {fileID: 5473276306191696640}
+  - component: {fileID: 2796536290436480581}
   m_Layer: 5
   m_Name: UISlotUnit
   m_TagString: Untagged
@@ -366,7 +367,7 @@ MonoBehaviour:
   _icon: {fileID: 368468799640934647}
   _slotText: {fileID: 881224404713480706}
   _progressText: {fileID: 7790324889694650093}
-  _stateText: {fileID: 7171708938636319144}
+  _stateText: {fileID: 3887560147315712890}
   _btnSlot: {fileID: 5473276306191696640}
   _progressSlider: {fileID: 38586889407217256}
 --- !u!114 &5473276306191696640
@@ -413,6 +414,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2796536290436480581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624048158271565981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringGroupList:
+  - stringId: Producing
+    text: {fileID: 7171708938636319144}
 --- !u!1 &7746426109564151483
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!1 &3887560147315712890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6736984327384179291, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
+  m_PrefabInstance: {fileID: 7533942555397603617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4169468011151502496 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5859497330044464513, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
@@ -698,7 +719,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 795720542887155849, guid: c4b6f7e4fb0932941bb28b5afbcbf00f, type: 3}
   m_PrefabInstance: {fileID: 7533942555397603617}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3887560147315712890}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
