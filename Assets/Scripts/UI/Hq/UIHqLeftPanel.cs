@@ -21,10 +21,10 @@ public class UIHqLeftPanel : MonoBehaviour
     void SetText()
     {
         var hq = Managers.Game.GameField.PlayerHq;
-        _tierText.text = $"{hq.Tier}";
-        _hpValueText.text = $"{hq.Hp}";
-        _entityCountValueText.text = $"{hq.GetEntitiesCount()}";
-        _goldValueText.text = $"{hq.Gold}";
+        _tierText.SetText($"{hq.Tier}");
+        _hpValueText.SetText($"{hq.Hp}");
+        _entityCountValueText.SetText($"{hq.GetEntitiesCount()}");
+        _goldValueText.SetText($"{hq.Gold}");
     }
 
     public void Destroy()

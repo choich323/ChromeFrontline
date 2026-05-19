@@ -156,7 +156,7 @@ public class UIResult : APopup
 
     void SetTitleText()
     {
-        _titleText.text = _resultData.isClear ? Sm.GetString(StringID.Victory) : Sm.GetString(StringID.Defeat);
+        _titleText.SetText(_resultData.isClear ? Sm.GetString(StringID.Victory) : Sm.GetString(StringID.Defeat));
     }
 
     void SetMissionText()
@@ -166,9 +166,9 @@ public class UIResult : APopup
         var stageRecord = ur.GetStageBestRecord(stage);
         
         // Clear Mission
-        _clearMissionText.text = Sm.GetString(StringID.Clear);
+        _clearMissionText.SetText(Sm.GetString(StringID.Clear));
         var clearText = _resultData.isClear ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
-        _clearText.text = clearText;
+        _clearText.SetText(clearText);
 
         if (_isClearChanged)
         {
@@ -181,8 +181,8 @@ public class UIResult : APopup
 
         // Clear Time Mission
         var clearMissionTimeThreshold = GetConvertedTimeText(CLEAR_TIME_THRESHOLD);
-        _clearTimeMissionText.text = Sm.GetString(StringID.ClearTimeMission, clearMissionTimeThreshold);
-        _clearTimeText.text = GetConvertedTimeText(Gm.PlayTime);
+        _clearTimeMissionText.SetText(Sm.GetString(StringID.ClearTimeMission, clearMissionTimeThreshold));
+        _clearTimeText.SetText(GetConvertedTimeText(Gm.PlayTime));
         if (_isBestClearTimeChanged)
         {
             _clearTimeNewTextObject.SetActive(true);
@@ -193,13 +193,13 @@ public class UIResult : APopup
         }
         
         // HqHp Mission
-        _hqHpMissionText.text = Sm.GetString(StringID.HqHpMission, CLEAR_HQ_HP_RATIO);
+        _hqHpMissionText.SetText(Sm.GetString(StringID.HqHpMission, CLEAR_HQ_HP_RATIO));
         var hpRatio = Gm.GameField.PlayerHq.GetHqHpRatio() * HUNDRED_PERCENT;
         if (hpRatio < 0)
         {
             hpRatio = 0f;
         }
-        _hqHpText.text = $"{hpRatio:N0}%";
+        _hqHpText.SetText($"{hpRatio:N0}%");
         if (_isBestHqHpChanged)
         {
             _hqHpNewTextObject.SetActive(true);
@@ -214,15 +214,15 @@ public class UIResult : APopup
         if (hasCleared)
         {
             var bestClear = Sm.GetString(StringID.Success);
-            _clearBestText.text = Sm.GetString(StringID.Best, bestClear);
+            _clearBestText.SetText(Sm.GetString(StringID.Best, bestClear));
             _clearBestText.gameObject.SetActive(true);
             
             string bestClearTimeText = _isBestClearTimeChanged ? _clearTimeText.text : GetConvertedTimeText(stageRecord.clearTime);
-            _clearTimeBestText.text = Sm.GetString(StringID.Best, bestClearTimeText);
+            _clearTimeBestText.SetText(Sm.GetString(StringID.Best, bestClearTimeText));
             _clearTimeBestText.gameObject.SetActive(true);
             
             var bestHpText = _isBestHqHpChanged ? _hqHpText.text : stageRecord.hqhpRatio + "%";
-            _hqHpBestText.text = Sm.GetString(StringID.Best, bestHpText);
+            _hqHpBestText.SetText(Sm.GetString(StringID.Best, bestHpText));
             _hqHpBestText.gameObject.SetActive(true);
         }
         else
@@ -256,8 +256,8 @@ public class UIResult : APopup
 
     void SetButtonText()
     {
-        _retryBtnText.text = Sm.GetString(StringID.Retry);
-        _exitBtnText.text = Sm.GetString(StringID.Exit);
+        _retryBtnText.SetText(Sm.GetString(StringID.Retry));
+        _exitBtnText.SetText(Sm.GetString(StringID.Exit));
     }
 
     void SetIcon()

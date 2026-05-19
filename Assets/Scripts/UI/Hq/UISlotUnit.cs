@@ -79,17 +79,17 @@ public class UISlotUnit : MonoBehaviour
     {
         var sm = Managers.String;
         
-        _slotText.text = sm.GetString(StringID.Slot, _slotIndex + 1);
-        _progressText.text = $"{(argProgress * 100):N0}%";
+        _slotText.SetText(sm.GetString(StringID.Slot, _slotIndex + 1));
+        _progressText.SetText($"{(argProgress * 100):N0}%");
         _progressSlider.value = argProgress;
 
         if (_targetId != PrefabID.None)
         {
-            _stateText.text = sm.GetString(StringID.Producing);
+            _stateText.SetText(sm.GetString(StringID.Producing));
         }
         else
         {
-            _stateText.text = string.Empty;
+            _stateText.SetText(string.Empty);
         }
     }
 

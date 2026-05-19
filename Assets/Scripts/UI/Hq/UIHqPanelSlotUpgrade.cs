@@ -27,7 +27,7 @@ public class UIHqPanelSlotUpgrade : AUIHqPanelSlot
         {
             var uiInfo = _gradeInfoList[i++];
             uiInfo.img.color = info.color;
-            uiInfo.probabilityText.text = $"{info.probability}%";
+            uiInfo.probabilityText.SetText($"{info.probability}%");
         }
     }
     

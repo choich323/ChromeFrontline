@@ -18,7 +18,7 @@ public class InspectorStringHandler : MonoBehaviour
     {
         foreach (var group in _stringGroupList)
         {
-            group.text.text = Managers.String.GetString(group.stringId);
+            group.text.SetText(Managers.String.GetString(group.stringId));
         }
     }
 }

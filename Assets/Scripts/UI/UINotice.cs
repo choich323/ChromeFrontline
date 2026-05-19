@@ -10,7 +10,7 @@ public class UINotice : APopup
     
     public void SetData(string argMessage, Action argConfirmAction)
     {
-        _msg.text = argMessage;
+        _msg.SetText(argMessage);
         _onClose = argConfirmAction;
         
         _confirmBtn.onClick.RemoveAllListeners();
