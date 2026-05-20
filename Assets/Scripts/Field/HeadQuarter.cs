@@ -229,9 +229,9 @@ public class HeadQuarter : MonoBehaviour
         DestroySpawners();
         _usableEntityIDList.Clear();
         _useLeftSpawnerPos = false;
-        SetTier(DEFAULT_TIER);
-        _maxHp = 0;
-        SetHp(0);
+        _tier = DEFAULT_TIER;
+        _maxHp = 1;
+        _hp = 0;
         _gold = 0;
         _team = Team.None;
     }
