@@ -260,6 +260,8 @@ public class HUDController : MonoBehaviour
     
     void OnBtnExit()
     {
+        Sm.PlaySelectSfx();
+        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmExitStage);
@@ -269,7 +271,7 @@ public class HUDController : MonoBehaviour
 
         void OnConfirm()
         {
-            Managers.Game.ExitStage();
+            Managers.Game.Exit();
         }
     }
 }

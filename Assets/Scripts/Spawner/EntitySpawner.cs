@@ -156,22 +156,22 @@ public class EntitySpawner : MonoBehaviour
             }
             
             slot.SetProgress(0);
-            Spawn(entityInfo, entityInfo.grade);
+            Spawn(entityInfo, slot.Grade);
             yield return null;
         }
     }
     
-    public void ForceSpawn(List<EntityInfo> entityInfoList)
+    public void ForceSpawn(List<EntityInfo> entityInfoList, Grade argGrade)
     {
-        StartCoroutine(CoForceSpawn(entityInfoList));
+        StartCoroutine(CoForceSpawn(entityInfoList, argGrade));
     }
     
-    IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList)
+    IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList, Grade argGrade)
     {
         var wait = new WaitForSeconds(_enemySpawnWaitTime);
         foreach (var info in entityInfoList)
         {
-            Spawn(info, info.grade);
+            Spawn(info, argGrade);
 
             yield return wait;
         }

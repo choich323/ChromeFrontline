@@ -38,12 +38,12 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
 
     void SetText()
     {
-        var newInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.level + 1);
+        var newInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.tier + 1);
         if (newInfo == null)
         {
             _hpText.SetText($"{_hqUpgradeInfo.maxHp}");
             _gpsText.SetText($"{_hqUpgradeInfo.goldPerSecond}");
-            _tierText.SetText($"{_hqUpgradeInfo.level}");
+            _tierText.SetText($"{_hqUpgradeInfo.tier}");
             _productionTimeText.SetText($"{_hqUpgradeInfo.productionTimeBonus * HUNDRED_PERCENT}%");
             _costText.SetText(Managers.String.GetString(StringID.MaxLevel));
             _costIcon.SetActive(false);
@@ -54,7 +54,7 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
         var colorHex = ColorUtility.ToHtmlStringRGB(_upgradeHighlightColor);
         _hpText.SetText($"{_hqUpgradeInfo.maxHp} -> <color=#{colorHex}>{newInfo.maxHp}</color>");
         _gpsText.SetText($"{_hqUpgradeInfo.goldPerSecond} -> <color=#{colorHex}>{newInfo.goldPerSecond}</color>");
-        _tierText.SetText($"{_hqUpgradeInfo.level} -> <color=#{colorHex}>{newInfo.level}</color>");
+        _tierText.SetText($"{_hqUpgradeInfo.tier} -> <color=#{colorHex}>{newInfo.tier}</color>");
         _productionTimeText.SetText($"{_hqUpgradeInfo.productionTimeBonus*HUNDRED_PERCENT}% -> <color=#{colorHex}>{newInfo.productionTimeBonus*HUNDRED_PERCENT}%</color>");
         
         _costIcon.SetActive(true);
@@ -92,7 +92,7 @@ public class UIHqPanelHqUpgrade : AUIHqRightPanelSelect
                 if (success)
                 {
                     sound.PlayUpgradeSfx(true);
-                    _hqUpgradeInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.level + 1);
+                    _hqUpgradeInfo = Managers.Data.GetHeadQuarterUpgradeInfo(_hqUpgradeInfo.tier + 1);
                     SetPanel();
                 }
             }

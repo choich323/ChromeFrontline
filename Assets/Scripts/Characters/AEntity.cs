@@ -63,6 +63,7 @@ public struct EntityStatus
     public float armor;
 
     [Header("Attack")]
+    public float originAttack;
     public float attack;
     public float attackSpeed;
     public float attackRange;
@@ -147,7 +148,7 @@ public abstract class AEntity : MonoBehaviour
         
         _contactFilter.useLayerMask = true;
         _contactFilter.SetLayerMask(_entityLayerMask);
-        _contactFilter.useTriggers = false; // 만약 트리거 콜라이더는 무시하고 싶다면 false (필요에 따라 설정)
+        _contactFilter.useTriggers = false;
         
         _id = argEntityInfo.GetEntityID();
         _uid = argUid;
@@ -188,6 +189,7 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.curLevel = argEntityInfo.level;
         _entityStatus.curHp = (int)(argEntityInfo.hp * gradeInfo.hpRatio);
         _entityStatus.armor = argEntityInfo.armor * gradeInfo.armorRatio;
+        _entityStatus.originAttack = argEntityInfo.attack;
         _entityStatus.attack = argEntityInfo.attack * gradeInfo.attackRatio;
         _entityStatus.attackSpeed = argEntityInfo.attackSpeed * gradeInfo.attackSpeedRatio;
         _entityStatus.attackRange = argEntityInfo.attackRange;
@@ -477,7 +479,7 @@ public abstract class AEntity : MonoBehaviour
         const float errorThreshold = 0.5f;
         if (dist < errorThreshold)
         {
-            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.attack, _entityStatus.goldCost);
+            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.originAttack, _entityStatus.goldCost);
             
             Destroy();
             return true;

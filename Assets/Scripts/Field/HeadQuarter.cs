@@ -112,7 +112,7 @@ public class HeadQuarter : MonoBehaviour
         
         ConsumeGold(newInfo.upgradeCost);
         
-        SetTier(newInfo.level);
+        SetTier(newInfo.tier);
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         SetHp((int)(_hp * hpRatio));
@@ -127,7 +127,7 @@ public class HeadQuarter : MonoBehaviour
         if (newInfo == null)
             return;
         
-        SetTier(newInfo.level);
+        SetTier(newInfo.tier);
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         SetHp((int)(_hp * hpRatio));
@@ -291,8 +291,7 @@ public class HeadQuarter : MonoBehaviour
     
     public void ForceSpawn(SpawnRequest spawnRequest)
     {
-        var spawner = _spawner;
-        spawner.ForceSpawn(spawnRequest.infoList);
+        _spawner.ForceSpawn(spawnRequest.infoList, _hqUpgradeInfo.minGrade);
     }
     
     void DestroySpawners()

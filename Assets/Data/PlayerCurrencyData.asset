@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843e8263befb7e843a50cccca00c8bbe, type: 3}
   m_Name: PlayerCurrencyData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCurrencyData
-  startGold: 300
-  goldPerSecond: 10
+  startGold: 200
