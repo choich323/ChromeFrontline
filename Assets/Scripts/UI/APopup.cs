@@ -22,11 +22,11 @@ public abstract class APopup : MonoBehaviour
     [SerializeField] private PopupStackAction _action = PopupStackAction.Exclusive;
 
     [Header("Input Rule")]
-    [SerializeField] private PopupInputMode _inputMode = PopupInputMode.Modeless;
+    [SerializeField] protected PopupInputMode _inputMode = PopupInputMode.Modeless;
 
     [Header("Common UI Components")] 
     [SerializeField] protected Button _closeButton;
-    [SerializeField] protected GameObject _dimmedBg;
+    [SerializeField] protected Button _dimmedBg;
 
     protected Action _onClose;
     
@@ -41,16 +41,11 @@ public abstract class APopup : MonoBehaviour
         if (_closeButton != null)
         {
             _closeButton.onClick.AddListener(Close);
-            _closeButton.onClick.AddListener(Managers.Sound.PlaySelectSfx);
         }
 
         if (_dimmedBg != null && _inputMode == PopupInputMode.Modeless)
         {
-            if(_dimmedBg.TryGetComponent<Button>(out var btn))
-            {
-                btn.onClick.AddListener(Close);
-                btn.onClick.AddListener(Managers.Sound.PlaySelectSfx);
-            }
+            _dimmedBg.onClick.AddListener(Close);
         }
     }
 
@@ -65,10 +60,7 @@ public abstract class APopup : MonoBehaviour
 
         if (_dimmedBg != null && _inputMode == PopupInputMode.Modeless)
         {
-            if(_dimmedBg.TryGetComponent<Button>(out var btn))
-            {
-                btn.onClick.RemoveAllListeners();
-            }
+            _dimmedBg.onClick.RemoveAllListeners();
         }
     }
     

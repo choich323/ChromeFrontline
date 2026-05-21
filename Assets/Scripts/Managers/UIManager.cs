@@ -90,5 +90,6 @@ public class UIManager : MonoBehaviour
         argTarget.SetParent(_popupParent);
         argTarget.localScale = Vector3.one;
         argTarget.localPosition = Vector3.zero;
+        argTarget.SetAsLastSibling();
     }
 }

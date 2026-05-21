@@ -50,8 +50,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CheckEscapeKey();
-
         if (_isInGame)
         {
             UpdateTimer();
@@ -59,16 +57,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CheckEscapeKey()
+    public void ExitConfirm()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Managers.Sound.PlaySelectSfx();
             var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
             var sm = Managers.String;
             string msg = sm.GetString(StringID.ConfirmExitStage);
             string confirm = sm.GetString(StringID.Yes);
             string cancel = sm.GetString(StringID.No);
-            popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel);
+            popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel, isModal:true);
 
             void OnConfirm()
             {

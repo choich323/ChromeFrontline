@@ -27,7 +27,7 @@ public class UIConfirm : APopup
         _cancelBtn.onClick.RemoveAllListeners();
     }
 
-    public void SetData(string argMsg, Action argConfirmAction, Action argCancelAction, string argConfirmText, string argCancelText)
+    public void SetData(string argMsg, Action argConfirmAction, Action argCancelAction, string argConfirmText, string argCancelText, bool isModal = false)
     {
         _msgText.SetText(argMsg);
         _confirmAction = argConfirmAction;
@@ -35,6 +35,20 @@ public class UIConfirm : APopup
         
         _confirmText.SetText(argConfirmText);
         _cancelText.SetText(argCancelText);
+
+        if (isModal)
+        {
+            _inputMode = PopupInputMode.Modal;
+        }
+        else
+        {
+            _inputMode = PopupInputMode.Modeless;
+        }
+
+        if (_dimmedBg != null)
+        {
+            _dimmedBg.interactable = !isModal;
+        }
         
         _confirmBtn.onClick.RemoveAllListeners();
         _confirmBtn.onClick.AddListener(() =>
