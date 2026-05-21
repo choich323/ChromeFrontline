@@ -11,7 +11,8 @@ public class HeadQuarterUpgradeInfo
     public int goldPerSecond;
     public int maxSlotCount;
     public float productionTimeBonus;
-    public Grade minGrade;
+    public Grade enemyMinGrade;
+    public Sprite sprite;
 }
 
 [CreateAssetMenu(fileName = "HeadQuarterUpgradeData", menuName = "Custom/HeadQuarterUpgradeData")]

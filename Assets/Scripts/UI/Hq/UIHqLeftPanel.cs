@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIHqLeftPanel : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class UIHqLeftPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _hpValueText;
     [SerializeField] private TextMeshProUGUI _entityCountValueText;
     [SerializeField] private TextMeshProUGUI _goldValueText;
+    [SerializeField] private Image _hqImage;
 
     public void Init()
     {
@@ -19,6 +21,9 @@ public class UIHqLeftPanel : MonoBehaviour
         hq.OnEntityCountChanged += SetEntityCountText;
         hq.OnTierChanged -= SetTier;
         hq.OnTierChanged += SetTier;
+        hq.OnTierChanged -= SetHqImage;
+        hq.OnTierChanged += SetHqImage;
+        
         RefreshText();
     }
 
@@ -36,6 +41,12 @@ public class UIHqLeftPanel : MonoBehaviour
         _tierText.SetText("{0}", argTier);
     }
 
+    void SetHqImage(int argTier)
+    {
+        var info = Managers.Data.GetHeadQuarterUpgradeInfo(argTier);
+        _hqImage.sprite = info.sprite;
+    }
+    
     void SetGoldText(long argGold)
     {
         _goldValueText.SetText("{0}", argGold);

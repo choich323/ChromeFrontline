@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: 55c98bf88d8cd6244aa6eef3358b8da4
+guid: 58ce766af9f9fc34db46eb26d035901f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6973023494905465209
-    second: pixellab-only-one-huge-hq-building-for--1776322778554_0
+      213: 2029662814431616950
+    second: hq2_0
+  - first:
+      213: 7371845292842331684
+    second: hq2_1
+  - first:
+      213: -6565428252990836384
+    second: hq2_2
+  - first:
+      213: 4311492894837406356
+    second: hq2_3
+  - first:
+      213: 538353385891493169
+    second: hq2_4
+  - first:
+      213: 5954935979144037363
+    second: hq2_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +141,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixellab-only-one-huge-hq-building-for--1776322778554_0
+      name: hq2_2
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 123
-        height: 114
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 786f4b77318da3f90800000000000000
-      internalID: -6973023494905465209
+      spriteID: 061fa2ef9c9e2e4a0800000000000000
+      internalID: -6565428252990836384
       vertices: []
       indices: 
       edges: []
@@ -151,7 +166,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cfc15b27531dc5540b2d4b3ed44658f2
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +174,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0859375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      pixellab-only-one-huge-hq-building-for--1776322778554_0: -6973023494905465209
+      hq2_0: 2029662814431616950
+      hq2_1: 7371845292842331684
+      hq2_2: -6565428252990836384
+      hq2_3: 4311492894837406356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

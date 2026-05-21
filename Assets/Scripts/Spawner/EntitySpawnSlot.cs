@@ -53,11 +53,6 @@ public class EntitySpawnSlot
         bool isStop = _targetId == INVALID_TARGET_ID;
         _onTargetChange?.Invoke(_slotIndex, isStop, (int)prevTargetId);
     }
-    
-    public void SetTargetId(PrefabID argId)
-    {
-        _targetId = argId;
-    }
 
     public void SetProgress(float argProgress)
     {

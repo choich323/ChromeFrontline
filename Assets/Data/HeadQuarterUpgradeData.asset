@@ -19,25 +19,29 @@ MonoBehaviour:
     goldPerSecond: 10
     maxSlotCount: 8
     productionTimeBonus: 0
-    minGrade: 0
+    enemyMinGrade: 0
+    sprite: {fileID: -1437310650510909178, guid: faab1b971957e154d8485d54c984a6e2, type: 3}
   - tier: 2
     upgradeCost: 700
     maxHp: 1500
     goldPerSecond: 20
     maxSlotCount: 8
     productionTimeBonus: 0.05
-    minGrade: 0
+    enemyMinGrade: 0
+    sprite: {fileID: -6565428252990836384, guid: 58ce766af9f9fc34db46eb26d035901f, type: 3}
   - tier: 3
     upgradeCost: 1300
     maxHp: 4000
     goldPerSecond: 40
     maxSlotCount: 8
     productionTimeBonus: 0.1
-    minGrade: 1
+    enemyMinGrade: 1
+    sprite: {fileID: -227084383160863741, guid: 4b7a7a9771c9b4548afe51dd4bd9469c, type: 3}
   - tier: 4
     upgradeCost: 2800
     maxHp: 8000
     goldPerSecond: 70
     maxSlotCount: 8
     productionTimeBonus: 0.15
-    minGrade: 1
+    enemyMinGrade: 1
+    sprite: {fileID: -5781679051218677481, guid: 469383b3572c6c648904b0ae1554bafc, type: 3}

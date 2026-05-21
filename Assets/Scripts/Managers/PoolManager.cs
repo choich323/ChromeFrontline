@@ -13,7 +13,7 @@ public class PoolManager : MonoBehaviour
         _pools.Clear();
     }
     
-    private IObjectPool<GameObject> CreatePool(GameObject argPrefab)
+    IObjectPool<GameObject> CreatePool(GameObject argPrefab)
     {
         return new ObjectPool<GameObject>(
             createFunc: () => Instantiate(argPrefab),
@@ -23,21 +23,21 @@ public class PoolManager : MonoBehaviour
         );
     }
 
-    private void OnPoolGet(GameObject argObject)
+    void OnPoolGet(GameObject argObject)
     {
         if (argObject == null)
             return;
         argObject.SetActive(true);
     }
     
-    private void OnPoolRelease(GameObject argObject)
+    void OnPoolRelease(GameObject argObject)
     {
         if (argObject == null)
             return;
         argObject.SetActive(false);
     }
     
-    private void OnPoolDestroy(GameObject argObject)
+    void OnPoolDestroy(GameObject argObject)
     {
         if (argObject == null)
             return;

@@ -338,8 +338,6 @@ public abstract class AEntity : MonoBehaviour
     protected virtual IEnumerator CoAttack(AEntity argTarget)
     {
         _entityStatus.canAction = false;
-
-        var waitTime = _attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed;
         
         yield return _attackWaitTime;
         
@@ -348,11 +346,9 @@ public abstract class AEntity : MonoBehaviour
         if (criticalChance > 0f && UnityEngine.Random.value <= criticalChance)
         {
             damage *= DEFAULT_CRITICAL_DAMAGE_RATIO;
-            Debug.Log("Critical!");
         }
         argTarget.GetEffect(EffectType.Attack, damage, this);
 
-        float remainTime = _attackAnimDuration * (1f - _attackHitTiming) / _entityStatus.attackSpeed;
         yield return _attackRemainTime;
         
         _entityStatus.canAction = true;

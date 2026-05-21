@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    upgradeInterval: 120
-    tpInterval: 14
+    upgradeInterval: 150
+    tpInterval: 20
     tpIntervalDecrementAmount: 0.25
     tpIntervalDecrementInterval: 30
-    minInterval: 10
+    minInterval: 15
     tpAmountCurve:
       serializedVersion: 2
       m_Curve:
@@ -32,17 +32,17 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 1
       - serializedVersion: 3
-        time: 150
-        value: 90
-        inSlope: 0.49003616
-        outSlope: 0.49003616
+        time: 147.39133
+        value: 60.35963
+        inSlope: 0.34405893
+        outSlope: 0.34405893
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.6279336
       - serializedVersion: 3
-        time: 300
-        value: 150
+        time: 320.86945
+        value: 112.27588
         inSlope: 0.4229523
         outSlope: 0.4229523
         tangentMode: 0
@@ -50,8 +50,8 @@ MonoBehaviour:
         inWeight: 0.18270324
         outWeight: 0.67245096
       - serializedVersion: 3
-        time: 450
-        value: 200
+        time: 457.82608
+        value: 165.86871
         inSlope: 0.42304128
         outSlope: 0.42304128
         tangentMode: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.55748373
       - serializedVersion: 3
-        time: 600
-        value: 260
+        time: 620.8695
+        value: 234.85062
         inSlope: 0.37824774
         outSlope: 0.37824774
         tangentMode: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
         inWeight: 0.25065342
         outWeight: 0.3340562
       - serializedVersion: 3
-        time: 900
-        value: 400
+        time: 926.08685
+        value: 363.17413
         inSlope: 0.3518107
         outSlope: 0.3518107
         tangentMode: 0
@@ -130,6 +130,6 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    burstInterval: 90
+    burstInterval: 120
     emergencyHpThreshold: 0.3
-    emergencyTpMultiplier: 7
+    emergencyTpMultiplier: 6

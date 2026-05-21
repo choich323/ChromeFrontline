@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HeadQuarter : MonoBehaviour
@@ -12,6 +13,7 @@ public class HeadQuarter : MonoBehaviour
     // 플레이어 진영이 좌우 어느 쪽인지는 변할 수 있다.
     [SerializeField] private Transform _entitySpawnerRightPos;
     [SerializeField] private Transform _entitySpawnerLeftPos;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private bool _useLeftSpawnerPos;
     private int _tier = DEFAULT_TIER;
@@ -70,6 +72,7 @@ public class HeadQuarter : MonoBehaviour
         SetHp(_hqUpgradeInfo.maxHp);
         _team = argTeam;
         EarnGold(dm.StartGold);
+        _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
 
@@ -112,11 +115,13 @@ public class HeadQuarter : MonoBehaviour
         
         ConsumeGold(newInfo.upgradeCost);
         
+        _hqUpgradeInfo = newInfo;
         SetTier(newInfo.tier);
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         SetHp((int)(_hp * hpRatio));
-        _hqUpgradeInfo = newInfo;
+        _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
+        
         AddUsableEntityIdList();
         return true;
     }
@@ -131,6 +136,7 @@ public class HeadQuarter : MonoBehaviour
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
         SetHp((int)(_hp * hpRatio));
+        _spriteRenderer.sprite = newInfo.sprite;
         _hqUpgradeInfo = newInfo;
     }
     
@@ -291,7 +297,7 @@ public class HeadQuarter : MonoBehaviour
     
     public void ForceSpawn(SpawnRequest spawnRequest)
     {
-        _spawner.ForceSpawn(spawnRequest.infoList, _hqUpgradeInfo.minGrade);
+        _spawner.ForceSpawn(spawnRequest.infoList, _hqUpgradeInfo.enemyMinGrade);
     }
     
     void DestroySpawners()
