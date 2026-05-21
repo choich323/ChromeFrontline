@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             string msg = sm.GetString(StringID.ConfirmExitStage);
             string confirm = sm.GetString(StringID.Yes);
             string cancel = sm.GetString(StringID.No);
-            popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel, isModal:true);
+            popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel);
 
             void OnConfirm()
             {
