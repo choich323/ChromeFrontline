@@ -15,6 +15,8 @@ public enum AttackAreaType
     None = 0,
     Single,
     Area,
+    Sweep,
+    Pierce,
 }
 
 public enum Team

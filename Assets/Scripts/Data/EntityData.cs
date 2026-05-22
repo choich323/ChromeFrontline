@@ -42,16 +42,29 @@ public class EntityInfo : APrefabInfo
             return base.GetPrefabID();
         }
         
-        var isSingle = attackAreaType.Equals(AttackAreaType.Single);
+        PrefabID resultID;
         var isPioneer = camp.Equals(CampType.Pioneer);
-        if (isSingle)
+        switch (attackAreaType)
         {
-            return isPioneer ? PrefabID.PioneerSingle : PrefabID.RevoltSingle;
+            case AttackAreaType.Area:
+                resultID = isPioneer ? PrefabID.PioneerArea : PrefabID.RevoltArea;
+                break;
+            
+            case AttackAreaType.Sweep:
+                resultID = isPioneer ? PrefabID.PioneerSweep : PrefabID.RevoltSweep;
+                break;
+            
+            case AttackAreaType.Pierce:
+                resultID = isPioneer ? PrefabID.PioneerPierce : PrefabID.RevoltPierce;
+                break;
+            
+            case AttackAreaType.Single:
+            default:
+                resultID = isPioneer ? PrefabID.PioneerSingle : PrefabID.RevoltSingle;
+                break;
         }
-        else
-        {
-            return isPioneer ? PrefabID.PioneerArea : PrefabID.RevoltArea;
-        }
+
+        return resultID;
     }
 
     public PrefabID GetEntityID()

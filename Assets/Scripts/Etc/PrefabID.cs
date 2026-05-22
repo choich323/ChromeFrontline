@@ -13,6 +13,8 @@ public enum PrefabID
     
     PioneerSingle = 2001,
     PioneerArea,
+    PioneerSweep,
+    PioneerPierce,
     Police = 2011,
     Phalanx,
     Security,
@@ -32,6 +34,8 @@ public enum PrefabID
     
     RevoltSingle = 2501,
     RevoltArea,
+    RevoltSweep,
+    RevoltPierce,
     SteelBaton = 2511,
     WireStriker,
     MasterGang,
