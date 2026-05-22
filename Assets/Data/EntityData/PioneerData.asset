@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PioneerData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: PioneerSingle
+  - id: EntitySingle
     prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 1

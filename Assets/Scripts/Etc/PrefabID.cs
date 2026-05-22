@@ -8,14 +8,12 @@ public enum PrefabID
     HeadQuarter = 51,
     
     // Entity
-    SingleTargetEntity = 1001,
-    AreaTargetEntity = 1002,
+    EntitySingle = 1001,
+    EntityArea,
+    EntitySweep,
+    EntityPierce,
     
-    PioneerSingle = 2001,
-    PioneerArea,
-    PioneerSweep,
-    PioneerPierce,
-    Police = 2011,
+    Police = 2001,
     Phalanx,
     Security,
     Agent,
@@ -32,11 +30,7 @@ public enum PrefabID
     BloodyCanon,
     SonicDisruptor,
     
-    RevoltSingle = 2501,
-    RevoltArea,
-    RevoltSweep,
-    RevoltPierce,
-    SteelBaton = 2511,
+    SteelBaton = 2501,
     WireStriker,
     MasterGang,
     MadGas,

@@ -15,7 +15,7 @@ MonoBehaviour:
   scheduleInfoList:
   - id: normal
     upgradeInterval: 150
-    tpInterval: 20
+    tpInterval: 18
     tpIntervalDecrementAmount: 0.25
     tpIntervalDecrementInterval: 30
     minInterval: 15

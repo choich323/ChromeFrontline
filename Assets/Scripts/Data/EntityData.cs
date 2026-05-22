@@ -43,24 +43,23 @@ public class EntityInfo : APrefabInfo
         }
         
         PrefabID resultID;
-        var isPioneer = camp.Equals(CampType.Pioneer);
         switch (attackAreaType)
         {
             case AttackAreaType.Area:
-                resultID = isPioneer ? PrefabID.PioneerArea : PrefabID.RevoltArea;
+                resultID = PrefabID.EntityArea;
                 break;
             
             case AttackAreaType.Sweep:
-                resultID = isPioneer ? PrefabID.PioneerSweep : PrefabID.RevoltSweep;
+                resultID = PrefabID.EntitySweep;
                 break;
             
             case AttackAreaType.Pierce:
-                resultID = isPioneer ? PrefabID.PioneerPierce : PrefabID.RevoltPierce;
+                resultID = PrefabID.EntityPierce;
                 break;
             
             case AttackAreaType.Single:
             default:
-                resultID = isPioneer ? PrefabID.PioneerSingle : PrefabID.RevoltSingle;
+                resultID = PrefabID.EntitySingle;
                 break;
         }
 
