@@ -1259,6 +1259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearTimeMission
       objectReference: {fileID: 0}
+    - target: {fileID: 3707028280534395863, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
+      propertyPath: m_Spacing
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 3769804753894734800, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1286,6 +1290,10 @@ PrefabInstance:
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1361,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7668158304050476287, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 1050
       objectReference: {fileID: 0}
     - target: {fileID: 7668158304050476287, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1556,6 +1564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearMission
       objectReference: {fileID: 0}
+    - target: {fileID: 3707028280534395863, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
+      propertyPath: m_Spacing
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 3769804753894734800, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1583,6 +1595,10 @@ PrefabInstance:
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1658,7 +1674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7668158304050476287, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 1050
       objectReference: {fileID: 0}
     - target: {fileID: 7668158304050476287, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1853,6 +1869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HqHpMission
       objectReference: {fileID: 0}
+    - target: {fileID: 3707028280534395863, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
+      propertyPath: m_Spacing
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 3769804753894734800, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1880,6 +1900,10 @@ PrefabInstance:
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1955,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7668158304050476287, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 1050
       objectReference: {fileID: 0}
     - target: {fileID: 7668158304050476287, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.y

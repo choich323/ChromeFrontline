@@ -84,7 +84,10 @@ public class HeadQuarter : MonoBehaviour
             }
             _coroutineGoldPerSecond = StartCoroutine(CoEarnGoldPerSecond());
         }
+    }
 
+    public void Run()
+    {
         CreateSpawner();
     }
     

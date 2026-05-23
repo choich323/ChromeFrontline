@@ -15,10 +15,10 @@ MonoBehaviour:
   scheduleInfoList:
   - id: normal
     upgradeInterval: 150
-    tpInterval: 18
+    tpInterval: 19
     tpIntervalDecrementAmount: 0.25
     tpIntervalDecrementInterval: 30
-    minInterval: 15
+    minInterval: 14
     tpAmountCurve:
       serializedVersion: 2
       m_Curve:
@@ -41,8 +41,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.6279336
       - serializedVersion: 3
-        time: 320.86945
-        value: 112.27588
+        time: 289.4523
+        value: 125.797424
         inSlope: 0.4229523
         outSlope: 0.4229523
         tangentMode: 0
@@ -50,17 +50,17 @@ MonoBehaviour:
         inWeight: 0.18270324
         outWeight: 0.67245096
       - serializedVersion: 3
-        time: 457.82608
-        value: 165.86871
-        inSlope: 0.42304128
-        outSlope: 0.42304128
+        time: 400.41837
+        value: 179.57544
+        inSlope: 0.5553538
+        outSlope: 0.5553538
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.55748373
+        inWeight: 1
+        outWeight: 0.56284523
       - serializedVersion: 3
-        time: 620.8695
-        value: 234.85062
+        time: 563.6522
+        value: 259.47614
         inSlope: 0.37824774
         outSlope: 0.37824774
         tangentMode: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
         inWeight: 0.25065342
         outWeight: 0.3340562
       - serializedVersion: 3
-        time: 926.08685
-        value: 363.17413
+        time: 785.9046
+        value: 399.61987
         inSlope: 0.3518107
         outSlope: 0.3518107
         tangentMode: 0
@@ -77,8 +77,8 @@ MonoBehaviour:
         inWeight: 0.40563986
         outWeight: 0.20100342
       - serializedVersion: 3
-        time: 1200
-        value: 500
+        time: 1016.9048
+        value: 551.22107
         inSlope: 0.4717895
         outSlope: 0.4717895
         tangentMode: 0

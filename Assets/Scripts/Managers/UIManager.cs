@@ -22,7 +22,10 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        _popupHandler.OnUpdate();
+        if (_popupHandler != null)
+        {
+            _popupHandler.OnUpdate();
+        }
     }
     
     void CreatePopupHandler()
