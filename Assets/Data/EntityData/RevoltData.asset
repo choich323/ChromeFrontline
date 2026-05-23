@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RevoltData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: RevoltSingle
-    prefab: {fileID: 2181363908181298611, guid: 827c58c71e99f9e44ae577ffe471126d, type: 3}
+  - id: EntitySingle
+    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 0

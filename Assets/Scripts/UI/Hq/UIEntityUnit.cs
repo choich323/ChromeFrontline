@@ -77,8 +77,8 @@ public class UIEntityUnit : MonoBehaviour
         var dm = Managers.Data;
         var stringId = dm.ConvertStringToStringID(_entityInfo.id);
         _nameText.SetText(sm.GetString(stringId));
-        _productionTimeText.SetText($"{_entityInfo.productionTime}");
-        _goldText.SetText($"{_entityInfo.goldCost}");
+        _productionTimeText.SetText("{0}", _entityInfo.productionTime);
+        _goldText.SetText("{0}", _entityInfo.goldCost);
     }
 
     void SetBtnSelect()
@@ -145,9 +145,14 @@ public class UIEntityUnit : MonoBehaviour
         
         popup.Init();
         popup.SetData(_entityInfo);
-        popup.SetOnClose(ph.ClosePopup);
+        popup.SetOnClose(OnClose);
         popup.SetPos(Input.mousePosition);
         
+        void OnClose()
+        {
+            Managers.Sound.PlaySelectSfx();
+            ph.ClosePopup();
+        }
     }
     
     public void Destroy()

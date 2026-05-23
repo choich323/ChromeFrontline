@@ -15,6 +15,8 @@ public enum AttackAreaType
     None = 0,
     Single,
     Area,
+    Sweep,
+    Pierce,
 }
 
 public enum Team
@@ -63,6 +65,7 @@ public struct EntityStatus
     public float armor;
 
     [Header("Attack")]
+    public float originAttack;
     public float attack;
     public float attackSpeed;
     public float attackRange;
@@ -140,14 +143,14 @@ public abstract class AEntity : MonoBehaviour
     public Grade Grade => _entityStatus.grade;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
+    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Grade argGrade, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
     {
         _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
         _contactFilter.useLayerMask = true;
         _contactFilter.SetLayerMask(_entityLayerMask);
-        _contactFilter.useTriggers = false; // 만약 트리거 콜라이더는 무시하고 싶다면 false (필요에 따라 설정)
+        _contactFilter.useTriggers = false;
         
         _id = argEntityInfo.GetEntityID();
         _uid = argUid;
@@ -163,7 +166,7 @@ public abstract class AEntity : MonoBehaviour
             _direction = Vector2.left;
             _spriteRenderer.flipX = !argEntityInfo.isOriginalSpriteFacingLeft;
         }
-        SetEntityInfo(argEntityInfo);
+        SetEntityInfo(argEntityInfo, argGrade);
         _dieAnimDuration = argEntityInfo.dieAnimDuration;
         _attackAnimDuration = argEntityInfo.attackAnimDuration;
         _attackHitTiming = argEntityInfo.attackHitTiming;
@@ -179,15 +182,16 @@ public abstract class AEntity : MonoBehaviour
         Physics2D.SyncTransforms();
     }
     
-    void SetEntityInfo(EntityInfo argEntityInfo)
+    void SetEntityInfo(EntityInfo argEntityInfo, Grade argGrade)
     {
         _entityStatus.camp = argEntityInfo.camp;
-        var grade = argEntityInfo.grade;
+        var grade = argGrade;
         var gradeInfo = Managers.Data.GetGradeInfo(grade);
         _entityStatus.grade = grade;
         _entityStatus.curLevel = argEntityInfo.level;
         _entityStatus.curHp = (int)(argEntityInfo.hp * gradeInfo.hpRatio);
         _entityStatus.armor = argEntityInfo.armor * gradeInfo.armorRatio;
+        _entityStatus.originAttack = argEntityInfo.attack;
         _entityStatus.attack = argEntityInfo.attack * gradeInfo.attackRatio;
         _entityStatus.attackSpeed = argEntityInfo.attackSpeed * gradeInfo.attackSpeedRatio;
         _entityStatus.attackRange = argEntityInfo.attackRange;
@@ -336,8 +340,6 @@ public abstract class AEntity : MonoBehaviour
     protected virtual IEnumerator CoAttack(AEntity argTarget)
     {
         _entityStatus.canAction = false;
-
-        var waitTime = _attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed;
         
         yield return _attackWaitTime;
         
@@ -346,11 +348,9 @@ public abstract class AEntity : MonoBehaviour
         if (criticalChance > 0f && UnityEngine.Random.value <= criticalChance)
         {
             damage *= DEFAULT_CRITICAL_DAMAGE_RATIO;
-            Debug.Log("Critical!");
         }
         argTarget.GetEffect(EffectType.Attack, damage, this);
 
-        float remainTime = _attackAnimDuration * (1f - _attackHitTiming) / _entityStatus.attackSpeed;
         yield return _attackRemainTime;
         
         _entityStatus.canAction = true;
@@ -446,7 +446,7 @@ public abstract class AEntity : MonoBehaviour
         _attackHitTiming = 0.8f;
         _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
         EntityInfo emptyEntityInfo = new EntityInfo();
-        SetEntityInfo(emptyEntityInfo);
+        SetEntityInfo(emptyEntityInfo, Grade.Standard);
         _targetHqCoreTransform = null;
         _attackCooldownTimer = 0f;
         
@@ -477,7 +477,7 @@ public abstract class AEntity : MonoBehaviour
         const float errorThreshold = 0.5f;
         if (dist < errorThreshold)
         {
-            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.attack, _entityStatus.goldCost);
+            Managers.Game.OnEntityArrivedAtDestination(_entityStatus.team, (int)_entityStatus.originAttack, _entityStatus.goldCost);
             
             Destroy();
             return true;

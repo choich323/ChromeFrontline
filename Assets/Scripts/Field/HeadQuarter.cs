@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HeadQuarter : MonoBehaviour
@@ -12,6 +13,7 @@ public class HeadQuarter : MonoBehaviour
     // 플레이어 진영이 좌우 어느 쪽인지는 변할 수 있다.
     [SerializeField] private Transform _entitySpawnerRightPos;
     [SerializeField] private Transform _entitySpawnerLeftPos;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private bool _useLeftSpawnerPos;
     private int _tier = DEFAULT_TIER;
@@ -24,8 +26,10 @@ public class HeadQuarter : MonoBehaviour
     private Coroutine _coroutineGoldPerSecond;
     private List<PrefabID> _usableEntityIDList = new List<PrefabID>();
     private HeadQuarterUpgradeInfo _hqUpgradeInfo;
-    private Action _onGoldChanged;
-    private Action _onHealthChanged;
+    private event Action<long> _onGoldChanged;
+    private event Action<int, int> _onHealthChanged;
+    private event Action<int> _onEntityCountChanged;
+    private event Action<int> _onTierChanged;
 
     private DataManager dm => Managers.Data;
     
@@ -34,16 +38,41 @@ public class HeadQuarter : MonoBehaviour
     public int MaxSlotCount => _hqUpgradeInfo.maxSlotCount;
     public long Gold => _gold;
     
+    public event Action<long> OnGoldChanged
+    {
+        add => _onGoldChanged += value;
+        remove => _onGoldChanged -= value;
+    }
+    
+    public event Action<int, int> OnHealthChanged
+    {
+        add => _onHealthChanged += value;
+        remove => _onHealthChanged -= value;
+    }
+    
+    public event Action<int> OnEntityCountChanged
+    {
+        add => _onEntityCountChanged += value;
+        remove => _onEntityCountChanged -= value;
+    }
+    
+    public event Action<int> OnTierChanged
+    {
+        add => _onTierChanged += value;
+        remove => _onTierChanged -= value;
+    }
+    
     public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, Transform> argGetTargetSpawnerPos)
     {
-        _tier = DEFAULT_TIER;
+        SetTier(DEFAULT_TIER);
         _usableEntityIDList.Clear();
         AddUsableEntityIdList();
         _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_tier);
         _maxHp = _hqUpgradeInfo.maxHp;
-        _hp = _hqUpgradeInfo.maxHp;
+        SetHp(_hqUpgradeInfo.maxHp);
         _team = argTeam;
-        _gold = dm.StartGold;
+        EarnGold(dm.StartGold);
+        _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
 
@@ -57,14 +86,9 @@ public class HeadQuarter : MonoBehaviour
         }
     }
 
-    public void SetOnGoldChanged(Action argOnGoldChanged)
+    public void Run()
     {
-        _onGoldChanged = argOnGoldChanged;
-    }
-
-    public void SetOnHealthChanged(Action argOnHealthChanged)
-    {
-        _onHealthChanged = argOnHealthChanged;
+        CreateSpawner();
     }
     
     void AddUsableEntityIdList()
@@ -96,11 +120,13 @@ public class HeadQuarter : MonoBehaviour
         
         ConsumeGold(newInfo.upgradeCost);
         
-        _tier = newInfo.level;
+        _hqUpgradeInfo = newInfo;
+        SetTier(newInfo.tier);
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
-        _hp = (int)(_hp * hpRatio);
-        _hqUpgradeInfo = newInfo;
+        SetHp((int)(_hp * hpRatio));
+        _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
+        
         AddUsableEntityIdList();
         return true;
     }
@@ -111,10 +137,11 @@ public class HeadQuarter : MonoBehaviour
         if (newInfo == null)
             return;
         
-        _tier = newInfo.level;
+        SetTier(newInfo.tier);
         var hpRatio = newInfo.maxHp / (float)_maxHp;
         _maxHp = newInfo.maxHp;
-        _hp = (int)(_hp * hpRatio);
+        SetHp((int)(_hp * hpRatio));
+        _spriteRenderer.sprite = newInfo.sprite;
         _hqUpgradeInfo = newInfo;
     }
     
@@ -141,12 +168,8 @@ public class HeadQuarter : MonoBehaviour
         if (gm.IsGameOver)
             return;
         
-        _hp -= argDamage;
-        if (_hp < 0)
-        {
-            _hp = 0;
-        }
-        _onHealthChanged?.Invoke();
+        SetHp(_hp - argDamage);
+        _onHealthChanged?.Invoke(_hp, _maxHp);
         if (_team == Team.Enemy)
         {
             gm.OnEnemyHqHpChanged(_hp, _maxHp);
@@ -156,6 +179,22 @@ public class HeadQuarter : MonoBehaviour
             bool isPlayerWin = _team != Team.Player;
             gm.EndStage(isPlayerWin);
         }
+    }
+
+    void SetTier(int argTier)
+    {
+        _tier = argTier;
+        _onTierChanged?.Invoke(_tier);
+    }
+    
+    void SetHp(int argHp)
+    {
+        _hp = argHp;
+        if (_hp < 0)
+        {
+            _hp = 0;
+        }
+        _onHealthChanged?.Invoke(_hp, _maxHp);
     }
 
     public float GetHqHpRatio()
@@ -171,13 +210,13 @@ public class HeadQuarter : MonoBehaviour
     public void EarnGold(long argGold)
     {
         _gold += argGold;
-        _onGoldChanged?.Invoke();
+        _onGoldChanged?.Invoke(_gold);
     }
 
     public void ConsumeGold(long argGold)
     {
         _gold -= argGold;
-        _onGoldChanged?.Invoke();
+        _onGoldChanged?.Invoke(_gold);
     }
 
     float GetProductionBonus()
@@ -202,7 +241,7 @@ public class HeadQuarter : MonoBehaviour
         _usableEntityIDList.Clear();
         _useLeftSpawnerPos = false;
         _tier = DEFAULT_TIER;
-        _maxHp = 0;
+        _maxHp = 1;
         _hp = 0;
         _gold = 0;
         _team = Team.None;
@@ -225,6 +264,7 @@ public class HeadQuarter : MonoBehaviour
         _spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team);
         _spawner.Init(_team, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionBonus);
+        _spawner.SetOnEntityCountChanged(EntityCountChanged);
         
         return _spawner;
     }
@@ -262,8 +302,7 @@ public class HeadQuarter : MonoBehaviour
     
     public void ForceSpawn(SpawnRequest spawnRequest)
     {
-        var spawner = _spawner;
-        spawner.ForceSpawn(spawnRequest.infoList);
+        _spawner.ForceSpawn(spawnRequest.infoList, _hqUpgradeInfo.enemyMinGrade);
     }
     
     void DestroySpawners()
@@ -280,5 +319,10 @@ public class HeadQuarter : MonoBehaviour
     public int GetEntitiesCount()
     {
         return _spawner.GetEntitiesCount();
+    }
+
+    void EntityCountChanged(int argCount)
+    {
+        _onEntityCountChanged?.Invoke(argCount);
     }
 }

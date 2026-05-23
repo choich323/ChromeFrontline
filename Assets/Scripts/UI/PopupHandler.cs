@@ -19,12 +19,19 @@ public class PopupHandler
 
     void HandleEscapeKey()
     {
-        //
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_popupStack.Count > 0 && _popupStack.Peek().InputMode == PopupInputMode.Modeless)
+            if (_popupStack.Count > 0)
             {
-                _popupStack.Peek().Close();
+                var top = _popupStack.Peek();
+                if (top.InputMode == PopupInputMode.Modeless)
+                {
+                    top.Close();
+                }
+            }
+            else
+            {
+                Managers.Game.ExitConfirm();
             }
         }
     }

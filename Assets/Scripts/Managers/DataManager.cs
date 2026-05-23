@@ -167,13 +167,13 @@ public class DataManager : MonoBehaviour
         return _revoltInfoList.FindAll(entity => entity.goldCost >= 0 && entity.goldCost <= argTpAmount && entity.attackAreaType != AttackAreaType.Area);
     }
 
-    public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argLevel)
+    public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argTier)
     {
-        if (argLevel > _hqUpgradeInfoList.Count)
+        if (argTier > _hqUpgradeInfoList.Count)
         {
             return null;
         }
-        return _hqUpgradeInfoList[argLevel - 1];
+        return _hqUpgradeInfoList[argTier - 1];
     }
 
     public List<PrefabID> GetPrefabIdList(int argTier)

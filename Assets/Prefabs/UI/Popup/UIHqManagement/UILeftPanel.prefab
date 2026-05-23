@@ -76,6 +76,7 @@ MonoBehaviour:
   _hpValueText: {fileID: 9014369467130595882}
   _entityCountValueText: {fileID: 2742952713238834957}
   _goldValueText: {fileID: 4236374907283716624}
+  _hqImage: {fileID: 8466990799773724695}
 --- !u!1 &5528536029940909193
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6973023494905465209, guid: 55c98bf88d8cd6244aa6eef3358b8da4, type: 3}
+  m_Sprite: {fileID: -1437310650510909178, guid: faab1b971957e154d8485d54c984a6e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

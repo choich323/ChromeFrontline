@@ -23,6 +23,7 @@ public class EntitySpawner : MonoBehaviour
     private Action<long> _consumeGold;
     private Func<long> _getGold;
     private Func<float> _getProductionBonus;
+    private Action<int> _entityCountChanged;
     
     public int SlotCount => _slotList.Count;
     public Transform TargetTransform => _targetTransform;
@@ -128,7 +129,6 @@ public class EntitySpawner : MonoBehaviour
     IEnumerator CoStartSpawn(int argSlotIndex)
     {
         var slot = _slotList[argSlotIndex];
-        var grade = slot.Grade;
         var targetId = slot.GetTargetId();
         while (true)
         {
@@ -136,16 +136,18 @@ public class EntitySpawner : MonoBehaviour
             if(info == null) 
                 yield break;
             var entityInfo = info as EntityInfo;
-            var goldCost = entityInfo.goldCost;
-            while (_getGold?.Invoke() < goldCost)
+            var goldCost = entityInfo.goldCost; 
+            // ?.Invoke() 의 Nullable 박싱 방어 (GC 0B)
+            while ((_getGold != null ? _getGold() : 0) < goldCost)
             {
                 yield return null;
             }
             
             _consumeGold?.Invoke(goldCost);
-            float productionTime = entityInfo.productionTime;
-            productionTime *= (1 - _getProductionBonus?.Invoke() ?? 0f);
+            float bonus = _getProductionBonus != null ? _getProductionBonus() : 0f;
+            float productionTime = entityInfo.productionTime * (1 - bonus);
             float elapsedTime = 0f;
+            
             while (elapsedTime < productionTime) {
                 elapsedTime += Time.deltaTime;
                 var progress = Mathf.Clamp01(elapsedTime / productionTime);
@@ -154,29 +156,28 @@ public class EntitySpawner : MonoBehaviour
             }
             
             slot.SetProgress(0);
-            entityInfo.grade = grade;
-            Spawn(entityInfo);
+            Spawn(entityInfo, slot.Grade);
             yield return null;
         }
     }
     
-    public void ForceSpawn(List<EntityInfo> entityInfoList)
+    public void ForceSpawn(List<EntityInfo> entityInfoList, Grade argGrade)
     {
-        StartCoroutine(CoForceSpawn(entityInfoList));
+        StartCoroutine(CoForceSpawn(entityInfoList, argGrade));
     }
     
-    IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList)
+    IEnumerator CoForceSpawn(List<EntityInfo> entityInfoList, Grade argGrade)
     {
         var wait = new WaitForSeconds(_enemySpawnWaitTime);
         foreach (var info in entityInfoList)
         {
-            Spawn(info);
+            Spawn(info, argGrade);
 
             yield return wait;
         }
     }
     
-    void Spawn(EntityInfo argEntityInfo)
+    void Spawn(EntityInfo argEntityInfo, Grade argGrade)
     {
         var prefabId = argEntityInfo.GetPrefabID();
         if (prefabId.Equals(PrefabID.None))
@@ -193,7 +194,7 @@ public class EntitySpawner : MonoBehaviour
             var uid = Managers.Game.GetNewUid();
             entityObj.name = $"{argEntityInfo.id}_{uid}";
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(uid, _team, argEntityInfo, _targetTransform, DestroyEntity, _earnGold);
+            entity.Init(uid, _team, argEntityInfo, argGrade, _targetTransform, DestroyEntity, _earnGold);
             
             OnSpawn(entity);
         }
@@ -210,6 +211,11 @@ public class EntitySpawner : MonoBehaviour
         
         ResetSpawner();
     }
+
+    public void SetOnEntityCountChanged(Action<int> argOnEntityCountChanged)
+    {
+        _entityCountChanged = argOnEntityCountChanged;
+    }
     
     void AddEntity(AEntity argEntity)
     {
@@ -219,6 +225,7 @@ public class EntitySpawner : MonoBehaviour
             _entityDict[type] = new HashSet<AEntity>();
         }
         _entityDict[type].Add(argEntity);
+        _entityCountChanged?.Invoke(GetEntitiesCount());
     }
 
     void RemoveEntity(AEntity argEntity)
@@ -231,6 +238,7 @@ public class EntitySpawner : MonoBehaviour
             entitySet.Remove(argEntity);
         }
         argEntity.ResetEntity();
+        _entityCountChanged?.Invoke(GetEntitiesCount());
     }
     
     public int GetEntitiesCount()

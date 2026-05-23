@@ -18,19 +18,13 @@ public class GameField : MonoBehaviour
     {
         Managers.Sound.PlayIngameBgm();
         CreateHqs();
-        CreateSpawners();
+        RunHqs();
     }
 
     void CreateHqs()
     {
         CreateHq(Team.Player);
         CreateHq(Team.Enemy);
-    }
-
-    void CreateSpawners()
-    {
-        _playerHq.CreateSpawner();
-        _enemyHq.CreateSpawner();
     }
     
     void CreateHq(Team argTeam)
@@ -49,6 +43,12 @@ public class GameField : MonoBehaviour
             _playerHq = hq;
         else
             _enemyHq = hq;
+    }
+
+    void RunHqs()
+    {
+        _playerHq.Run();
+        _enemyHq.Run();
     }
 
     Transform GetTargetSpawnerPos(Team argTeam)

@@ -100,7 +100,7 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
         dm.TryGetPrefabInfo((int)_transitionContent.prefabID, out var info);
         var entityInfo = info as EntityInfo;
         var nameStringId = dm.ConvertStringToStringID(entityInfo.id);
-        var msg = sm.GetString(StringID.ConfirmStopProducing) + '\n' + sm.GetString(StringID.NowProducingEntity) + sm.GetString(nameStringId);
+        var msg = $"{sm.GetString(StringID.ConfirmStopProducing)}\n{sm.GetString(StringID.NowProducingEntity)}{sm.GetString(nameStringId)}";
         string confirm = sm.GetString(StringID.Yes);
         string cancel = sm.GetString(StringID.No);
         var ph = Managers.UI.PopupHandler;

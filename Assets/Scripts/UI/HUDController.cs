@@ -54,9 +54,12 @@ public class HUDController : MonoBehaviour
         _exitBtn.onClick.AddListener(OnBtnExit);
 
         var gf = Managers.Game.GameField;
-        gf.PlayerHq.SetOnGoldChanged(UpdateGold);
-        gf.PlayerHq.SetOnHealthChanged(UpdatePlayerHp);
-        gf.EnemyHq.SetOnHealthChanged(UpdateEnemyHp);
+        gf.PlayerHq.OnGoldChanged -= UpdateGold;
+        gf.PlayerHq.OnGoldChanged += UpdateGold;
+        gf.PlayerHq.OnHealthChanged -= UpdatePlayerHp;
+        gf.PlayerHq.OnHealthChanged += UpdatePlayerHp;
+        gf.EnemyHq.OnHealthChanged -= UpdateEnemyHp;
+        gf.EnemyHq.OnHealthChanged += UpdateEnemyHp;
         UpdateText();
     }
 
@@ -97,14 +100,21 @@ public class HUDController : MonoBehaviour
         UpdatePlayerHp();
         UpdateEnemyHp();
     }
-    
+
     void UpdatePlayerHp()
     {
         var hq = Managers.Game.GameField.PlayerHq;
         float hpRatio = hq.GetHqHpRatio();
         
         _hpSlider.value = hpRatio;
-        _hpText.SetText($"{(hpRatio * HUNDRED_PERCENT):N0}%");
+        _hpText.SetText("{0:0}%", hpRatio * HUNDRED_PERCENT);
+    }
+    
+    void UpdatePlayerHp(int argHp, int argMaxHp)
+    {
+        var hpRatio = (float)argHp / argMaxHp;
+        _hpSlider.value = hpRatio;
+        _hpText.SetText("{0:0}%", hpRatio * HUNDRED_PERCENT);
     }
 
     void UpdateEnemyHp()
@@ -112,13 +122,25 @@ public class HUDController : MonoBehaviour
         var hq = Managers.Game.GameField.EnemyHq;
         var hpRatio = hq.GetHqHpRatio();
         _enemyHpSlider.value = hpRatio;
-        _enemyHpText.SetText($"{(hpRatio * HUNDRED_PERCENT):N0}%");
+        _enemyHpText.SetText("{0:0}%", hpRatio * HUNDRED_PERCENT);
+    }
+    
+    void UpdateEnemyHp(int argHp, int argMaxHp)
+    {
+        var hpRatio = (float)argHp / argMaxHp;
+        _enemyHpSlider.value = hpRatio;
+        _enemyHpText.SetText("{0:0}%", hpRatio * HUNDRED_PERCENT);
     }
     
     void UpdateGold()
     {
         var curGold = Managers.Game.GameField.PlayerHq.Gold;
-        _goldText.SetText($"{curGold}");
+        UpdateGold(curGold);
+    }
+    
+    void UpdateGold(long argGold)
+    {
+        _goldText.SetText("{0}", argGold);
     }
 
     void UpdateTimer()
@@ -137,11 +159,11 @@ public class HUDController : MonoBehaviour
 
         if (hours > 0)
         {
-            _timerText.SetText($"{hours:D2}:{minutes:D2}:{seconds:D2}");
+            _timerText.SetText("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
         }
         else
         {
-            _timerText.SetText($"{minutes:D2}:{seconds:D2}");
+            _timerText.SetText("{0:00}:{1:00}", minutes, seconds);
         }
     }
 
@@ -238,6 +260,8 @@ public class HUDController : MonoBehaviour
     
     void OnBtnExit()
     {
+        Sm.PlaySelectSfx();
+        
         var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmExitStage);
@@ -247,7 +271,7 @@ public class HUDController : MonoBehaviour
 
         void OnConfirm()
         {
-            Managers.Game.ExitStage();
+            Managers.Game.Exit();
         }
     }
 }

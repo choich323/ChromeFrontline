@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 9201654926872411682}
   - component: {fileID: 7655138315883811610}
   m_Layer: 3
-  m_Name: PioneerSingle
+  m_Name: EntitySingle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

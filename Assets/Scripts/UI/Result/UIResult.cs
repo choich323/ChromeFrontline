@@ -143,7 +143,7 @@ public class UIResult : APopup
     void Exit()
     {
         Managers.Sound.PlaySelectSfx();
-        Managers.Game.ExitStage();
+        Managers.Game.Exit();
     }
     
     void SetText()

@@ -50,8 +50,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CheckEscapeKey();
-
         if (_isInGame)
         {
             UpdateTimer();
@@ -59,12 +57,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CheckEscapeKey()
+    public void ExitConfirm()
     {
-        //
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // TODO: 게임 종료 팝업 호출
+            Managers.Sound.PlaySelectSfx();
+            var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
+            var sm = Managers.String;
+            string msg = sm.GetString(StringID.ConfirmExitStage);
+            string confirm = sm.GetString(StringID.Yes);
+            string cancel = sm.GetString(StringID.No);
+            popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel);
+
+            void OnConfirm()
+            {
+                Exit();
+            }
+            
+            void OnBtnPopupClose()
+            {
+                Managers.Sound.PlaySelectSfx();
+                Managers.UI.PopupHandler.ClosePopup();
+            }
         }
     }
 
@@ -77,7 +91,7 @@ public class GameManager : MonoBehaviour
     {
         _userRecord = Managers.Save.LoadRecord();
         
-        // TODO: game start 버튼을 누르면 실행되도록 수정 필요
+        // TODO: 로비 제작 전이므로 바로 실행되도록 설정. 로비 제작 후 인게임 진입시 실행되도록 수정.
         var gameFieldObj = Managers.Pool.Instantiate(PrefabID.GameField);
         if (gameFieldObj == null)
         {
@@ -194,11 +208,23 @@ public class GameManager : MonoBehaviour
         Managers.UI.RefreshUI();
     }
 
-    public void ExitStage()
+    public void Exit()
     {
-        Debug.Log("out from stage.");
+        PauseGame();
         _isInGame = false;
         Managers.UI.PopupHandler.CloseAllPopup();
+        
+        // TODO: 임시로 게임 종료로 해놨으나 스테이지 종료로 수정
+        QuitGame();
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     public void ForceSpawn(SpawnRequest argSpawnRequest)

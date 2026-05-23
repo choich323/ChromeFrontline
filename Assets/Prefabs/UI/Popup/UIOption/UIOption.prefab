@@ -1429,7 +1429,7 @@ MonoBehaviour:
   _action: 2
   _inputMode: 2
   _closeButton: {fileID: 3871427049458474274}
-  _dimmedBg: {fileID: 1179879299680276661}
+  _dimmedBg: {fileID: 3749068300902615407}
   _soundSlider: {fileID: 1864567768130101627}
   _sensitivitySlider: {fileID: 1076531532424974351}
   _frameRateSelector: {fileID: 1812387097989552733}
@@ -1780,11 +1780,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 587066297910488249, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
   m_PrefabInstance: {fileID: 218270635772663353}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1179879299680276661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1394064214467233420, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
+--- !u!114 &3749068300902615407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3963218511745687382, guid: a1446d336c3639b479ee47499f8d977c, type: 3}
   m_PrefabInstance: {fileID: 218270635772663353}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1383483720458251286
 PrefabInstance:
   m_ObjectHideFlags: 0

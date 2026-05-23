@@ -11,11 +11,12 @@ public class UISlotUnit : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _slotText;
     [SerializeField] private TextMeshProUGUI _progressText;
-    [SerializeField] private TextMeshProUGUI _stateText;
+    [SerializeField] private GameObject _stateText;
     [SerializeField] private Button _btnSlot;
     [SerializeField] private Slider _progressSlider;
 
     private int _slotIndex;
+    private int _lastProgressPercent = -1;
     private PrefabID _targetId;
     private Action<HqRightPanelType, HqPanelTransitionContent> _onSlotTransitionAction;
     
@@ -31,6 +32,7 @@ public class UISlotUnit : MonoBehaviour
         if (spawner == null) return;
         var slot = spawner.GetSlot(argSlotIndex);
         if (slot == null) return;
+        SetProductionState();
         RefreshProgress(slot.GetProgress());
     }
     
@@ -74,23 +76,37 @@ public class UISlotUnit : MonoBehaviour
         var grade = slot.Grade;
         _bg.color = Managers.Data.GetGradeInfo(grade).color;
     }
-    
-    public void RefreshProgress(float argProgress)
+
+    void SetProductionState()
     {
         var sm = Managers.String;
-        
+    
         _slotText.SetText(sm.GetString(StringID.Slot, _slotIndex + 1));
-        _progressText.SetText($"{(argProgress * 100):N0}%");
-        _progressSlider.value = argProgress;
 
         if (_targetId != PrefabID.None)
         {
-            _stateText.SetText(sm.GetString(StringID.Producing));
+            _lastProgressPercent = -1;
         }
         else
         {
-            _stateText.SetText(string.Empty);
+            _progressText.SetText("0%");
+            _progressSlider.value = 0f;
+            _stateText.SetActive(false);
         }
+    }
+    
+    public void RefreshProgress(float argProgress)
+    {
+        _progressSlider.value = argProgress;
+        int currentPercent = Mathf.FloorToInt(argProgress * 100f);
+
+        if (currentPercent != _lastProgressPercent)
+        {
+            _lastProgressPercent = currentPercent;
+            _progressText.SetText("{0}%", currentPercent);
+        }
+
+        _stateText.SetActive(_targetId != PrefabID.None);
     }
 
     public void SetTransitionAction(Action<HqRightPanelType, HqPanelTransitionContent> argGoToPanel)

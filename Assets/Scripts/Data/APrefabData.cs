@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class APrefabInfo
+public abstract class APrefabInfo
 {
     public string id;
     public GameObject prefab;

@@ -5,12 +5,14 @@ using System.Collections.Generic;
 [Serializable]
 public class HeadQuarterUpgradeInfo
 {
-    public int level;
+    public int tier;
     public int upgradeCost;
     public int maxHp;
     public int goldPerSecond;
     public int maxSlotCount;
     public float productionTimeBonus;
+    public Grade enemyMinGrade;
+    public Sprite sprite;
 }
 
 [CreateAssetMenu(fileName = "HeadQuarterUpgradeData", menuName = "Custom/HeadQuarterUpgradeData")]
