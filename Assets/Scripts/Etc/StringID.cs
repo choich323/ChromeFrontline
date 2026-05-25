@@ -92,7 +92,7 @@ public enum StringID
     AegisStorm,
     ElectroBlade,
     PlasmaSlasher,
-    BloodyCanon,
+    VoidBullet,
     SonicDisruptor,
     
     // Entity - Revolt Name
@@ -108,8 +108,8 @@ public enum StringID
     PyroManiac,
     CentauriCanon,
     MultiLauncher,
-    Whiplash,
+    ChimeraBeast,
     Overload,
-    VoidBullet,
+    BloodyCanon,
     DestroyLaser,
 }

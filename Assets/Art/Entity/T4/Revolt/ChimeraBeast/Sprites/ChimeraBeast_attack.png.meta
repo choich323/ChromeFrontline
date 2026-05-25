@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 469383b3572c6c648904b0ae1554bafc
+guid: 03ce9fc1b6320b54ab4dcc34bdc3965f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7741803519022010172
-    second: hq4 1_0
+      213: 7228982717798442896
+    second: ChimeraBeast_attack_0
   - first:
-      213: -5781679051218677481
-    second: hq4 1_1
+      213: -7853515483713358055
+    second: ChimeraBeast_attack_1
   - first:
-      213: 7303253054363379284
-    second: hq4 1_2
+      213: -1275852959443424301
+    second: ChimeraBeast_attack_2
   - first:
-      213: -9164484428779744327
-    second: hq4 1_3
+      213: -4748858221728739990
+    second: ChimeraBeast_attack_3
+  - first:
+      213: -4524500359081888809
+    second: ChimeraBeast_attack_4
+  - first:
+      213: -3708802858896692773
+    second: ChimeraBeast_attack_5
+  - first:
+      213: 1667057143985250337
+    second: ChimeraBeast_attack_6
+  - first:
+      213: -4816571204567345800
+    second: ChimeraBeast_attack_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 5
+  spritePixelsToUnits: 28
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -135,23 +147,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hq4 1_1
+      name: ChimeraBeast_attack_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.0546875}
+      pivot: {x: 0.48828125, y: 0.3046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7111bca198953cfa0800000000000000
-      internalID: -5781679051218677481
+      spriteID: 09760d52b71825460800000000000000
+      internalID: 7228982717798442896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChimeraBeast_attack_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48828125, y: 0.3046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9173c3bf645b20390800000000000000
+      internalID: -7853515483713358055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChimeraBeast_attack_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48828125, y: 0.3046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db6ebe3e724b4ee0800000000000000
+      internalID: -1275852959443424301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChimeraBeast_attack_3
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48828125, y: 0.3046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d4a2d9b9aa81eb0800000000000000
+      internalID: -4748858221728739990
       vertices: []
       indices: 
       edges: []
@@ -160,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b753869d81ef30b47a17bdd904cb8d68
+    spriteID: fa11687b2eb331641850e82a4819d669
     internalID: 0
     vertices: []
     indices: 
@@ -170,12 +248,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0859375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.48828125,"y":0.3046875},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      hq4 1_0: 7741803519022010172
-      hq4 1_1: -5781679051218677481
-      hq4 1_2: 7303253054363379284
-      hq4 1_3: -9164484428779744327
+      ChimeraBeast_attack_0: 7228982717798442896
+      ChimeraBeast_attack_1: -7853515483713358055
+      ChimeraBeast_attack_2: -1275852959443424301
+      ChimeraBeast_attack_3: -4748858221728739990
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

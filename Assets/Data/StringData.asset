@@ -53,6 +53,10 @@ MonoBehaviour:
     value:
       en: Chainsaw Bot
       kr: "\uCCB4\uC778\uC18C \uC0AC\uC6B0\uB974\uC2A4"
+  - id: ChimeraBeast
+    value:
+      en: Chimera Beast
+      kr: "\uD0A4\uBA54\uB77C"
   - id: Clear
     value:
       en: Clear
@@ -406,10 +410,6 @@ MonoBehaviour:
     value:
       en: Void Bullet
       kr: "\uACF5\uD5C8\uC758 \uD0C4\uD658"
-  - id: Whiplash
-    value:
-      en: Whiplash
-      kr: "\uC804\uD558 \uADE0\uC5F4"
   - id: WireStriker
     value:
       en: Wire Striker

@@ -16,7 +16,7 @@ MonoBehaviour:
   - id: EntitySingle
     prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
     animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
@@ -25,10 +25,10 @@ MonoBehaviour:
     camp: 1
     tier: 0
     grade: 0
-    level: 1
-    hp: 950
-    armor: 10
-    attack: 25
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
     attackSpeed: 0
     attackRange: 0
     criticalChance: 0
@@ -301,12 +301,12 @@ MonoBehaviour:
     goldCost: 240
   - id: ElectroBlade
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: c33672b919b0f304dbf165fcbc5749c8, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -6613688562724286529, guid: 16aa136f815fb814aa73358588c78f83, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 4
@@ -343,14 +343,14 @@ MonoBehaviour:
     moveSpeed: 1.6
     productionTime: 24
     goldCost: 600
-  - id: BloodyCanon
+  - id: VoidBullet
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: f2526c9ce41c583499fdf06878b081b9, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -4914492569349402379, guid: 58677504c5270914a885adfe164f59c4, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 4

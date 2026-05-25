@@ -1,19 +1,43 @@
 fileFormatVersion: 2
-guid: 469383b3572c6c648904b0ae1554bafc
+guid: 2f36ed9df36a82c4198815164fca5164
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7741803519022010172
-    second: hq4 1_0
+      213: 8439004161912948170
+    second: ChimeraBeast_die_0
   - first:
-      213: -5781679051218677481
-    second: hq4 1_1
+      213: -6031679494897967594
+    second: ChimeraBeast_die_1
   - first:
-      213: 7303253054363379284
-    second: hq4 1_2
+      213: -5937987443351822953
+    second: ChimeraBeast_die_2
   - first:
-      213: -9164484428779744327
-    second: hq4 1_3
+      213: 1962869211275737210
+    second: ChimeraBeast_die_3
+  - first:
+      213: 5288595908322896531
+    second: ChimeraBeast_die_4
+  - first:
+      213: 5526471724223385151
+    second: ChimeraBeast_die_5
+  - first:
+      213: 8799608624920180988
+    second: ChimeraBeast_die_6
+  - first:
+      213: -7367839090791296827
+    second: ChimeraBeast_die_7
+  - first:
+      213: 2449241730206715624
+    second: ChimeraBeast_die_8
+  - first:
+      213: 3342474096920876758
+    second: ChimeraBeast_die_9
+  - first:
+      213: 9067884716642123975
+    second: ChimeraBeast_die_10
+  - first:
+      213: 6757998868007988176
+    second: ChimeraBeast_die_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 5
+  spritePixelsToUnits: 28
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -135,23 +159,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hq4 1_1
+      name: ChimeraBeast_die_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.0546875}
+      pivot: {x: 0.48828125, y: 0.3046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7111bca198953cfa0800000000000000
-      internalID: -5781679051218677481
+      spriteID: ac54dd0d29d5d1570800000000000000
+      internalID: 8439004161912948170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChimeraBeast_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48828125, y: 0.3046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61e5993e47b2b4ca0800000000000000
+      internalID: -6031679494897967594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChimeraBeast_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48828125, y: 0.3046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79dd84e81e7089da0800000000000000
+      internalID: -5937987443351822953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChimeraBeast_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48828125, y: 0.3046875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7834aed5238d3b10800000000000000
+      internalID: 1962869211275737210
       vertices: []
       indices: 
       edges: []
@@ -160,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b753869d81ef30b47a17bdd904cb8d68
+    spriteID: c4838fd60171bca4d85900c2326aedda
     internalID: 0
     vertices: []
     indices: 
@@ -170,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0859375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.48828125,"y":0.3046875},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      hq4 1_0: 7741803519022010172
-      hq4 1_1: -5781679051218677481
-      hq4 1_2: 7303253054363379284
-      hq4 1_3: -9164484428779744327
+      ChimeraBeast_die_0: 8439004161912948170
+      ChimeraBeast_die_1: -6031679494897967594
+      ChimeraBeast_die_2: -5937987443351822953
+      ChimeraBeast_die_3: 1962869211275737210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

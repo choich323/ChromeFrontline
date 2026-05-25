@@ -27,7 +27,7 @@ public enum PrefabID
     AegisStorm,
     ElectroBlade,
     PlasmaSlasher,
-    BloodyCanon,
+    VoidBullet,
     SonicDisruptor,
     
     SteelBaton = 2501,
@@ -42,9 +42,9 @@ public enum PrefabID
     PyroManiac,
     CentauriCanon,
     MultiLauncher,
-    Whiplash,
+    ChimeraBeast,
     Overload,
-    VoidBullet,
+    BloodyCanon,
     DestroyLaser,
     
     // spawner

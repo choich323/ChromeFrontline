@@ -17,7 +17,7 @@ MonoBehaviour:
     prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 0
+    dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: 0}
@@ -34,7 +34,7 @@ MonoBehaviour:
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
-    goldCost: -1
+    goldCost: 0
   - id: SteelBaton
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}
@@ -187,7 +187,7 @@ MonoBehaviour:
     attackRange: 6
     criticalChance: 0.05
     moveSpeed: 0.5
-    productionTime: 4.6
+    productionTime: 7.6
     goldCost: 56
   - id: DroneBomber
     prefab: {fileID: 0}
@@ -224,15 +224,15 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 7000
-    armor: 60
-    attack: 130
+    hp: 5000
+    armor: 45
+    attack: 95
     attackSpeed: 0.8
     attackRange: 1
     criticalChance: 0.05
     moveSpeed: 0.7
-    productionTime: 11.1
-    goldCost: 147
+    productionTime: 8
+    goldCost: 80
   - id: PyroManiac
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -246,15 +246,15 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 8800
-    armor: 60
-    attack: 65
+    hp: 6500
+    armor: 45
+    attack: 45
     attackSpeed: 0.6
     attackRange: 1.5
     criticalChance: 0.05
     moveSpeed: 0.6
-    productionTime: 21.8
-    goldCost: 290
+    productionTime: 14
+    goldCost: 140
   - id: CentauriCanon
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 169c4acedf968e04d8aa0b237f7ff942, type: 2}
@@ -268,15 +268,15 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 3300
-    armor: 30
-    attack: 280
+    hp: 2500
+    armor: 20
+    attack: 200
     attackSpeed: 0.8
     attackRange: 7
     criticalChance: 0.1
     moveSpeed: 0.55
-    productionTime: 20.4
-    goldCost: 272
+    productionTime: 13.5
+    goldCost: 135
   - id: MultiLauncher
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -290,37 +290,37 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 3300
-    armor: 30
-    attack: 115
+    hp: 2500
+    armor: 20
+    attack: 85
     attackSpeed: 0.6
     attackRange: 7
     criticalChance: 0.05
     moveSpeed: 0.55
-    productionTime: 24.4
-    goldCost: 324
-  - id: Whiplash
+    productionTime: 16
+    goldCost: 160
+  - id: ChimeraBeast
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 1
+    animatorOverrideController: {fileID: 22100000, guid: 0c96cb17209a035489eb731da4d51bb0, type: 2}
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: 4034342799781239322, guid: 8c5bf42a7a4ef0945aa2a62d8506f8ff, type: 3}
     attackAreaType: 1
     camp: 2
     tier: 4
     grade: 0
     level: 1
-    hp: 16500
-    armor: 140
-    attack: 350
+    hp: 11000
+    armor: 90
+    attack: 230
     attackSpeed: 0.8
     attackRange: 1
     criticalChance: 0.1
     moveSpeed: 0.75
-    productionTime: 21
-    goldCost: 525
+    productionTime: 28
+    goldCost: 280
   - id: Overload
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -334,37 +334,37 @@ MonoBehaviour:
     tier: 4
     grade: 0
     level: 1
-    hp: 21000
-    armor: 140
-    attack: 165
+    hp: 14000
+    armor: 90
+    attack: 105
     attackSpeed: 0.6
     attackRange: 1.5
     criticalChance: 0.1
     moveSpeed: 0.7
-    productionTime: 43.2
-    goldCost: 1081
-  - id: VoidBullet
+    productionTime: 45
+    goldCost: 450
+  - id: BloodyCanon
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 1
+    animatorOverrideController: {fileID: 22100000, guid: 978fd6aa975752b4d92d494478600619, type: 2}
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: 4647947049753899592, guid: eabc26aa1a5c4ac47be54610b410faf7, type: 3}
     attackAreaType: 1
     camp: 2
     tier: 4
     grade: 0
     level: 1
-    hp: 7800
-    armor: 70
-    attack: 700
+    hp: 5200
+    armor: 45
+    attack: 460
     attackSpeed: 0.8
     attackRange: 8
     criticalChance: 0.15
     moveSpeed: 0.6
-    productionTime: 33.6
-    goldCost: 840
+    productionTime: 38
+    goldCost: 380
   - id: DestroyLaser
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
@@ -378,12 +378,12 @@ MonoBehaviour:
     tier: 4
     grade: 0
     level: 1
-    hp: 7800
-    armor: 70
-    attack: 290
+    hp: 5200
+    armor: 45
+    attack: 190
     attackSpeed: 0.6
     attackRange: 8
     criticalChance: 0.1
     moveSpeed: 0.6
-    productionTime: 40.2
-    goldCost: 1005
+    productionTime: 45
+    goldCost: 450
