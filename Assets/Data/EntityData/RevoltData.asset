@@ -34,7 +34,7 @@ MonoBehaviour:
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
-    goldCost: 0
+    goldCost: -1
   - id: SteelBaton
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}

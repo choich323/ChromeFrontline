@@ -34,7 +34,7 @@ MonoBehaviour:
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
-    goldCost: 0
+    goldCost: -1
   - id: Police
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
@@ -350,7 +350,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: -4914492569349402379, guid: 58677504c5270914a885adfe164f59c4, type: 3}
+    iconImage: {fileID: -1115452438654070190, guid: 7a4285a18fb74ad4dbed460740708b64, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 4

@@ -164,7 +164,7 @@ public class DataManager : MonoBehaviour
     public List<EntityInfo> GetRevoltInfoList(int argTpAmount)
     {
         // TODO: 임시로 Area 타입은 지정되지 않도록 수정
-        return _revoltInfoList.FindAll(entity => entity.goldCost >= 0 && entity.goldCost <= argTpAmount && entity.attackAreaType != AttackAreaType.Area);
+        return _revoltInfoList.FindAll(entity => entity.goldCost > 0 && entity.goldCost <= argTpAmount && entity.attackAreaType != AttackAreaType.Area);
     }
 
     public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argTier)
