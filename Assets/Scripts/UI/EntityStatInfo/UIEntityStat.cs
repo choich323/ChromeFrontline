@@ -39,7 +39,7 @@ public class UIEntityStat : APopup
         _hpText.SetText($"{_entityInfo.hp}");
         _armorText.SetText($"{_entityInfo.armor}");
         _attackText.SetText($"{_entityInfo.attack}");
-        _criticalText.SetText($"{_entityInfo.criticalChance * MULTIPLIER:F0}");
+        _criticalText.SetText($"{_entityInfo.criticalChance * MULTIPLIER:F0}%");
         _attackSpeedText.SetText($"{_entityInfo.attackSpeed:F2}");
         _moveSpeedText.SetText($"{_entityInfo.moveSpeed:F2}");
     }

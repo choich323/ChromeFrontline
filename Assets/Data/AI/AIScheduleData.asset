@@ -32,58 +32,58 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 1
       - serializedVersion: 3
-        time: 147.39133
-        value: 60.35963
-        inSlope: 0.34405893
-        outSlope: 0.34405893
+        time: 147.39627
+        value: 57.815994
+        inSlope: 0.2931291
+        outSlope: 0.2931291
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.6279336
+        outWeight: 0.48443946
       - serializedVersion: 3
-        time: 289.4523
-        value: 125.797424
-        inSlope: 0.4229523
-        outSlope: 0.4229523
+        time: 293.99646
+        value: 114.46699
+        inSlope: 0.6614254
+        outSlope: 0.6614254
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.18270324
-        outWeight: 0.67245096
+        inWeight: 0.26582652
+        outWeight: 0.43417233
       - serializedVersion: 3
-        time: 400.41837
-        value: 179.57544
-        inSlope: 0.5553538
-        outSlope: 0.5553538
+        time: 403.6799
+        value: 211.77419
+        inSlope: 1.1752119
+        outSlope: 1.1752119
         tangentMode: 0
         weightedMode: 0
-        inWeight: 1
-        outWeight: 0.56284523
+        inWeight: 0.3340374
+        outWeight: 0.6107868
       - serializedVersion: 3
-        time: 563.6522
-        value: 259.47614
-        inSlope: 0.37824774
-        outSlope: 0.37824774
+        time: 545.07965
+        value: 392.3596
+        inSlope: 0.859877
+        outSlope: 0.859877
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.25065342
-        outWeight: 0.3340562
+        inWeight: 0.52577174
+        outWeight: 0.39377305
       - serializedVersion: 3
-        time: 785.9046
-        value: 399.61987
-        inSlope: 0.3518107
-        outSlope: 0.3518107
+        time: 710.9635
+        value: 595.0767
+        inSlope: 0.6305766
+        outSlope: 0.6305766
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.40563986
+        inWeight: 0.58034015
         outWeight: 0.20100342
       - serializedVersion: 3
-        time: 1016.9048
-        value: 551.22107
-        inSlope: 0.4717895
-        outSlope: 0.4717895
+        time: 946.21747
+        value: 807.72516
+        inSlope: 0.9479549
+        outSlope: 0.9479549
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.3040922
+        inWeight: 0.3934519
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
