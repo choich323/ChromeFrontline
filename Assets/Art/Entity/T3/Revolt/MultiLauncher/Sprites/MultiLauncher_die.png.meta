@@ -1,0 +1,755 @@
+fileFormatVersion: 2
+guid: 1524d5476a58dc847adc3ba342e074cc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2906557659865532448
+    second: MultiLauncher_die_0
+  - first:
+      213: 5276039352291611404
+    second: MultiLauncher_die_1
+  - first:
+      213: -5859767610600092625
+    second: MultiLauncher_die_2
+  - first:
+      213: 6165924206918025672
+    second: MultiLauncher_die_3
+  - first:
+      213: 1315551062474694700
+    second: MultiLauncher_die_4
+  - first:
+      213: -5941263806626752700
+    second: MultiLauncher_die_5
+  - first:
+      213: 2610311666674467308
+    second: MultiLauncher_die_6
+  - first:
+      213: 4827334974943280907
+    second: MultiLauncher_die_7
+  - first:
+      213: -95135127183583849
+    second: MultiLauncher_die_8
+  - first:
+      213: -7673032817059558587
+    second: MultiLauncher_die_9
+  - first:
+      213: -758468106249668729
+    second: MultiLauncher_die_10
+  - first:
+      213: 2522845114998607824
+    second: MultiLauncher_die_11
+  - first:
+      213: -4795666472529250833
+    second: MultiLauncher_die_12
+  - first:
+      213: -3530830594011361974
+    second: MultiLauncher_die_13
+  - first:
+      213: 6450309731266268315
+    second: MultiLauncher_die_14
+  - first:
+      213: -6059857193113434410
+    second: MultiLauncher_die_15
+  - first:
+      213: -7292080767707675938
+    second: MultiLauncher_die_16
+  - first:
+      213: 585370023196926320
+    second: MultiLauncher_die_17
+  - first:
+      213: -1163340981212530046
+    second: MultiLauncher_die_18
+  - first:
+      213: -1808036301684250208
+    second: MultiLauncher_die_19
+  - first:
+      213: 5500456276433554731
+    second: MultiLauncher_die_20
+  - first:
+      213: 6071011479339238935
+    second: MultiLauncher_die_21
+  - first:
+      213: -2490714694557969117
+    second: MultiLauncher_die_22
+  - first:
+      213: -4774055575880124743
+    second: MultiLauncher_die_23
+  - first:
+      213: -6646541446263121197
+    second: MultiLauncher_die_24
+  - first:
+      213: -1066120674656143093
+    second: MultiLauncher_die_25
+  - first:
+      213: -3171885214278742368
+    second: MultiLauncher_die_26
+  - first:
+      213: -4319759543165418995
+    second: MultiLauncher_die_27
+  - first:
+      213: -4180807729779620480
+    second: MultiLauncher_die_28
+  - first:
+      213: -6012936495108271260
+    second: MultiLauncher_die_29
+  - first:
+      213: -3139132747843911055
+    second: MultiLauncher_die_30
+  - first:
+      213: -5440654338748113883
+    second: MultiLauncher_die_31
+  - first:
+      213: 3339296909435892263
+    second: MultiLauncher_die_32
+  - first:
+      213: 2624397084702476713
+    second: MultiLauncher_die_33
+  - first:
+      213: 3297646523900310407
+    second: MultiLauncher_die_34
+  - first:
+      213: 8097966797253677096
+    second: MultiLauncher_die_35
+  - first:
+      213: -3737099079872469861
+    second: MultiLauncher_die_36
+  - first:
+      213: -6692070322090289523
+    second: MultiLauncher_die_37
+  - first:
+      213: -8906172458861764565
+    second: MultiLauncher_die_38
+  - first:
+      213: 1088488812484791980
+    second: MultiLauncher_die_39
+  - first:
+      213: 6891752728431287490
+    second: MultiLauncher_die_40
+  - first:
+      213: 7076858402790682294
+    second: MultiLauncher_die_41
+  - first:
+      213: -8996350534097519994
+    second: MultiLauncher_die_42
+  - first:
+      213: -6103293509297433167
+    second: MultiLauncher_die_43
+  - first:
+      213: -581870956343563292
+    second: MultiLauncher_die_44
+  - first:
+      213: 8956771596438733502
+    second: MultiLauncher_die_45
+  - first:
+      213: 5130482037735155980
+    second: MultiLauncher_die_46
+  - first:
+      213: -3982890776878664206
+    second: MultiLauncher_die_47
+  - first:
+      213: 6668964334695027077
+    second: MultiLauncher_die_48
+  - first:
+      213: 6634686033505854676
+    second: MultiLauncher_die_49
+  - first:
+      213: -8714132682294232216
+    second: MultiLauncher_die_50
+  - first:
+      213: 1590931646620358678
+    second: MultiLauncher_die_51
+  - first:
+      213: -1678496523884781684
+    second: MultiLauncher_die_52
+  - first:
+      213: -8865807072403016300
+    second: MultiLauncher_die_53
+  - first:
+      213: -8288106967564909200
+    second: MultiLauncher_die_54
+  - first:
+      213: -2349140513967126397
+    second: MultiLauncher_die_55
+  - first:
+      213: -1904618455003778980
+    second: MultiLauncher_die_56
+  - first:
+      213: 1493090199559385604
+    second: MultiLauncher_die_57
+  - first:
+      213: -6973639558018191538
+    second: MultiLauncher_die_58
+  - first:
+      213: -6009022857689251100
+    second: MultiLauncher_die_59
+  - first:
+      213: -489688562252674829
+    second: MultiLauncher_die_60
+  - first:
+      213: 7209560107201634213
+    second: MultiLauncher_die_61
+  - first:
+      213: 8299052918632243937
+    second: MultiLauncher_die_62
+  - first:
+      213: 7802030979378632810
+    second: MultiLauncher_die_63
+  - first:
+      213: 1284918375052804219
+    second: MultiLauncher_die_64
+  - first:
+      213: -5052910697865023256
+    second: MultiLauncher_die_65
+  - first:
+      213: -3090276364242631807
+    second: MultiLauncher_die_66
+  - first:
+      213: -2047308816031012935
+    second: MultiLauncher_die_67
+  - first:
+      213: -4750842149376329659
+    second: MultiLauncher_die_68
+  - first:
+      213: -1439662282642285950
+    second: MultiLauncher_die_69
+  - first:
+      213: -9186715578704386479
+    second: MultiLauncher_die_70
+  - first:
+      213: -6877806322567570216
+    second: MultiLauncher_die_71
+  - first:
+      213: 8478370122782716958
+    second: MultiLauncher_die_72
+  - first:
+      213: -5770063164594351292
+    second: MultiLauncher_die_73
+  - first:
+      213: 4604757599915140125
+    second: MultiLauncher_die_74
+  - first:
+      213: -8211938443410817471
+    second: MultiLauncher_die_75
+  - first:
+      213: 7145638257149010250
+    second: MultiLauncher_die_76
+  - first:
+      213: -2729887111167396803
+    second: MultiLauncher_die_77
+  - first:
+      213: 1496543810119211233
+    second: MultiLauncher_die_78
+  - first:
+      213: -4041305263769907769
+    second: MultiLauncher_die_79
+  - first:
+      213: 1017319769730711369
+    second: MultiLauncher_die_80
+  - first:
+      213: -8926968640225431696
+    second: MultiLauncher_die_81
+  - first:
+      213: 3783684422380720
+    second: MultiLauncher_die_82
+  - first:
+      213: 8042748415532693582
+    second: MultiLauncher_die_83
+  - first:
+      213: 8216805670080185566
+    second: MultiLauncher_die_84
+  - first:
+      213: -4411288399622910703
+    second: MultiLauncher_die_85
+  - first:
+      213: -2005283902481322404
+    second: MultiLauncher_die_86
+  - first:
+      213: -8002671193275068593
+    second: MultiLauncher_die_87
+  - first:
+      213: -1945485348577304341
+    second: MultiLauncher_die_88
+  - first:
+      213: -384731974467352556
+    second: MultiLauncher_die_89
+  - first:
+      213: -5618584036912163638
+    second: MultiLauncher_die_90
+  - first:
+      213: -4461812521795123691
+    second: MultiLauncher_die_91
+  - first:
+      213: 4839780683608068685
+    second: MultiLauncher_die_92
+  - first:
+      213: -6311691011476414805
+    second: MultiLauncher_die_93
+  - first:
+      213: -736157034740993551
+    second: MultiLauncher_die_94
+  - first:
+      213: -8375784796935442218
+    second: MultiLauncher_die_95
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MultiLauncher_die_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e7368c3535d9a7d0800000000000000
+      internalID: -2906557659865532448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c03d25656d1483940800000000000000
+      internalID: 5276039352291611404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c87df876cedaea0800000000000000
+      internalID: -5859767610600092625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c1c451d563c19550800000000000000
+      internalID: 6165924206918025672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2021b2a8b6c14210800000000000000
+      internalID: 1315551062474694700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4479029cb046c8da0800000000000000
+      internalID: -5941263806626752700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce1803d71a0b93420800000000000000
+      internalID: 2610311666674467308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0f305955932ef240800000000000000
+      internalID: 4827334974943280907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7959f8a1b130eaef0800000000000000
+      internalID: -95135127183583849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b004d6e49e38590800000000000000
+      internalID: -7673032817059558587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_10
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7877681a6416975f0800000000000000
+      internalID: -758468106249668729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_11
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df42d6f342f20320800000000000000
+      internalID: 2522845114998607824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_12
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5b4a370ce527db0800000000000000
+      internalID: -4795666472529250833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiLauncher_die_13
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.51171875, y: 0.24609375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d0fd92848fffec0800000000000000
+      internalID: -3530830594011361974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dc4d880822e0d714f8401999a00ce9c8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.51171875,"y":0.24609375},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MultiLauncher_die_0: -2906557659865532448
+      MultiLauncher_die_1: 5276039352291611404
+      MultiLauncher_die_10: -758468106249668729
+      MultiLauncher_die_11: 2522845114998607824
+      MultiLauncher_die_12: -4795666472529250833
+      MultiLauncher_die_13: -3530830594011361974
+      MultiLauncher_die_2: -5859767610600092625
+      MultiLauncher_die_3: 6165924206918025672
+      MultiLauncher_die_4: 1315551062474694700
+      MultiLauncher_die_5: -5941263806626752700
+      MultiLauncher_die_6: 2610311666674467308
+      MultiLauncher_die_7: 4827334974943280907
+      MultiLauncher_die_8: -95135127183583849
+      MultiLauncher_die_9: -7673032817059558587
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
