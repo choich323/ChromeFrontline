@@ -59,12 +59,12 @@ MonoBehaviour:
     goldCost: 11
   - id: WireStriker
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 0019c70b4f213114ab78b3de97313acd, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -1071032477556076678, guid: 2c3c8ba47bfdbc9438e55cb1dbb42583, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 1
@@ -103,12 +103,12 @@ MonoBehaviour:
     goldCost: 15
   - id: MadGas
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: a53c6f0c9c3c2b74c982bbc81301322c, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: 3577763022357914564, guid: 0930c4c0381da954187140b4fd79e582, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 1
@@ -147,12 +147,12 @@ MonoBehaviour:
     goldCost: 30
   - id: SteelWall
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 831d6ffdf9eccf1429ef66c6147e61cc, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -2560795756631581026, guid: 2af405763dd137942879276265a96502, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 2
@@ -191,12 +191,12 @@ MonoBehaviour:
     goldCost: 56
   - id: DevilDrone
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 2c0307f9f56c06a438a954f4d0d42f93, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -1963768600617272606, guid: d0f3e6edf11be6745955f82f643ec537, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 2
@@ -235,12 +235,12 @@ MonoBehaviour:
     goldCost: 80
   - id: PyroManiac
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 5ad25108e4259de44ba248c1f7644bbf, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -8719062797410128897, guid: a4dba65fd602f764586852019b07585a, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 3
@@ -279,12 +279,12 @@ MonoBehaviour:
     goldCost: 135
   - id: MultiLauncher
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 7bf066b34eb3ff5408085fa313bf1fd6, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -5488175168486592691, guid: 56c131cbfe7293940a21c91bcfac0f81, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 3
@@ -323,12 +323,12 @@ MonoBehaviour:
     goldCost: 280
   - id: Overload
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: ec8f3bfd164482c4288f5d2c8733aa7e, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: -1145086557959553331, guid: 933c50bce100dd041908575f0a851747, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 4
@@ -367,12 +367,12 @@ MonoBehaviour:
     goldCost: 380
   - id: DestroyLaser
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 5fbf207cda27d0346a1abea450509916, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: 2258217582565971276, guid: 030ac2ff9f38bc34887cbca5bc97f83c, type: 3}
     attackAreaType: 2
     camp: 2
     tier: 4
