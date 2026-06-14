@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RevoltData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: EntitySingle
-    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
+  - id: RevoltSingle
+    prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -148,7 +148,7 @@ MonoBehaviour:
   - id: SteelWall
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
@@ -189,10 +189,10 @@ MonoBehaviour:
     moveSpeed: 0.5
     productionTime: 7.6
     goldCost: 56
-  - id: DroneBomber
+  - id: DevilDrone
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8

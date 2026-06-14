@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PioneerData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: EntitySingle
-    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
+  - id: PioneerSingle
+    prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -34,7 +34,7 @@ MonoBehaviour:
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
-    goldCost: -1
+    goldCost: 0
   - id: Police
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
@@ -192,7 +192,7 @@ MonoBehaviour:
   - id: Commander
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
