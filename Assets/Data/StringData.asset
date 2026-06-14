@@ -21,10 +21,6 @@ MonoBehaviour:
     value:
       en: Aegis Storm
       kr: "\uC218\uD638\uC758 \uD3ED\uD48D"
-  - id: Agent
-    value:
-      en: Agent
-      kr: "\uC694\uC6D0"
   - id: AssaultRifle
     value:
       en: Assault Rifle
@@ -102,10 +98,10 @@ MonoBehaviour:
     value:
       en: Destroy Laser
       kr: "\uBA78\uB9DD\uC758 \uC778\uB3C4\uC790"
-  - id: DroneBomber
+  - id: DevilDrone
     value:
-      en: Drone Bomber
-      kr: "\uB4DC\uB860 \uD3ED\uACA9\uAE30"
+      en: Devil Drone
+      kr: "\uB4DC\uB860\uC758 \uC545\uB9C8"
   - id: ElectroBlade
     value:
       en: Electro Blade
@@ -274,6 +270,10 @@ MonoBehaviour:
     value:
       en: Phalanx
       kr: "\uBC29\uD328\uBCD1"
+  - id: Piercer
+    value:
+      en: Piercer
+      kr: "\uC81C\uC555\uC0AC"
   - id: PlasmaSlasher
     value:
       en: Plasma Slasher

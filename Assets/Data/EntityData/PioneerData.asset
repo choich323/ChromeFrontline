@@ -101,7 +101,7 @@ MonoBehaviour:
     moveSpeed: 1
     productionTime: 8
     goldCost: 30
-  - id: Agent
+  - id: Piercer
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
