@@ -31,6 +31,7 @@ MonoBehaviour:
     attack: 0
     attackSpeed: 0
     attackRange: 0
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
@@ -53,6 +54,7 @@ MonoBehaviour:
     attack: 0
     attackSpeed: 0
     attackRange: 0
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
@@ -75,6 +77,7 @@ MonoBehaviour:
     attack: 0
     attackSpeed: 0
     attackRange: 0
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
@@ -97,6 +100,7 @@ MonoBehaviour:
     attack: 0
     attackSpeed: 0
     attackRange: 0
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0
     productionTime: 0
@@ -119,6 +123,7 @@ MonoBehaviour:
     attack: 14
     attackSpeed: 0.8
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0.6
     productionTime: 2.9
@@ -131,7 +136,7 @@ MonoBehaviour:
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: -1071032477556076678, guid: 2c3c8ba47bfdbc9438e55cb1dbb42583, type: 3}
-    attackAreaType: 2
+    attackAreaType: 4
     camp: 2
     tier: 1
     grade: 0
@@ -141,6 +146,7 @@ MonoBehaviour:
     attack: 10
     attackSpeed: 0.6
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0.5
     productionTime: 7.1
@@ -163,6 +169,7 @@ MonoBehaviour:
     attack: 29
     attackSpeed: 0.8
     attackRange: 5
+    areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 0.45
     productionTime: 3.9
@@ -185,6 +192,7 @@ MonoBehaviour:
     attack: 12
     attackSpeed: 0.6
     attackRange: 5
+    areaRadius: 1.5
     criticalChance: 0
     moveSpeed: 0.45
     productionTime: 4.5
@@ -207,6 +215,7 @@ MonoBehaviour:
     attack: 40
     attackSpeed: 0.8
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0.65
     productionTime: 4
@@ -219,7 +228,7 @@ MonoBehaviour:
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: -2560795756631581026, guid: 2af405763dd137942879276265a96502, type: 3}
-    attackAreaType: 2
+    attackAreaType: 4
     camp: 2
     tier: 2
     grade: 0
@@ -229,6 +238,7 @@ MonoBehaviour:
     attack: 22
     attackSpeed: 0.6
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 0.6
     productionTime: 8.9
@@ -251,6 +261,7 @@ MonoBehaviour:
     attack: 95
     attackSpeed: 0.8
     attackRange: 6
+    areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 0.5
     productionTime: 7.6
@@ -273,6 +284,7 @@ MonoBehaviour:
     attack: 40
     attackSpeed: 0.6
     attackRange: 6
+    areaRadius: 2
     criticalChance: 0
     moveSpeed: 0.5
     productionTime: 9.4
@@ -295,6 +307,7 @@ MonoBehaviour:
     attack: 95
     attackSpeed: 0.8
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 0.7
     productionTime: 8
@@ -307,7 +320,7 @@ MonoBehaviour:
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: -8719062797410128897, guid: a4dba65fd602f764586852019b07585a, type: 3}
-    attackAreaType: 2
+    attackAreaType: 4
     camp: 2
     tier: 3
     grade: 0
@@ -317,6 +330,7 @@ MonoBehaviour:
     attack: 45
     attackSpeed: 0.6
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 0.6
     productionTime: 14
@@ -339,6 +353,7 @@ MonoBehaviour:
     attack: 200
     attackSpeed: 0.8
     attackRange: 7
+    areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 0.55
     productionTime: 13.5
@@ -361,6 +376,7 @@ MonoBehaviour:
     attack: 85
     attackSpeed: 0.6
     attackRange: 7
+    areaRadius: 2.5
     criticalChance: 0.05
     moveSpeed: 0.55
     productionTime: 16
@@ -383,6 +399,7 @@ MonoBehaviour:
     attack: 230
     attackSpeed: 0.8
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 0.75
     productionTime: 28
@@ -395,7 +412,7 @@ MonoBehaviour:
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: -1145086557959553331, guid: 933c50bce100dd041908575f0a851747, type: 3}
-    attackAreaType: 2
+    attackAreaType: 4
     camp: 2
     tier: 4
     grade: 0
@@ -405,6 +422,7 @@ MonoBehaviour:
     attack: 105
     attackSpeed: 0.6
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 0.7
     productionTime: 45
@@ -427,6 +445,7 @@ MonoBehaviour:
     attack: 460
     attackSpeed: 0.8
     attackRange: 8
+    areaRadius: 0
     criticalChance: 0.15
     moveSpeed: 0.6
     productionTime: 38
@@ -439,7 +458,7 @@ MonoBehaviour:
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: 2258217582565971276, guid: 030ac2ff9f38bc34887cbca5bc97f83c, type: 3}
-    attackAreaType: 2
+    attackAreaType: 4
     camp: 2
     tier: 4
     grade: 0
@@ -449,6 +468,7 @@ MonoBehaviour:
     attack: 190
     attackSpeed: 0.6
     attackRange: 8
+    areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 0.6
     productionTime: 45

@@ -318,6 +318,7 @@ public class EntityDataImporter : EditorWindow
             AssignFloat(row, headerIndex, "attack", ref entity.attack);
             AssignFloat(row, headerIndex, "attackSpeed", ref entity.attackSpeed);
             AssignFloat(row, headerIndex, "attackRange", ref entity.attackRange);
+            AssignFloat(row, headerIndex, "areaRadius", ref entity.areaRadius);
             AssignFloat(row, headerIndex, "criticalChance", ref entity.criticalChance, true); 
             
             AssignFloat(row, headerIndex, "moveSpeed", ref entity.moveSpeed);

@@ -69,6 +69,8 @@ public struct EntityStatus
     public float attack;
     public float attackSpeed;
     public float attackRange;
+    public float areaRadius;
+    
     [Range(0, 1)] 
     public float criticalChance;
     
@@ -82,15 +84,14 @@ public struct EntityStatus
 
 public abstract class AEntity : MonoBehaviour
 {
+    protected const float EPSILON = 0.01f;
+    protected const int DEFAULT_RAYCAST_COUNT = 100;
     private const ulong INVALID_UID = 0;
     private const float DEFAULT_CRITICAL_DAMAGE_RATIO = 2f;
-    private const float EPSILON = 0.01f;
-    private const float RETARGET_INTERVAL = 5f;
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
     private const float REWARD_RATIO = 0.7f;
     private const float BASE_MOVE_SPEED = 0.625f;
-    private const int DEFAULT_RAYCAST_COUNT = 50;
     private const string LAYER_NAME_ENTITY = "Entity";
     
     private const string ANIM_STATE_WALK = "isWalk";
@@ -99,31 +100,29 @@ public abstract class AEntity : MonoBehaviour
     private const string ANIM_WALK_SPEED_RATIO = "walkSpeedRatio";
     private const string ANIM_ATTACK_SPEED_RATIO = "attackSpeedRatio";
     
-    private static readonly int IS_WALK = Animator.StringToHash(ANIM_STATE_WALK);
+    protected static readonly int IS_WALK = Animator.StringToHash(ANIM_STATE_WALK);
     private static readonly int TRIGGER_ATTACK = Animator.StringToHash(ANIM_STATE_ATTACK);
     private static readonly int TRIGGER_DIE = Animator.StringToHash(ANIM_STATE_DIE);
     private static readonly int WALK_SPEED_RATIO = Animator.StringToHash(ANIM_WALK_SPEED_RATIO);
     private static readonly int ATTACK_SPEED_RATIO = Animator.StringToHash(ANIM_ATTACK_SPEED_RATIO);
     
-    [SerializeField] private Animator _animator;
+    [SerializeField] protected Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Transform _visualChild;
     [SerializeField] private float _targetSearchYOffset = 5f;
     
-    private EntityStatus _entityStatus;
-    private int _entityLayerMask;
-    private ContactFilter2D _contactFilter;
+    protected EntityStatus _entityStatus;
+    protected int _entityLayerMask;
+    protected ContactFilter2D _contactFilter;
+    protected RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
     private PrefabID _id;
     private ulong _uid;
-    private Vector2 _direction;
+    protected Vector2 _direction;
     private Transform _targetHqCoreTransform;
-    private float _attackCooldownTimer;
-    private float _retargetTimer;
+    protected float _attackCooldownTimer;
     private float _dieAnimDuration;
     private float _attackAnimDuration;
     private float _attackHitTiming;
-    private AEntity _attackTarget;
-    private RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
     private Action<AEntity> _onDie;
     private Action<long> _onKill;
     private Coroutine _dieAnimCoroutine;
@@ -195,6 +194,7 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.attack = argEntityInfo.attack * gradeInfo.attackRatio;
         _entityStatus.attackSpeed = argEntityInfo.attackSpeed * gradeInfo.attackSpeedRatio;
         _entityStatus.attackRange = argEntityInfo.attackRange;
+        _entityStatus.areaRadius = _entityStatus.areaRadius;
         _entityStatus.criticalChance = argEntityInfo.criticalChance;
         _entityStatus.moveSpeed = argEntityInfo.moveSpeed * gradeInfo.moveSpeedRatio;
         _entityStatus.canAction = true;
@@ -208,9 +208,6 @@ public abstract class AEntity : MonoBehaviour
         
         if(_attackCooldownTimer > 0)
             _attackCooldownTimer -= Time.deltaTime;
-
-        if(_retargetTimer > 0)
-            _retargetTimer -= Time.deltaTime;
         
         if (!_entityStatus.canAction)
             return;
@@ -231,40 +228,12 @@ public abstract class AEntity : MonoBehaviour
             _scanResults,
             _entityStatus.attackRange
         );
-        
-        if (hitCount > 0)
+
+        if (CheckAttackSequence(hitCount))
         {
-            AEntity target = _attackTarget;
-            bool isTargetInvalid = true;
-            if (target != null)
-            {
-                float distance = Mathf.Abs(transform.position.x - target.transform.position.x);
-                bool outOfRange = distance > _entityStatus.attackRange;
-                isTargetInvalid = target == null || target.IsDead || outOfRange;
-            }
-            
-            if (isTargetInvalid || _retargetTimer <= 0f)
-            {
-                target = SelectTarget(hitCount);
-                _attackTarget = target;
-                _retargetTimer = RETARGET_INTERVAL;
-            }
-            
-            if (target != null)
-            {
-                _animator.SetBool(IS_WALK, false);
-                
-                if (_attackCooldownTimer <= 0)
-                {
-                    Attack(target);
-                }
-                return;
-            }
+            return;
         }
-
-        _retargetTimer = 0f;
-        _attackTarget = null;
-
+        
         if (CheckArrival())
         {
             return;
@@ -273,12 +242,32 @@ public abstract class AEntity : MonoBehaviour
         Move();
     }
 
-    protected virtual AEntity SelectTarget(int argHitCount)
+    protected virtual bool CheckAttackSequence(int argHitCount)
     {
-        AEntity bestTarget = null;
-        float minDistance = float.MaxValue;
-        float minHp = float.MaxValue;
+        if (argHitCount > 0)
+        {
+            var targets = SelectTargets(argHitCount);
+            if (targets.Count > 0)
+            {
+                _animator.SetBool(IS_WALK, false);
+                
+                if (_attackCooldownTimer <= 0)
+                {
+                    Attack(targets);
+                }
 
+                return true;   
+            }
+        }
+        
+        return false;
+    }
+
+    protected virtual List<AEntity> SelectTargets(int argHitCount)
+    {
+        List<AEntity> validTargets = new List<AEntity>();
+        float minDistance = float.MaxValue;
+        
         for (int i = 0; i < argHitCount; i++)
         {
             var scanResult = _scanResults[i];
@@ -301,25 +290,21 @@ public abstract class AEntity : MonoBehaviour
                 continue;
             }
             
-            float hp = target.CurHp;
-
             bool isCloserTarget = distance < minDistance - EPSILON;
-            bool isSimilarDistance = Mathf.Abs(distance - minDistance) <= EPSILON;
-            bool hasLowerHp = hp < minHp;
-            if (isCloserTarget || (isSimilarDistance && hasLowerHp))
+
+            if (isCloserTarget)
             {
                 minDistance = distance;
-                minHp = hp;
-                bestTarget = target;
+                
             }
         }
-        
-        return bestTarget;
-    }
 
-    protected virtual void Attack(AEntity argTarget)
+        return validTargets;
+    }
+    
+    protected virtual void Attack(List<AEntity> argTargetList)
     {
-        if (argTarget == null || argTarget.IsDead)
+        if (argTargetList == null || argTargetList.Count == 0)
             return;
 
         if (_attackAnimCoroutine != null)
@@ -334,10 +319,10 @@ public abstract class AEntity : MonoBehaviour
         var atkSpeed = Mathf.Max(MIN_ATTACK_SPEED, _entityStatus.attackSpeed);
         _attackCooldownTimer = 1f / atkSpeed;
 
-        _attackAnimCoroutine = StartCoroutine(CoAttack(argTarget));
+        _attackAnimCoroutine = StartCoroutine(CoAttack(argTargetList));
     }
 
-    protected virtual IEnumerator CoAttack(AEntity argTarget)
+    protected virtual IEnumerator CoAttack(List<AEntity> argTargetList)
     {
         _entityStatus.canAction = false;
         
@@ -349,7 +334,11 @@ public abstract class AEntity : MonoBehaviour
         {
             damage *= DEFAULT_CRITICAL_DAMAGE_RATIO;
         }
-        argTarget.GetEffect(EffectType.Attack, damage, this);
+
+        foreach (var target in argTargetList)
+        {
+            target.GetEffect(EffectType.Attack, damage, this);
+        }
 
         yield return _attackRemainTime;
         
@@ -390,8 +379,6 @@ public abstract class AEntity : MonoBehaviour
             if(argAttacker != null)
                 argAttacker.OnKill(_entityStatus.goldCost);
             
-            _attackTarget = null;
-
             _dieAnimCoroutine = StartCoroutine(CoDie());
         }
         else
@@ -439,8 +426,6 @@ public abstract class AEntity : MonoBehaviour
         _uid = INVALID_UID;
         _direction = Vector2.zero;
         _attackCooldownTimer = 0f;
-        _retargetTimer = 0f;
-        _attackTarget = null;
         _dieAnimDuration = 2f;
         _attackAnimDuration = 1f;
         _attackHitTiming = 0.8f;
@@ -520,20 +505,5 @@ public abstract class AEntity : MonoBehaviour
         Vector2 bottomOffset = new Vector2(0, -boxSize.y / 2f);
         Gizmos.DrawLine(scanOrigin + topOffset, endPosition + topOffset);
         Gizmos.DrawLine(scanOrigin + bottomOffset, endPosition + bottomOffset);
-
-        // 2. 현재 타겟팅된 적이 있을 경우 시각화 (빨간색)
-        if (_attackTarget != null && !_attackTarget.IsDead)
-        {
-            Gizmos.color = Color.red;
-        
-            // 내 중심점에서 타겟 중심점까지의 실제 대각선 선
-            Gizmos.DrawLine(transform.position, _attackTarget.transform.position);
-
-            // 중심점 기준 X축 거리를 확인하기 위한 포인트 (노란색)
-            Gizmos.color = Color.yellow;
-            Vector2 xDistancePoint = new Vector2(_attackTarget.transform.position.x, transform.position.y);
-            Gizmos.DrawLine(transform.position, xDistancePoint);
-            Gizmos.DrawWireSphere(xDistancePoint, 0.2f);
-        }
     }
 }

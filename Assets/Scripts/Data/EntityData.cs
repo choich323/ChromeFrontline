@@ -27,6 +27,8 @@ public class EntityInfo : APrefabInfo
     public float attack;
     public float attackSpeed;
     public float attackRange;
+    public float areaRadius;
+    
     [Range(0, 1)]
     public float criticalChance;
     
