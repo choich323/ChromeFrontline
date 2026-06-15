@@ -51,10 +51,6 @@ public class EntityInfo : APrefabInfo
                 resultID = PrefabID.EntityArea;
                 break;
             
-            case AttackAreaType.Sweep:
-                resultID = PrefabID.EntitySweep;
-                break;
-            
             case AttackAreaType.Pierce:
                 resultID = PrefabID.EntityPierce;
                 break;

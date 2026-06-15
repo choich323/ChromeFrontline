@@ -13,98 +13,6 @@ MonoBehaviour:
   m_Name: PioneerData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: EntitySingle
-    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 2
-    attackAnimDuration: 1
-    attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 1
-    camp: 1
-    tier: 0
-    grade: 0
-    level: 0
-    hp: 0
-    armor: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
-    areaRadius: 0
-    criticalChance: 0
-    moveSpeed: 0
-    productionTime: 0
-    goldCost: 0
-  - id: EntityArea
-    prefab: {fileID: 1881556813145634615, guid: de66cecadf1e8d244bd90efc70631b72, type: 3}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 2
-    attackAnimDuration: 1
-    attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 1
-    camp: 1
-    tier: 0
-    grade: 0
-    level: 0
-    hp: 0
-    armor: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
-    areaRadius: 0
-    criticalChance: 0
-    moveSpeed: 0
-    productionTime: 0
-    goldCost: 0
-  - id: EntitySweep
-    prefab: {fileID: 1881556813145634615, guid: 0407f5608e4722d4e876b7193ff5b308, type: 3}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 2
-    attackAnimDuration: 1
-    attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 1
-    camp: 1
-    tier: 0
-    grade: 0
-    level: 0
-    hp: 0
-    armor: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
-    areaRadius: 0
-    criticalChance: 0
-    moveSpeed: 0
-    productionTime: 0
-    goldCost: 0
-  - id: EntityPierce
-    prefab: {fileID: 1881556813145634615, guid: 1d30c6f6f7a4fdc41b65ee79aaa9e4bc, type: 3}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 2
-    attackAnimDuration: 1
-    attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 1
-    camp: 1
-    tier: 0
-    grade: 0
-    level: 0
-    hp: 0
-    armor: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
-    areaRadius: 0
-    criticalChance: 0
-    moveSpeed: 0
-    productionTime: 0
-    goldCost: 0
   - id: Police
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
@@ -237,7 +145,7 @@ MonoBehaviour:
     armor: 20
     attack: 27
     attackSpeed: 0.7
-    attackRange: 1.5
+    attackRange: 2.5
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.35

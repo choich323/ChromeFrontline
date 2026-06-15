@@ -10,7 +10,6 @@ public enum PrefabID
     // Entity
     EntitySingle = 1001,
     EntityArea,
-    EntitySweep,
     EntityPierce,
     
     Police = 2001,
