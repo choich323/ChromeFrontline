@@ -35,6 +35,11 @@ public class UIEntityUnit : MonoBehaviour
         Managers.Data.TryGetPrefabInfo((int)argPrefabID, out var info);
         _entityInfo = info as EntityInfo;
         _icon.sprite = _entityInfo.iconImage;
+        
+        var localScale = _icon.rectTransform.localScale;
+        localScale.x = _entityInfo.isOriginalSpriteFacingLeft ? -1f : 1f;
+        _icon.rectTransform.localScale = localScale;
+        
         CheckSelected();
     }
 

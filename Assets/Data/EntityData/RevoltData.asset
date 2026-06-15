@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RevoltData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: RevoltSingle
-    prefab: {fileID: 0}
+  - id: EntitySingle
+    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -35,6 +35,72 @@ MonoBehaviour:
     moveSpeed: 0
     productionTime: 0
     goldCost: -1
+  - id: EntityArea
+    prefab: {fileID: 1881556813145634615, guid: de66cecadf1e8d244bd90efc70631b72, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    iconImage: {fileID: 0}
+    attackAreaType: 1
+    camp: 2
+    tier: 0
+    grade: 0
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: 0
+  - id: EntitySweep
+    prefab: {fileID: 1881556813145634615, guid: 0407f5608e4722d4e876b7193ff5b308, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    iconImage: {fileID: 0}
+    attackAreaType: 1
+    camp: 2
+    tier: 0
+    grade: 0
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: 0
+  - id: EntityPierce
+    prefab: {fileID: 1881556813145634615, guid: 1d30c6f6f7a4fdc41b65ee79aaa9e4bc, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    iconImage: {fileID: 0}
+    attackAreaType: 1
+    camp: 2
+    tier: 0
+    grade: 0
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: 0
   - id: SteelBaton
     prefab: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b27b91e0254ec5542b7e83c2443d0f7a, type: 2}

@@ -9,9 +9,9 @@ AnimatorOverrideController:
   m_Name: PiercerController
   m_Controller: {fileID: 9100000, guid: 6b1cccc857df0d0449803d158627a368, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 007a3bb0ab6f1f34cbdd841a299a6f6c, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 410aed5b5ac52a745babad79b6d3c371, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: a961cac44ccdc1d4db7d23618cfa0f2b, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: c9d019ffc5799664c8ddc2e7cd8fd210, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 1510f242844128b429cdd8f2cb6a81eb, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: d1ca2c09a711195479498c59844aeee2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d44460a8162ab654b8fbebd03a7b6a67, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 410aed5b5ac52a745babad79b6d3c371, type: 2}

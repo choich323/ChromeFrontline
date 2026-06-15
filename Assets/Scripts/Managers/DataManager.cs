@@ -163,8 +163,7 @@ public class DataManager : MonoBehaviour
 
     public List<EntityInfo> GetRevoltInfoList(int argTpAmount)
     {
-        // TODO: 임시로 Area 타입은 지정되지 않도록 수정
-        return _revoltInfoList.FindAll(entity => entity.goldCost > 0 && entity.goldCost <= argTpAmount && entity.attackAreaType != AttackAreaType.Area);
+        return _revoltInfoList.FindAll(entity => entity.goldCost > 0 && entity.goldCost <= argTpAmount);
     }
 
     public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argTier)
@@ -178,8 +177,7 @@ public class DataManager : MonoBehaviour
 
     public List<PrefabID> GetPrefabIdList(int argTier)
     {
-        // TODO: 임시로 Area 타입은 지정되지 않도록 수정
-        return _pioneerInfoList.Where(entity => entity.tier == argTier && entity.attackAreaType == AttackAreaType.Single).Select(item => item.GetEntityID()).ToList(); 
+        return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetEntityID()).ToList(); 
     }
 
     public int GetAddSlotCost(int argSlotNumber)

@@ -13,8 +13,74 @@ MonoBehaviour:
   m_Name: PioneerData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: PioneerSingle
-    prefab: {fileID: 0}
+  - id: EntitySingle
+    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    iconImage: {fileID: 0}
+    attackAreaType: 1
+    camp: 1
+    tier: 0
+    grade: 0
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: 0
+  - id: EntityArea
+    prefab: {fileID: 1881556813145634615, guid: de66cecadf1e8d244bd90efc70631b72, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    iconImage: {fileID: 0}
+    attackAreaType: 1
+    camp: 1
+    tier: 0
+    grade: 0
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: 0
+  - id: EntitySweep
+    prefab: {fileID: 1881556813145634615, guid: 0407f5608e4722d4e876b7193ff5b308, type: 3}
+    animatorOverrideController: {fileID: 0}
+    isOriginalSpriteFacingLeft: 0
+    dieAnimDuration: 2
+    attackAnimDuration: 1
+    attackHitTiming: 0.8
+    iconImage: {fileID: 0}
+    attackAreaType: 1
+    camp: 1
+    tier: 0
+    grade: 0
+    level: 0
+    hp: 0
+    armor: 0
+    attack: 0
+    attackSpeed: 0
+    attackRange: 0
+    criticalChance: 0
+    moveSpeed: 0
+    productionTime: 0
+    goldCost: 0
+  - id: EntityPierce
+    prefab: {fileID: 1881556813145634615, guid: 1d30c6f6f7a4fdc41b65ee79aaa9e4bc, type: 3}
     animatorOverrideController: {fileID: 0}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -152,7 +218,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 2586977026376855781, guid: 330a4b3e7dbde2545bd453a0c9bb9583, type: 3}
+    iconImage: {fileID: -7096762414318841460, guid: 31d3a68857989c643bcc5df6217f7607, type: 3}
     attackAreaType: 2
     camp: 1
     tier: 2
@@ -262,7 +328,7 @@ MonoBehaviour:
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 5383902674494576732, guid: ff1741bcd452e894ea4a63ebbe2df73a, type: 3}
+    iconImage: {fileID: -2467308268408919843, guid: ff1741bcd452e894ea4a63ebbe2df73a, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 3

@@ -72,6 +72,11 @@ public class HeadQuarter : MonoBehaviour
         SetHp(_hqUpgradeInfo.maxHp);
         _team = argTeam;
         EarnGold(dm.StartGold);
+        
+#if UNITY_EDITOR
+        EarnGold(1000000);
+#endif
+        
         _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
         _getTargetSpawnerPos = argGetTargetSpawnerPos;
