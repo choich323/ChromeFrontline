@@ -115,6 +115,7 @@ public abstract class AEntity : MonoBehaviour
     protected int _entityLayerMask;
     protected ContactFilter2D _contactFilter;
     protected RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
+    protected AnimatorOverrideController _bulletAnimatorOverrideController;
     private PrefabID _id;
     private ulong _uid;
     protected Vector2 _direction;
@@ -166,6 +167,7 @@ public abstract class AEntity : MonoBehaviour
             _spriteRenderer.flipX = !argEntityInfo.isOriginalSpriteFacingLeft;
         }
         SetEntityInfo(argEntityInfo, argGrade);
+        _bulletAnimatorOverrideController = argEntityInfo.bulletAnimatorOverrideController;
         _dieAnimDuration = argEntityInfo.dieAnimDuration;
         _attackAnimDuration = argEntityInfo.attackAnimDuration;
         _attackHitTiming = argEntityInfo.attackHitTiming;
@@ -327,7 +329,12 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.canAction = false;
         
         yield return _attackWaitTime;
-        
+
+        if (_bulletAnimatorOverrideController != null)
+        {
+            PlayHitEffect(argTargetList);
+        }
+
         float damage = _entityStatus.attack;
         float criticalChance = _entityStatus.criticalChance;
         if (criticalChance > 0f && UnityEngine.Random.value <= criticalChance)
@@ -344,6 +351,22 @@ public abstract class AEntity : MonoBehaviour
         
         _entityStatus.canAction = true;
         _attackAnimCoroutine = null;
+    }
+    
+    protected virtual void PlayHitEffect(List<AEntity> argTargets)
+    {
+        foreach (var target in argTargets)
+        {
+            if (target != null && !target.IsDead)
+            {
+                // 타겟 위치에 이펙트 생성 (이후 이펙트 스스로 애니메이션 종료 후 파괴되도록 스크립트 부착 필요)
+                var bulletObj = Managers.Pool.Instantiate(PrefabID.BulletEffect);
+                bulletObj.transform.SetParent(Managers.Game.GameField.BulletParent, false);
+                bulletObj.transform.position = target.transform.position;
+                var bullet = bulletObj.GetComponent<BulletEffect>();
+                bullet.Init(_bulletAnimatorOverrideController);
+            }
+        }
     }
     
     protected virtual void GetEffect(EffectType argEffectType, float argAmount, AEntity argSubject)
@@ -432,6 +455,7 @@ public abstract class AEntity : MonoBehaviour
         _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
         EntityInfo emptyEntityInfo = new EntityInfo();
         SetEntityInfo(emptyEntityInfo, Grade.Standard);
+        _bulletAnimatorOverrideController = null;
         _targetHqCoreTransform = null;
         _attackCooldownTimer = 0f;
         

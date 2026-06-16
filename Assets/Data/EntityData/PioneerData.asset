@@ -15,6 +15,7 @@ MonoBehaviour:
   entityInfoList:
   - id: Police
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -38,6 +39,7 @@ MonoBehaviour:
     goldCost: 30
   - id: Phalanx
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 83a4f9db6bae0504f989306111287868, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -61,6 +63,7 @@ MonoBehaviour:
     goldCost: 30
   - id: Security
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 58287f18e2f7e024fb1df385c5170cac, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -84,6 +87,7 @@ MonoBehaviour:
     goldCost: 30
   - id: Piercer
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: c2f33350e1646474993e83665487401d, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -107,6 +111,7 @@ MonoBehaviour:
     goldCost: 30
   - id: SpecialForce
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 410750326780766429b99a98a8d1c803, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -130,6 +135,7 @@ MonoBehaviour:
     goldCost: 90
   - id: Breacher
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: db7844aac22689d4090fd4078c4b97b9, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -153,6 +159,7 @@ MonoBehaviour:
     goldCost: 90
   - id: AssaultRifle
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b29e9e0b4f01b9a41b13be6aa06ca26d, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -176,6 +183,7 @@ MonoBehaviour:
     goldCost: 90
   - id: Commander
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a4ada21183fb5a946a5b51a2fe77b7e2, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
@@ -199,6 +207,7 @@ MonoBehaviour:
     goldCost: 90
   - id: HydroPuncher
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: fc0fbe6dfc5d17549a9c840cadc64d88, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -222,6 +231,7 @@ MonoBehaviour:
     goldCost: 240
   - id: ShadowReaper
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 246c8bcea89c33e4b9d2277a1c6c7436, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -245,6 +255,7 @@ MonoBehaviour:
     goldCost: 240
   - id: TheThunder
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a79f1ea836cbef44383f835eae86237e, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
@@ -268,6 +279,7 @@ MonoBehaviour:
     goldCost: 240
   - id: AegisStorm
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 22100000, guid: 5b41c79c27ae6c1459b4ef8d749725ed, type: 2}
     animatorOverrideController: {fileID: 22100000, guid: 054b74ed4e6c0c247bceeeb207f0a9c6, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -291,6 +303,7 @@ MonoBehaviour:
     goldCost: 240
   - id: ElectroBlade
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: c33672b919b0f304dbf165fcbc5749c8, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -314,6 +327,7 @@ MonoBehaviour:
     goldCost: 600
   - id: PlasmaSlasher
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b961a64a0ac9769459108f3c55fdcc69, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -337,6 +351,7 @@ MonoBehaviour:
     goldCost: 600
   - id: VoidBullet
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: f2526c9ce41c583499fdf06878b081b9, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -360,6 +375,7 @@ MonoBehaviour:
     goldCost: 600
   - id: SonicDisruptor
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 5885c898a08c55d459590cc71ab99611, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2

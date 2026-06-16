@@ -354,6 +354,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7e6478949552844289e476a6484261b, type: 2}
   - {fileID: 11400000, guid: 4a2544ccacfa59f4c9cc630a03e082df, type: 2}
   - {fileID: 11400000, guid: 6e46a4a754615444b85bb5c90c80619c, type: 2}
+  - {fileID: 11400000, guid: 0182c684d9bf73c4f9a83bcbe1f5456f, type: 2}
   _stringData: {fileID: 11400000, guid: 4254d7e62c268fc4bb8510c371576316, type: 2}
   _aiScheduleData: {fileID: 11400000, guid: f4bf989beb0c8ab44aacccc8f9f8e94b, type: 2}
   _playerCurrencyData: {fileID: 11400000, guid: 58fd167f25ef6a44397b4c23cd4e19a3, type: 2}

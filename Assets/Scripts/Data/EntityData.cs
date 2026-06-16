@@ -5,6 +5,9 @@ using UnityEngine;
 [Serializable]
 public class EntityInfo : APrefabInfo
 {
+    [Header("Bullet")]
+    public AnimatorOverrideController bulletAnimatorOverrideController;
+    
     [Header("Animation")]
     public AnimatorOverrideController animatorOverrideController;
 
