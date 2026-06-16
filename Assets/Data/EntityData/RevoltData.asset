@@ -190,7 +190,7 @@ MonoBehaviour:
     attackAnimDuration: 1
     attackHitTiming: 0.8
     iconImage: {fileID: -1963768600617272606, guid: d0f3e6edf11be6745955f82f643ec537, type: 3}
-    attackAreaType: 2
+    attackAreaType: 4
     camp: 2
     tier: 2
     grade: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
     goldCost: 135
   - id: MultiLauncher
     prefab: {fileID: 0}
-    bulletAnimatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 22100000, guid: 56607f27d2ab6814ead75533223db7b1, type: 2}
     animatorOverrideController: {fileID: 22100000, guid: 7bf066b34eb3ff5408085fa313bf1fd6, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
