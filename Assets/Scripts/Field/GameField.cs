@@ -7,12 +7,14 @@ public class GameField : MonoBehaviour
     [SerializeField] private Transform _hqParent;
     [SerializeField] private Transform _playerHqPos;
     [SerializeField] private Transform _enemyHqPos;
+    [SerializeField] private Transform _bulletParent;
 
     private HeadQuarter _playerHq;
     private HeadQuarter _enemyHq;
     
     public HeadQuarter PlayerHq => _playerHq;
     public HeadQuarter EnemyHq => _enemyHq;
+    public Transform BulletParent => _bulletParent;
     
     public void Init()
     {

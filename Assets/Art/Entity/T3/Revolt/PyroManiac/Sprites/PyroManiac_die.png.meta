@@ -1,0 +1,436 @@
+fileFormatVersion: 2
+guid: 3b51109346c22b542914d0c4f1c982d3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6967995708570346833
+    second: PyroManiac_die_0
+  - first:
+      213: -7472366027928558326
+    second: PyroManiac_die_1
+  - first:
+      213: -2741070378479728606
+    second: PyroManiac_die_2
+  - first:
+      213: 555024039010702911
+    second: PyroManiac_die_3
+  - first:
+      213: 1359726221098310367
+    second: PyroManiac_die_4
+  - first:
+      213: -3663563868281195493
+    second: PyroManiac_die_5
+  - first:
+      213: -8874609389375203791
+    second: PyroManiac_die_6
+  - first:
+      213: 1092589310985823855
+    second: PyroManiac_die_7
+  - first:
+      213: -7744033512825239708
+    second: PyroManiac_die_8
+  - first:
+      213: 4898746814267893535
+    second: PyroManiac_die_9
+  - first:
+      213: 301450212010308554
+    second: PyroManiac_die_10
+  - first:
+      213: 7355188884112131113
+    second: PyroManiac_die_11
+  - first:
+      213: 293592324639926655
+    second: PyroManiac_die_12
+  - first:
+      213: 814815347197891483
+    second: PyroManiac_die_13
+  - first:
+      213: -2783739628828303160
+    second: PyroManiac_die_14
+  - first:
+      213: 5440396359981751659
+    second: PyroManiac_die_15
+  - first:
+      213: 7336573062797169274
+    second: PyroManiac_die_16
+  - first:
+      213: -9021109162222410872
+    second: PyroManiac_die_17
+  - first:
+      213: -1833041964556947283
+    second: PyroManiac_die_18
+  - first:
+      213: 7967528152041569062
+    second: PyroManiac_die_19
+  - first:
+      213: 7494152714845737236
+    second: PyroManiac_die_20
+  - first:
+      213: -1835853164881447980
+    second: PyroManiac_die_21
+  - first:
+      213: -1259445263104799006
+    second: PyroManiac_die_22
+  - first:
+      213: 4559839156067904375
+    second: PyroManiac_die_23
+  - first:
+      213: 4991723631576844316
+    second: PyroManiac_die_24
+  - first:
+      213: -6817115454777472981
+    second: PyroManiac_die_25
+  - first:
+      213: 4662497943970130722
+    second: PyroManiac_die_26
+  - first:
+      213: -8168451750409024490
+    second: PyroManiac_die_27
+  - first:
+      213: -6753721544518550599
+    second: PyroManiac_die_28
+  - first:
+      213: -1820607600733731282
+    second: PyroManiac_die_29
+  - first:
+      213: 212728851021481646
+    second: PyroManiac_die_30
+  - first:
+      213: -925607201682939761
+    second: PyroManiac_die_31
+  - first:
+      213: 5126250103672636585
+    second: PyroManiac_die_32
+  - first:
+      213: -5655835553414009013
+    second: PyroManiac_die_33
+  - first:
+      213: 5771101286677482075
+    second: PyroManiac_die_34
+  - first:
+      213: 6238738641509190699
+    second: PyroManiac_die_35
+  - first:
+      213: 8236122793485614449
+    second: PyroManiac_die_36
+  - first:
+      213: -1845333884446663119
+    second: PyroManiac_die_37
+  - first:
+      213: -4470997675600440329
+    second: PyroManiac_die_38
+  - first:
+      213: 7637909851983205100
+    second: PyroManiac_die_39
+  - first:
+      213: -1337355741289068410
+    second: PyroManiac_die_40
+  - first:
+      213: -4765610214227596399
+    second: PyroManiac_die_41
+  - first:
+      213: -8326241950877944637
+    second: PyroManiac_die_42
+  - first:
+      213: 4549933045943907425
+    second: PyroManiac_die_43
+  - first:
+      213: 9113603309358082785
+    second: PyroManiac_die_44
+  - first:
+      213: 4429495954739682361
+    second: PyroManiac_die_45
+  - first:
+      213: 4718393919313932754
+    second: PyroManiac_die_46
+  - first:
+      213: 4363299180641735152
+    second: PyroManiac_die_47
+  - first:
+      213: -6510246653046980266
+    second: PyroManiac_die_48
+  - first:
+      213: -5493225614739287349
+    second: PyroManiac_die_49
+  - first:
+      213: -3468508164638463190
+    second: PyroManiac_die_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PyroManiac_die_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.30078125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15528cdcd2b43b060800000000000000
+      internalID: 6967995708570346833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PyroManiac_die_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.30078125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a052f9910b2dc4890800000000000000
+      internalID: -7472366027928558326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PyroManiac_die_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.30078125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 228ce5a7303c5f9d0800000000000000
+      internalID: -2741070378479728606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PyroManiac_die_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.30078125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f36190f3c67d3b700800000000000000
+      internalID: 555024039010702911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PyroManiac_die_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.30078125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda59504bc7bed210800000000000000
+      internalID: 1359726221098310367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PyroManiac_die_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.30078125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b14b42b7218682dc0800000000000000
+      internalID: -3663563868281195493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7747c0d1cbe96a442bd5a3411ebfe1c5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.53125,"y":0.30078125},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      PyroManiac_die_0: 6967995708570346833
+      PyroManiac_die_1: -7472366027928558326
+      PyroManiac_die_2: -2741070378479728606
+      PyroManiac_die_3: 555024039010702911
+      PyroManiac_die_4: 1359726221098310367
+      PyroManiac_die_5: -3663563868281195493
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

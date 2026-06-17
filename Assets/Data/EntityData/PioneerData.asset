@@ -13,30 +13,9 @@ MonoBehaviour:
   m_Name: PioneerData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDB
   entityInfoList:
-  - id: EntitySingle
-    prefab: {fileID: 1881556813145634615, guid: c9a6fa10c0477984ba4371da2904332d, type: 3}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
-    dieAnimDuration: 2
-    attackAnimDuration: 1
-    attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 1
-    camp: 1
-    tier: 0
-    grade: 0
-    level: 0
-    hp: 0
-    armor: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
-    criticalChance: 0
-    moveSpeed: 0
-    productionTime: 0
-    goldCost: -1
   - id: Police
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 7f7e2c0aeea7d1b4d94f26a093ad6c71, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -53,19 +32,21 @@ MonoBehaviour:
     attack: 24
     attackSpeed: 1
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.5
     productionTime: 8
     goldCost: 30
   - id: Phalanx
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 83a4f9db6bae0504f989306111287868, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: 3628733888508454703, guid: adaf5fb06aa00fe4e8f08b38b38cbf92, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 1
     grade: 0
@@ -75,12 +56,14 @@ MonoBehaviour:
     attack: 10
     attackSpeed: 0.6
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.25
     productionTime: 8
     goldCost: 30
   - id: Security
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 58287f18e2f7e024fb1df385c5170cac, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -97,19 +80,21 @@ MonoBehaviour:
     attack: 27
     attackSpeed: 1.2
     attackRange: 5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1
     productionTime: 8
     goldCost: 30
-  - id: Agent
+  - id: Piercer
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: c2f33350e1646474993e83665487401d, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: 5295435017921362158, guid: 4fadd6093006bd94f8266e48c9401961, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 1
     grade: 0
@@ -119,12 +104,14 @@ MonoBehaviour:
     attack: 13.5
     attackSpeed: 0.6
     attackRange: 5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1
     productionTime: 8
     goldCost: 30
   - id: SpecialForce
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: 410750326780766429b99a98a8d1c803, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -141,19 +128,21 @@ MonoBehaviour:
     attack: 60
     attackSpeed: 1.2
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 1.6
     productionTime: 12
     goldCost: 90
   - id: Breacher
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: db7844aac22689d4090fd4078c4b97b9, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: -7096762414318841460, guid: 31d3a68857989c643bcc5df6217f7607, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 2
     grade: 0
@@ -162,13 +151,15 @@ MonoBehaviour:
     armor: 20
     attack: 27
     attackSpeed: 0.7
-    attackRange: 1.5
+    attackRange: 2.5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.35
     productionTime: 12
     goldCost: 90
   - id: AssaultRifle
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: b29e9e0b4f01b9a41b13be6aa06ca26d, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -185,19 +176,21 @@ MonoBehaviour:
     attack: 88
     attackSpeed: 1.25
     attackRange: 6
+    areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 1.05
     productionTime: 12
     goldCost: 90
   - id: Commander
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
-    isOriginalSpriteFacingLeft: 0
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: a4ada21183fb5a946a5b51a2fe77b7e2, type: 2}
+    isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: 7040173921599780207, guid: 25ed0f8d037643244a17b26bca07bf87, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 2
     grade: 0
@@ -207,12 +200,14 @@ MonoBehaviour:
     attack: 44
     attackSpeed: 0.7
     attackRange: 6
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.05
     productionTime: 12
     goldCost: 90
   - id: HydroPuncher
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: fc0fbe6dfc5d17549a9c840cadc64d88, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -229,19 +224,21 @@ MonoBehaviour:
     attack: 135
     attackSpeed: 1.2
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 1.75
     productionTime: 18
     goldCost: 240
   - id: ShadowReaper
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 246c8bcea89c33e4b9d2277a1c6c7436, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: 1839481662916565515, guid: e36045a49e3885b4b83b1e138ca13118, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 3
     grade: 0
@@ -251,18 +248,20 @@ MonoBehaviour:
     attack: 55.5
     attackSpeed: 0.8
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.45
     productionTime: 18
     goldCost: 240
   - id: TheThunder
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a79f1ea836cbef44383f835eae86237e, type: 2}
     isOriginalSpriteFacingLeft: 1
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 5383902674494576732, guid: ff1741bcd452e894ea4a63ebbe2df73a, type: 3}
+    iconImage: {fileID: -2467308268408919843, guid: ff1741bcd452e894ea4a63ebbe2df73a, type: 3}
     attackAreaType: 1
     camp: 1
     tier: 3
@@ -273,18 +272,20 @@ MonoBehaviour:
     attack: 244
     attackSpeed: 1.4
     attackRange: 7
+    areaRadius: 0
     criticalChance: 0.15
     moveSpeed: 1.1
     productionTime: 18
     goldCost: 240
   - id: AegisStorm
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 22100000, guid: 5b41c79c27ae6c1459b4ef8d749725ed, type: 2}
+    animatorOverrideController: {fileID: 22100000, guid: 054b74ed4e6c0c247bceeeb207f0a9c6, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
+    iconImage: {fileID: 8031992718378411631, guid: 8844f4f3b0cb55843abc2c43459a8aa7, type: 3}
     attackAreaType: 2
     camp: 1
     tier: 3
@@ -295,12 +296,14 @@ MonoBehaviour:
     attack: 122
     attackSpeed: 0.8
     attackRange: 7
+    areaRadius: 2.5
     criticalChance: 0
     moveSpeed: 1.1
     productionTime: 18
     goldCost: 240
   - id: ElectroBlade
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: c33672b919b0f304dbf165fcbc5749c8, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -317,19 +320,21 @@ MonoBehaviour:
     attack: 300
     attackSpeed: 1.2
     attackRange: 1
+    areaRadius: 0
     criticalChance: 0.2
     moveSpeed: 2
     productionTime: 24
     goldCost: 600
   - id: PlasmaSlasher
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: b961a64a0ac9769459108f3c55fdcc69, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: -6919150678031743424, guid: 0c8000d97a4f5304893f7fbaffc135f3, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 4
     grade: 0
@@ -339,12 +344,14 @@ MonoBehaviour:
     attack: 120
     attackSpeed: 0.9
     attackRange: 1.5
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.6
     productionTime: 24
     goldCost: 600
   - id: VoidBullet
     prefab: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: f2526c9ce41c583499fdf06878b081b9, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
@@ -361,19 +368,21 @@ MonoBehaviour:
     attack: 500
     attackSpeed: 1.4
     attackRange: 8
+    areaRadius: 0
     criticalChance: 0.25
     moveSpeed: 1.25
     productionTime: 24
     goldCost: 600
   - id: SonicDisruptor
     prefab: {fileID: 0}
-    animatorOverrideController: {fileID: 0}
+    bulletAnimatorOverrideController: {fileID: 0}
+    animatorOverrideController: {fileID: 22100000, guid: 5885c898a08c55d459590cc71ab99611, type: 2}
     isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
-    iconImage: {fileID: 0}
-    attackAreaType: 2
+    iconImage: {fileID: -307308275027082966, guid: 1b53dfee9a656e04480e83a554770651, type: 3}
+    attackAreaType: 4
     camp: 1
     tier: 4
     grade: 0
@@ -383,6 +392,7 @@ MonoBehaviour:
     attack: 273
     attackSpeed: 0.8
     attackRange: 8
+    areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.25
     productionTime: 24

@@ -8,8 +8,6 @@ using System.Collections.Generic;
 public class HUDController : MonoBehaviour
 {
     private const float HUNDRED_PERCENT  = 100f;
-    private const float HP_MEDIUM = 0.6f;
-    private const float HP_LOW = 0.3f;
     private const float HOUR_TO_SECOND  = 3600f;
     private const float MINUTE_TO_SECOND  = 60f;
     
@@ -22,6 +20,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _enemyHpText;
 
     [Header("Capital UI")] 
+    [SerializeField] private Image _hqImage;
     [SerializeField] private TextMeshProUGUI _goldText;
     
     [Header("Info UI")]
@@ -54,13 +53,17 @@ public class HUDController : MonoBehaviour
         _exitBtn.onClick.AddListener(OnBtnExit);
 
         var gf = Managers.Game.GameField;
-        gf.PlayerHq.OnGoldChanged -= UpdateGold;
-        gf.PlayerHq.OnGoldChanged += UpdateGold;
-        gf.PlayerHq.OnHealthChanged -= UpdatePlayerHp;
-        gf.PlayerHq.OnHealthChanged += UpdatePlayerHp;
+        var playerHq = gf.PlayerHq;
+        playerHq.OnGoldChanged -= UpdateGold;
+        playerHq.OnGoldChanged += UpdateGold;
+        playerHq.OnHealthChanged -= UpdatePlayerHp;
+        playerHq.OnHealthChanged += UpdatePlayerHp;
+        playerHq.OnTierChanged -= UpdateHqBtnImage;
+        playerHq.OnTierChanged += UpdateHqBtnImage;
         gf.EnemyHq.OnHealthChanged -= UpdateEnemyHp;
         gf.EnemyHq.OnHealthChanged += UpdateEnemyHp;
         UpdateText();
+        UpdateHqBtnImage(playerHq.Tier);
     }
 
     public void Clear()
@@ -136,6 +139,12 @@ public class HUDController : MonoBehaviour
     {
         var curGold = Managers.Game.GameField.PlayerHq.Gold;
         UpdateGold(curGold);
+    }
+
+    void UpdateHqBtnImage(int argTier)
+    {
+        var info = Managers.Data.GetHeadQuarterUpgradeInfo(argTier);
+        _hqImage.sprite = info.sprite;
     }
     
     void UpdateGold(long argGold)

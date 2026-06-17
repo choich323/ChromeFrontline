@@ -9,9 +9,9 @@ AnimatorOverrideController:
   m_Name: HydroPuncherController
   m_Controller: {fileID: 9100000, guid: 6b1cccc857df0d0449803d158627a368, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 007a3bb0ab6f1f34cbdd841a299a6f6c, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: eead8c9ad211f6740b708279421c8eb3, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: a961cac44ccdc1d4db7d23618cfa0f2b, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 2e6977648f1aa92429243438c68cf794, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 1510f242844128b429cdd8f2cb6a81eb, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: deaa14286be6188498d25ab525752673, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d44460a8162ab654b8fbebd03a7b6a67, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eead8c9ad211f6740b708279421c8eb3, type: 2}

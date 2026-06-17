@@ -10,13 +10,12 @@ public enum PrefabID
     // Entity
     EntitySingle = 1001,
     EntityArea,
-    EntitySweep,
     EntityPierce,
     
     Police = 2001,
     Phalanx,
     Security,
-    Agent,
+    Piercer,
     SpecialForce,
     Breacher,
     AssaultRifle,
@@ -37,7 +36,7 @@ public enum PrefabID
     UnknownSamurai,
     SteelWall,
     SharpShooter,
-    DroneBomber,
+    DevilDrone,
     ChainsawBot,
     PyroManiac,
     CentauriCanon,
@@ -47,9 +46,11 @@ public enum PrefabID
     BloodyCanon,
     DestroyLaser,
     
+    // Bullet
+    BulletEffect = 4001,
+    
     // spawner
     EntitySpawner = 5001,
-    
     
     // UI
     UIHUDPanel = 10001,

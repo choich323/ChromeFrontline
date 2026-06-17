@@ -5,6 +5,9 @@ using UnityEngine;
 [Serializable]
 public class EntityInfo : APrefabInfo
 {
+    [Header("Bullet")]
+    public AnimatorOverrideController bulletAnimatorOverrideController;
+    
     [Header("Animation")]
     public AnimatorOverrideController animatorOverrideController;
 
@@ -27,6 +30,8 @@ public class EntityInfo : APrefabInfo
     public float attack;
     public float attackSpeed;
     public float attackRange;
+    public float areaRadius;
+    
     [Range(0, 1)]
     public float criticalChance;
     
@@ -47,10 +52,6 @@ public class EntityInfo : APrefabInfo
         {
             case AttackAreaType.Area:
                 resultID = PrefabID.EntityArea;
-                break;
-            
-            case AttackAreaType.Sweep:
-                resultID = PrefabID.EntitySweep;
                 break;
             
             case AttackAreaType.Pierce:

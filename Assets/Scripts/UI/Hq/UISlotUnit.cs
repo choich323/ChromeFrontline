@@ -63,6 +63,9 @@ public class UISlotUnit : MonoBehaviour
         var entityInfo = info as EntityInfo;
         _icon.gameObject.SetActive(true);
         _icon.sprite = entityInfo.iconImage;
+        var localScale = _icon.rectTransform.localScale;
+        localScale.x = entityInfo.isOriginalSpriteFacingLeft ? -1f : 1f;
+        _icon.rectTransform.localScale = localScale;
     }
 
     void SetColor()
