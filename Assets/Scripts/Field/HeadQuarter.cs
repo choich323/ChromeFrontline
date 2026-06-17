@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class HeadQuarter : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class HeadQuarter : MonoBehaviour
     [SerializeField] private Transform _entitySpawnerRightPos;
     [SerializeField] private Transform _entitySpawnerLeftPos;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private List<Transform> _explosionEffectPosList;
+    [SerializeField] private AnimatorOverrideController _animatorOverrideController;
 
     private bool _useLeftSpawnerPos;
     private int _tier = DEFAULT_TIER;
@@ -174,6 +177,14 @@ public class HeadQuarter : MonoBehaviour
             return;
         
         SetHp(_hp - argDamage);
+
+        var exObj = Managers.Pool.Instantiate(PrefabID.ExplosionEffect);
+        exObj.transform.SetParent(gm.GameField.ExplosionParent);
+        var exPos = _explosionEffectPosList[Random.Range(0, _explosionEffectPosList.Count)];
+        exObj.transform.position = exPos.position;
+        var effect = exObj.GetComponent<ExplosionEffect>();
+        effect.Init(_animatorOverrideController);
+        
         _onHealthChanged?.Invoke(_hp, _maxHp);
         if (_team == Team.Enemy)
         {

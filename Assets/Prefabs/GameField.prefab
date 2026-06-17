@@ -49,7 +49,7 @@ MonoBehaviour:
   _hqParent: {fileID: 225466747830973818}
   _playerHqPos: {fileID: 6528634121973277394}
   _enemyHqPos: {fileID: 655888868282187985}
-  _bulletParent: {fileID: 6448462634668358224}
+  _explosionParent: {fileID: 6448462634668358224}
 --- !u!1 &4388388398911975457
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6448462634668358224}
   m_Layer: 0
-  m_Name: BulletParent
+  m_Name: ExplosionParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

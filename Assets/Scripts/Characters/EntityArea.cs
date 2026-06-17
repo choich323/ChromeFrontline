@@ -95,10 +95,10 @@ public class EntityArea : AEntity
         }
         
         var centerPos = argTargets[0].transform.position;
-        var obj = Managers.Pool.Instantiate(PrefabID.BulletEffect);
-        obj.transform.SetParent(Managers.Game.GameField.BulletParent, false);
+        var obj = Managers.Pool.Instantiate(PrefabID.ExplosionEffect);
+        obj.transform.SetParent(Managers.Game.GameField.ExplosionParent, false);
         obj.transform.position = centerPos;
-        var bullet = obj.GetComponent<BulletEffect>();
-        bullet.Init(_bulletAnimatorOverrideController);
+        var explosion = obj.GetComponent<ExplosionEffect>();
+        explosion.Init(_explosionAnimatorOverrideController);
     }
 }

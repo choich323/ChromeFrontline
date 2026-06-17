@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8771268183008830287}
   - component: {fileID: 2720308864653963218}
   m_Layer: 6
-  m_Name: BulletEffect
+  m_Name: ExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
