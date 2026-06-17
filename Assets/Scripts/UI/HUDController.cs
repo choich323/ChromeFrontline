@@ -21,6 +21,7 @@ public class HUDController : MonoBehaviour
 
     [Header("Capital UI")] 
     [SerializeField] private Image _hqImage;
+    [SerializeField] private GameObject _hqIndicator;
     [SerializeField] private TextMeshProUGUI _goldText;
     
     [Header("Info UI")]
@@ -150,6 +151,19 @@ public class HUDController : MonoBehaviour
     void UpdateGold(long argGold)
     {
         _goldText.SetText("{0}", argGold);
+        OnUpdateGold();
+    }
+
+    void OnUpdateGold()
+    {
+        if (Managers.UI.IsEnableHUDHqIndicator())
+        {
+            _hqIndicator.SetActive(true);
+        }
+        else
+        {
+            _hqIndicator.SetActive(false);
+        }
     }
 
     void UpdateTimer()
