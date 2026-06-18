@@ -26,6 +26,8 @@ public class StageInfo
 public class StageData : ScriptableObject
 {
     public string worldId;
+    public Sprite bg;
+    
     public List<StageInfo> stageInfoList = new List<StageInfo>();
 
     public IEnumerable<StageInfo> GetStageInfoList()
