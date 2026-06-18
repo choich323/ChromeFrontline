@@ -65,6 +65,11 @@ public class EntitySpawner : MonoBehaviour
         return _slotList[slotIndex];
     }
 
+    public IEnumerator<EntitySpawnSlot> GetSlotEnumerator()
+    {
+        return _slotList.GetEnumerator();
+    }
+
     public bool SetSlotGrade(int argIndex, Grade argGrade)
     {
         return _slotList[argIndex].SetGrade(argGrade);

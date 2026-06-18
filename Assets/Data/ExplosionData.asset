@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93e10ab556141534fb585e9bcc18b029, type: 3}
-  m_Name: BulletData
+  m_Name: ExplosionData
   m_EditorClassIdentifier: Assembly-CSharp::BulletData
   infoList:
-  - id: BulletEffect
+  - id: ExplosionEffect
     prefab: {fileID: 8909091293003222247, guid: 9274b83c87ab3e84082328f430c80e19, type: 3}

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 public class UIHqPanelMenuSelect : AUIHqRightPanelSelect
 {
     [SerializeField] private Button _btnProduce;
+    [SerializeField] private GameObject _indicatorProduce;
     [SerializeField] private Button _btnSlotUpgrade;
     [SerializeField] private Button _btnHqUpgrade;
+    [SerializeField] private GameObject _indicatorHqUpgrade;
 
     private SoundManager Sm => Managers.Sound;
     
@@ -24,7 +26,23 @@ public class UIHqPanelMenuSelect : AUIHqRightPanelSelect
     
     public override void SetPanel()
     {
-        
+        SetIndicators();
+    }
+
+    void SetIndicators()
+    {
+        SetProduceIndicator();
+        SetHqUpgradeIndicator();
+    }
+
+    void SetProduceIndicator()
+    {
+        _indicatorProduce.SetActive(Managers.UI.IsProduceIndicatorEnable());
+    }
+
+    void SetHqUpgradeIndicator()
+    {
+        _indicatorHqUpgrade.SetActive(Managers.UI.IsHqUpgradeIndicatorEnable());
     }
     
     void OnBtnProduce()

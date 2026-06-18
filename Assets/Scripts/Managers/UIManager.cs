@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     private HUDController _topHUDController;
     private UIPauseBtn _pauseBtn;
     private UIGameSpeedBtn _gameSpeedBtn;
+    private bool _isProduceIndicatorEnable;
+    private bool _isHqUpgradeIndicatorEnable;
     
     public PopupHandler PopupHandler => _popupHandler;
     
@@ -94,5 +96,41 @@ public class UIManager : MonoBehaviour
         argTarget.localScale = Vector3.one;
         argTarget.localPosition = Vector3.zero;
         argTarget.SetAsLastSibling();
+    }
+    
+    public bool IsProduceIndicatorEnable()
+    {
+        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var enumerator = spawner.GetSlotEnumerator();
+        while(enumerator.MoveNext())
+        {
+            var slot = enumerator.Current;
+            if (slot != null && slot.GetTargetId() == PrefabID.None)
+            {
+                return _isProduceIndicatorEnable = true;
+            }
+        }
+
+        return _isProduceIndicatorEnable = false;
+    }
+
+    public bool IsHqUpgradeIndicatorEnable()
+    {
+        var playerHq = Managers.Game.GameField.PlayerHq;
+        var tier = playerHq.Tier;
+        var info = Managers.Data.GetHeadQuarterUpgradeInfo(tier + 1);
+        if (info == null)
+        {
+            return _isHqUpgradeIndicatorEnable = false;
+        }
+        else
+        {
+            return _isHqUpgradeIndicatorEnable = info.upgradeCost <= playerHq.Gold;
+        }
+    }
+    
+    public bool IsEnableHUDHqIndicator()
+    {
+        return IsProduceIndicatorEnable() || IsHqUpgradeIndicatorEnable();
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class BulletEffect : MonoBehaviour
+public class ExplosionEffect : MonoBehaviour
 {
     private const string ANIM_DEFAULT = "Default";
     
@@ -21,7 +21,7 @@ public class BulletEffect : MonoBehaviour
 
         if (argController == null)
         {
-            Managers.Pool.Destroy(this, PrefabID.BulletEffect);
+            Managers.Pool.Destroy(this, PrefabID.ExplosionEffect);
             return;
         }
 
@@ -43,7 +43,7 @@ public class BulletEffect : MonoBehaviour
         yield return new WaitForSeconds(argDuration);
 
         _coroutine = null;
-        Managers.Pool.Destroy(this, PrefabID.BulletEffect);
+        Managers.Pool.Destroy(this, PrefabID.ExplosionEffect);
     }
 
     void OnDisable()

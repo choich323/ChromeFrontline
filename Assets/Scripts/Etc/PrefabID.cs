@@ -46,8 +46,7 @@ public enum PrefabID
     BloodyCanon,
     DestroyLaser,
     
-    // Bullet
-    BulletEffect = 4001,
+    ExplosionEffect = 4001,
     
     // spawner
     EntitySpawner = 5001,

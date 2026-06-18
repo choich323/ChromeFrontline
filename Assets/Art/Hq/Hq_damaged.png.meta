@@ -1,0 +1,492 @@
+fileFormatVersion: 2
+guid: 1870b1d1cf07df24d94ef20311bb609b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5007868360764070380
+    second: Hq_damaged_0
+  - first:
+      213: -3961762221976934301
+    second: Hq_damaged_1
+  - first:
+      213: -5446017237379399698
+    second: Hq_damaged_2
+  - first:
+      213: 3664073509047051862
+    second: Hq_damaged_3
+  - first:
+      213: 7395356581938984746
+    second: Hq_damaged_4
+  - first:
+      213: 9014010362615990197
+    second: Hq_damaged_5
+  - first:
+      213: 3958646880078128872
+    second: Hq_damaged_6
+  - first:
+      213: 2264476146187837304
+    second: Hq_damaged_7
+  - first:
+      213: -8009195340591017693
+    second: Hq_damaged_8
+  - first:
+      213: -109975257555576041
+    second: Hq_damaged_9
+  - first:
+      213: -2803205597887931020
+    second: Hq_damaged_10
+  - first:
+      213: -4325035593163908995
+    second: Hq_damaged_11
+  - first:
+      213: -3688201572651455783
+    second: Hq_damaged_12
+  - first:
+      213: -6499565586967907781
+    second: Hq_damaged_13
+  - first:
+      213: 8533660785169812856
+    second: Hq_damaged_14
+  - first:
+      213: 7907114934309830578
+    second: Hq_damaged_15
+  - first:
+      213: -2754368812800927805
+    second: Hq_damaged_16
+  - first:
+      213: 8848194375807260813
+    second: Hq_damaged_17
+  - first:
+      213: 1659718768379649
+    second: Hq_damaged_18
+  - first:
+      213: 1454518536992127641
+    second: Hq_damaged_19
+  - first:
+      213: 2683253568831774959
+    second: Hq_damaged_20
+  - first:
+      213: -6091802778181598109
+    second: Hq_damaged_21
+  - first:
+      213: 4267867098338458793
+    second: Hq_damaged_22
+  - first:
+      213: 5938500372814893502
+    second: Hq_damaged_23
+  - first:
+      213: -1525392125130949536
+    second: Hq_damaged_24
+  - first:
+      213: 3721574125436583360
+    second: Hq_damaged_25
+  - first:
+      213: -3035604008763437486
+    second: Hq_damaged_26
+  - first:
+      213: 2394132179223675342
+    second: Hq_damaged_27
+  - first:
+      213: -3075844616977255522
+    second: Hq_damaged_28
+  - first:
+      213: -65387983546336127
+    second: Hq_damaged_29
+  - first:
+      213: 8775786953272999704
+    second: Hq_damaged_30
+  - first:
+      213: -7153289034823125638
+    second: Hq_damaged_31
+  - first:
+      213: -5759553465103238932
+    second: Hq_damaged_32
+  - first:
+      213: 7140386062458092383
+    second: Hq_damaged_33
+  - first:
+      213: 4833774646787718782
+    second: Hq_damaged_34
+  - first:
+      213: 3091452991759336427
+    second: Hq_damaged_35
+  - first:
+      213: -6740843232249310820
+    second: Hq_damaged_36
+  - first:
+      213: 8334206095036407237
+    second: Hq_damaged_37
+  - first:
+      213: 4791171195122277439
+    second: Hq_damaged_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hq_damaged_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce99245cdb58f7540800000000000000
+      internalID: 5007868360764070380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 368a08adf3ef409c0800000000000000
+      internalID: -3961762221976934301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefb8554d2cdb64b0800000000000000
+      internalID: -5446017237379399698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6562ba1817769d230800000000000000
+      internalID: 3664073509047051862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27f1d501a591a660800000000000000
+      internalID: 7395356581938984746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b78a61aaa2381d70800000000000000
+      internalID: 9014010362615990197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e6e3461d50ffe630800000000000000
+      internalID: 3958646880078128872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87f1fd7ae090d6f10800000000000000
+      internalID: 2264476146187837304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321db53b54f99d090800000000000000
+      internalID: -8009195340591017693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hq_damaged_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ad91bc22d8a3f40b29391e1b1e5124
+      internalID: -109975257555576041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ba649a313f09f934ab26f49e657b9bdd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Hq_damaged_0: 5007868360764070380
+      Hq_damaged_1: -3961762221976934301
+      Hq_damaged_2: -5446017237379399698
+      Hq_damaged_3: 3664073509047051862
+      Hq_damaged_4: 7395356581938984746
+      Hq_damaged_5: 9014010362615990197
+      Hq_damaged_6: 3958646880078128872
+      Hq_damaged_7: 2264476146187837304
+      Hq_damaged_8: -8009195340591017693
+      Hq_damaged_9: -109975257555576041
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
