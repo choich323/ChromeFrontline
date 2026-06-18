@@ -3,19 +3,32 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 [Serializable]
+public class StageSaveInfo
+{
+    public string stageId;       // StageData의 stageId와 동일하게 맞춤
+    public bool isCleared;
+    public int starCount;
+}
+
+[Serializable]
 public class UserRecord
 {
     private const float CLEAR_TIME_THRESHOLD = 720f; // 12분
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const int DEFAULT_STAGE = 1;
+    private const string DEFAULT_WORLD_ID = "World_1";
     
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
     private Dictionary<int, (long tick, bool clear, float clearTime, int hqhpRatio)> _stageBestRecordDict = new Dictionary<int, (long, bool, float, int)>();
 
+    private string _currentWorldId = DEFAULT_WORLD_ID;
+    private List<StageSaveInfo> _stageSaveInfoList = new List<StageSaveInfo>();
+
     public void Init()
     {
         InitStageBestRecord();
+        _stageSaveInfoList = new List<StageSaveInfo>();
     }
 
     void InitStageBestRecord()
@@ -23,6 +36,11 @@ public class UserRecord
         var tick = DateTime.Now.Ticks;
         var record = (tick, false, float.MaxValue, 0);
         _stageBestRecordDict[DEFAULT_STAGE] = record;
+    }
+
+    public StageSaveInfo GetStageSaveInfo(string argStageId)
+    {
+        return _stageSaveInfoList.Find(info => info.stageId == argStageId);
     }
     
     public void SaveStageBestRecord(int argKey, (long, bool, float, int) argRecord)

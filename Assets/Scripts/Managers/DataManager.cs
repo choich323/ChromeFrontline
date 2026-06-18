@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class DataManager : MonoBehaviour
 {
@@ -23,8 +25,12 @@ public class DataManager : MonoBehaviour
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
-    
+
+    private StageData _curWorldData = null;
+    private AsyncOperationHandle _worldDataHandle;
+
     public int StartGold => _playerCurrencyData.startGold;
+    public StageData CurWorldData => _curWorldData;
     
     public void Init()
     {
@@ -202,5 +208,79 @@ public class DataManager : MonoBehaviour
             argIndex = 0;
         }
         return _gameSpeedInfoList[argIndex];
+    }
+
+    /// <summary>
+    /// 로비 매니저 등에서 호출하여 현재 필요한 월드 데이터를 어드레서블로 로드합니다.
+    /// </summary>
+    public void LoadWorldData(string argWorldId, Action<StageData> argOnComplete)
+    {
+        // 1. 이미 요청한 월드가 로드되어 있다면 즉시 반환
+        if (_curWorldData != null && _curWorldData.worldId == argWorldId)
+        {
+            argOnComplete?.Invoke(_curWorldData);
+            return;
+        }
+
+        // 2. 다른 월드 데이터가 메모리에 남아있다면 깔끔하게 언로드(해제)
+        UnloadWorldData();
+
+        // 3. 어드레서블 비동기 로드 실행
+        Addressables.LoadAssetAsync<StageData>(argWorldId).Completed += handle =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                _worldDataHandle = handle;
+                _curWorldData = handle.Result;
+                
+                Debug.Log($"[{argWorldId}] World Data Load Complete.");
+                argOnComplete?.Invoke(_curWorldData);
+            }
+            else
+            {
+                Debug.LogError($"World Data Load Failed.: {argWorldId}");
+                argOnComplete?.Invoke(null);
+            }
+        };
+    }
+
+    /// <summary>
+    /// 현재 활성화된 월드 데이터를 메모리에서 안전하게 해제합니다.
+    /// </summary>
+    public void UnloadWorldData()
+    {
+        if (_worldDataHandle.IsValid())
+        {
+            Addressables.Release(_worldDataHandle);
+            _curWorldData = null;
+            Debug.Log("World Data Unload Complete.");
+        }
+    }
+
+    /// <summary>
+    /// 로드된 현재 월드 데이터를 바탕으로 특정 스테이지의 해금 여부를 판별합니다.
+    /// </summary>
+    public bool IsStageUnlocked(StageInfo argStageInfo, UserRecord argUserRecord)
+    {
+        if (argUserRecord == null || _curWorldData == null) return false;
+
+        // 1. 현재 월드의 1번 스테이지는 무조건 열어둠
+        if (argStageInfo.stageIndex == 1) return true;
+
+        // 2. 이미 클리어한 스테이지라면 무조건 해금
+        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageId);
+        if (mySave != null && mySave.isCleared) return true;
+
+        // 3. 직전 스테이지(index - 1)를 클리어했는지 검사
+        var prevStage = _curWorldData.GetStageInfoList()
+            .FirstOrDefault(s => s.stageIndex == argStageInfo.stageIndex - 1);
+
+        if (prevStage != null)
+        {
+            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stageId);
+            return prevSave != null && prevSave.isCleared;
+        }
+
+        return false;
     }
 }
