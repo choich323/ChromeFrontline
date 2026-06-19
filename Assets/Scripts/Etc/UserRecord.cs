@@ -16,7 +16,7 @@ public class UserRecord
     private const float CLEAR_TIME_THRESHOLD = 720f; // 12분
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const int DEFAULT_STAGE = 1;
-    private const string DEFAULT_WORLD_ID = "World_1";
+    private const string DEFAULT_WORLD_ID = "world_1";
     
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
@@ -25,6 +25,8 @@ public class UserRecord
     private string _currentWorldId = DEFAULT_WORLD_ID;
     private List<StageSaveInfo> _stageSaveInfoList = new List<StageSaveInfo>();
 
+    public string CurrentWorldId => _currentWorldId;
+    
     public void Init()
     {
         InitStageBestRecord();
@@ -36,6 +38,11 @@ public class UserRecord
         var tick = DateTime.Now.Ticks;
         var record = (tick, false, float.MaxValue, 0);
         _stageBestRecordDict[DEFAULT_STAGE] = record;
+    }
+
+    public void SetCurrentWorldId(string argWorldId)
+    {
+        _currentWorldId = argWorldId;
     }
 
     public StageSaveInfo GetStageSaveInfo(string argStageId)

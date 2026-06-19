@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcbce69c7a6192245b7b14f7da42b539, type: 3}
-  m_Name: StageData1
+  m_Name: world1
   m_EditorClassIdentifier: Assembly-CSharp::StageData
   worldId: world1
   bg: {fileID: 485194414376108031, guid: adb0eb390835e97408bfb1e6c13e7caf, type: 3}
@@ -18,36 +18,36 @@ MonoBehaviour:
   - stageId: 1
     stageName: 1-1
     uiPosition: {x: -58, y: 142}
-    stageIndex: 0
+    stageIndex: 1
   - stageId: 2
     stageName: 1-2
     uiPosition: {x: 468.78027, y: -310.29187}
-    stageIndex: 1
+    stageIndex: 2
   - stageId: 3
     stageName: 1-3
     uiPosition: {x: -295.84546, y: -371.29913}
-    stageIndex: 2
+    stageIndex: 3
   - stageId: 4
     stageName: 1-4
     uiPosition: {x: 322.3606, y: -41.85962}
-    stageIndex: 3
+    stageIndex: 4
   - stageId: 5
     stageName: 1-5
     uiPosition: {x: -193, y: 602}
-    stageIndex: 4
+    stageIndex: 5
   - stageId: 6
     stageName: 1-6
     uiPosition: {x: 318.2932, y: 604.8181}
-    stageIndex: 5
+    stageIndex: 6
   - stageId: 7
     stageName: 1-7
     uiPosition: {x: 21.488525, y: 724.364}
-    stageIndex: 6
+    stageIndex: 7
   - stageId: 8
     stageName: 1-8
     uiPosition: {x: -417.39478, y: 524.61084}
-    stageIndex: 7
+    stageIndex: 8
   - stageId: 9
     stageName: 1-9
     uiPosition: {x: -377.188, y: -891.8949}
-    stageIndex: 8
+    stageIndex: 9

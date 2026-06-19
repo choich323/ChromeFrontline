@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private AddSlotCostData _addSlotCostData;
     [SerializeField] private GradeData _gradeData;
     [SerializeField] private GameSpeedData _gameSpeedData;
+    [SerializeField] private WorldCatalog _worldCatalog;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -31,6 +32,7 @@ public class DataManager : MonoBehaviour
 
     public int StartGold => _playerCurrencyData.startGold;
     public StageData CurWorldData => _curWorldData;
+    public WorldCatalog WorldCatalog => _worldCatalog;
     
     public void Init()
     {
