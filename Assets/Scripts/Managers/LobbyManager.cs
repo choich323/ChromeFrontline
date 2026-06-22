@@ -48,7 +48,7 @@ public class LobbyManager : MonoBehaviour
         {
             if (worldData == null) return;
 
-            SetMapBackgroundAndSize(worldData);
+            SetMapBackground(worldData);
             
             // 노드 쫙 깔고, 카메라가 쳐다볼 타겟 노드 가져오기
             RectTransform targetNode = GenerateNodesAndFindTarget(worldData, userRecord);
@@ -61,17 +61,9 @@ public class LobbyManager : MonoBehaviour
         });
     }
 
-    /// <summary>
-    /// Content의 Image 컴포넌트에 맵 스프라이트를 씌우고, 크기를 원본 해상도와 1:1로 맞춥니다.
-    /// </summary>
-    private void SetMapBackgroundAndSize(StageData argWorldData)
+    void SetMapBackground(StageData argWorldData)
     {
-        // StageData 안에 있는 맵 이미지(Sprite)를 할당합니다.
-        // (StageData.cs에 public Sprite mapSprite; 필드가 있다고 가정합니다)
         _bgImage.sprite = argWorldData.bg;
-
-        // ★ 유니티 마법의 함수: 현재 들어간 스프라이트의 픽셀 원본 사이즈로 RectTransform을 변경합니다. ★
-        _bgImage.SetNativeSize();
     }
     
     RectTransform GenerateNodesAndFindTarget(StageData argWorldData, UserRecord argUserRecord)
