@@ -7,6 +7,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class DataManager : MonoBehaviour
 {
+    private const string DEFAULT_AI_SCHEDULEINFO = "normal";
+    
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
     [SerializeField] private AIScheduleData _aiScheduleData;
@@ -159,6 +161,15 @@ public class DataManager : MonoBehaviour
         return _aiScheduleInfoList[randIndex];
     }
 
+    public AIScheduleInfo GetAIScheduleInfo(string argScheduleId)
+    {
+        if (string.IsNullOrEmpty(argScheduleId))
+        {
+            argScheduleId = DEFAULT_AI_SCHEDULEINFO;
+        }
+        return _aiScheduleInfoList.Find(info => info.id == argScheduleId);
+    }
+    
     public IEnumerable<EntityInfo> GetPioneerInfoList()
     {
         return _pioneerInfoList;

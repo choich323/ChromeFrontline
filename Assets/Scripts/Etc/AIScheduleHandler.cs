@@ -18,9 +18,9 @@ public class AIScheduleHandler
     
     public AIScheduleInfo ScheduleInfo => _aiScheduleInfo;
     
-    public void Init()
+    public void Init(AIScheduleInfo argAIScheduleInfo)
     {
-        _aiScheduleInfo = Managers.Data.GetRandomAIScheduleInfo();
+        _aiScheduleInfo = argAIScheduleInfo;
         _nextUpgradeTimer = _aiScheduleInfo.upgradeInterval;
         _nextTpSupplyTimer = _aiScheduleInfo.tpInterval;
         _nextBurstTimer = _aiScheduleInfo.burstInterval;
@@ -28,6 +28,16 @@ public class AIScheduleHandler
 
     public void Update()
     {
+        if (!Managers.Game.IsInGame)
+        {
+            return;
+        }
+
+        if (_aiScheduleInfo == null)
+        {
+            return;
+        }
+        
         HandleUpgrade();
         HandleTpSupply();
         HandleBurst();

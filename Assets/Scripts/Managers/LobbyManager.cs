@@ -37,6 +37,8 @@ public class LobbyManager : MonoBehaviour
     
     public void RefreshLobbyMap()
     {
+        ToggleLobby(true);
+        
         UserRecord userRecord = Managers.Save.LoadRecord();
         if (userRecord == null) return;
 
@@ -156,7 +158,13 @@ public class LobbyManager : MonoBehaviour
 
     void OnStageNodeClicked(StageInfo argStageInfo)
     {
-        // 팝업 띄우고 데이터 넘기기
-        
+        // TODO: 팝업 띄우고 데이터 넘기기
+        Managers.Game.EnterStage(argStageInfo);
+        ToggleLobby(false);
+    }
+
+    public void ToggleLobby(bool argIsVisible)
+    {
+        gameObject.SetActive(argIsVisible);
     }
 }

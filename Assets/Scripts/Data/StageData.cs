@@ -12,6 +12,7 @@ public class StageInfo
 
     [Header("=== Gameplay Metadata ===")]
     public int stageIndex;       // 월드 내 정렬 순서 (해금 조건 판정용)
+    public string aiScheduleId;  // 난이도 설정용
 
     // 에디터 툴에서 좌표를 직접 구워넣기 위한 Setter
 #if UNITY_EDITOR

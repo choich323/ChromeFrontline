@@ -294,7 +294,7 @@ public class HUDController : MonoBehaviour
 
         void OnConfirm()
         {
-            Managers.Game.Exit();
+            Managers.Game.ExitStage();
         }
     }
 }

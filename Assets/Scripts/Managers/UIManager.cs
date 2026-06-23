@@ -53,7 +53,12 @@ public class UIManager : MonoBehaviour
         _topHUDController = obj.GetComponent<HUDController>();
         var hudTransform = _topHUDController.transform;
         hudTransform.SetParent(_hudParent, false);
+    }
+
+    public void OnEnterStage()
+    {
         _topHUDController.Init();
+        RefreshUI();
     }
 
     void CreatePlayBtnGroup()

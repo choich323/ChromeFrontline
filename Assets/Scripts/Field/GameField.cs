@@ -16,9 +16,9 @@ public class GameField : MonoBehaviour
     public HeadQuarter EnemyHq => _enemyHq;
     public Transform ExplosionParent => _explosionParent;
     
-    public void Init()
+    public void Run()
     {
-        Managers.Sound.PlayIngameBgm();
+        ResetField();
         CreateHqs();
         RunHqs();
     }
@@ -39,12 +39,13 @@ public class GameField : MonoBehaviour
         bool isPlayer = argTeam == Team.Player;
         hqObj.transform.position = isPlayer ? _playerHqPos.position : _enemyHqPos.position;
         var hq = hqObj.GetComponent<HeadQuarter>();
-        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos);
         
         if (isPlayer)
             _playerHq = hq;
         else
             _enemyHq = hq;
+        
+        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos);
     }
 
     void RunHqs()
@@ -74,12 +75,6 @@ public class GameField : MonoBehaviour
     {
         DestroyAll();
     }
-
-    public void Restart()
-    {
-        ResetField();
-        Init();
-    }
     
     void DestroyAll()
     {
@@ -88,11 +83,18 @@ public class GameField : MonoBehaviour
     
     void DestroyHqs()
     {
-        Managers.Pool.Destroy(_playerHq, PrefabID.HeadQuarter);
-        Managers.Pool.Destroy(_enemyHq, PrefabID.HeadQuarter);
-        _playerHq.Destroy();
-        _enemyHq.Destroy();
-        _playerHq = null;
-        _enemyHq = null;
+        if (_playerHq != null)
+        {
+            Managers.Pool.Destroy(_playerHq, PrefabID.HeadQuarter);
+            _playerHq.Destroy();
+            _playerHq = null;
+        }
+
+        if (_enemyHq != null)
+        {
+            Managers.Pool.Destroy(_enemyHq, PrefabID.HeadQuarter);
+            _enemyHq.Destroy();
+            _enemyHq = null;
+        }
     }
 }

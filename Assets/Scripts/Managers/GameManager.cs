@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
             void OnConfirm()
             {
-                Exit();
+                ExitStage();
             }
             
             void OnBtnPopupClose()
@@ -90,22 +90,33 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         _userRecord = Managers.Save.LoadRecord();
+        _isInGame = false;
         
-        // TODO: 로비 제작 전이므로 바로 실행되도록 설정. 로비 제작 후 인게임 진입시 실행되도록 수정.
         var gameFieldObj = Managers.Pool.Instantiate(PrefabID.GameField);
         if (gameFieldObj == null)
         {
             Debug.LogError("Game field could not be instantiated.");
             return;
         }
-        
-        _isInGame = true;
-        InitAIScheduleHandler();
-        InitSlotUpgradeHandler();
         _gameField = gameFieldObj.GetComponent<GameField>();
-        _gameField.Init();
     }
 
+    public void EnterStage(StageInfo argStageInfo)
+    {
+        if (_gameField == null)
+        {
+            return;
+        }
+
+        _isInGame = true;
+        var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
+        RunAIScheduleHandler(aiScheduleInfo);
+        RunSlotUpgradeHandler();
+        Managers.Sound.PlayIngameBgm();
+        _gameField.Run();
+        Managers.UI.OnEnterStage();
+    }
+    
     public void SaveUserRecord(UserRecord argUserRecord)
     {
         _userRecord.Save(argUserRecord);
@@ -113,14 +124,19 @@ public class GameManager : MonoBehaviour
         sm.SaveRecord(_userRecord);
     }
 
-    void InitAIScheduleHandler()
+    void RunAIScheduleHandler(AIScheduleInfo argScheduleInfo)
     {
         if (_aiScheduleHandler != null)
         {
             _aiScheduleHandler.Destroy();
         }
         _aiScheduleHandler = new AIScheduleHandler();
-        _aiScheduleHandler.Init();
+        _aiScheduleHandler.Init(argScheduleInfo);
+    }
+
+    void ReRunAIScheduleHandler()
+    {
+        RunAIScheduleHandler(_aiScheduleHandler.ScheduleInfo);
     }
 
     void UpdateAIScheduleHandler()
@@ -131,7 +147,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void InitSlotUpgradeHandler()
+    void RunSlotUpgradeHandler()
     {
         _slotUpgradeHandler = new SlotUpgradeHandler();
         _slotUpgradeHandler.Init();
@@ -172,6 +188,30 @@ public class GameManager : MonoBehaviour
         popup.SetData(resultData);
     }
 
+    public void ExitStage()
+    {
+        PauseGame();
+
+        _isInGame = false;
+        
+        Managers.UI.PopupHandler.CloseAllPopup();
+
+        if (_aiScheduleHandler != null)
+        {
+            _aiScheduleHandler.Destroy();
+        }
+        
+        ResetStage();
+        
+        Managers.Lobby.RefreshLobbyMap();
+        Managers.Sound.StopIngameBgm();
+        Managers.UI.RefreshUI();
+        
+        _gameField.ResetField();
+        
+        ResumeGame();
+    }
+    
     public void SetGameSpeed(float argSpeed)
     {
         _curGameSpeed = argSpeed;
@@ -195,27 +235,26 @@ public class GameManager : MonoBehaviour
         _onGameResume?.Invoke();
     }
 
-    public void RestartStage()
+    void ResetStage()
     {
         _uid = INVALID_UID;
         _elapsedPlayTime = 0f;
         _isEnemyEmergencyTriggered = false;
-        Managers.UI.PopupHandler.CloseAllPopup();
-        _curGameSpeed = DEFAULT_GAME_SPEED;
-        _gameField.Restart();
-        ResumeGame();
-        InitAIScheduleHandler();
-        Managers.UI.RefreshUI();
+        SetGameSpeed(DEFAULT_GAME_SPEED);
     }
-
-    public void Exit()
+    
+    public void RestartStage()
     {
-        PauseGame();
-        _isInGame = false;
+        ResetStage();
         Managers.UI.PopupHandler.CloseAllPopup();
+
+        ReRunAIScheduleHandler();
+        RunSlotUpgradeHandler();
         
-        // TODO: 임시로 게임 종료로 해놨으나 스테이지 종료로 수정
-        QuitGame();
+        _gameField.Run();
+        ResumeGame();
+
+        Managers.UI.RefreshUI();
     }
 
     public void QuitGame()
