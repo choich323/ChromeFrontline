@@ -418,3 +418,7 @@ MonoBehaviour:
     value:
       en: Yes
       kr: "\uC608"
+  - id: Start
+    value:
+      en: Start
+      kr: "\uC2DC\uC791"

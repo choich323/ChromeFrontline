@@ -57,12 +57,6 @@ public class UIManager : MonoBehaviour
     
     void CreateTopHUD()
     {
-        CreatTopHUD();
-        CreatePlayBtnGroup();
-    }
-
-    void CreatTopHUD()
-    {
         var obj = InstantiateUIWithoutPool(PrefabID.UIHUDPanel);
         if (obj == null)
         {
@@ -72,12 +66,26 @@ public class UIManager : MonoBehaviour
         _topHUDController = obj.GetComponent<HUDController>();
         var hudTransform = _topHUDController.transform;
         hudTransform.SetParent(_hudParent, false);
+        _topHUDController.gameObject.SetActive(false);
+        
+        CreatePlayBtnGroup();
     }
 
     public void OnEnterStage()
     {
+        _topHUDController.gameObject.SetActive(true);
         _topHUDController.Init();
         RefreshUI();
+        
+        _pauseBtn.gameObject.SetActive(true);
+        _gameSpeedBtn.gameObject.SetActive(true);
+    }
+
+    public void OnExitStage()
+    {
+        _topHUDController.gameObject.SetActive(false);
+        _pauseBtn.gameObject.SetActive(false);
+        _gameSpeedBtn.gameObject.SetActive(false);
     }
 
     void CreatePlayBtnGroup()
@@ -92,9 +100,11 @@ public class UIManager : MonoBehaviour
         var btnTransform = _pauseBtn.transform;
         btnTransform.SetParent(_pauseBtnParent, false);
         _pauseBtn.Init();
+        _pauseBtn.gameObject.SetActive(false);
         
         _gameSpeedBtn = obj.GetComponent<UIGameSpeedBtn>();
         _gameSpeedBtn.Init();
+        _gameSpeedBtn.gameObject.SetActive(false);
     }
 
     public void RefreshUI()

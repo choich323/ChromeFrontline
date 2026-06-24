@@ -66,4 +66,6 @@ public enum PrefabID
     
     UIEntityStat = 10011,
     UIResult,
+    
+    UIStageInfo,
 }

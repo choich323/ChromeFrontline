@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UILobby
       objectReference: {fileID: 0}
+    - target: {fileID: 5473277384319086316, guid: 75dfa17dfcd690647b90a92c6cc18894, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9008253101631468505, guid: 75dfa17dfcd690647b90a92c6cc18894, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -754,8 +758,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 530437834}
   - {fileID: 1413737424}
+  - {fileID: 530437834}
   - {fileID: 318731254}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

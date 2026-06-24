@@ -9,6 +9,7 @@ public enum StringID
     ConfirmRestartStage = 201,
     ConfirmExitStage,
     
+    // Option
     Option = 251,
     Sound,
     Sensitivity,
@@ -24,6 +25,7 @@ public enum StringID
     LangEnglish,
     LangKorean,
     
+    // HqPanel
     HqInfo = 301,
     Hp,
     Shield,
@@ -63,6 +65,7 @@ public enum StringID
     SlotUpgrade,
     SlotDowngradeNotice,
     
+    // Result
     Victory = 501,
     Defeat,
     Clear,
@@ -76,6 +79,10 @@ public enum StringID
     Exit,
     Ok,
     Selected,
+    
+    // StageInfo
+    Start,
+    
     
     // Entity - Pioneer Name
     Police = 10001,

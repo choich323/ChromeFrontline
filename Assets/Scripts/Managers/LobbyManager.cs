@@ -158,8 +158,23 @@ public class LobbyManager : MonoBehaviour
 
     void OnStageNodeClicked(StageInfo argStageInfo)
     {
-        // TODO: 팝업 띄우고 데이터 넘기기
-        Managers.Game.EnterStage(argStageInfo);
+        Managers.Sound.PlaySelectSfx();
+        
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIStageInfo>(PrefabID.UIStageInfo);
+        if (popup == null)
+        {
+            return;
+        }
+        
+        popup.Init();
+        popup.SetData(argStageInfo);
+        popup.SetOnClose(OnClose);
+
+        void OnClose()
+        {
+            Managers.Sound.PlaySelectSfx();
+            Managers.UI.PopupHandler.ClosePopup();
+        }
     }
 
     public void ToggleLobby(bool argIsVisible)

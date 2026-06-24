@@ -233,6 +233,7 @@ public class GameManager : MonoBehaviour
         
         _gameField.ResetField();
         
+        Managers.UI.OnExitStage();
         Managers.Lobby.ToggleLobby(true);
 
         yield return Managers.UI.FadeIn().WaitForCompletion();
