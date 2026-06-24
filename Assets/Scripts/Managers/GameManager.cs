@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
 
             void OnConfirm()
             {
-                ExitStage();
+                // 게임 종료 팝업
             }
             
             void OnBtnPopupClose()
@@ -99,22 +101,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         _gameField = gameFieldObj.GetComponent<GameField>();
-    }
-
-    public void EnterStage(StageInfo argStageInfo)
-    {
-        if (_gameField == null)
-        {
-            return;
-        }
-
-        _isInGame = true;
-        var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
-        RunAIScheduleHandler(aiScheduleInfo);
-        RunSlotUpgradeHandler();
-        Managers.Sound.PlayIngameBgm();
-        _gameField.Run();
-        Managers.UI.OnEnterStage();
     }
     
     public void SaveUserRecord(UserRecord argUserRecord)
@@ -176,6 +162,37 @@ public class GameManager : MonoBehaviour
         return GameField.PlayerHq.GetUsableEntityIDList();
     }
     
+    public void EnterStage(StageInfo argStageInfo)
+    {
+        if (_gameField == null)
+        {
+            return;
+        }
+
+        StartCoroutine(CoEnterStage(argStageInfo));
+    }
+
+    IEnumerator CoEnterStage(StageInfo argStageInfo)
+    {
+        yield return Managers.UI.FadeOut().WaitForCompletion();
+        
+        Managers.Lobby.ToggleLobby(false);
+        
+        _isInGame = true;
+        _elapsedPlayTime = 0f;
+        var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
+        RunAIScheduleHandler(aiScheduleInfo);
+        RunSlotUpgradeHandler();
+        Managers.Sound.PlayIngameBgm();
+        _gameField.Run();
+        Managers.UI.OnEnterStage();
+        PauseGame();
+        
+        yield return Managers.UI.FadeIn().WaitForCompletion();
+        
+        ResumeGame();
+    }
+    
     public void EndStage(bool argIsPlayerWin)
     {
         PauseGame();
@@ -190,9 +207,16 @@ public class GameManager : MonoBehaviour
 
     public void ExitStage()
     {
-        PauseGame();
+        StartCoroutine(CoExitStage());
+    }
 
+    IEnumerator CoExitStage()
+    {
+        PauseGame();
+        
         _isInGame = false;
+
+        yield return Managers.UI.FadeOut().WaitForCompletion();
         
         Managers.UI.PopupHandler.CloseAllPopup();
 
@@ -208,6 +232,10 @@ public class GameManager : MonoBehaviour
         Managers.UI.RefreshUI();
         
         _gameField.ResetField();
+        
+        Managers.Lobby.ToggleLobby(true);
+
+        yield return Managers.UI.FadeIn().WaitForCompletion();
         
         ResumeGame();
     }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -6,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform _hudParent;
     [SerializeField] private RectTransform _popupParent;
     [SerializeField] private RectTransform _pauseBtnParent;
+    [SerializeField] private CanvasGroup _fadeCanvasGroup;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -28,6 +30,23 @@ public class UIManager : MonoBehaviour
         {
             _popupHandler.OnUpdate();
         }
+    }
+
+    public Tween FadeOut(float argDuration = 0.5f)
+    {
+        _fadeCanvasGroup.gameObject.SetActive(true);
+        _fadeCanvasGroup.blocksRaycasts = true;
+        
+        return _fadeCanvasGroup.DOFade(1f, argDuration).SetUpdate(true);
+    }
+
+    public Tween FadeIn(float argDuration = 0.5f)
+    {
+        return _fadeCanvasGroup.DOFade(0f, argDuration).SetUpdate(true).OnComplete(()=>
+        {
+            _fadeCanvasGroup.blocksRaycasts = false;
+            _fadeCanvasGroup.gameObject.SetActive(false);
+        });
     }
     
     void CreatePopupHandler()

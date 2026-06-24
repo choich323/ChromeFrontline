@@ -160,7 +160,6 @@ public class LobbyManager : MonoBehaviour
     {
         // TODO: 팝업 띄우고 데이터 넘기기
         Managers.Game.EnterStage(argStageInfo);
-        ToggleLobby(false);
     }
 
     public void ToggleLobby(bool argIsVisible)
