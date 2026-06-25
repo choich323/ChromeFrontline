@@ -16,6 +16,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _worldNameText;
     
     private List<UIStageNode> _nodeList = new List<UIStageNode>();
+    private UserRecord _userRecord;
 
     void OnClickPrevWorld()
     {
@@ -39,10 +40,10 @@ public class LobbyManager : MonoBehaviour
     {
         ToggleLobby(true);
         
-        UserRecord userRecord = Managers.Save.LoadRecord();
-        if (userRecord == null) return;
+        _userRecord = Managers.Save.LoadRecord();
+        if (_userRecord == null) return;
 
-        string targetWorldId = userRecord.CurrentWorldId;
+        string targetWorldId = _userRecord.CurrentWorldId;
         // UpdateWorldButtons(targetWorldId);
 
         // 어드레서블로 맵 데이터 비동기 로드
@@ -53,7 +54,7 @@ public class LobbyManager : MonoBehaviour
             SetMapBackground(worldData);
             
             // 노드 쫙 깔고, 카메라가 쳐다볼 타겟 노드 가져오기
-            RectTransform targetNode = GenerateNodesAndFindTarget(worldData, userRecord);
+            RectTransform targetNode = GenerateNodesAndFindTarget(worldData, _userRecord);
 
             if (targetNode != null)
             {
@@ -96,7 +97,7 @@ public class LobbyManager : MonoBehaviour
             rect.anchoredPosition = stageInfo.uiPosition;
 
             // 4. 데이터 묶어주기 및 클릭 이벤트 연결
-            StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stageId);
+            StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stageIndex);
             newNode.Init(stageInfo, saveInfo, OnStageNodeClicked);
 
             // [포커싱 로직] 가장 최신 단계(index)의 노드를 타겟으로 갱신
@@ -167,7 +168,7 @@ public class LobbyManager : MonoBehaviour
         }
         
         popup.Init();
-        popup.SetData(argStageInfo);
+        popup.SetData(argStageInfo, _userRecord);
         popup.SetOnClose(OnClose);
 
         void OnClose()

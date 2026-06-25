@@ -21,7 +21,7 @@ public class UIStageNode : MonoBehaviour
         _stageNameText.text = argStageInfo.stageName;
 
         // 별점 세팅
-        int starCount = argSaveInfo != null ? argSaveInfo.starCount : 0;
+        int starCount = argSaveInfo?.starCount ?? 0;
         for (int i = 0; i < _starIcons.Length; i++)
         {
             _starIcons[i].SetActive(i < starCount);

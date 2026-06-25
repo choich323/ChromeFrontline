@@ -281,7 +281,7 @@ public class DataManager : MonoBehaviour
         if (argStageInfo.stageIndex == 1) return true;
 
         // 2. 이미 클리어한 스테이지라면 무조건 해금
-        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageId);
+        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageIndex);
         if (mySave != null && mySave.isCleared) return true;
 
         // 3. 직전 스테이지(index - 1)를 클리어했는지 검사
@@ -290,10 +290,15 @@ public class DataManager : MonoBehaviour
 
         if (prevStage != null)
         {
-            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stageId);
+            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stageIndex);
             return prevSave != null && prevSave.isCleared;
         }
 
         return false;
+    }
+
+    public int GetWorldIndex(string argWorldId)
+    {
+        return _worldCatalog.GetWorldIndex(argWorldId);
     }
 }

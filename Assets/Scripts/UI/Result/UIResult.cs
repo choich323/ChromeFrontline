@@ -49,9 +49,7 @@ public class UIResult : APopup
 
     [Header("Buttons")]
     [SerializeField] private Button _retryBtn;
-    [SerializeField] private TextMeshProUGUI _retryBtnText;
     [SerializeField] private Button _exitBtn;
-    [SerializeField] private TextMeshProUGUI _exitBtnText;
     
     private StringManager Sm => Managers.String;
     private GameManager Gm => Managers.Game;
@@ -93,21 +91,37 @@ public class UIResult : APopup
     
     void CheckSave()
     {
-        var record = new UserRecord();
-        var tick = DateTime.Now.Ticks;
-        var oldUserRecord = Gm.UserRecord;
+        var record = Gm.UserRecord;
+        int stage = _resultData.stage;
+        var stageBestRecord = record.GetStageBestRecord(stage);
+        if (stageBestRecord == null)
+        {
+            stageBestRecord = new StageRecord();
+            stageBestRecord.tick = DateTime.Now.Ticks;
+            record.SaveStageBestRecord(stage, stageBestRecord);
+        }
 
-        var stageBestRecord = oldUserRecord.GetStageBestRecord(_resultData.stage);
-        if (!stageBestRecord.clear && _resultData.isClear)
+        var stageSaveInfo = record.GetStageSaveInfo(stage);
+        if (stageSaveInfo == null)
+        {
+            stageSaveInfo = new StageSaveInfo();
+            stageSaveInfo.stage = stage;
+            record.SaveStageSaveInfo(stage, stageSaveInfo);
+        }
+        
+        if (!stageBestRecord.isClear && _resultData.isClear)
         {
             _isClearChanged = true;
-            stageBestRecord.clear = true;
+            stageBestRecord.isClear = true;
+            stageSaveInfo.isCleared = true;
+            stageSaveInfo.starCount++;
         }
 
         if (_resultData.isClear && _playTime < stageBestRecord.clearTime)
         {
             _isBestClearTimeChanged = true;
             stageBestRecord.clearTime = _playTime;
+            stageSaveInfo.starCount++;
         }
 
         var hpRatio = Gm.GameField.PlayerHq.GetHqHpRatio() * HUNDRED_PERCENT;
@@ -115,14 +129,17 @@ public class UIResult : APopup
         {
             _isBestHqHpChanged = true;
             stageBestRecord.hqhpRatio = (int)hpRatio;
+            stageSaveInfo.starCount++;
         }
 
         if (_isClearChanged || _isBestClearTimeChanged || _isBestHqHpChanged)
         {
-            stageBestRecord.tick = tick;
-            record.SaveStageBestRecord(_resultData.stage, stageBestRecord);
-            Gm.SaveUserRecord(record);
+            stageBestRecord.tick = DateTime.Now.Ticks;
+            record.SaveStageBestRecord(stage, stageBestRecord);
+            record.SaveStageSaveInfo(stage, stageSaveInfo);
         }
+        
+        Gm.SaveUserRecord(record);
     }
 
     void SetButton()
@@ -150,7 +167,6 @@ public class UIResult : APopup
     {
         SetTitleText();
         SetMissionText();
-        SetButtonText();
         SetIcon();
     }
 
@@ -161,10 +177,6 @@ public class UIResult : APopup
 
     void SetMissionText()
     {
-        var ur = Gm.UserRecord;
-        var stage = _resultData.stage;
-        var stageRecord = ur.GetStageBestRecord(stage);
-        
         // Clear Mission
         _clearMissionText.SetText(Sm.GetString(StringID.Clear));
         var clearText = _resultData.isClear ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
@@ -209,9 +221,10 @@ public class UIResult : APopup
             _hqHpNewTextObject.SetActive(false);
         }
         
-        
-        bool hasCleared = stageRecord.clear;
-        if (hasCleared)
+        var ur = Gm.UserRecord;
+        var stage = _resultData.stage;
+        var stageRecord = ur.GetStageBestRecord(stage);
+        if (stageRecord != null)
         {
             var bestClear = Sm.GetString(StringID.Success);
             _clearBestText.SetText(Sm.GetString(StringID.Best, bestClear));
@@ -236,6 +249,10 @@ public class UIResult : APopup
     string GetConvertedTimeText(float argTime)
     {
         var playTime = argTime;
+        if (playTime >= float.MaxValue)
+        {
+            return "--:--";
+        }
         
         int hours = Mathf.FloorToInt(playTime / HOUR_TO_SECOND);
         int minutes = Mathf.FloorToInt((playTime % HOUR_TO_SECOND) / MINUTE_TO_SECOND);
@@ -252,12 +269,6 @@ public class UIResult : APopup
             result = $"{minutes:D2}:{seconds:D2}";
         }
         return result;
-    }
-
-    void SetButtonText()
-    {
-        _retryBtnText.SetText(Sm.GetString(StringID.Retry));
-        _exitBtnText.SetText(Sm.GetString(StringID.Exit));
     }
 
     void SetIcon()

@@ -119,4 +119,8 @@ public enum StringID
     Overload,
     BloodyCanon,
     DestroyLaser,
+    
+    
+    WORLD_DESC_1_1 = 100001,
+    
 }

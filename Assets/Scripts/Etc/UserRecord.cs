@@ -5,9 +5,28 @@ using Newtonsoft.Json;
 [Serializable]
 public class StageSaveInfo
 {
-    public string stageId;       // StageData의 stageId와 동일하게 맞춤
+    public int stage;
     public bool isCleared;
     public int starCount;
+
+    public void SetInfo(StageSaveInfo argSaveInfo)
+    {
+        stage = argSaveInfo.stage;
+        isCleared = argSaveInfo.isCleared;
+        starCount = argSaveInfo.starCount;
+    }
+}
+
+[Serializable]
+public class StageRecord
+{
+    public const float INVALID_CLEAR_TIME = float.MaxValue;
+    public const int INVALID_HQ_HP_RATIO = -1;
+    
+    public long tick;
+    public bool isClear = false;
+    public float clearTime = INVALID_CLEAR_TIME;
+    public int hqhpRatio = INVALID_HQ_HP_RATIO;
 }
 
 [Serializable]
@@ -15,44 +34,56 @@ public class UserRecord
 {
     private const float CLEAR_TIME_THRESHOLD = 720f; // 12분
     private const int CLEAR_HQ_HP_RATIO = 100;
-    private const int DEFAULT_STAGE = 1;
-    private const string DEFAULT_WORLD_ID = "world_1";
+    private const string DEFAULT_WORLD_ID = "world1";
     
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
-    private Dictionary<int, (long tick, bool clear, float clearTime, int hqhpRatio)> _stageBestRecordDict = new Dictionary<int, (long, bool, float, int)>();
+    private Dictionary<int, StageRecord> _stageBestRecordDict = new Dictionary<int, StageRecord>();
 
     private string _currentWorldId = DEFAULT_WORLD_ID;
-    private List<StageSaveInfo> _stageSaveInfoList = new List<StageSaveInfo>();
+
+    [JsonProperty]
+    private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
     public string CurrentWorldId => _currentWorldId;
-    
-    public void Init()
-    {
-        InitStageBestRecord();
-        _stageSaveInfoList = new List<StageSaveInfo>();
-    }
-
-    void InitStageBestRecord()
-    {
-        var tick = DateTime.Now.Ticks;
-        var record = (tick, false, float.MaxValue, 0);
-        _stageBestRecordDict[DEFAULT_STAGE] = record;
-    }
 
     public void SetCurrentWorldId(string argWorldId)
     {
         _currentWorldId = argWorldId;
     }
 
-    public StageSaveInfo GetStageSaveInfo(string argStageId)
+    public StageSaveInfo GetStageSaveInfo(int argStage)
     {
-        return _stageSaveInfoList.Find(info => info.stageId == argStageId);
+        if (!_stageSaveInfoDict.TryGetValue(argStage, out var result))
+        {
+            result = new StageSaveInfo();
+            result.stage = argStage;
+            _stageSaveInfoDict.Add(argStage, result);
+        }
+
+        return result;
     }
     
-    public void SaveStageBestRecord(int argKey, (long, bool, float, int) argRecord)
+    public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo)
+    {
+        _stageSaveInfoDict[argKey] = argStageSaveInfo;
+    }
+    
+    public void SaveStageBestRecord(int argKey, StageRecord argRecord)
     {
         _stageBestRecordDict[argKey] = argRecord;
+    }
+    
+    public StageRecord GetStageBestRecord(int argStage)
+    {
+        if (!_stageBestRecordDict.TryGetValue(argStage, out var result))
+        {
+            result = new StageRecord();
+            result.tick = DateTime.Now.Ticks;
+            _stageBestRecordDict.Add(argStage, result);
+        }
+        
+        return result;
     }
     
     public void Save(UserRecord argUserRecord)
@@ -65,14 +96,13 @@ public class UserRecord
                 _stageBestRecordDict[key] = record.Value;
             }
         }
-    }
 
-    public (long tick, bool clear, float clearTime, int hqhpRatio) GetStageBestRecord(int argStage)
-    {
-        _stageBestRecordDict.TryGetValue(argStage, out var result);
-        return result;
+        foreach (var info in argUserRecord._stageSaveInfoDict)
+        {
+            
+        }
     }
-
+    
     public int GetStarCount()
     {
         int count = 0;
@@ -103,7 +133,7 @@ public class UserRecord
         if (!_stageBestRecordDict.ContainsKey(argStage))
             return false;
         
-        return _stageBestRecordDict[argStage].clear;
+        return _stageBestRecordDict[argStage].isClear;
     }
 
     public bool IsClearInTime(int argStage)

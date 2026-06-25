@@ -9,6 +9,7 @@ public class StageInfo
     public string stageId;
     public string stageName;
     public Vector2 uiPosition;   // 에디터에서 베이킹할 맵 상의 앵커 좌표
+    public string descId;
 
     [Header("=== Gameplay Metadata ===")]
     public int stageIndex;       // 월드 내 정렬 순서 (해금 조건 판정용)

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: e3cf4e9e82606df4aaf3e7a82807979f
   m_SerializeEntries:
   - m_GUID: b07996e190e915446936c28869d92fed
-    m_Address: world_1
+    m_Address: world1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

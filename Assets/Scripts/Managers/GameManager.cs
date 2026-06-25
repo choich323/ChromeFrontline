@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
         
         _isInGame = true;
         _elapsedPlayTime = 0f;
+        _stage = argStageInfo.stageIndex;
         var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
         RunAIScheduleHandler(aiScheduleInfo);
         RunSlotUpgradeHandler();
