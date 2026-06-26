@@ -777,7 +777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: 0, y: -440}
   m_SizeDelta: {x: 1300, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2034005109511671851
@@ -793,12 +793,12 @@ GameObject:
   - component: {fileID: 4892245699034751419}
   - component: {fileID: 7936916496481306658}
   m_Layer: 5
-  m_Name: StageId
+  m_Name: StageNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1233166884947962783
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1275,7 +1275,7 @@ GameObject:
   - component: {fileID: 106141666318366205}
   - component: {fileID: 4916652521291504777}
   m_Layer: 5
-  m_Name: StageDesc
+  m_Name: StageTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,8 +1297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 150}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 1200, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3860053843724425735
 CanvasRenderer:
@@ -1355,8 +1355,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 44
+  m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 32
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1730,7 +1730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -135}
+  m_AnchoredPosition: {x: -200, y: -160}
   m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4999106589975539818
@@ -2366,7 +2366,7 @@ GameObject:
   - component: {fileID: 4728867997598403500}
   - component: {fileID: 7886160992860144748}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: StageDesc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,8 +2446,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 50
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -2846,8 +2846,9 @@ MonoBehaviour:
   _inputMode: 2
   _closeButton: {fileID: 1363942986239012904}
   _dimmedBg: {fileID: 3749068300902615407}
-  _stageTitleText: {fileID: 4892245699034751419}
-  _stageDescriptionText: {fileID: 106141666318366205}
+  _stageNumberText: {fileID: 4892245699034751419}
+  _stageTitleText: {fileID: 106141666318366205}
+  _stageDescriptionText: {fileID: 7886160992860144748}
   _clearIcon: {fileID: 331467399953245217}
   _clearMissionText: {fileID: 8296610230459112910}
   _clearBestText: {fileID: 5365249269645337789}

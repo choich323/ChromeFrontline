@@ -25,7 +25,7 @@ public class UIStageMapBaker : MonoBehaviour
 
         foreach (var node in nodes)
         {
-            var stageInfo = targetWorldData.GetStageInfo(node.TargetStageId);
+            var stageInfo = targetWorldData.GetStageInfo(node.TargetStage);
             if (stageInfo != null)
             {
                 // UI의 현재 좌표(anchoredPosition)를 추출해서 SO에 저장
@@ -35,7 +35,7 @@ public class UIStageMapBaker : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"SO에 [{node.TargetStageId}] ID를 가진 스테이지 정보가 없습니다.");
+                Debug.LogWarning($"SO에 [{node.TargetStage}] ID를 가진 스테이지 정보가 없습니다.");
             }
         }
 

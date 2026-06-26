@@ -104,12 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29f1bbee3cfd854ab4634c43e4cc215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIStageNode
-  _targetStageId: 
+  _targetStage: 0
   _stageNameText: {fileID: 7890869583316005386}
   _nodeButton: {fileID: 2591980476152257976}
   _starIcons:
-  - {fileID: 7420681419580718029}
   - {fileID: 6063230159559604061}
+  - {fileID: 7420681419580718029}
   - {fileID: 4581656817641304403}
 --- !u!1 &2816766706248498916
 GameObject:

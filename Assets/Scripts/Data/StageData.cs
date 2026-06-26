@@ -6,10 +6,9 @@ using UnityEngine;
 public class StageInfo
 {
     [Header("=== Lobby UI Info ===")]
-    public string stageId;
+    public int stage;
     public string stageName;
     public Vector2 uiPosition;   // 에디터에서 베이킹할 맵 상의 앵커 좌표
-    public string descId;
 
     [Header("=== Gameplay Metadata ===")]
     public int stageIndex;       // 월드 내 정렬 순서 (해금 조건 판정용)
@@ -37,8 +36,8 @@ public class StageData : ScriptableObject
         return stageInfoList;
     }
     
-    public StageInfo GetStageInfo(string argStageId)
+    public StageInfo GetStageInfo(int argStage)
     {
-        return stageInfoList.Find(info => info.stageId == argStageId);
+        return stageInfoList.Find(info => info.stage == argStage);
     }
 }

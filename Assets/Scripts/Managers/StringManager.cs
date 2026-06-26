@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class StringManager : MonoBehaviour
@@ -41,5 +42,32 @@ public class StringManager : MonoBehaviour
             Debug.LogError($"String not found for ID. ID:{argStringId}");
             return string.Empty;
         }
+    }
+    
+    /// <summary>
+    /// 지정한 월드와 스테이지의 타이틀을 반환합니다.
+    /// </summary>
+    public string GetStageTitle(string argWorldId, int argStage)
+    {
+        var data = Managers.Data.GetOrLoadStoryData(argWorldId);
+        var info = data.storyInfoList.FirstOrDefault(info => info.stage == argStage);
+        if (info == null) return "";
+
+        // 언어 설정 매니저와 연동
+        var lang = Managers.Language.CurrentLanguage;
+        return lang == Language.Korean ? info.title.kr : info.title.en;
+    }
+
+    /// <summary>
+    /// 지정한 월드와 스테이지의 설명을 반환합니다.
+    /// </summary>
+    public string GetStageDesc(string argWorldId, int argStage)
+    {
+        var data = Managers.Data.GetOrLoadStoryData(argWorldId);
+        var info = data.storyInfoList.FirstOrDefault(info => info.stage == argStage);
+        if (info == null) return "";
+
+        var lang = Managers.Language.CurrentLanguage;
+        return lang == Language.Korean ? info.desc.kr : info.desc.en;
     }
 }

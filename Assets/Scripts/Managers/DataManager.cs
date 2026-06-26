@@ -29,8 +29,14 @@ public class DataManager : MonoBehaviour
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
 
+    // stage data
     private StageData _curWorldData = null;
     private AsyncOperationHandle _worldDataHandle;
+    
+    // story data
+    private StoryData _curStoryData = null;
+    private string _curStoryWorldId = string.Empty;
+    private AsyncOperationHandle<StoryData> _storyDataHandle;
 
     public int StartGold => _playerCurrencyData.startGold;
     public StageData CurWorldData => _curWorldData;
@@ -268,6 +274,14 @@ public class DataManager : MonoBehaviour
             _curWorldData = null;
             Debug.Log("World Data Unload Complete.");
         }
+        
+        if (_storyDataHandle.IsValid())
+        {
+            Addressables.Release(_storyDataHandle);
+            _curStoryData = null;
+            _curStoryWorldId = string.Empty;
+            Debug.Log("Story Data Unload Complete.");
+        }
     }
 
     /// <summary>
@@ -300,5 +314,31 @@ public class DataManager : MonoBehaviour
     public int GetWorldIndex(string argWorldId)
     {
         return _worldCatalog.GetWorldIndex(argWorldId);
+    }
+    
+    /// <summary>
+    /// 내부용: 스토리 데이터를 가져오거나, 다른 월드면 교체 로드합니다.
+    /// </summary>
+    public StoryData GetOrLoadStoryData(string argWorldId)
+    {
+        // 1. 현재 로드된 월드의 데이터라면 즉시 반환 (성능 최적화)
+        if (_curStoryData != null && _curStoryWorldId == argWorldId)
+        {
+            return _curStoryData;
+        }
+
+        // 2. 다른 월드 스토리가 메모리에 있다면 깔끔하게 해제
+        if (_storyDataHandle.IsValid())
+        {
+            Addressables.Release(_storyDataHandle);
+        }
+
+        // 3. 새 월드 스토리 동기 로드
+        string address = $"StoryData_{argWorldId}";
+        _storyDataHandle = Addressables.LoadAssetAsync<StoryData>(address);
+        _curStoryData = _storyDataHandle.WaitForCompletion();
+        _curStoryWorldId = argWorldId;
+
+        return _curStoryData;
     }
 }
