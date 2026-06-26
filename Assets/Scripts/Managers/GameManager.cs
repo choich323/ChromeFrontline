@@ -187,6 +187,7 @@ public class GameManager : MonoBehaviour
         Managers.Sound.PlayIngameBgm();
         _gameField.Run();
         Managers.UI.OnEnterStage();
+        Managers.CamController.ResetCamPos();
         PauseGame();
         
         yield return Managers.UI.FadeIn().WaitForCompletion();
