@@ -104,7 +104,6 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
         string confirm = sm.GetString(StringID.Yes);
         string cancel = sm.GetString(StringID.No);
         var ph = Managers.UI.PopupHandler;
-        popup.Init();
         popup.SetData(msg, OnConfirm, OnClose, confirm, cancel);
 
         void OnConfirm()

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f9781cbd4d27440a81e1ef256c4144, type: 3}
   m_Name: WorldCatalog
   m_EditorClassIdentifier: Assembly-CSharp::WorldCatalog
-  availableWorldIds:
-  - world1
+  _worldList:
+  - worldId: world1
+    worldName:
+      en: Korea
+      kr: "\uB300\uD55C\uBBFC\uAD6D"

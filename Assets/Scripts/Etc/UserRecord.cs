@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 [Serializable]
 public class StageSaveInfo
 {
+    public long tick;
     public int stage;
     public bool isCleared;
     public int starCount;
@@ -58,6 +59,7 @@ public class UserRecord
         {
             result = new StageSaveInfo();
             result.stage = argStage;
+            result.tick = DateTime.Now.Ticks;
             _stageSaveInfoDict.Add(argStage, result);
         }
 
@@ -99,7 +101,11 @@ public class UserRecord
 
         foreach (var info in argUserRecord._stageSaveInfoDict)
         {
-            
+            var key = info.Key;
+            if (!_stageSaveInfoDict.ContainsKey(key) || info.Value.tick > _stageSaveInfoDict[key].tick)
+            {
+                _stageSaveInfoDict[key] = info.Value;
+            }
         }
     }
     

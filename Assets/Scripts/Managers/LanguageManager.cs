@@ -7,6 +7,13 @@ public enum Language
     Korean,
 }
 
+[Serializable]
+public class LocalizationText
+{
+    public string en;
+    public string kr;
+}
+
 public class LanguageManager : MonoBehaviour
 {
     private Language _currentLanguage = Language.English;
@@ -29,5 +36,19 @@ public class LanguageManager : MonoBehaviour
         Managers.Prefs.SetLanguage(argLanguageIndex);
         _currentLanguage = (Language)argLanguageIndex;
         Debug.Log($"Language Changed. {prevLang} -> {_currentLanguage}");
+    }
+
+    public string GetLocalizedString(LocalizationText argText)
+    {
+        switch (_currentLanguage)
+        {
+            default:
+            case Language.English:
+                return argText.en;
+                break;
+            case Language.Korean:
+                return argText.kr;
+                break;
+        }
     }
 }

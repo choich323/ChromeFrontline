@@ -67,7 +67,6 @@ public abstract class AUIHqPanelSlot : AUIHqRightPanelSelect
         
         var ph = Managers.UI.PopupHandler;
         var popup = ph.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
-        popup.Init();
         var sm = Managers.String;
         string msg = sm.GetString(StringID.ConfirmAddSlot);
         string confirm = sm.GetString(StringID.Yes);

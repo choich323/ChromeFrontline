@@ -322,6 +322,10 @@ MonoBehaviour:
     value:
       en: Security
       kr: "\uBCF4\uC548\uAD00"
+  - id: Select
+    value:
+      en: Select
+      kr: "\uC120\uD0DD"
   - id: Selected
     value:
       en: Selected
@@ -370,6 +374,10 @@ MonoBehaviour:
     value:
       en: Special Force
       kr: "\uD2B9\uACF5\uB300"
+  - id: Start
+    value:
+      en: Start
+      kr: "\uC2DC\uC791"
   - id: SteelBaton
     value:
       en: Steel Baton
@@ -414,11 +422,15 @@ MonoBehaviour:
     value:
       en: Wire Striker
       kr: "\uD6FC\uBC29\uAFBC"
+  - id: World
+    value:
+      en: World
+      kr: "\uC6D4\uB4DC"
+  - id: WorldSelect
+    value:
+      en: World Select
+      kr: "\uC6D4\uB4DC \uC120\uD0DD"
   - id: Yes
     value:
       en: Yes
       kr: "\uC608"
-  - id: Start
-    value:
-      en: Start
-      kr: "\uC2DC\uC791"

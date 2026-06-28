@@ -146,17 +146,7 @@ public class DataManager : MonoBehaviour
         bool isFind = _stringInfoDict.TryGetValue(argId, out var info);
         if (info != null)
         {
-            var lang = Managers.Language.CurrentLanguage;
-            switch (lang)
-            {
-                default:
-                case Language.English:
-                    outString = info.en;
-                    break;
-                case Language.Korean:
-                    outString = info.kr;
-                    break;
-            }
+            outString = Managers.Language.GetLocalizedString(info);
         }
         return isFind;
     }

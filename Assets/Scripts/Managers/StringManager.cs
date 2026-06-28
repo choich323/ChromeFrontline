@@ -53,9 +53,7 @@ public class StringManager : MonoBehaviour
         var info = data.storyInfoList.FirstOrDefault(info => info.stage == argStage);
         if (info == null) return "";
 
-        // 언어 설정 매니저와 연동
-        var lang = Managers.Language.CurrentLanguage;
-        return lang == Language.Korean ? info.title.kr : info.title.en;
+        return Managers.Language.GetLocalizedString(info.title);
     }
 
     /// <summary>
@@ -67,7 +65,6 @@ public class StringManager : MonoBehaviour
         var info = data.storyInfoList.FirstOrDefault(info => info.stage == argStage);
         if (info == null) return "";
 
-        var lang = Managers.Language.CurrentLanguage;
-        return lang == Language.Korean ? info.desc.kr : info.desc.en;
+        return Managers.Language.GetLocalizedString(info.desc);
     }
 }

@@ -68,4 +68,7 @@ public enum PrefabID
     UIResult,
     
     UIStageInfo,
+    
+    UIWorldSelect,
+    UIWorldSelectUnit,
 }

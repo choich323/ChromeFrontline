@@ -13,40 +13,35 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Image _bgImage;
 
     [Header("=== World Switching ===")]
-    [SerializeField] private Button _btnPrevWorld;
-    [SerializeField] private Button _btnNextWorld;
-    [SerializeField] private TextMeshProUGUI _worldNameText;
+    [SerializeField] private Button _btnWorldSelect;
+    [SerializeField] private TextMeshProUGUI _btnWorldSelectText;
     
     private List<UIStageNode> _nodeList = new List<UIStageNode>();
     private UserRecord _userRecord;
 
-    void OnClickPrevWorld()
-    {
-        SwitchWorld(-1);
-    }
-
-    void OnClickNextWorld()
-    {
-        SwitchWorld(1);
-    }
-
     public void Init()
     {
-        // _btnPrevWorld.onClick.AddListener(OnClickPrevWorld);
-        // _btnNextWorld.onClick.AddListener(OnClickNextWorld);
-        
+        _btnWorldSelect.onClick.AddListener(OnClickWorldSelect);
         RefreshLobbyMap();
+        RefreshText();
+    }
+
+    public void RefreshText()
+    {
+        var sm = Managers.String;
+        string world = sm.GetString(StringID.World);
+        string select = sm.GetString(StringID.Select);
+        _btnWorldSelectText.text = $"{world}\n{select}";
     }
     
     public void RefreshLobbyMap(int argPlayedStageIndex = -1, bool argIsNewStageUnlocked = false)
     {
         ToggleLobby(true);
         
-        _userRecord = Managers.Save.LoadRecord();
+        _userRecord = Managers.Game.UserRecord;
         if (_userRecord == null) return;
 
         string targetWorldId = _userRecord.CurrentWorldId;
-        // UpdateWorldButtons(targetWorldId);
 
         // 어드레서블로 맵 데이터 비동기 로드
         Managers.Data.LoadWorldData(targetWorldId, (worldData) =>
@@ -76,12 +71,22 @@ public class LobbyManager : MonoBehaviour
         });
     }
 
+    public void OnEnterStage()
+    {
+        
+    }
+
+    public void OnExitStage()
+    {
+        
+    }
+    
     void SetMapBackground(StageData argWorldData)
     {
         _bgImage.sprite = argWorldData.bg;
     }
     
-    void GenerateNodesAndFindTarget(StageData argWorldData, UserRecord argUserRecord, int argPlayedStageIndex, out RectTransform argPlayedTarget, out RectTransform argNewTarget)
+    void GenerateNodesAndFindTarget(StageData argWorldData, UserRecord argUserRecord, int argPlayedStageIndex, out RectTransform outPlayedTarget, out RectTransform outNewTarget)
     {
         // 1. 기존에 있던 노드들 청소
         foreach (var stageNode in _nodeList)
@@ -90,8 +95,8 @@ public class LobbyManager : MonoBehaviour
         }
         _nodeList.Clear();
 
-        argPlayedTarget = null;
-        argNewTarget = null;
+        outPlayedTarget = null;
+        outNewTarget = null;
         RectTransform highTarget = null;
         int highestIndex = -1;
         
@@ -117,13 +122,13 @@ public class LobbyManager : MonoBehaviour
             // 직전 플레이 노드
             if (stageInfo.stageIndex == argPlayedStageIndex)
             {
-                argPlayedTarget = rect;
+                outPlayedTarget = rect;
             }
 
             // 새로 해금된 경우 다음 노드
             if (stageInfo.stageIndex == argPlayedStageIndex + 1)
             {
-                argNewTarget = rect;
+                outNewTarget = rect;
             }
             
             // 최고 진척도 노드
@@ -134,7 +139,7 @@ public class LobbyManager : MonoBehaviour
             }
         }
 
-        if (argPlayedTarget == null) argPlayedTarget = highTarget;
+        if (outPlayedTarget == null) outPlayedTarget = highTarget;
     }
 
     Tween FocusOnNode(RectTransform targetNode, bool argIsInstant)
@@ -173,36 +178,6 @@ public class LobbyManager : MonoBehaviour
         Managers.UI.ActiveInputBlocker(false);
     }
 
-    void SwitchWorld(int direction)
-    {
-        UserRecord userRecord = Managers.Save.LoadRecord();
-        var catalog = Managers.Data.WorldCatalog; // 카탈로그 호출
-        
-        int currentIndex = catalog.GetWorldIndex(userRecord.CurrentWorldId);
-        if (currentIndex == -1) currentIndex = 0;
-
-        int nextIndex = currentIndex + direction;
-        
-        // 카탈로그의 범위 내에 있는지 검사
-        if (nextIndex >= 0 && nextIndex < catalog.GetWorldCount())
-        {
-            userRecord.SetCurrentWorldId(catalog.GetWorldId(nextIndex));
-            Managers.Save.SaveRecord(userRecord); 
-            RefreshLobbyMap(); 
-        }
-    }
-
-    void UpdateWorldButtons(string currentWorldId)
-    {
-        var catalog = Managers.Data.WorldCatalog;
-        int currentIndex = catalog.GetWorldIndex(currentWorldId);
-        
-        _btnPrevWorld.interactable = (currentIndex > 0);
-        _btnNextWorld.interactable = (currentIndex < catalog.GetWorldCount() - 1);
-        
-        if (_worldNameText != null) _worldNameText.text = $"World {currentIndex + 1}";
-    }
-
     void OnStageNodeClicked(StageInfo argStageInfo)
     {
         Managers.Sound.PlaySelectSfx();
@@ -213,7 +188,6 @@ public class LobbyManager : MonoBehaviour
             return;
         }
         
-        popup.Init();
         popup.SetData(argStageInfo, _userRecord);
         popup.SetOnClose(OnClose);
 
@@ -227,5 +201,18 @@ public class LobbyManager : MonoBehaviour
     public void ToggleLobby(bool argIsVisible)
     {
         gameObject.SetActive(argIsVisible);
+    }
+
+    void OnClickWorldSelect()
+    {
+        Managers.Sound.PlaySelectSfx();
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIWorldSelect>(PrefabID.UIWorldSelect);
+        popup.SetOnClose(OnClose);
+
+        void OnClose()
+        {
+            Managers.Sound.PlaySelectSfx();
+            Managers.UI.PopupHandler.ClosePopup();
+        }
     }
 }

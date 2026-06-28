@@ -14,7 +14,7 @@ public class InspectorStringHandler : MonoBehaviour
 {
     [SerializeField] private List<InspectorStringGroup> _stringGroupList;
 
-    private void OnEnable()
+    void OnEnable()
     {
         foreach (var group in _stringGroupList)
         {

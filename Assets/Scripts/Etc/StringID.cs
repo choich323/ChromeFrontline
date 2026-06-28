@@ -83,6 +83,10 @@ public enum StringID
     // StageInfo
     Start,
     
+    // worldSelectInfo
+    World,
+    Select,
+    WorldSelect,
     
     // Entity - Pioneer Name
     Police = 10001,
@@ -119,8 +123,4 @@ public enum StringID
     Overload,
     BloodyCanon,
     DestroyLaser,
-    
-    
-    WORLD_DESC_1_1 = 100001,
-    
 }

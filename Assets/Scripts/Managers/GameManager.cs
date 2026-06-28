@@ -214,7 +214,6 @@ public class GameManager : MonoBehaviour
         }
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
-        popup.Init();
         var resultData = new ResultData();
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
