@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform _popupParent;
     [SerializeField] private RectTransform _pauseBtnParent;
     [SerializeField] private CanvasGroup _fadeCanvasGroup;
+    [SerializeField] private GameObject _inputBlocker;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     
     public void Init()
     {
+        ActiveInputBlocker(false);
         CreatePopupHandler();
         CreateTopHUD();
     }
@@ -47,6 +49,14 @@ public class UIManager : MonoBehaviour
             _fadeCanvasGroup.blocksRaycasts = false;
             _fadeCanvasGroup.gameObject.SetActive(false);
         });
+    }
+
+    public void ActiveInputBlocker(bool argIsActive)
+    {
+        if (_inputBlocker != null)
+        {
+            _inputBlocker.SetActive(argIsActive);
+        }
     }
     
     void CreatePopupHandler()

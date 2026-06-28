@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,7 +38,7 @@ public class LobbyManager : MonoBehaviour
         RefreshLobbyMap();
     }
     
-    public void RefreshLobbyMap()
+    public void RefreshLobbyMap(int argPlayedStageIndex = -1, bool argIsNewStageUnlocked = false)
     {
         ToggleLobby(true);
         
@@ -54,12 +56,22 @@ public class LobbyManager : MonoBehaviour
             SetMapBackground(worldData);
             
             // 노드 쫙 깔고, 카메라가 쳐다볼 타겟 노드 가져오기
-            RectTransform targetNode = GenerateNodesAndFindTarget(worldData, _userRecord);
+            GenerateNodesAndFindTarget(worldData, _userRecord, argPlayedStageIndex, out RectTransform playedTarget, out RectTransform newTarget);
 
-            if (targetNode != null)
+            if (playedTarget != null)
             {
                 Canvas.ForceUpdateCanvases();
-                FocusOnNode(targetNode);
+                
+                // 새 스테이지가 열렸고, 그 노드가 존재한다면 연출 코루틴 시작!
+                if (argIsNewStageUnlocked && newTarget != null)
+                {
+                    StartCoroutine(CoPanToNewStage(playedTarget, newTarget));
+                }
+                else
+                {
+                    // 평범한 상황 (반복 클리어, 패배, 나가기 등) -> 즉시 포커스
+                    FocusOnNode(playedTarget, true);
+                }
             }
         });
     }
@@ -69,7 +81,7 @@ public class LobbyManager : MonoBehaviour
         _bgImage.sprite = argWorldData.bg;
     }
     
-    RectTransform GenerateNodesAndFindTarget(StageData argWorldData, UserRecord argUserRecord)
+    void GenerateNodesAndFindTarget(StageData argWorldData, UserRecord argUserRecord, int argPlayedStageIndex, out RectTransform argPlayedTarget, out RectTransform argNewTarget)
     {
         // 1. 기존에 있던 노드들 청소
         foreach (var stageNode in _nodeList)
@@ -78,7 +90,9 @@ public class LobbyManager : MonoBehaviour
         }
         _nodeList.Clear();
 
-        RectTransform focusTarget = null;
+        argPlayedTarget = null;
+        argNewTarget = null;
+        RectTransform highTarget = null;
         int highestIndex = -1;
         
         // 2. 현재 월드의 데이터 순회
@@ -100,18 +114,30 @@ public class LobbyManager : MonoBehaviour
             StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stageIndex);
             newNode.Init(stageInfo, saveInfo, OnStageNodeClicked);
 
-            // [포커싱 로직] 가장 최신 단계(index)의 노드를 타겟으로 갱신
+            // 직전 플레이 노드
+            if (stageInfo.stageIndex == argPlayedStageIndex)
+            {
+                argPlayedTarget = rect;
+            }
+
+            // 새로 해금된 경우 다음 노드
+            if (stageInfo.stageIndex == argPlayedStageIndex + 1)
+            {
+                argNewTarget = rect;
+            }
+            
+            // 최고 진척도 노드
             if (stageInfo.stageIndex > highestIndex)
             {
                 highestIndex = stageInfo.stageIndex;
-                focusTarget = rect;
+                highTarget = rect;
             }
         }
 
-        return focusTarget;
+        if (argPlayedTarget == null) argPlayedTarget = highTarget;
     }
 
-    void FocusOnNode(RectTransform targetNode)
+    Tween FocusOnNode(RectTransform targetNode, bool argIsInstant)
     {
         // 화면 중앙에 노드가 오도록 Content 위치 이동 (여백 클램핑 포함)
         Vector2 targetPos = -targetNode.anchoredPosition;
@@ -124,7 +150,27 @@ public class LobbyManager : MonoBehaviour
         targetPos.x = Mathf.Clamp(targetPos.x, -xBound, xBound);
         targetPos.y = Mathf.Clamp(targetPos.y, -yBound, yBound);
 
-        contentRect.anchoredPosition = targetPos;
+        if (argIsInstant)
+        {
+            contentRect.anchoredPosition = targetPos;
+            return null;
+        }
+
+        // 1초동안 부드럽게 맵 스크롤
+        return contentRect.DOAnchorPos(targetPos, 1f).SetEase(Ease.InOutCubic);
+    }
+    
+    IEnumerator CoPanToNewStage(RectTransform argPlayedTarget, RectTransform argNewTarget)
+    {
+        Managers.UI.ActiveInputBlocker(true);
+
+        FocusOnNode(argPlayedTarget, true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        yield return FocusOnNode(argNewTarget, false).WaitForCompletion();
+        
+        Managers.UI.ActiveInputBlocker(false);
     }
 
     void SwitchWorld(int direction)

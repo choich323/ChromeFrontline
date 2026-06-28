@@ -13,12 +13,15 @@ public class GameManager : MonoBehaviour
     
     private ulong _uid = INVALID_UID;
     private int _stage = DEFAULT_STAGE;
+    private int _playedStageIndex = -1;
     private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
     private GameField _gameField;
     private bool _isPaused = false;
     private bool _isEnemyEmergencyTriggered = false;
     private bool _isInGame = false;
+    private bool _wasAlreadyClearedBeforePlay = false;
+    private bool _isNewStageUnlocked = false;
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
@@ -181,6 +184,12 @@ public class GameManager : MonoBehaviour
         _isInGame = true;
         _elapsedPlayTime = 0f;
         _stage = argStageInfo.stage;
+        
+        var saveInfo = _userRecord.GetStageSaveInfo(argStageInfo.stage);
+        _wasAlreadyClearedBeforePlay = saveInfo != null && saveInfo.isCleared;
+        _playedStageIndex = argStageInfo.stageIndex;
+        _isNewStageUnlocked = false;
+        
         var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
         RunAIScheduleHandler(aiScheduleInfo);
         RunSlotUpgradeHandler();
@@ -198,6 +207,11 @@ public class GameManager : MonoBehaviour
     public void EndStage(bool argIsPlayerWin)
     {
         PauseGame();
+        
+        if (argIsPlayerWin && !_wasAlreadyClearedBeforePlay)
+        {
+            _isNewStageUnlocked = true;
+        }
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
         popup.Init();
@@ -229,7 +243,9 @@ public class GameManager : MonoBehaviour
         
         ResetStage();
         
-        Managers.Lobby.RefreshLobbyMap();
+        Managers.Lobby.RefreshLobbyMap(_playedStageIndex, _isNewStageUnlocked);
+        _playedStageIndex = -1;
+        _isNewStageUnlocked = false;
         Managers.Sound.StopIngameBgm();
         Managers.UI.RefreshUI();
         
