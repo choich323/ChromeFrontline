@@ -79,6 +79,7 @@ public class UIOption : APopup
             {
                 Managers.Language.SetLanguage(index);
                 RefreshText();
+                Managers.Lobby.RefreshText();
             }
         );
     }

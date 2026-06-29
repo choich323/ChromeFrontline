@@ -35,6 +35,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Button _optionBtn;
     [SerializeField] private Button _restartBtn;
     [SerializeField] private Button _exitBtn;
+
+    [SerializeField] private TextMeshProUGUI _stageText;
     
     private bool _isSubMenuOpen = false;
     private bool _isRestarting = false;
@@ -44,7 +46,7 @@ public class HUDController : MonoBehaviour
     private bool IsPaused => Managers.Game.IsPaused;
     private SoundManager Sm => Managers.Sound;
 
-    public void Init()
+    public void Run(string argStageName)
     {
         Clear();
         
@@ -63,6 +65,7 @@ public class HUDController : MonoBehaviour
         playerHq.OnTierChanged += UpdateHqBtnImage;
         gf.EnemyHq.OnHealthChanged -= UpdateEnemyHp;
         gf.EnemyHq.OnHealthChanged += UpdateEnemyHp;
+        UpdateStageText(argStageName);
         UpdateText();
         UpdateHqBtnImage(playerHq.Tier);
     }
@@ -166,6 +169,11 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    void UpdateStageText(string argStageName)
+    {
+        _stageText.text = argStageName;
+    }
+    
     void UpdateTimer()
     {
         var totalSeconds = Mathf.FloorToInt(Managers.Game.PlayTime);
@@ -270,7 +278,7 @@ public class HUDController : MonoBehaviour
         {
             _isRestarting = true;
             Managers.Game.RestartStage();
-            Init();
+            Run(_stageText.text);
             _isRestarting = false;
         }
     }
@@ -294,7 +302,7 @@ public class HUDController : MonoBehaviour
 
         void OnConfirm()
         {
-            Managers.Game.Exit();
+            Managers.Game.ExitStage();
         }
     }
 }

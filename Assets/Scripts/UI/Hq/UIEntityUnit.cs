@@ -148,7 +148,6 @@ public class UIEntityUnit : MonoBehaviour
         var popup = ph.OpenPopup<UIEntityStat>(PrefabID.UIEntityStat);
         if (popup == null) return;
         
-        popup.Init();
         popup.SetData(_entityInfo);
         popup.SetOnClose(OnClose);
         popup.SetPos(Input.mousePosition);

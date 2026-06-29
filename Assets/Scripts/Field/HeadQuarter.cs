@@ -261,6 +261,12 @@ public class HeadQuarter : MonoBehaviour
         _hp = 0;
         _gold = 0;
         _team = Team.None;
+
+        if (_coroutineGoldPerSecond != null)
+        {
+            StopCoroutine(_coroutineGoldPerSecond);
+            _coroutineGoldPerSecond = null;
+        }
     }
     
     public void Destroy()

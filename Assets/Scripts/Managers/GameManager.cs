@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,12 +13,15 @@ public class GameManager : MonoBehaviour
     
     private ulong _uid = INVALID_UID;
     private int _stage = DEFAULT_STAGE;
+    private int _playedStageIndex = -1;
     private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
     private GameField _gameField;
     private bool _isPaused = false;
     private bool _isEnemyEmergencyTriggered = false;
     private bool _isInGame = false;
+    private bool _wasAlreadyClearedBeforePlay = false;
+    private bool _isNewStageUnlocked = false;
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
@@ -71,7 +76,7 @@ public class GameManager : MonoBehaviour
 
             void OnConfirm()
             {
-                Exit();
+                // 게임 종료 팝업
             }
             
             void OnBtnPopupClose()
@@ -90,22 +95,17 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         _userRecord = Managers.Save.LoadRecord();
+        _isInGame = false;
         
-        // TODO: 로비 제작 전이므로 바로 실행되도록 설정. 로비 제작 후 인게임 진입시 실행되도록 수정.
         var gameFieldObj = Managers.Pool.Instantiate(PrefabID.GameField);
         if (gameFieldObj == null)
         {
             Debug.LogError("Game field could not be instantiated.");
             return;
         }
-        
-        _isInGame = true;
-        InitAIScheduleHandler();
-        InitSlotUpgradeHandler();
         _gameField = gameFieldObj.GetComponent<GameField>();
-        _gameField.Init();
     }
-
+    
     public void SaveUserRecord(UserRecord argUserRecord)
     {
         _userRecord.Save(argUserRecord);
@@ -113,14 +113,19 @@ public class GameManager : MonoBehaviour
         sm.SaveRecord(_userRecord);
     }
 
-    void InitAIScheduleHandler()
+    void RunAIScheduleHandler(AIScheduleInfo argScheduleInfo)
     {
         if (_aiScheduleHandler != null)
         {
             _aiScheduleHandler.Destroy();
         }
         _aiScheduleHandler = new AIScheduleHandler();
-        _aiScheduleHandler.Init();
+        _aiScheduleHandler.Init(argScheduleInfo);
+    }
+
+    void ReRunAIScheduleHandler()
+    {
+        RunAIScheduleHandler(_aiScheduleHandler.ScheduleInfo);
     }
 
     void UpdateAIScheduleHandler()
@@ -131,7 +136,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void InitSlotUpgradeHandler()
+    void RunSlotUpgradeHandler()
     {
         _slotUpgradeHandler = new SlotUpgradeHandler();
         _slotUpgradeHandler.Init();
@@ -160,18 +165,99 @@ public class GameManager : MonoBehaviour
         return GameField.PlayerHq.GetUsableEntityIDList();
     }
     
+    public void EnterStage(StageInfo argStageInfo)
+    {
+        if (_gameField == null)
+        {
+            return;
+        }
+
+        StartCoroutine(CoEnterStage(argStageInfo));
+    }
+
+    IEnumerator CoEnterStage(StageInfo argStageInfo)
+    {
+        yield return Managers.UI.FadeOut().WaitForCompletion();
+        
+        Managers.Lobby.ToggleLobby(false);
+        
+        _isInGame = true;
+        _elapsedPlayTime = 0f;
+        _stage = argStageInfo.stage;
+        
+        var saveInfo = _userRecord.GetStageSaveInfo(argStageInfo.stage);
+        _wasAlreadyClearedBeforePlay = saveInfo != null && saveInfo.isCleared;
+        _playedStageIndex = argStageInfo.stageIndex;
+        _isNewStageUnlocked = false;
+        
+        var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
+        RunAIScheduleHandler(aiScheduleInfo);
+        RunSlotUpgradeHandler();
+        Managers.Sound.PlayIngameBgm();
+        _gameField.Run();
+        Managers.UI.OnEnterStage(argStageInfo.stageName);
+        Managers.CamController.ResetCamPos();
+        PauseGame();
+        
+        yield return Managers.UI.FadeIn().WaitForCompletion();
+        
+        ResumeGame();
+    }
+    
     public void EndStage(bool argIsPlayerWin)
     {
         PauseGame();
+        
+        if (argIsPlayerWin && !_wasAlreadyClearedBeforePlay)
+        {
+            _isNewStageUnlocked = true;
+        }
 
         var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
-        popup.Init();
         var resultData = new ResultData();
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         popup.SetData(resultData);
     }
 
+    public void ExitStage()
+    {
+        StartCoroutine(CoExitStage());
+    }
+
+    IEnumerator CoExitStage()
+    {
+        PauseGame();
+        
+        _isInGame = false;
+
+        yield return Managers.UI.FadeOut().WaitForCompletion();
+        
+        Managers.UI.PopupHandler.CloseAllPopup();
+
+        if (_aiScheduleHandler != null)
+        {
+            _aiScheduleHandler.Destroy();
+        }
+        
+        ResetStage();
+        
+        Managers.Lobby.RefreshLobbyMap(_playedStageIndex, _isNewStageUnlocked);
+        _playedStageIndex = -1;
+        _isNewStageUnlocked = false;
+        Managers.Sound.StopIngameBgm();
+        Managers.UI.RefreshUI();
+        
+        _gameField.ResetField();
+        
+        Managers.UI.OnExitStage();
+        Managers.Lobby.ToggleLobby(true);
+
+        yield return Managers.UI.FadeIn().WaitForCompletion();
+        
+        ResumeGame();
+    }
+    
     public void SetGameSpeed(float argSpeed)
     {
         _curGameSpeed = argSpeed;
@@ -195,27 +281,26 @@ public class GameManager : MonoBehaviour
         _onGameResume?.Invoke();
     }
 
-    public void RestartStage()
+    void ResetStage()
     {
         _uid = INVALID_UID;
         _elapsedPlayTime = 0f;
         _isEnemyEmergencyTriggered = false;
-        Managers.UI.PopupHandler.CloseAllPopup();
-        _curGameSpeed = DEFAULT_GAME_SPEED;
-        _gameField.Restart();
-        ResumeGame();
-        InitAIScheduleHandler();
-        Managers.UI.RefreshUI();
+        SetGameSpeed(DEFAULT_GAME_SPEED);
     }
-
-    public void Exit()
+    
+    public void RestartStage()
     {
-        PauseGame();
-        _isInGame = false;
+        ResetStage();
         Managers.UI.PopupHandler.CloseAllPopup();
+
+        ReRunAIScheduleHandler();
+        RunSlotUpgradeHandler();
         
-        // TODO: 임시로 게임 종료로 해놨으나 스테이지 종료로 수정
-        QuitGame();
+        _gameField.Run();
+        ResumeGame();
+
+        Managers.UI.RefreshUI();
     }
 
     public void QuitGame()

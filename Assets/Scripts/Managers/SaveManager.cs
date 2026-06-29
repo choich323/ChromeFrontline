@@ -40,23 +40,19 @@ public class SaveManager : MonoBehaviour
     {
         if (!File.Exists(_filePath))
         {
-            Debug.Log("No saved Data. Create a new file.");
             var newRecord = new UserRecord();
-            newRecord.Init();
             SaveRecord(newRecord);
             return newRecord;
         }
 
         try
         {
-            Debug.Log("[SaveManager]Try LoadUserSaveData");
             string encodedJson = File.ReadAllText(_filePath);
             
             byte[] bytes = Convert.FromBase64String(encodedJson);
             string json = Encoding.UTF8.GetString(bytes);
             
             var record = JsonConvert.DeserializeObject<UserRecord>(json);
-            Debug.Log("[SaveManager]Load complete.");
             return record;
         }
         catch (Exception e)

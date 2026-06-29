@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class DataManager : MonoBehaviour
 {
+    private const string DEFAULT_AI_SCHEDULEINFO = "normal";
+    
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
     [SerializeField] private AIScheduleData _aiScheduleData;
@@ -13,6 +17,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private AddSlotCostData _addSlotCostData;
     [SerializeField] private GradeData _gradeData;
     [SerializeField] private GameSpeedData _gameSpeedData;
+    [SerializeField] private WorldCatalog _worldCatalog;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -23,8 +28,19 @@ public class DataManager : MonoBehaviour
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
+
+    // stage data
+    private StageData _curWorldData = null;
+    private AsyncOperationHandle _worldDataHandle;
     
+    // story data
+    private StoryData _curStoryData = null;
+    private string _curStoryWorldId = string.Empty;
+    private AsyncOperationHandle<StoryData> _storyDataHandle;
+
     public int StartGold => _playerCurrencyData.startGold;
+    public StageData CurWorldData => _curWorldData;
+    public WorldCatalog WorldCatalog => _worldCatalog;
     
     public void Init()
     {
@@ -130,17 +146,7 @@ public class DataManager : MonoBehaviour
         bool isFind = _stringInfoDict.TryGetValue(argId, out var info);
         if (info != null)
         {
-            var lang = Managers.Language.CurrentLanguage;
-            switch (lang)
-            {
-                default:
-                case Language.English:
-                    outString = info.en;
-                    break;
-                case Language.Korean:
-                    outString = info.kr;
-                    break;
-            }
+            outString = Managers.Language.GetLocalizedString(info);
         }
         return isFind;
     }
@@ -151,6 +157,15 @@ public class DataManager : MonoBehaviour
         return _aiScheduleInfoList[randIndex];
     }
 
+    public AIScheduleInfo GetAIScheduleInfo(string argScheduleId)
+    {
+        if (string.IsNullOrEmpty(argScheduleId))
+        {
+            argScheduleId = DEFAULT_AI_SCHEDULEINFO;
+        }
+        return _aiScheduleInfoList.Find(info => info.id == argScheduleId);
+    }
+    
     public IEnumerable<EntityInfo> GetPioneerInfoList()
     {
         return _pioneerInfoList;
@@ -202,5 +217,118 @@ public class DataManager : MonoBehaviour
             argIndex = 0;
         }
         return _gameSpeedInfoList[argIndex];
+    }
+
+    /// <summary>
+    /// 로비 매니저 등에서 호출하여 현재 필요한 월드 데이터를 어드레서블로 로드합니다.
+    /// </summary>
+    public void LoadWorldData(string argWorldId, Action<StageData> argOnComplete)
+    {
+        // 1. 이미 요청한 월드가 로드되어 있다면 즉시 반환
+        if (_curWorldData != null && _curWorldData.worldId == argWorldId)
+        {
+            argOnComplete?.Invoke(_curWorldData);
+            return;
+        }
+
+        // 2. 다른 월드 데이터가 메모리에 남아있다면 깔끔하게 언로드(해제)
+        UnloadWorldData();
+
+        // 3. 어드레서블 비동기 로드 실행
+        Addressables.LoadAssetAsync<StageData>(argWorldId).Completed += handle =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                _worldDataHandle = handle;
+                _curWorldData = handle.Result;
+                
+                Debug.Log($"[{argWorldId}] World Data Load Complete.");
+                argOnComplete?.Invoke(_curWorldData);
+            }
+            else
+            {
+                Debug.LogError($"World Data Load Failed.: {argWorldId}");
+                argOnComplete?.Invoke(null);
+            }
+        };
+    }
+
+    /// <summary>
+    /// 현재 활성화된 월드 데이터를 메모리에서 안전하게 해제합니다.
+    /// </summary>
+    public void UnloadWorldData()
+    {
+        if (_worldDataHandle.IsValid())
+        {
+            Addressables.Release(_worldDataHandle);
+            _curWorldData = null;
+            Debug.Log("World Data Unload Complete.");
+        }
+        
+        if (_storyDataHandle.IsValid())
+        {
+            Addressables.Release(_storyDataHandle);
+            _curStoryData = null;
+            _curStoryWorldId = string.Empty;
+            Debug.Log("Story Data Unload Complete.");
+        }
+    }
+
+    /// <summary>
+    /// 로드된 현재 월드 데이터를 바탕으로 특정 스테이지의 해금 여부를 판별합니다.
+    /// </summary>
+    public bool IsStageUnlocked(StageInfo argStageInfo, UserRecord argUserRecord)
+    {
+        if (argUserRecord == null || _curWorldData == null) return false;
+
+        // 1. 현재 월드의 1번 스테이지는 무조건 열어둠
+        if (argStageInfo.stageIndex == 1) return true;
+
+        // 2. 이미 클리어한 스테이지라면 무조건 해금
+        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageIndex);
+        if (mySave != null && mySave.isCleared) return true;
+
+        // 3. 직전 스테이지(index - 1)를 클리어했는지 검사
+        var prevStage = _curWorldData.GetStageInfoList()
+            .FirstOrDefault(s => s.stageIndex == argStageInfo.stageIndex - 1);
+
+        if (prevStage != null)
+        {
+            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stageIndex);
+            return prevSave != null && prevSave.isCleared;
+        }
+
+        return false;
+    }
+
+    public int GetWorldIndex(string argWorldId)
+    {
+        return _worldCatalog.GetWorldIndex(argWorldId);
+    }
+    
+    /// <summary>
+    /// 내부용: 스토리 데이터를 가져오거나, 다른 월드면 교체 로드합니다.
+    /// </summary>
+    public StoryData GetOrLoadStoryData(string argWorldId)
+    {
+        // 1. 현재 로드된 월드의 데이터라면 즉시 반환 (성능 최적화)
+        if (_curStoryData != null && _curStoryWorldId == argWorldId)
+        {
+            return _curStoryData;
+        }
+
+        // 2. 다른 월드 스토리가 메모리에 있다면 깔끔하게 해제
+        if (_storyDataHandle.IsValid())
+        {
+            Addressables.Release(_storyDataHandle);
+        }
+
+        // 3. 새 월드 스토리 동기 로드
+        string address = $"StoryData_{argWorldId}";
+        _storyDataHandle = Addressables.LoadAssetAsync<StoryData>(address);
+        _curStoryData = _storyDataHandle.WaitForCompletion();
+        _curStoryWorldId = argWorldId;
+
+        return _curStoryData;
     }
 }

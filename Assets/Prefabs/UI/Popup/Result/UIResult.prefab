@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85882354, g: 0.9607843, b: 1, a: 1}
+  m_Color: {r: 0.8039216, g: 0.8039216, b: 0.8039216, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -826,6 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6880452028802631596}
   - component: {fileID: 2728022149714017741}
+  - component: {fileID: 5424990185606808568}
   m_Layer: 5
   m_Name: ButtonArea
   m_TagString: Untagged
@@ -880,6 +881,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5424990185606808568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7580260919112992094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringGroupList:
+  - stringId: Retry
+    text: {fileID: 1317289282272924628}
+  - stringId: Exit
+    text: {fileID: 4887553779316806798}
 --- !u!1 &8379390103759959032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,8 +1074,8 @@ MonoBehaviour:
   _closeButton: {fileID: 0}
   _dimmedBg: {fileID: 0}
   _bgImage: {fileID: 7033721165504682862}
-  _bgVictoryColor: {r: 0.85882354, g: 0.9607843, b: 1, a: 1}
-  _bgDefeatColor: {r: 1, g: 0.85882354, b: 0.8627451, a: 1}
+  _bgVictoryColor: {r: 0.8039216, g: 0.8039216, b: 0.8039216, a: 1}
+  _bgDefeatColor: {r: 0.8039216, g: 0.8039216, b: 0.8039216, a: 1}
   _titleText: {fileID: 4892245699034751419}
   _victoryTextColor: {r: 0.20392157, g: 0.49411765, b: 0.79607844, a: 1}
   _defeatTextColor: {r: 0.87169814, g: 0.28782475, b: 0.32544026, a: 1}
@@ -1077,9 +1095,7 @@ MonoBehaviour:
   _hqHpBestText: {fileID: 9215079326586393322}
   _hqHpNewTextObject: {fileID: 3461834219619174136}
   _retryBtn: {fileID: 6887218171167131198}
-  _retryBtnText: {fileID: 1317289282272924628}
   _exitBtn: {fileID: 8088127890198504171}
-  _exitBtnText: {fileID: 4887553779316806798}
 --- !u!1001 &218270635772663353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1293,7 +1309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1598,7 +1614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1903,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4888181774756674004, guid: cf2fba3911356584bb888f4ef14123f3, type: 3}
       propertyPath: m_AnchoredPosition.x

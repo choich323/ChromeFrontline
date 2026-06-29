@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -6,6 +7,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform _hudParent;
     [SerializeField] private RectTransform _popupParent;
     [SerializeField] private RectTransform _pauseBtnParent;
+    [SerializeField] private CanvasGroup _fadeCanvasGroup;
+    [SerializeField] private GameObject _inputBlocker;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -18,6 +21,7 @@ public class UIManager : MonoBehaviour
     
     public void Init()
     {
+        ActiveInputBlocker(false);
         CreatePopupHandler();
         CreateTopHUD();
     }
@@ -29,6 +33,31 @@ public class UIManager : MonoBehaviour
             _popupHandler.OnUpdate();
         }
     }
+
+    public Tween FadeOut(float argDuration = 0.5f)
+    {
+        _fadeCanvasGroup.gameObject.SetActive(true);
+        _fadeCanvasGroup.blocksRaycasts = true;
+        
+        return _fadeCanvasGroup.DOFade(1f, argDuration).SetUpdate(true);
+    }
+
+    public Tween FadeIn(float argDuration = 0.5f)
+    {
+        return _fadeCanvasGroup.DOFade(0f, argDuration).SetUpdate(true).OnComplete(()=>
+        {
+            _fadeCanvasGroup.blocksRaycasts = false;
+            _fadeCanvasGroup.gameObject.SetActive(false);
+        });
+    }
+
+    public void ActiveInputBlocker(bool argIsActive)
+    {
+        if (_inputBlocker != null)
+        {
+            _inputBlocker.SetActive(argIsActive);
+        }
+    }
     
     void CreatePopupHandler()
     {
@@ -37,12 +66,6 @@ public class UIManager : MonoBehaviour
     }
     
     void CreateTopHUD()
-    {
-        CreatTopHUD();
-        CreatePlayBtnGroup();
-    }
-
-    void CreatTopHUD()
     {
         var obj = InstantiateUIWithoutPool(PrefabID.UIHUDPanel);
         if (obj == null)
@@ -53,7 +76,26 @@ public class UIManager : MonoBehaviour
         _topHUDController = obj.GetComponent<HUDController>();
         var hudTransform = _topHUDController.transform;
         hudTransform.SetParent(_hudParent, false);
-        _topHUDController.Init();
+        _topHUDController.gameObject.SetActive(false);
+        
+        CreatePlayBtnGroup();
+    }
+
+    public void OnEnterStage(string argStageName)
+    {
+        _topHUDController.gameObject.SetActive(true);
+        _topHUDController.Run(argStageName);
+        RefreshUI();
+        
+        _pauseBtn.gameObject.SetActive(true);
+        _gameSpeedBtn.gameObject.SetActive(true);
+    }
+
+    public void OnExitStage()
+    {
+        _topHUDController.gameObject.SetActive(false);
+        _pauseBtn.gameObject.SetActive(false);
+        _gameSpeedBtn.gameObject.SetActive(false);
     }
 
     void CreatePlayBtnGroup()
@@ -68,9 +110,11 @@ public class UIManager : MonoBehaviour
         var btnTransform = _pauseBtn.transform;
         btnTransform.SetParent(_pauseBtnParent, false);
         _pauseBtn.Init();
+        _pauseBtn.gameObject.SetActive(false);
         
         _gameSpeedBtn = obj.GetComponent<UIGameSpeedBtn>();
         _gameSpeedBtn.Init();
+        _gameSpeedBtn.gameObject.SetActive(false);
     }
 
     public void RefreshUI()

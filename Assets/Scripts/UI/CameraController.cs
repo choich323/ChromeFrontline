@@ -18,6 +18,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _smoothSpeed = DEFAULT_SENSITIVITY;
     [Range(0f, 50f)]
     [SerializeField] private float _slidingAmount = DEFAULT_SLIDING_AMOUNT;
+
+    [SerializeField] private Vector3 _defaultPos;
     
     public float Sensitivity => _smoothSpeed;
     
@@ -40,6 +42,12 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         MoveCamera();
+    }
+
+    public void ResetCamPos()
+    {
+        _targetX = _defaultPos.x;
+        transform.position = _defaultPos;
     }
 
     // 1. 입력 처리 및 드래그 계산 로직

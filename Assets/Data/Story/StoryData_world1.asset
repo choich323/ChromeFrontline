@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506329e2f5bd92d4ba16238dad76d377, type: 3}
+  m_Name: StoryData_world1
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  worldId: world1
+  storyInfoList:
+  - stage: 1
+    title:
+      en: 'Seoul: Surprise Terrorist Attack Suppression'
+      kr: "\uC11C\uC6B8: \uAE30\uC2B5 \uD14C\uB7EC \uC9C4\uC555"
+    desc:
+      en: Suppress the surprise terrorist attack that has broken out in Seoul.
+      kr: "\uC11C\uC6B8\uC5D0\uC11C \uBC1C\uC0DD\uD55C \uAE30\uC2B5 \uD14C\uB7EC\uB97C
+        \uC9C4\uC555\uD560 \uAC83"
+  - stage: 2
+    title:
+      en: 'Incheon: Anti-Smuggling Operation'
+      kr: "\uC778\uCC9C: \uBC00\uAC70\uB798 \uAC80\uAC70 \uC791\uC804"
+    desc:
+      en: Raid the smuggling operation at the Port of Incheon.
+      kr: "\uC778\uCC9C\uD56D\uC758 \uBC00\uAC70\uB798 \uD604\uC7A5\uC744 \uAE30\uC2B5\uD560
+        \uAC83"
+  - stage: 3
+    title:
+      en: 'Daejeon: Laboratory Terror Defense'
+      kr: "\uB300\uC804: \uC5F0\uAD6C\uC18C \uD14C\uB7EC \uBC29\uC5B4\uC804"
+    desc:
+      en: Intelligence has reported an imminent terrorist attack on the laboratory
+        in Daejeon. Defend the facility and protect the laboratory.
+      kr: "\uB300\uC804 \uC5F0\uAD6C\uC18C \uD14C\uB7EC \uCCA9\uBCF4\uAC00 \uB4E4\uC5B4\uC654\uB2E4.\n\uD14C\uB7EC\uB97C
+        \uBC29\uC5B4\uD558\uACE0 \uC5F0\uAD6C\uC18C\uB97C \uBCF4\uD638\uD560 \uAC83"
+  - stage: 4
+    title:
+      en: 'Gwangju: Factory Terror Defense'
+      kr: "\uAD11\uC8FC: \uACF5\uC7A5 \uD14C\uB7EC \uBC29\uC5B4\uC804"
+    desc:
+      en: Information obtained from captured prisoners indicates that terrorists
+        are planning an attack on the factory in Gwangju. Defend the factory against
+        the assault.
+      kr: "\uD3EC\uB85C\uB97C \uD1B5\uD574 \uAD11\uC8FC \uACF5\uC7A5 \uD14C\uB7EC
+        \uC815\uBCF4\uB97C \uC785\uC218\uD588\uB2E4.\n\uACF5\uC7A5\uC758 \uD14C\uB7EC\uB97C
+        \uBC29\uC5B4\uD560 \uAC83"
+  - stage: 5
+    title:
+      en: 'Taebaek: Mine Defense'
+      kr: "\uD0DC\uBC31: \uAD11\uC0B0 \uBC29\uC5B4\uC804"
+    desc:
+      en: Suppress the continuous terrorist attacks targeting the mines in Taebaek.
+      kr: "\uD0DC\uBC31\uC758 \uAD11\uC0B0\uC5D0 \uC9C0\uC18D\uC801\uC73C\uB85C \uBC1C\uC0DD\uD558\uB294
+        \uD14C\uB7EC\uB97C \uC81C\uC555\uD560 \uAC83"
+  - stage: 6
+    title:
+      en: 'DongHae: Supply Route Interdiction'
+      kr: "\uB3D9\uD574: \uBCF4\uAE09\uB85C \uCC28\uB2E8 \uC791\uC804"
+    desc:
+      en: We have identified a terrorist supply cell operating in DongHae. Raid the
+        site and disrupt the terrorists' supply network.
+      kr: "\uD14C\uB7EC\uB9AC\uC2A4\uD2B8\uC758 \uBCF4\uAE09\uCC45\uC774 \uB3D9\uD574\uC5D0
+        \uC788\uB2E4\uB294 \uAC83\uC744 \uC54C\uC544\uB0C8\uB2E4.\n\uD604\uC7A5\uC744
+        \uC2B5\uACA9\uD558\uC5EC \uD14C\uB7EC\uB9AC\uC2A4\uD2B8\uC5D0\uAC8C \uD0C0\uACA9\uC744
+        \uC904 \uAC83"
+  - stage: 7
+    title:
+      en: 'Daegu: Stronghold Assault'
+      kr: "\uB300\uAD6C: \uBCF8\uAC70\uC9C0 \uC2B5\uACA9\uC804"
+    desc:
+      en: The raid on the supply route has revealed the location of the terrorists'
+        stronghold in Daegu. Launch an assault on the enemy stronghold.
+      kr: "\uBCF4\uAE09\uB85C \uC2B5\uACA9\uC744 \uD1B5\uD574 \uB300\uAD6C\uC5D0
+        \uBCF8\uAC70\uC9C0\uAC00 \uC788\uB2E4\uB294 \uAC83\uC744 \uC54C\uC544\uB0C8\uB2E4.\n\uC801\uB4E4\uC758
+        \uBCF8\uAC70\uC9C0\uB97C \uC2B5\uACA9\uD558\uB77C"
+  - stage: 8
+    title:
+      en: 'Busan: Pitched Battle'
+      kr: "\uBD80\uC0B0: \uCD1D\uB825\uC804"
+    desc:
+      en: The terrorists have committed all of their forces to battle. Engage and
+        eliminate them once and for all.
+      kr: "\uD14C\uB7EC\uB9AC\uC2A4\uD2B8\uB4E4\uB3C4 \uCD1D\uB825\uC804\uC5D0 \uB098\uC130\uB2E4.\n\uD14C\uB7EC\uB9AC\uC2A4\uD2B8\uB4E4\uC744
+        \uC2F9 \uC4F8\uC5B4\uBC84\uB824\uB77C"
+  - stage: 9
+    title:
+      en: 'Jeju: Mopping-Up Operation'
+      kr: "\uC81C\uC8FC: \uC794\uB2F9 \uC18C\uD0D5 \uC791\uC804"
+    desc:
+      en: The terrorists' main stronghold has fallen. However, surviving remnants
+        are attempting to regroup in Jeju. Deploy immediately and eliminate the remaining
+        enemy forces.
+      kr: "\uD14C\uB7EC\uB9AC\uC2A4\uD2B8\uC758 \uBCF8\uAC70\uC9C0\uB294 \uBB34\uB108\uB728\uB838\uB2E4.\n
+        \uD558\uC9C0\uB9CC \uC794\uB2F9\uC774 \uC81C\uC8FC\uC5D0\uC11C \uBD80\uD65C\uC744
+        \uB3C4\uBAA8\uD558\uACE0 \uC788\uB2E4\uACE0 \uD55C\uB2E4.\n \uAC00\uC11C
+        \uC794\uB2F9\uC744 \uC18C\uD0D5\uD558\uB3C4\uB85D"

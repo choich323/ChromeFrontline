@@ -4,7 +4,7 @@ using UnityEngine;
 public class Managers : MonoBehaviour
 {
     private static Managers _instance;
-    private static Managers I => _instance;
+    public static Managers I => _instance;
     
     [SerializeField] private PoolManager _poolManager;
     [SerializeField] private DataManager _dataManager;
@@ -14,9 +14,12 @@ public class Managers : MonoBehaviour
     [SerializeField] private LanguageManager _languageManager;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private SaveManager _saveManager;
+    [SerializeField] private LobbyManager _lobbyManager;
     
     private PlayerPrefsManager _prefsManager;
     private CameraController _cameraController;
+    
+    private bool _isInitialized = false;
     
     // 접근용 프로퍼티
     public static PoolManager Pool => I._poolManager;
@@ -28,10 +31,11 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound => I._soundManager;
     public static PlayerPrefsManager Prefs => I._prefsManager;
     public static SaveManager Save => I._saveManager;
+    public static LobbyManager Lobby => I._lobbyManager;
 
     public static CameraController CamController => I._cameraController;
     
-    private void Awake()
+    void Awake()
     {
         if (_instance == null)
         {
@@ -44,6 +48,8 @@ public class Managers : MonoBehaviour
                 _cameraController = Camera.main.GetComponent<CameraController>();
                 _cameraController.Init();
             }
+
+            _isInitialized = true;
         }
         else
         {
@@ -51,25 +57,24 @@ public class Managers : MonoBehaviour
         }
     }
 
-    private void InitManagers()
+    void InitManagers()
     {
         _prefsManager = new PlayerPrefsManager();
         _prefsManager.Init();
-        
-        _dataManager.Init();
-        
-        _poolManager.Init();
-        
-        _gameManager.Init();
-        
-        _uiManager.Init();
-        
-        _stringManager.Init();
-
-        _languageManager.Init();
-        
-        _soundManager.Init();
-        
         _saveManager.Init();
+        _dataManager.Init();
+        _poolManager.Init();
+        _languageManager.Init();
+        _stringManager.Init();
+        _soundManager.Init();
+        _gameManager.Init();
+        _uiManager.Init();
+
+        if (_lobbyManager != null)
+        {
+            _lobbyManager.Init();
+        }
     }
+    
+    public bool IsInitialized() => _isInitialized;
 }

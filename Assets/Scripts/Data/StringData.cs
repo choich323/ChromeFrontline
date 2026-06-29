@@ -1,14 +1,6 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-
-[Serializable]
-public class LocalizationText
-{
-    public string en;
-    public string kr;
-}
 
 [Serializable]
 public class StringInfo

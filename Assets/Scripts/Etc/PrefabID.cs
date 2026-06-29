@@ -62,6 +62,13 @@ public enum PrefabID
     UINotice,
     UISlotUpgradeUnit,
     
+    UIStageNode,
+    
     UIEntityStat = 10011,
     UIResult,
+    
+    UIStageInfo,
+    
+    UIWorldSelect,
+    UIWorldSelectUnit,
 }
