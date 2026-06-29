@@ -81,10 +81,10 @@ public class UIManager : MonoBehaviour
         CreatePlayBtnGroup();
     }
 
-    public void OnEnterStage()
+    public void OnEnterStage(string argStageName)
     {
         _topHUDController.gameObject.SetActive(true);
-        _topHUDController.Init();
+        _topHUDController.Run(argStageName);
         RefreshUI();
         
         _pauseBtn.gameObject.SetActive(true);

@@ -207,6 +207,7 @@ MonoBehaviour:
   _optionBtn: {fileID: 3588284495293880978}
   _restartBtn: {fileID: 3779359407772689450}
   _exitBtn: {fileID: 311885883465777659}
+  _stageText: {fileID: 2325060931004271495}
 --- !u!1 &5692861895016079083
 GameObject:
   m_ObjectHideFlags: 0

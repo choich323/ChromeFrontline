@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
         RunSlotUpgradeHandler();
         Managers.Sound.PlayIngameBgm();
         _gameField.Run();
-        Managers.UI.OnEnterStage();
+        Managers.UI.OnEnterStage(argStageInfo.stageName);
         Managers.CamController.ResetCamPos();
         PauseGame();
         
