@@ -74,6 +74,10 @@ MonoBehaviour:
       en: Are you sure to stop current producing and switch to the selected unit?
       kr: "\uAE30\uC874 \uC720\uB2DB \uC0DD\uC0B0\uC744 \uBA48\uCD94\uACE0,\\n\uC120\uD0DD\uD55C
         \uC720\uB2DB\uC744 \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
+  - id: ConfirmExitGame
+    value:
+      en: Are you sure to Exit From Game?
+      kr: "\uAC8C\uC784\uC744 \uC885\uB8CC\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   - id: ConfirmExitStage
     value:
       en: Are you sure to exit stage?

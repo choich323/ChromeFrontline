@@ -8,6 +8,7 @@ public enum StringID
     No,
     ConfirmRestartStage = 201,
     ConfirmExitStage,
+    ConfirmExitGame,
     
     // Option
     Option = 251,
