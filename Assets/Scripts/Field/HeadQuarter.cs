@@ -76,9 +76,10 @@ public class HeadQuarter : MonoBehaviour
         _team = argTeam;
         EarnGold(dm.StartGold);
         
-#if UNITY_EDITOR
+// #if UNITY_EDITOR
+// 출시 전까진 테스트 편의를 위해 유지
         EarnGold(1000000);
-#endif
+// #endif
         
         _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
