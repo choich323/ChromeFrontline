@@ -69,14 +69,22 @@ public class GameManager : MonoBehaviour
             Managers.Sound.PlaySelectSfx();
             var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
             var sm = Managers.String;
-            string msg = sm.GetString(StringID.ConfirmExitStage);
+            var stringId = _isInGame ? StringID.ConfirmExitStage : StringID.ConfirmExitGame;
+            string msg = sm.GetString(stringId);
             string confirm = sm.GetString(StringID.Yes);
             string cancel = sm.GetString(StringID.No);
             popup.SetData(msg, OnConfirm, OnBtnPopupClose, confirm, cancel);
 
             void OnConfirm()
             {
-                // 게임 종료 팝업
+                if (_isInGame)
+                {
+                    ExitStage();
+                }
+                else
+                {
+                    Application.Quit();
+                }
             }
             
             void OnBtnPopupClose()
