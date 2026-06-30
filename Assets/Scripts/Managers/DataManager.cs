@@ -218,10 +218,7 @@ public class DataManager : MonoBehaviour
         }
         return _gameSpeedInfoList[argIndex];
     }
-
-    /// <summary>
-    /// 로비 매니저 등에서 호출하여 현재 필요한 월드 데이터를 어드레서블로 로드합니다.
-    /// </summary>
+    
     public void LoadWorldData(string argWorldId, Action<StageData> argOnComplete)
     {
         // 1. 이미 요청한 월드가 로드되어 있다면 즉시 반환
@@ -231,7 +228,7 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        // 2. 다른 월드 데이터가 메모리에 남아있다면 깔끔하게 언로드(해제)
+        // 2. 다른 월드 데이터가 메모리에 남아있다면 깔끔하게 언로드
         UnloadWorldData();
 
         // 3. 어드레서블 비동기 로드 실행
@@ -253,9 +250,6 @@ public class DataManager : MonoBehaviour
         };
     }
 
-    /// <summary>
-    /// 현재 활성화된 월드 데이터를 메모리에서 안전하게 해제합니다.
-    /// </summary>
     public void UnloadWorldData()
     {
         if (_worldDataHandle.IsValid())
@@ -273,10 +267,7 @@ public class DataManager : MonoBehaviour
             Debug.Log("Story Data Unload Complete.");
         }
     }
-
-    /// <summary>
-    /// 로드된 현재 월드 데이터를 바탕으로 특정 스테이지의 해금 여부를 판별합니다.
-    /// </summary>
+    
     public bool IsStageUnlocked(StageInfo argStageInfo, UserRecord argUserRecord)
     {
         if (argUserRecord == null || _curWorldData == null) return false;
@@ -306,12 +297,9 @@ public class DataManager : MonoBehaviour
         return _worldCatalog.GetWorldIndex(argWorldId);
     }
     
-    /// <summary>
-    /// 내부용: 스토리 데이터를 가져오거나, 다른 월드면 교체 로드합니다.
-    /// </summary>
     public StoryData GetOrLoadStoryData(string argWorldId)
     {
-        // 1. 현재 로드된 월드의 데이터라면 즉시 반환 (성능 최적화)
+        // 1. 현재 로드된 월드의 데이터라면 즉시 반환
         if (_curStoryData != null && _curStoryWorldId == argWorldId)
         {
             return _curStoryData;

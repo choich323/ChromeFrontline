@@ -114,6 +114,7 @@ public class LobbyManager : MonoBehaviour
             newNode.transform.SetParent(_nodeContainer);
             RectTransform rect = obj.transform as RectTransform;
             rect.anchoredPosition = stageInfo.uiPosition;
+            newNode.transform.localScale = Vector3.one;
 
             // 4. 데이터 묶어주기 및 클릭 이벤트 연결
             StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stageIndex);
