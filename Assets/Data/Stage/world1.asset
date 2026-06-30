@@ -17,55 +17,46 @@ MonoBehaviour:
   stageInfoList:
   - stage: 1
     stageName: 1-1
-    uiPosition: {x: -58, y: 142}
-    descId: 
+    uiPosition: {x: -445, y: 793}
     stageIndex: 1
     aiScheduleId: 
   - stage: 2
     stageName: 1-2
-    uiPosition: {x: 468.78027, y: -310.29187}
-    descId: 
+    uiPosition: {x: -748, y: 625}
     stageIndex: 2
     aiScheduleId: 
   - stage: 3
     stageName: 1-3
-    uiPosition: {x: -295.84546, y: -371.29913}
-    descId: 
+    uiPosition: {x: -175, y: 62}
     stageIndex: 3
     aiScheduleId: 
   - stage: 4
     stageName: 1-4
-    uiPosition: {x: 322.3606, y: -41.85962}
-    descId: 
+    uiPosition: {x: -751, y: -694}
     stageIndex: 4
     aiScheduleId: 
   - stage: 5
     stageName: 1-5
-    uiPosition: {x: -193, y: 602}
-    descId: 
+    uiPosition: {x: 283, y: 409}
     stageIndex: 5
     aiScheduleId: 
   - stage: 6
     stageName: 1-6
-    uiPosition: {x: 318.2932, y: 604.8181}
-    descId: 
+    uiPosition: {x: 556, y: 727}
     stageIndex: 6
     aiScheduleId: 
   - stage: 7
     stageName: 1-7
-    uiPosition: {x: 21.488525, y: 724.364}
-    descId: 
+    uiPosition: {x: 175, y: -247}
     stageIndex: 7
     aiScheduleId: 
   - stage: 8
     stageName: 1-8
-    uiPosition: {x: -417.39478, y: 524.61084}
-    descId: 
+    uiPosition: {x: 685, y: -637}
     stageIndex: 8
     aiScheduleId: 
   - stage: 9
     stageName: 1-9
-    uiPosition: {x: -377.188, y: -891.8949}
-    descId: 
+    uiPosition: {x: 784, y: -1192}
     stageIndex: 9
     aiScheduleId: 
