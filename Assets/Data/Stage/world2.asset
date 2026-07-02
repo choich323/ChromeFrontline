@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbce69c7a6192245b7b14f7da42b539, type: 3}
+  m_Name: world2
+  m_EditorClassIdentifier: Assembly-CSharp::StageData
+  worldId: world2
+  bg: {fileID: -702954070241017428, guid: 865c0a615c8fbd644a8a5becf2211427, type: 3}
+  stageInfoList:
+  - stage: 1
+    stageName: 2-1
+    uiPosition: {x: -1203, y: -1166}
+    stageIndex: 1
+    aiScheduleId: 
+  - stage: 2
+    stageName: 2-2
+    uiPosition: {x: -1156, y: -716}
+    stageIndex: 2
+    aiScheduleId: 
+  - stage: 3
+    stageName: 2-3
+    uiPosition: {x: -492, y: -279}
+    stageIndex: 3
+    aiScheduleId: 
+  - stage: 4
+    stageName: 2-4
+    uiPosition: {x: 304, y: 327}
+    stageIndex: 4
+    aiScheduleId: 
+  - stage: 5
+    stageName: 2-5
+    uiPosition: {x: 571, y: 697}
+    stageIndex: 5
+    aiScheduleId: 
+  - stage: 6
+    stageName: 2-6
+    uiPosition: {x: 814, y: 377}
+    stageIndex: 6
+    aiScheduleId: 
+  - stage: 7
+    stageName: 2-7
+    uiPosition: {x: 848, y: 1181}
+    stageIndex: 7
+    aiScheduleId: 
+  - stage: 8
+    stageName: 2-8
+    uiPosition: {x: -170, y: 819}
+    stageIndex: 8
+    aiScheduleId: 

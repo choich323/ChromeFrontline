@@ -141,15 +141,14 @@ public class EntitySpawner : MonoBehaviour
             if(info == null) 
                 yield break;
             var entityInfo = info as EntityInfo;
-            var goldCost = entityInfo.goldCost; 
-            // ?.Invoke() 의 Nullable 박싱 방어 (GC 0B)
-            while ((_getGold != null ? _getGold() : 0) < goldCost)
+            var goldCost = entityInfo.goldCost;
+            while ((_getGold?.Invoke() ?? 0) < goldCost)
             {
                 yield return null;
             }
             
             _consumeGold?.Invoke(goldCost);
-            float bonus = _getProductionBonus != null ? _getProductionBonus() : 0f;
+            float bonus = _getProductionBonus?.Invoke() ?? 0f;
             float productionTime = entityInfo.productionTime * (1 - bonus);
             float elapsedTime = 0f;
             
