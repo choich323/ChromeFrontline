@@ -21,8 +21,9 @@ public class LobbyManager : MonoBehaviour
     private List<UIStageNode> _nodeList = new List<UIStageNode>();
     private UserRecord _userRecord;
 
-    public void Init()
+    void Awake()
     {
+        Managers.I.SetLobbyManager(this);
         _btnOption.onClick.AddListener(OnClickOption);
         _btnWorldSelect.onClick.AddListener(OnClickWorldSelect);
         RefreshLobbyMap();

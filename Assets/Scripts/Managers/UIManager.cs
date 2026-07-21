@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     {
         ActiveInputBlocker(false);
         CreatePopupHandler();
-        CreateTopHUD();
     }
 
     void Update()
@@ -65,7 +64,7 @@ public class UIManager : MonoBehaviour
         _popupHandler.Init();
     }
     
-    void CreateTopHUD()
+    public void CreateTopHUD()
     {
         var obj = InstantiateUIWithoutPool(PrefabID.UIHUDPanel);
         if (obj == null)

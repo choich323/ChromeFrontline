@@ -15,11 +15,11 @@ public class Managers : MonoBehaviour
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private SaveManager _saveManager;
     [SerializeField] private LobbyManager _lobbyManager;
+    [SerializeField] private SceneTransitionManager _sceneTransitionManager;
     
     private PlayerPrefsManager _prefsManager;
     private CameraController _cameraController;
-    
-    private bool _isInitialized = false;
+    private bool _isSystemInitialized = false;
     
     // 접근용 프로퍼티
     public static PoolManager Pool => I._poolManager;
@@ -32,8 +32,11 @@ public class Managers : MonoBehaviour
     public static PlayerPrefsManager Prefs => I._prefsManager;
     public static SaveManager Save => I._saveManager;
     public static LobbyManager Lobby => I._lobbyManager;
+    public static SceneTransitionManager Transition => I._sceneTransitionManager;
 
     public static CameraController CamController => I._cameraController;
+
+    public bool IsSystemInitialized => _isSystemInitialized;
     
     void Awake()
     {
@@ -41,15 +44,9 @@ public class Managers : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-
             InitManagers();
-            if (Camera.main != null)
-            {
-                _cameraController = Camera.main.GetComponent<CameraController>();
-                _cameraController.Init();
-            }
 
-            _isInitialized = true;
+            _isSystemInitialized = true;
         }
         else
         {
@@ -67,14 +64,21 @@ public class Managers : MonoBehaviour
         _languageManager.Init();
         _stringManager.Init();
         _soundManager.Init();
-        _gameManager.Init();
         _uiManager.Init();
+        _gameManager.Init();
+    }
 
-        if (_lobbyManager != null)
+    public void InitCameraController()
+    {
+        if (Camera.main != null)
         {
-            _lobbyManager.Init();
+            _cameraController = Camera.main.GetComponent<CameraController>();
+            _cameraController.Init();
         }
     }
     
-    public bool IsInitialized() => _isInitialized;
+    public void SetLobbyManager(LobbyManager argLobbyManager)
+    {
+        _lobbyManager = argLobbyManager;
+    }
 }

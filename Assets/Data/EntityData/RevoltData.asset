@@ -329,7 +329,7 @@ MonoBehaviour:
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: ec8f3bfd164482c4288f5d2c8733aa7e, type: 2}
-    isOriginalSpriteFacingLeft: 1
+    isOriginalSpriteFacingLeft: 0
     dieAnimDuration: 2
     attackAnimDuration: 1
     attackHitTiming: 0.8
