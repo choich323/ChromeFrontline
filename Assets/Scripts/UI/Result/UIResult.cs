@@ -233,8 +233,9 @@ public class UIResult : APopup
             string bestClearTimeText = _isBestClearTimeChanged ? _clearTimeText.text : GetConvertedTimeText(stageRecord.clearTime);
             _clearTimeBestText.SetText(Sm.GetString(StringID.Best, bestClearTimeText));
             _clearTimeBestText.gameObject.SetActive(true);
-            
-            var bestHpText = _isBestHqHpChanged ? _hqHpText.text : stageRecord.hqhpRatio + "%";
+
+            string recordLess = stageRecord.hqhpRatio <= 0 ? "-%" : stageRecord.hqhpRatio + "%";
+            var bestHpText = _isBestHqHpChanged ? _hqHpText.text : recordLess;
             _hqHpBestText.SetText(Sm.GetString(StringID.Best, bestHpText));
             _hqHpBestText.gameObject.SetActive(true);
         }

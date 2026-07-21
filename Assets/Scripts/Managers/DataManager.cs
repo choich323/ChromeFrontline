@@ -229,7 +229,10 @@ public class DataManager : MonoBehaviour
         }
 
         // 2. 다른 월드 데이터가 메모리에 남아있다면 깔끔하게 언로드
-        UnloadWorldData();
+        if (_worldDataHandle.IsValid())
+        {
+            Addressables.Release(_worldDataHandle);
+        }
 
         // 3. 어드레서블 비동기 로드 실행
         Addressables.LoadAssetAsync<StageData>(argWorldId).Completed += handle =>
@@ -250,7 +253,7 @@ public class DataManager : MonoBehaviour
         };
     }
 
-    public void UnloadWorldData()
+    public void UnloadWorldAndStoryData()
     {
         if (_worldDataHandle.IsValid())
         {

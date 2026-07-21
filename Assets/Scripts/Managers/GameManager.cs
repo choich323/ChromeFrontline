@@ -104,7 +104,10 @@ public class GameManager : MonoBehaviour
     {
         _userRecord = Managers.Save.LoadRecord();
         _isInGame = false;
-        
+    }
+
+    public void CreateGameField()
+    {
         var gameFieldObj = Managers.Pool.Instantiate(PrefabID.GameField);
         if (gameFieldObj == null)
         {

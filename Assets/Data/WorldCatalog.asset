@@ -17,3 +17,7 @@ MonoBehaviour:
     worldName:
       en: Korea
       kr: "\uB300\uD55C\uBBFC\uAD6D"
+  - worldId: world2
+    worldName:
+      en: Swiss
+      kr: "\uC2A4\uC704\uC2A4"
