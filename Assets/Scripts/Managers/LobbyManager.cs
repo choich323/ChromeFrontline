@@ -15,12 +15,15 @@ public class LobbyManager : MonoBehaviour
     [Header("=== World Switching ===")]
     [SerializeField] private Button _btnWorldSelect;
     [SerializeField] private TextMeshProUGUI _btnWorldSelectText;
+
+    [SerializeField] private Button _btnOption;
     
     private List<UIStageNode> _nodeList = new List<UIStageNode>();
     private UserRecord _userRecord;
 
     public void Init()
     {
+        _btnOption.onClick.AddListener(OnClickOption);
         _btnWorldSelect.onClick.AddListener(OnClickWorldSelect);
         RefreshLobbyMap();
         RefreshText();
@@ -42,22 +45,21 @@ public class LobbyManager : MonoBehaviour
         if (_userRecord == null) return;
 
         string targetWorldId = _userRecord.CurrentWorldId;
-
-        // 어드레서블로 맵 데이터 비동기 로드
+        
         Managers.Data.LoadWorldData(targetWorldId, (worldData) =>
         {
             if (worldData == null) return;
 
             SetMapBackground(worldData);
             
-            // 노드 쫙 깔고, 카메라가 쳐다볼 타겟 노드 가져오기
+            // 노드 깔고, 카메라가 쳐다볼 타겟 노드 가져오기
             GenerateNodesAndFindTarget(worldData, _userRecord, argPlayedStageIndex, out RectTransform playedTarget, out RectTransform newTarget);
 
             if (playedTarget != null)
             {
                 Canvas.ForceUpdateCanvases();
                 
-                // 새 스테이지가 열렸고, 그 노드가 존재한다면 연출 코루틴 시작!
+                // 새 스테이지가 열렸고, 그 노드가 존재한다면 연출 코루틴 시작
                 if (argIsNewStageUnlocked && newTarget != null)
                 {
                     StartCoroutine(CoPanToNewStage(playedTarget, newTarget));
@@ -204,6 +206,21 @@ public class LobbyManager : MonoBehaviour
         gameObject.SetActive(argIsVisible);
     }
 
+    void OnClickOption()
+    {
+        var sm = Managers.Sound;
+        sm.PlaySelectSfx();
+        
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIOption>(PrefabID.UIOption);
+        popup.SetOnClose(OnBtnPopupClose);
+
+        void OnBtnPopupClose()
+        {
+            sm.PlaySelectSfx();
+            Managers.UI.PopupHandler.ClosePopup();
+        }
+    }
+    
     void OnClickWorldSelect()
     {
         Managers.Sound.PlaySelectSfx();
