@@ -8,10 +8,8 @@ public class CameraController : MonoBehaviour
     private const float DEFAULT_SLIDING_AMOUNT = 10.0f;
     
     [Header("Boundary Settings")]
-    [SerializeField] private float _zoomOutMinX = 0f;    
-    [SerializeField] private float _zoomOutMaxX = 20f;
-    [SerializeField] private float _zoomInMinX = -10f;
-    [SerializeField] private float _zoomInMaxX = 30f;
+    [SerializeField] private float _mapMinX = 0f;  // 맵의 실제 왼쪽 끝 좌표
+    [SerializeField] private float _mapMaxX = 30f; // 맵의 실제 오른쪽 끝 좌표
     [SerializeField] private float _minY = 0f;
     [SerializeField] private float _maxY = 3f;
     [SerializeField] private Camera _mainCam;
@@ -20,13 +18,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _smoothSpeed = DEFAULT_SENSITIVITY;
     [Range(0f, 50f)]
     [SerializeField] private float _slidingAmount = DEFAULT_SLIDING_AMOUNT;
-
-    [SerializeField] private Vector3 _defaultPos;
     
     [Header("Zoom Settings")]
     [SerializeField] private float _minZoom = 6f;
     [SerializeField] private float _maxZoom = 10f;
-    [SerializeField] private float _zoomSpeed = 15f; 
+    [SerializeField] private float _zoomSpeed = 15f;
+    [SerializeField] private float _defaultZoomSize = 10f;
 
     [Header("Zoom Y-Offset Settings (Auto Alignment)")]
     [SerializeField] private float _zoomInY = 1.0f;
@@ -49,11 +46,7 @@ public class CameraController : MonoBehaviour
     
     public void Init()
     {
-        if (_mainCam == null)
-            _mainCam = Camera.main;
-        
-        _targetX = transform.position.x;
-        _targetZoom = _mainCam.orthographicSize;
+        ResetCam();
     }
 
     void Update()
@@ -67,10 +60,21 @@ public class CameraController : MonoBehaviour
         ApplyZoomSmoothly();
     }
 
-    public void ResetCamPos()
+    public void ResetCam()
     {
-        _targetX = _defaultPos.x;
-        transform.position = _defaultPos;
+        if (_mainCam == null)
+            _mainCam = Camera.main;
+
+        _targetX = (_mapMinX + _mapMaxX) * 0.5f;
+        _targetZoom = _defaultZoomSize;
+        _mainCam.orthographicSize = _targetZoom;
+        
+        ClampTargetX();
+
+        float zoomT = Mathf.InverseLerp(_minZoom, _maxZoom, _targetZoom);
+        float autoTargetY = Mathf.Lerp(_zoomInY, _zoomOutY, zoomT);
+
+        transform.position = new Vector3(_targetX, autoTargetY, transform.position.z);
     }
 
     void HandleInput()
@@ -225,15 +229,25 @@ public class CameraController : MonoBehaviour
     
     void ClampTargetX()
     {
-        // 1. 현재 타겟 줌이 전체 줌 범위(_minZoom ~ _maxZoom) 중 어느 비율에 있는지 계산 (0.0 ~ 1.0)
-        float zoomT = Mathf.InverseLerp(_minZoom, _maxZoom, _targetZoom);
+        // 1. 현재 카메라의 가로 절반 길이 계산
+        // orthographicSize는 세로 절반, aspect(가로/세로 비율)를 곱하면 가로 절반 길이가 됨
+        float camHalfWidth = _targetZoom * _mainCam.aspect; 
     
-        // 2. 비율에 맞춰 현재 허용되는 최소/최대 X값을 보간
-        float currentMinX = Mathf.Lerp(_zoomInMinX, _zoomOutMinX, zoomT);
-        float currentMaxX = Mathf.Lerp(_zoomInMaxX, _zoomOutMaxX, zoomT);
-    
-        // 3. 계산된 동적 범위를 기준으로 _targetX 제한
-        _targetX = Mathf.Clamp(_targetX, currentMinX, currentMaxX);
+        // 2. 맵의 양 끝에서 카메라 가로 절반 길이만큼 안쪽으로 들어온 곳이 카메라 중심의 이동 한계선
+        float limitMinX = _mapMinX + camHalfWidth;
+        float limitMaxX = _mapMaxX - camHalfWidth;
+
+        // 3. 예외 처리: 만약 맵 전체 길이보다 카메라가 더 넓게 줌아웃 된 경우 (화면이 맵보다 큼)
+        if (limitMinX > limitMaxX)
+        {
+            // 카메라를 맵의 정중앙에 고정
+            float midPoint = (_mapMinX + _mapMaxX) * 0.5f;
+            limitMinX = midPoint;
+            limitMaxX = midPoint;
+        }
+
+        // 4. 계산된 한계선으로 타겟 X 제한
+        _targetX = Mathf.Clamp(_targetX, limitMinX, limitMaxX);
     }
     
     void MoveCamera()
