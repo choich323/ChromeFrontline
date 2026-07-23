@@ -190,7 +190,7 @@ public class DataManager : MonoBehaviour
         return _hqUpgradeInfoList[argTier - 1];
     }
 
-    public List<PrefabID> GetPrefabIdList(int argTier)
+    public List<PrefabID> GetPioneerIdList(int argTier)
     {
         return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetEntityID()).ToList(); 
     }

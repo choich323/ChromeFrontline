@@ -10,11 +10,11 @@ using UnityEngine;
 public class StoryDataImporter : EditorWindow
 {
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
-    private string gid = "YOUR_GID_HERE";
-    private string savePath = "Assets/StoryData.asset";
+    private string gid = "0";
+    private string savePath = "Assets/Data/Story/StoryData.asset";
     private string worldId;
 
-    [MenuItem("Tools/Import Story Data (Reflection)")]
+    [MenuItem("Tools/Import Story Data")]
     public static void ShowWindow()
     {
         GetWindow<StoryDataImporter>("Story Importer");

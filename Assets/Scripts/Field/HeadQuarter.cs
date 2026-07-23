@@ -102,7 +102,7 @@ public class HeadQuarter : MonoBehaviour
     
     void AddUsableEntityIdList()
     {
-        var idList = dm.GetPrefabIdList(_tier);
+        var idList = dm.GetPioneerIdList(_tier);
         foreach (var id in idList)
         {
             _usableEntityIDList.Add(id);

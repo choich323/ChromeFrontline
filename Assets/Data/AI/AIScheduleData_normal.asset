@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8208d205ad64ed54e876bbb8d7f9f454, type: 3}
-  m_Name: AIScheduleData
+  m_Name: AIScheduleData_normal
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
