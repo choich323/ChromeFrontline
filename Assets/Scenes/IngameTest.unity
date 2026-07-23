@@ -882,12 +882,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f96f3d5e87d240a5164696140ea58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _minX: 0
-  _maxX: 20
+  _mapMinX: -22
+  _mapMaxX: 42
+  _minY: 0
+  _maxY: 3
   _mainCam: {fileID: 810939475}
   _smoothSpeed: 30
   _slidingAmount: 0
-  _defaultPos: {x: 0, y: 3, z: -10}
+  _minZoom: 6
+  _maxZoom: 10
+  _zoomSpeed: 15
+  _defaultZoomSize: 10
+  _zoomInY: 1
+  _zoomOutY: 3
+  _pcZoomSensitivity: 2
+  _mobileZoomSensitivity: 0.01
 --- !u!1 &893747126
 GameObject:
   m_ObjectHideFlags: 0

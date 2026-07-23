@@ -8,6 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class DataManager : MonoBehaviour
 {
     private const string DEFAULT_AI_SCHEDULEINFO = "normal";
+    private const int ENTITY_CNT_MAX = 50;
     
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
@@ -22,15 +23,14 @@ public class DataManager : MonoBehaviour
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
     private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
-    private List<EntityInfo> _pioneerInfoList = new List<EntityInfo>();
-    private List<EntityInfo> _revoltInfoList = new List<EntityInfo>();
+    private List<EntityInfo> _entityInfoList = new List<EntityInfo>();
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
 
     // stage data
-    private StageData _curWorldData = null;
+    private WorldData _curWorldData = null;
     private AsyncOperationHandle _worldDataHandle;
     
     // story data
@@ -39,7 +39,6 @@ public class DataManager : MonoBehaviour
     private AsyncOperationHandle<StoryData> _storyDataHandle;
 
     public int StartGold => _playerCurrencyData.startGold;
-    public StageData CurWorldData => _curWorldData;
     public WorldCatalog WorldCatalog => _worldCatalog;
     
     public void Init()
@@ -65,14 +64,7 @@ public class DataManager : MonoBehaviour
 
                 if (isEntityInfo)
                 {
-                    if (entityInfo.camp == CampType.Pioneer)
-                    {
-                        _pioneerInfoList.Add(entityInfo);
-                    }
-                    else if (entityInfo.camp == CampType.Revolt)
-                    {
-                        _revoltInfoList.Add(entityInfo);
-                    }
+                    _entityInfoList.Add(entityInfo);
                 }
             }
         }
@@ -166,19 +158,37 @@ public class DataManager : MonoBehaviour
         return _aiScheduleInfoList.Find(info => info.id == argScheduleId);
     }
     
-    public IEnumerable<EntityInfo> GetPioneerInfoList()
+    public List<EntityInfo> GetAvailableEntityInfoList(Team argTeam)
     {
-        return _pioneerInfoList;
+        int stage = Managers.Game.Stage;
+        var stageInfo = GetStageInfo(stage);
+        return GetAvailableEntityInfoList(stageInfo.GetMask(argTeam));
+    }
+    
+    List<EntityInfo> GetAvailableEntityInfoList(ulong argMask)
+    {
+        List<EntityInfo> result = new List<EntityInfo>();
+        int count = Mathf.Min(_entityInfoList.Count, ENTITY_CNT_MAX);
+        for (int i = 0; i < count; i++)
+        {
+            if ((argMask & (1UL << i)) != 0)
+            {
+                result.Add(_entityInfoList[i]);
+            }
+        }
+        
+        return result;
     }
 
-    public IEnumerable<EntityInfo> GetRevoltInfoList()
+    public List<PrefabID> GetAvailableEntityIdList(Team argTeam, int argTier)
     {
-        return _revoltInfoList;
+        var availableList = GetAvailableEntityInfoList(argTeam);
+        return availableList.Where(info => info.tier == argTier).Select(info => info.GetEntityID()).ToList();
     }
-
-    public List<EntityInfo> GetRevoltInfoList(int argTpAmount)
+    
+    public StageInfo GetStageInfo(int argStage)
     {
-        return _revoltInfoList.FindAll(entity => entity.goldCost > 0 && entity.goldCost <= argTpAmount);
+        return _curWorldData.GetStageInfo(argStage);
     }
 
     public HeadQuarterUpgradeInfo GetHeadQuarterUpgradeInfo(int argTier)
@@ -188,11 +198,6 @@ public class DataManager : MonoBehaviour
             return null;
         }
         return _hqUpgradeInfoList[argTier - 1];
-    }
-
-    public List<PrefabID> GetPrefabIdList(int argTier)
-    {
-        return _pioneerInfoList.Where(entity => entity.tier == argTier).Select(item => item.GetEntityID()).ToList(); 
     }
 
     public int GetAddSlotCost(int argSlotNumber)
@@ -219,7 +224,7 @@ public class DataManager : MonoBehaviour
         return _gameSpeedInfoList[argIndex];
     }
     
-    public void LoadWorldData(string argWorldId, Action<StageData> argOnComplete)
+    public void LoadWorldData(string argWorldId, Action<WorldData> argOnComplete)
     {
         // 1. 이미 요청한 월드가 로드되어 있다면 즉시 반환
         if (_curWorldData != null && _curWorldData.worldId == argWorldId)
@@ -235,7 +240,7 @@ public class DataManager : MonoBehaviour
         }
 
         // 3. 어드레서블 비동기 로드 실행
-        Addressables.LoadAssetAsync<StageData>(argWorldId).Completed += handle =>
+        Addressables.LoadAssetAsync<WorldData>(argWorldId).Completed += handle =>
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {

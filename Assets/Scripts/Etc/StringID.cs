@@ -3,6 +3,7 @@ using UnityEngine;
 public enum StringID
 {
     None = 0,
+    GameStart,
     
     Yes = 101,
     No,

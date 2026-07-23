@@ -34,7 +34,7 @@ public class HeadQuarter : MonoBehaviour
     private event Action<int> _onEntityCountChanged;
     private event Action<int> _onTierChanged;
 
-    private DataManager dm => Managers.Data;
+    private DataManager Dm => Managers.Data;
     
     public int Tier => _tier;
     public int Hp => _hp;
@@ -69,12 +69,12 @@ public class HeadQuarter : MonoBehaviour
     {
         SetTier(DEFAULT_TIER);
         _usableEntityIDList.Clear();
+        _team = argTeam;
         AddUsableEntityIdList();
-        _hqUpgradeInfo = dm.GetHeadQuarterUpgradeInfo(_tier);
+        _hqUpgradeInfo = Dm.GetHeadQuarterUpgradeInfo(_tier);
         _maxHp = _hqUpgradeInfo.maxHp;
         SetHp(_hqUpgradeInfo.maxHp);
-        _team = argTeam;
-        EarnGold(dm.StartGold);
+        EarnGold(Dm.StartGold);
         
 // #if UNITY_EDITOR
 // 출시 전까진 테스트 편의를 위해 유지
@@ -102,7 +102,7 @@ public class HeadQuarter : MonoBehaviour
     
     void AddUsableEntityIdList()
     {
-        var idList = dm.GetPrefabIdList(_tier);
+        var idList = Dm.GetAvailableEntityIdList(_team, _tier);
         foreach (var id in idList)
         {
             _usableEntityIDList.Add(id);
@@ -116,7 +116,7 @@ public class HeadQuarter : MonoBehaviour
 
     public bool UpgradeHq()
     {
-        var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
+        var newInfo = Dm.GetHeadQuarterUpgradeInfo(_tier + 1);
 
         if (_gold < newInfo.upgradeCost)
         {
@@ -142,7 +142,7 @@ public class HeadQuarter : MonoBehaviour
 
     public void ForceUpgradeHq()
     {
-        var newInfo = dm.GetHeadQuarterUpgradeInfo(_tier + 1);
+        var newInfo = Dm.GetHeadQuarterUpgradeInfo(_tier + 1);
         if (newInfo == null)
             return;
         
@@ -301,7 +301,7 @@ public class HeadQuarter : MonoBehaviour
         }
         
         // gold check
-        var cost = dm.GetAddSlotCost(curSlotCount);
+        var cost = Dm.GetAddSlotCost(curSlotCount);
         if (cost > _gold)
         {
             var ph = Managers.UI.PopupHandler;

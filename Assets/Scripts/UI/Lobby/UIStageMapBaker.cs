@@ -7,7 +7,7 @@ using UnityEditor;
 public class UIStageMapBaker : MonoBehaviour
 {
     [Header("저장할 월드 데이터 에셋")]
-    public StageData targetWorldData;
+    public WorldData targetWorldData;
 
     [ContextMenu("Bake Stage Positions")]
     public void BakePositions()

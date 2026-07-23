@@ -84,12 +84,12 @@ public class LobbyManager : MonoBehaviour
         
     }
     
-    void SetMapBackground(StageData argWorldData)
+    void SetMapBackground(WorldData argWorldData)
     {
         _bgImage.sprite = argWorldData.bg;
     }
     
-    void GenerateNodesAndFindTarget(StageData argWorldData, UserRecord argUserRecord, int argPlayedStageIndex, out RectTransform outPlayedTarget, out RectTransform outNewTarget)
+    void GenerateNodesAndFindTarget(WorldData argWorldData, UserRecord argUserRecord, int argPlayedStageIndex, out RectTransform outPlayedTarget, out RectTransform outNewTarget)
     {
         // 1. 기존에 있던 노드들 청소
         foreach (var stageNode in _nodeList)
