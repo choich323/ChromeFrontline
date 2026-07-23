@@ -49,13 +49,33 @@ public class CameraController : MonoBehaviour
         ResetCam();
     }
 
+    bool CanInput()
+    {
+        if (!Managers.Game.IsInGame || Managers.UI.PopupHandler.GetPopupCount() > 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
     void Update()
     {
+        if (!CanInput())
+        {
+            return;
+        }
+        
         HandleInput();
     }
 
     void LateUpdate()
     {
+        if (!CanInput())
+        {
+            return;
+        }
+        
         MoveCamera();
         ApplyZoomSmoothly();
     }

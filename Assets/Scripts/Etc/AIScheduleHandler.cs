@@ -102,9 +102,12 @@ public class AIScheduleHandler
         var spendTp = argTp;
         SpawnRequest req;
         List<EntityInfo> infoList = new List<EntityInfo>();
+        // 사용 가능한 리스트
+        var availableEntityInfoList = dm.GetAvailableEntityInfoList(Team.Enemy);
         while (true)
         {
-            var spawnableEntityInfoList = dm.GetRevoltInfoList(spendTp);
+            // 소비 가능한 리스트
+            var spawnableEntityInfoList = availableEntityInfoList.FindAll(entity => entity.goldCost > 0 && entity.goldCost <= spendTp);
             if (spawnableEntityInfoList.Count <= 0)
             {
                 break;

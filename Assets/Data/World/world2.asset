@@ -21,46 +21,53 @@ MonoBehaviour:
     stageIndex: 1
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760
   - stage: 2
     stageName: 2-2
     uiPosition: {x: 0, y: 0}
     stageIndex: 2
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760
   - stage: 3
     stageName: 2-3
     uiPosition: {x: 0, y: 0}
     stageIndex: 3
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760
   - stage: 4
     stageName: 2-4
     uiPosition: {x: 0, y: 0}
     stageIndex: 4
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760
   - stage: 5
     stageName: 2-5
     uiPosition: {x: 0, y: 0}
     stageIndex: 5
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760
   - stage: 6
     stageName: 2-6
     uiPosition: {x: 0, y: 0}
     stageIndex: 6
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760
   - stage: 7
     stageName: 2-7
     uiPosition: {x: 0, y: 0}
     stageIndex: 7
     aiScheduleId: normal
     maxHqLevel: 4
-    availableEntitiesMask: 4294967295
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760

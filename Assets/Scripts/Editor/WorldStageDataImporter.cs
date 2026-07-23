@@ -15,13 +15,13 @@ public class WorldStageDataImporter : EditorWindow
     //[cite: 3] 구글 시트 다운로드를 위한 변수들 세팅
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
     private string gid = "0";
-    private string savePath = "Assets/Data/World/StageData.asset";
-    private string worldId;
+    private string savePath = "Assets/Data/World/world.asset";
+    private string worldId = "world";
 
-    [MenuItem("Tools/Import World Stage Data")]
+    [MenuItem("Tools/Import World-Stage Data")]
     public static void ShowWindow()
     {
-        GetWindow<WorldStageDataImporter>("Stage Importer");
+        GetWindow<WorldStageDataImporter>("World-Stage Importer");
     }
 
     private void OnGUI() //[cite: 3]
@@ -123,20 +123,20 @@ public class WorldStageDataImporter : EditorWindow
         int worldIdColIndex = Array.IndexOf(headers, "worldId");
         
         // 3. ScriptableObject 로드 또는 생성[cite: 3]
-        StageData stageData = AssetDatabase.LoadAssetAtPath<StageData>(savePath);
+        WorldData worldData = AssetDatabase.LoadAssetAtPath<WorldData>(savePath);
         
-        if (stageData == null)
+        if (worldData == null)
         {
-            stageData = CreateInstance<StageData>();
-            stageData.worldId = worldId; //[cite: 1, 3]
-            AssetDatabase.CreateAsset(stageData, savePath);
+            worldData = CreateInstance<WorldData>();
+            worldData.worldId = worldId; //[cite: 1, 3]
+            AssetDatabase.CreateAsset(worldData, savePath);
         }
         else
         {
             // 잘못된 경로 덮어쓰기 방지 검증[cite: 3]
-            if (!string.IsNullOrEmpty(stageData.worldId) && stageData.worldId != worldId)
+            if (!string.IsNullOrEmpty(worldData.worldId) && worldData.worldId != worldId)
             {
-                Debug.LogError($"[Import Error] 타겟 에셋의 World ID({stageData.worldId})와 입력한 World ID({worldId})가 다릅니다!");
+                Debug.LogError($"[Import Error] 타겟 에셋의 World ID({worldData.worldId})와 입력한 World ID({worldId})가 다릅니다!");
                 return; 
             }
         }
@@ -145,16 +145,16 @@ public class WorldStageDataImporter : EditorWindow
         Dictionary<int, Vector2> existingPositions = new Dictionary<int, Vector2>();
         
         // 기존 리스트에서 stage 번호를 키로 uiPosition을 딕셔너리에 저장[cite: 1]
-        if (stageData.stageInfoList != null) 
+        if (worldData.stageInfoList != null) 
         {
-            foreach (var info in stageData.stageInfoList)
+            foreach (var info in worldData.stageInfoList)
             {
                 existingPositions[info.stage] = info.uiPosition; 
             }
         }
 
         // 데이터 리스트 초기화 
-        stageData.stageInfoList = new List<StageInfo>(); //[cite: 1]
+        worldData.stageInfoList = new List<StageInfo>(); //[cite: 1]
 
         // 4. 데이터 행(Row) 파싱 및 리플렉션 적용[cite: 3]
         for (int i = 1; i < lines.Length; i++)
@@ -193,17 +193,17 @@ public class WorldStageDataImporter : EditorWindow
                 newStageInfo.uiPosition = pos; //[cite: 1]
             }
 
-            stageData.stageInfoList.Add(newStageInfo); //[cite: 1]
+            worldData.stageInfoList.Add(newStageInfo); //[cite: 1]
         }
 
         // 에셋 저장 및 갱신[cite: 3]
-        EditorUtility.SetDirty(stageData); 
+        EditorUtility.SetDirty(worldData); 
         AssetDatabase.SaveAssets(); 
         AssetDatabase.Refresh();
 
         SetAssetAsAddressable(savePath, worldId);
         
-        Debug.Log($"[리플렉션 임포트 완료] {stageData.stageInfoList.Count}개의 스테이지 데이터가 갱신되었습니다.");
+        Debug.Log($"[리플렉션 임포트 완료] {worldData.stageInfoList.Count}개의 스테이지 데이터가 갱신되었습니다.");
     }
 
     private void ApplyValueViaReflection(object argTargetObj, string argHeaderPath, string argValue) //[cite: 3]

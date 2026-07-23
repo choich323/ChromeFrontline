@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 7479973029302573029}
   - component: {fileID: 7159447353245916222}
   - component: {fileID: 6923019581325580409}
+  - component: {fileID: 277686807511058263}
   m_Layer: 5
   m_Name: bg
   m_TagString: Untagged
@@ -861,3 +862,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &277686807511058263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956758374798527494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb58eed1d345fa4e9e33074970d2178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorStringHandler
+  _stringGroupList:
+  - stringId: GameStart
+    text: {fileID: 8143148935027635443}

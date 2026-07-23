@@ -28,7 +28,7 @@ public class StringDataExtension : Editor
             if (GUILayout.Button("새 항목 추가 (+)"))
             {
                 Undo.RecordObject(data, "Add New String Info");
-                data.stringInfoList.Add(new StringInfo());
+                data.stringInfoList.Insert(0, new StringInfo());
                 EditorUtility.SetDirty(data);
             }
             GUI.color = Color.white;

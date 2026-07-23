@@ -12,6 +12,11 @@ public class PopupHandler
         
     }
 
+    public int GetPopupCount()
+    {
+        return _popupStack.Count;
+    }
+    
     public void OnUpdate()
     {
         HandleEscapeKey();
