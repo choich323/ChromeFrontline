@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbce69c7a6192245b7b14f7da42b539, type: 3}
+  m_Name: world4
+  m_EditorClassIdentifier: Assembly-CSharp::WorldData
+  worldId: world4
+  bg: {fileID: 1624212000631451773, guid: 27c78005f93b67c41b2342f26e821e02, type: 3}
+  stageInfoList:
+  - stage: 1
+    stageName: 4-1
+    uiPosition: {x: 0, y: 0}
+    stageIndex: 1
+    aiScheduleId: normal
+    maxHqLevel: 4
+    playerAvailableEntitiesMask: 0
+    enemyAvailableEntitiesMask: 0

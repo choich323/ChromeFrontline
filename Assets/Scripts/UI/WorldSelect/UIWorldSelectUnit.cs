@@ -6,10 +6,14 @@ public class UIWorldSelectUnit : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _worldNameText;
     [SerializeField] private Button _btnNode;
+    [SerializeField] private Image _bgImage;
+    [SerializeField] private Color _selectedColor;
 
     private string _targetWorldId;
     private System.Action<string> _onClickAction;
 
+    public string WorldId => _targetWorldId;
+    
     public void Init(string argWorldId, int argWorldNumber, string argWorldName, System.Action<string> argOnClickAction)
     {
         _targetWorldId = argWorldId;
@@ -25,6 +29,12 @@ public class UIWorldSelectUnit : MonoBehaviour
     void OnClick()
     {
         Managers.Sound.PlaySelectSfx();
+        EnableSelectedColor(true);
         _onClickAction?.Invoke(_targetWorldId);
+    }
+
+    public void EnableSelectedColor(bool argIsEnable)
+    {
+        _bgImage.color = argIsEnable ? _selectedColor : Color.white;
     }
 }
