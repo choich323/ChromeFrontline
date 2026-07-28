@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
 using System.Linq;
 
 [CustomEditor(typeof(StringData))]
-public class StringDataExtension : Editor
+public class StringDataInspectorHandler : Editor
 {
     private string _searchString = "";
 

@@ -135,7 +135,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -17}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7770466174088732647
 CanvasRenderer:
@@ -224,8 +224,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -259}
-  m_SizeDelta: {x: 1000, y: 600}
+  m_AnchoredPosition: {x: 0, y: -260}
+  m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4409149219784796381
 CanvasRenderer:
@@ -305,6 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1745886355407952174}
   - component: {fileID: 4958249269294021490}
+  - component: {fileID: 6737577536980669415}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -329,7 +330,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4958249269294021490
 MonoBehaviour:
@@ -357,6 +358,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6737577536980669415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251412905056137592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &6596091376945251885
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +616,7 @@ MonoBehaviour:
   _inputMode: 2
   _closeButton: {fileID: 6374277181861069730}
   _dimmedBg: {fileID: 3749068300902615407}
+  _scrollRect: {fileID: 6549032688310365513}
   _contentParent: {fileID: 1745886355407952174}
 --- !u!1001 &218270635772663353
 PrefabInstance:
