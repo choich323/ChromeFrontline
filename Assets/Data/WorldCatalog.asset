@@ -21,3 +21,11 @@ MonoBehaviour:
     worldName:
       en: Russia
       kr: "\uB7EC\uC2DC\uC544"
+  - worldId: world3
+    worldName:
+      en: Nepal
+      kr: "\uB124\uD314"
+  - worldId: world4
+    worldName:
+      en: Chile
+      kr: "\uCE60\uB808"

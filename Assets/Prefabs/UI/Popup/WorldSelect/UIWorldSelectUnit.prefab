@@ -233,6 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIWorldSelectUnit
   _worldNameText: {fileID: 4712822970439278564}
   _btnNode: {fileID: 5473276306191696640}
+  _bgImage: {fileID: 494760862082053386}
+  _selectedColor: {r: 0.2627451, g: 1, b: 0.83137256, a: 1}
 --- !u!1 &7746426109564151483
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,14 +294,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8745098, g: 0.9647059, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1617898491377532991, guid: 66dd1ea645c8c0e48b86039825d6387b, type: 3}
+  m_Sprite: {fileID: 3805868381887005693, guid: 9e262c6e342327442a1d852e9d15842e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
