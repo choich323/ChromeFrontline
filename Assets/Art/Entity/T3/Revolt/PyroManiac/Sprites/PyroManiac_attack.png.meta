@@ -149,7 +149,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.7109375, y: 0.30078125}
+      pivot: {x: 0.390625, y: 0.28515625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,7 +171,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.7109375, y: 0.30078125}
+      pivot: {x: 0.390625, y: 0.28515625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,7 +193,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.7109375, y: 0.30078125}
+      pivot: {x: 0.390625, y: 0.28515625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,7 +215,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.7109375, y: 0.30078125}
+      pivot: {x: 0.390625, y: 0.28515625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,7 +237,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.7109375, y: 0.30078125}
+      pivot: {x: 0.390625, y: 0.28515625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,7 +259,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.7109375, y: 0.30078125}
+      pivot: {x: 0.390625, y: 0.28515625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -286,7 +286,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.7109375,"y":0.30078125},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.390625,"y":0.28515625},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       PyroManiac_attack_0: 4529780665207514052
       PyroManiac_attack_1: -1407781297344418059

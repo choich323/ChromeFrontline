@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,8 +8,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform _hudParent;
     [SerializeField] private RectTransform _popupParent;
     [SerializeField] private RectTransform _pauseBtnParent;
+    [SerializeField] private RectTransform _damageTextParent;
     [SerializeField] private CanvasGroup _fadeCanvasGroup;
     [SerializeField] private GameObject _inputBlocker;
+
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -16,6 +19,7 @@ public class UIManager : MonoBehaviour
     private UIGameSpeedBtn _gameSpeedBtn;
     private bool _isProduceIndicatorEnable;
     private bool _isHqUpgradeIndicatorEnable;
+    private List<UIDamageText> _damageTextList = new List<UIDamageText>();
     
     public PopupHandler PopupHandler => _popupHandler;
     
@@ -175,5 +179,27 @@ public class UIManager : MonoBehaviour
     public bool IsEnableHUDHqIndicator()
     {
         return IsProduceIndicatorEnable() || IsHqUpgradeIndicatorEnable();
+    }
+
+    public void CreateDamageText(Vector3 argPos, float argDamage, bool argIsCritical, Team argTeam)
+    {
+        var obj = Managers.Pool.Instantiate(PrefabID.UIDamageText);
+        obj.transform.SetParent(_damageTextParent, false);
+        var cam = Managers.CamController.Cam;
+        var screenPos = cam.WorldToScreenPoint(argPos);
+
+        var dt = obj.GetComponent<UIDamageText>();
+        _damageTextList.Add(dt);
+        
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(_damageTextParent, screenPos, null, out var localPos);
+        
+        dt.Init(localPos);
+        dt.PlayAnimation(argDamage, argIsCritical, argTeam, DestroyDamageText);
+    }
+
+    void DestroyDamageText(UIDamageText argDamageText)
+    {
+        _damageTextList.Remove(argDamageText);
+        Managers.Pool.Destroy(argDamageText, PrefabID.UIDamageText);
     }
 }

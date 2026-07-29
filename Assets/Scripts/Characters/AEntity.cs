@@ -86,7 +86,9 @@ public abstract class AEntity : MonoBehaviour
 {
     protected const float EPSILON = 0.01f;
     protected const int DEFAULT_RAYCAST_COUNT = 100;
+
     private const ulong INVALID_UID = 0;
+    private const float DAMAGE_TEXT_Y_OFFSET = 0.75f; 
     private const float DEFAULT_CRITICAL_DAMAGE_RATIO = 2f;
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
@@ -116,11 +118,12 @@ public abstract class AEntity : MonoBehaviour
     protected ContactFilter2D _contactFilter;
     protected RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
     protected AnimatorOverrideController _explosionAnimatorOverrideController;
+    protected Vector2 _direction;
+    protected float _attackCooldownTimer;
+
     private PrefabID _id;
     private ulong _uid;
-    protected Vector2 _direction;
     private Transform _targetHqCoreTransform;
-    protected float _attackCooldownTimer;
     private float _dieAnimDuration;
     private float _attackAnimDuration;
     private float _attackHitTiming;
@@ -337,14 +340,16 @@ public abstract class AEntity : MonoBehaviour
 
         float damage = _entityStatus.attack;
         float criticalChance = _entityStatus.criticalChance;
+        bool isCritical = false;
         if (criticalChance > 0f && UnityEngine.Random.value <= criticalChance)
         {
             damage *= DEFAULT_CRITICAL_DAMAGE_RATIO;
+            isCritical = true;
         }
 
         foreach (var target in argTargetList)
         {
-            target.GetEffect(EffectType.Attack, damage, this);
+            target.GetEffect(EffectType.Attack, damage, isCritical, this);
         }
 
         yield return _attackRemainTime;
@@ -369,12 +374,12 @@ public abstract class AEntity : MonoBehaviour
         }
     }
     
-    protected virtual void GetEffect(EffectType argEffectType, float argAmount, AEntity argSubject)
+    protected virtual void GetEffect(EffectType argEffectType, float argAmount, bool argIsCritical, AEntity argSubject)
     {
         switch (argEffectType)
         {
             case EffectType.Attack:
-                GetDamage(argAmount, argSubject);
+                GetDamage(argAmount, argIsCritical, argSubject);
                 break;
             
             case EffectType.None:
@@ -383,13 +388,17 @@ public abstract class AEntity : MonoBehaviour
         }
     }
     
-    public virtual void GetDamage(float argDamage, AEntity argAttacker)
+    public virtual void GetDamage(float argDamage, bool argIsCritical, AEntity argAttacker)
     {
         if (IsDead)
             return;
 
         float armor = Mathf.Max(_entityStatus.armor, MIN_ARMOR);
         float reducedDamage = argDamage * (100f / (100f + armor));
+
+        var textPos = transform.position;
+        textPos.y += DAMAGE_TEXT_Y_OFFSET;
+        Managers.Game.OnEntityDamaged(textPos, reducedDamage, argIsCritical, _entityStatus.team);
         
         // 체력 계산
         _entityStatus.curHp -= (int)reducedDamage;
@@ -403,10 +412,6 @@ public abstract class AEntity : MonoBehaviour
                 argAttacker.OnKill(_entityStatus.goldCost);
             
             _dieAnimCoroutine = StartCoroutine(CoDie());
-        }
-        else
-        {
-            OnDamaged();
         }
     }
 

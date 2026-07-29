@@ -209,4 +209,5 @@ MonoBehaviour:
   _animator: {fileID: 5756774278727574172}
   _spriteRenderer: {fileID: 7779605708425534475}
   _visualChild: {fileID: 609423370000339494}
+  _damageTextPos: {fileID: 0}
   _targetSearchYOffset: 5

@@ -353,4 +353,9 @@ public class GameManager : MonoBehaviour
             GameField.PlayerHq.OnHqDamaged(argDamage);
         }
     }
+
+    public void OnEntityDamaged(Vector3 argPos, float argDamage, bool argIsCritical, Team argTeam)
+    {
+        Managers.UI.CreateDamageText(argPos, argDamage, argIsCritical, argTeam);
+    }
 }

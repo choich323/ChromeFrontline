@@ -21,3 +21,5 @@ MonoBehaviour:
     prefab: {fileID: 4624048158271565981, guid: 025ccb4f37d9cef44853e92e0b778f16, type: 3}
   - id: UIWorldSelectUnit
     prefab: {fileID: 4624048158271565981, guid: 6814f0e872a74a6499f6b7381b285535, type: 3}
+  - id: UIDamageText
+    prefab: {fileID: 8534312463349980150, guid: bd9cb60d35ea36e4393a182bf880a67e, type: 3}

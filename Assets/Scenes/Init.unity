@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &809074391 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4324766158000934443, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+  m_PrefabInstance: {fileID: 8824891881146298368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1768357103 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
@@ -159,6 +164,10 @@ PrefabInstance:
       propertyPath: _pauseBtnParent
       value: 
       objectReference: {fileID: 4596459285976898093}
+    - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
+      propertyPath: _damageTextParent
+      value: 
+      objectReference: {fileID: 809074391}
     - target: {fileID: 1308902619092614763, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
       propertyPath: _uiManager
       value: 
