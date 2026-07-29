@@ -99,6 +99,8 @@ public class UIManager : MonoBehaviour
         _topHUDController.gameObject.SetActive(false);
         _pauseBtn.gameObject.SetActive(false);
         _gameSpeedBtn.gameObject.SetActive(false);
+
+        DestroyAllDamageText();
     }
 
     void CreatePlayBtnGroup()
@@ -185,15 +187,10 @@ public class UIManager : MonoBehaviour
     {
         var obj = Managers.Pool.Instantiate(PrefabID.UIDamageText);
         obj.transform.SetParent(_damageTextParent, false);
-        var cam = Managers.CamController.Cam;
-        var screenPos = cam.WorldToScreenPoint(argPos);
-
+        obj.transform.position = argPos;
         var dt = obj.GetComponent<UIDamageText>();
         _damageTextList.Add(dt);
         
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(_damageTextParent, screenPos, null, out var localPos);
-        
-        dt.Init(localPos);
         dt.PlayAnimation(argDamage, argIsCritical, argTeam, DestroyDamageText);
     }
 
@@ -201,5 +198,14 @@ public class UIManager : MonoBehaviour
     {
         _damageTextList.Remove(argDamageText);
         Managers.Pool.Destroy(argDamageText, PrefabID.UIDamageText);
+    }
+
+    void DestroyAllDamageText()
+    {
+        foreach (var dt in _damageTextList)
+        {
+            Managers.Pool.Destroy(dt, PrefabID.UIDamageText);
+        }
+        _damageTextList.Clear();
     }
 }
