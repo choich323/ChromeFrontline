@@ -585,8 +585,10 @@ MonoBehaviour:
   _hudParent: {fileID: 0}
   _popupParent: {fileID: 0}
   _pauseBtnParent: {fileID: 0}
+  _damageTextParent: {fileID: 0}
   _fadeCanvasGroup: {fileID: 1633820727798216994}
   _inputBlocker: {fileID: 0}
+  _damageTextXOffset: 30
 --- !u!114 &6085571731153602665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,4 +657,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
   _ingameSceneName: Ingame
   _fadeDuration: 0.5
-  _fadeGroup: {fileID: 1633820727798216994}

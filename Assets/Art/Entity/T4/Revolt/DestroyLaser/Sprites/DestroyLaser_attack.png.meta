@@ -129,12 +129,12 @@ TextureImporter:
       name: DestroyLaser_attack_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 0
-        width: 512
+        width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.9453125, y: 0.328125}
+      pivot: {x: 0.89704084, y: 0.32812506}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

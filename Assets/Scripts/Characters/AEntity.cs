@@ -49,6 +49,31 @@ public enum Grade
 }
 
 [Serializable]
+public struct EntitySettingContainer
+{
+    public ulong uid;
+    public Team team;
+    public Grade grade;
+    public EntityInfo entityInfo;
+    public Transform homeHq;
+    public Transform targetHq;
+    public Action<AEntity> onDie;
+    public Action<long> onKill;
+
+    public EntitySettingContainer(ulong argUid, Team argTeam, Grade argGrade, EntityInfo argInfo, Transform argHomeHq, Transform argTargetHq, Action<AEntity> argOnDie, Action<long> argOnKill)
+    {
+        uid = argUid;
+        team = argTeam;
+        grade = argGrade;
+        entityInfo = argInfo;
+        homeHq = argHomeHq;
+        targetHq = argTargetHq;
+        onDie = argOnDie;
+        onKill = argOnKill;
+    }
+}
+
+[Serializable]
 public struct EntityStatus
 {
     public CampType camp;
@@ -86,7 +111,9 @@ public abstract class AEntity : MonoBehaviour
 {
     protected const float EPSILON = 0.01f;
     protected const int DEFAULT_RAYCAST_COUNT = 100;
+
     private const ulong INVALID_UID = 0;
+    private const float DAMAGE_TEXT_Y_OFFSET = 0.75f; 
     private const float DEFAULT_CRITICAL_DAMAGE_RATIO = 2f;
     private const float MIN_ATTACK_SPEED = 0.001f;
     private const float MIN_ARMOR = -99f;
@@ -116,11 +143,13 @@ public abstract class AEntity : MonoBehaviour
     protected ContactFilter2D _contactFilter;
     protected RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
     protected AnimatorOverrideController _explosionAnimatorOverrideController;
+    protected Vector2 _direction;
+    protected float _attackCooldownTimer;
+
     private PrefabID _id;
     private ulong _uid;
-    protected Vector2 _direction;
+    private Transform _homeHqCoreTransform;
     private Transform _targetHqCoreTransform;
-    protected float _attackCooldownTimer;
     private float _dieAnimDuration;
     private float _attackAnimDuration;
     private float _attackHitTiming;
@@ -143,37 +172,39 @@ public abstract class AEntity : MonoBehaviour
     public Grade Grade => _entityStatus.grade;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Grade argGrade, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
+    public virtual void Init(EntitySettingContainer argContainer)
     {
-        _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
+        var entityInfo = argContainer.entityInfo;
+        _animator.runtimeAnimatorController = entityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
         _contactFilter.useLayerMask = true;
         _contactFilter.SetLayerMask(_entityLayerMask);
         _contactFilter.useTriggers = false;
         
-        _id = argEntityInfo.GetEntityID();
-        _uid = argUid;
-        _entityStatus.team = argTeam;
+        _id = entityInfo.GetEntityID();
+        _uid = argContainer.uid;
+        _entityStatus.team = argContainer.team;
 
         if (_entityStatus.team == Team.Player)
         {
             _direction = Vector2.right;
-            _spriteRenderer.flipX = argEntityInfo.isOriginalSpriteFacingLeft;
+            _spriteRenderer.flipX = entityInfo.isOriginalSpriteFacingLeft;
         }
         else
         {
             _direction = Vector2.left;
-            _spriteRenderer.flipX = !argEntityInfo.isOriginalSpriteFacingLeft;
+            _spriteRenderer.flipX = !entityInfo.isOriginalSpriteFacingLeft;
         }
-        SetEntityInfo(argEntityInfo, argGrade);
-        _explosionAnimatorOverrideController = argEntityInfo.explosionAnimatorOverrideController;
-        _dieAnimDuration = argEntityInfo.dieAnimDuration;
-        _attackAnimDuration = argEntityInfo.attackAnimDuration;
-        _attackHitTiming = argEntityInfo.attackHitTiming;
-        _targetHqCoreTransform = argTargetHqCoreTransform;
-        _onDie = argOnDie;
-        _onKill = argOnKill;
+        SetEntityInfo(entityInfo, argContainer.grade);
+        _explosionAnimatorOverrideController = entityInfo.explosionAnimatorOverrideController;
+        _dieAnimDuration = entityInfo.dieAnimDuration;
+        _attackAnimDuration = entityInfo.attackAnimDuration;
+        _attackHitTiming = entityInfo.attackHitTiming;
+        _homeHqCoreTransform = argContainer.homeHq;
+        _targetHqCoreTransform = argContainer.targetHq;
+        _onDie = argContainer.onDie;
+        _onKill = argContainer.onKill;
         _attackCooldownTimer = 0f;
         
         _attackWaitTime = new WaitForSeconds(_attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed);
@@ -337,14 +368,16 @@ public abstract class AEntity : MonoBehaviour
 
         float damage = _entityStatus.attack;
         float criticalChance = _entityStatus.criticalChance;
+        bool isCritical = false;
         if (criticalChance > 0f && UnityEngine.Random.value <= criticalChance)
         {
             damage *= DEFAULT_CRITICAL_DAMAGE_RATIO;
+            isCritical = true;
         }
 
         foreach (var target in argTargetList)
         {
-            target.GetEffect(EffectType.Attack, damage, this);
+            target.GetEffect(EffectType.Attack, damage, isCritical, this);
         }
 
         yield return _attackRemainTime;
@@ -369,12 +402,12 @@ public abstract class AEntity : MonoBehaviour
         }
     }
     
-    protected virtual void GetEffect(EffectType argEffectType, float argAmount, AEntity argSubject)
+    protected virtual void GetEffect(EffectType argEffectType, float argAmount, bool argIsCritical, AEntity argSubject)
     {
         switch (argEffectType)
         {
             case EffectType.Attack:
-                GetDamage(argAmount, argSubject);
+                GetDamage(argAmount, argIsCritical, argSubject);
                 break;
             
             case EffectType.None:
@@ -383,13 +416,17 @@ public abstract class AEntity : MonoBehaviour
         }
     }
     
-    public virtual void GetDamage(float argDamage, AEntity argAttacker)
+    public virtual void GetDamage(float argDamage, bool argIsCritical, AEntity argAttacker)
     {
         if (IsDead)
             return;
 
         float armor = Mathf.Max(_entityStatus.armor, MIN_ARMOR);
         float reducedDamage = argDamage * (100f / (100f + armor));
+
+        var textPos = transform.position;
+        textPos.y += DAMAGE_TEXT_Y_OFFSET;
+        Managers.Game.OnEntityDamaged(textPos, reducedDamage, argIsCritical, _entityStatus.team);
         
         // 체력 계산
         _entityStatus.curHp -= (int)reducedDamage;
@@ -403,10 +440,6 @@ public abstract class AEntity : MonoBehaviour
                 argAttacker.OnKill(_entityStatus.goldCost);
             
             _dieAnimCoroutine = StartCoroutine(CoDie());
-        }
-        else
-        {
-            OnDamaged();
         }
     }
 
@@ -456,6 +489,7 @@ public abstract class AEntity : MonoBehaviour
         EntityInfo emptyEntityInfo = new EntityInfo();
         SetEntityInfo(emptyEntityInfo, Grade.Standard);
         _explosionAnimatorOverrideController = null;
+        _homeHqCoreTransform = null;
         _targetHqCoreTransform = null;
         _attackCooldownTimer = 0f;
         

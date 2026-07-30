@@ -71,4 +71,6 @@ public enum PrefabID
     
     UIWorldSelect,
     UIWorldSelectUnit,
+    
+    UIDamageText,
 }

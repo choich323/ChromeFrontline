@@ -43,6 +43,7 @@ public class CameraController : MonoBehaviour
     private float _targetZoom;
     
     public float Sensitivity => _smoothSpeed;
+    public Camera Cam => _mainCam;
     
     public void Init()
     {

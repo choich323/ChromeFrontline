@@ -55,7 +55,7 @@ MonoBehaviour:
     armor: 10
     attack: 10
     attackSpeed: 0.6
-    attackRange: 2.5
+    attackRange: 2
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 0.5
@@ -79,9 +79,9 @@ MonoBehaviour:
     armor: 5
     attack: 29
     attackSpeed: 0.8
-    attackRange: 5
+    attackRange: 6
     areaRadius: 0
-    criticalChance: 0.05
+    criticalChance: 0
     moveSpeed: 0.45
     productionTime: 3.9
     goldCost: 15
@@ -104,7 +104,7 @@ MonoBehaviour:
     attack: 12
     attackSpeed: 0.6
     attackRange: 5
-    areaRadius: 1.5
+    areaRadius: 2
     criticalChance: 0
     moveSpeed: 0.45
     productionTime: 4.5
@@ -127,9 +127,9 @@ MonoBehaviour:
     armor: 25
     attack: 40
     attackSpeed: 0.8
-    attackRange: 1
+    attackRange: 1.5
     areaRadius: 0
-    criticalChance: 0
+    criticalChance: 0.05
     moveSpeed: 0.65
     productionTime: 4
     goldCost: 30
@@ -151,7 +151,7 @@ MonoBehaviour:
     armor: 25
     attack: 22
     attackSpeed: 0.6
-    attackRange: 1.5
+    attackRange: 2
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 0.6
@@ -199,7 +199,7 @@ MonoBehaviour:
     armor: 12
     attack: 40
     attackSpeed: 0.6
-    attackRange: 6
+    attackRange: 5.5
     areaRadius: 2
     criticalChance: 0
     moveSpeed: 0.5
@@ -223,9 +223,9 @@ MonoBehaviour:
     armor: 45
     attack: 95
     attackSpeed: 0.8
-    attackRange: 1
+    attackRange: 2.5
     areaRadius: 0
-    criticalChance: 0.05
+    criticalChance: 0.1
     moveSpeed: 0.7
     productionTime: 8
     goldCost: 80
@@ -247,7 +247,7 @@ MonoBehaviour:
     armor: 45
     attack: 45
     attackSpeed: 0.6
-    attackRange: 1.5
+    attackRange: 3
     areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 0.6
@@ -271,9 +271,9 @@ MonoBehaviour:
     armor: 20
     attack: 200
     attackSpeed: 0.8
-    attackRange: 7
+    attackRange: 7.5
     areaRadius: 0
-    criticalChance: 0.1
+    criticalChance: 0.15
     moveSpeed: 0.55
     productionTime: 13.5
     goldCost: 135
@@ -296,8 +296,8 @@ MonoBehaviour:
     attack: 85
     attackSpeed: 0.6
     attackRange: 7
-    areaRadius: 2.5
-    criticalChance: 0.05
+    areaRadius: 3
+    criticalChance: 0
     moveSpeed: 0.55
     productionTime: 16
     goldCost: 160
@@ -319,9 +319,9 @@ MonoBehaviour:
     armor: 90
     attack: 230
     attackSpeed: 0.8
-    attackRange: 1
+    attackRange: 3
     areaRadius: 0
-    criticalChance: 0.1
+    criticalChance: 0.2
     moveSpeed: 0.75
     productionTime: 28
     goldCost: 280
@@ -343,7 +343,7 @@ MonoBehaviour:
     armor: 90
     attack: 105
     attackSpeed: 0.6
-    attackRange: 1.5
+    attackRange: 2.5
     areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 0.7
@@ -367,9 +367,9 @@ MonoBehaviour:
     armor: 45
     attack: 460
     attackSpeed: 0.8
-    attackRange: 8
+    attackRange: 9
     areaRadius: 0
-    criticalChance: 0.15
+    criticalChance: 0.25
     moveSpeed: 0.6
     productionTime: 38
     goldCost: 380
@@ -393,7 +393,7 @@ MonoBehaviour:
     attackSpeed: 0.6
     attackRange: 8
     areaRadius: 0
-    criticalChance: 0.1
+    criticalChance: 0
     moveSpeed: 0.6
     productionTime: 45
     goldCost: 450

@@ -198,7 +198,8 @@ public class EntitySpawner : MonoBehaviour
             var uid = Managers.Game.GetNewUid();
             entityObj.name = $"{argEntityInfo.id}_{uid}";
             var entity = entityObj.GetComponent<AEntity>();
-            entity.Init(uid, _team, argEntityInfo, argGrade, _targetTransform, DestroyEntity, _earnGold);
+            var entityContainer = new EntitySettingContainer(uid, _team, argGrade, argEntityInfo, transform, _targetTransform, DestroyEntity, _earnGold);
+            entity.Init(entityContainer);
             
             OnSpawn(entity);
         }

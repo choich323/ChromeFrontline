@@ -15,7 +15,8 @@ public class StageInfo
     public string aiScheduleId;  // 난이도 설정용
 
     // 임시 데이터. 최대 레벨 제한을 두는게 맞는가?
-    public int maxHqLevel;
+    // mask를 통해 제어하면 되므로 사실상 무의미해보임.
+    // public int maxHqLevel;
     public ulong playerAvailableEntitiesMask;
     public ulong enemyAvailableEntitiesMask;
 
