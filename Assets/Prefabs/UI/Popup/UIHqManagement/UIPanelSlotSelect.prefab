@@ -343,7 +343,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 750, y: 0}
+  m_SizeDelta: {x: 800, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8505836307930695368
 CanvasRenderer:
@@ -425,7 +425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1971038391762845302}
-  - component: {fileID: 69709415281203511}
+  - component: {fileID: 3319353082120278193}
   - component: {fileID: 3557729101188553747}
   m_Layer: 5
   m_Name: Content
@@ -452,9 +452,9 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 750, y: 0}
+  m_SizeDelta: {x: 800, y: 0}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &69709415281203511
+--- !u!114 &3319353082120278193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,23 +463,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5672068871076910263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
     m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
-  m_Spacing: 20
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 385, y: 240}
+  m_Spacing: {x: 15, y: 10}
+  m_Constraint: 1
+  m_ConstraintCount: 2
 --- !u!114 &3557729101188553747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +529,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 850, y: 800}
+  m_SizeDelta: {x: 800, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1326413403876779114
 CanvasGroup:
@@ -601,7 +599,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 85, y: -150}
-  m_SizeDelta: {x: 750, y: 650}
+  m_SizeDelta: {x: 800, y: 650}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &696158061118627648
 CanvasRenderer:
@@ -771,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3340863111751874521, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_PreferredHeight
-      value: 200
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 4624048158271565981, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_Name
@@ -779,7 +777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4912392968747670248, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 5543282676529253292, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_Pivot.x
@@ -807,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543282676529253292, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 750
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5543282676529253292, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -904,6 +902,10 @@ PrefabInstance:
     - target: {fileID: 8388876898929648243, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_SizeDelta.y
       value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388876898929648243, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8469710095943250257, guid: 54b9fef5981021949aba6cb43a68957b, type: 3}
       propertyPath: m_AnchorMax.y
