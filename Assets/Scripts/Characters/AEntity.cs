@@ -49,6 +49,31 @@ public enum Grade
 }
 
 [Serializable]
+public struct EntitySettingContainer
+{
+    public ulong uid;
+    public Team team;
+    public Grade grade;
+    public EntityInfo entityInfo;
+    public Transform homeHq;
+    public Transform targetHq;
+    public Action<AEntity> onDie;
+    public Action<long> onKill;
+
+    public EntitySettingContainer(ulong argUid, Team argTeam, Grade argGrade, EntityInfo argInfo, Transform argHomeHq, Transform argTargetHq, Action<AEntity> argOnDie, Action<long> argOnKill)
+    {
+        uid = argUid;
+        team = argTeam;
+        grade = argGrade;
+        entityInfo = argInfo;
+        homeHq = argHomeHq;
+        targetHq = argTargetHq;
+        onDie = argOnDie;
+        onKill = argOnKill;
+    }
+}
+
+[Serializable]
 public struct EntityStatus
 {
     public CampType camp;
@@ -123,6 +148,7 @@ public abstract class AEntity : MonoBehaviour
 
     private PrefabID _id;
     private ulong _uid;
+    private Transform _homeHqCoreTransform;
     private Transform _targetHqCoreTransform;
     private float _dieAnimDuration;
     private float _attackAnimDuration;
@@ -146,37 +172,39 @@ public abstract class AEntity : MonoBehaviour
     public Grade Grade => _entityStatus.grade;
     public EntityActionType CurAction => _entityStatus.curAction;
 
-    public virtual void Init(ulong argUid, Team argTeam, EntityInfo argEntityInfo, Grade argGrade, Transform argTargetHqCoreTransform, Action<AEntity> argOnDie, Action<long> argOnKill)
+    public virtual void Init(EntitySettingContainer argContainer)
     {
-        _animator.runtimeAnimatorController = argEntityInfo.animatorOverrideController;
+        var entityInfo = argContainer.entityInfo;
+        _animator.runtimeAnimatorController = entityInfo.animatorOverrideController;
         _entityLayerMask = LayerMask.GetMask(LAYER_NAME_ENTITY);
         
         _contactFilter.useLayerMask = true;
         _contactFilter.SetLayerMask(_entityLayerMask);
         _contactFilter.useTriggers = false;
         
-        _id = argEntityInfo.GetEntityID();
-        _uid = argUid;
-        _entityStatus.team = argTeam;
+        _id = entityInfo.GetEntityID();
+        _uid = argContainer.uid;
+        _entityStatus.team = argContainer.team;
 
         if (_entityStatus.team == Team.Player)
         {
             _direction = Vector2.right;
-            _spriteRenderer.flipX = argEntityInfo.isOriginalSpriteFacingLeft;
+            _spriteRenderer.flipX = entityInfo.isOriginalSpriteFacingLeft;
         }
         else
         {
             _direction = Vector2.left;
-            _spriteRenderer.flipX = !argEntityInfo.isOriginalSpriteFacingLeft;
+            _spriteRenderer.flipX = !entityInfo.isOriginalSpriteFacingLeft;
         }
-        SetEntityInfo(argEntityInfo, argGrade);
-        _explosionAnimatorOverrideController = argEntityInfo.explosionAnimatorOverrideController;
-        _dieAnimDuration = argEntityInfo.dieAnimDuration;
-        _attackAnimDuration = argEntityInfo.attackAnimDuration;
-        _attackHitTiming = argEntityInfo.attackHitTiming;
-        _targetHqCoreTransform = argTargetHqCoreTransform;
-        _onDie = argOnDie;
-        _onKill = argOnKill;
+        SetEntityInfo(entityInfo, argContainer.grade);
+        _explosionAnimatorOverrideController = entityInfo.explosionAnimatorOverrideController;
+        _dieAnimDuration = entityInfo.dieAnimDuration;
+        _attackAnimDuration = entityInfo.attackAnimDuration;
+        _attackHitTiming = entityInfo.attackHitTiming;
+        _homeHqCoreTransform = argContainer.homeHq;
+        _targetHqCoreTransform = argContainer.targetHq;
+        _onDie = argContainer.onDie;
+        _onKill = argContainer.onKill;
         _attackCooldownTimer = 0f;
         
         _attackWaitTime = new WaitForSeconds(_attackAnimDuration * _attackHitTiming / _entityStatus.attackSpeed);
@@ -461,6 +489,7 @@ public abstract class AEntity : MonoBehaviour
         EntityInfo emptyEntityInfo = new EntityInfo();
         SetEntityInfo(emptyEntityInfo, Grade.Standard);
         _explosionAnimatorOverrideController = null;
+        _homeHqCoreTransform = null;
         _targetHqCoreTransform = null;
         _attackCooldownTimer = 0f;
         

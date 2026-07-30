@@ -103,7 +103,7 @@ MonoBehaviour:
     armor: 1
     attack: 13.5
     attackSpeed: 0.6
-    attackRange: 5
+    attackRange: 4
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1
@@ -127,7 +127,7 @@ MonoBehaviour:
     armor: 15
     attack: 60
     attackSpeed: 1.2
-    attackRange: 1
+    attackRange: 1.25
     areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 1.6
@@ -151,7 +151,7 @@ MonoBehaviour:
     armor: 20
     attack: 27
     attackSpeed: 0.7
-    attackRange: 2.5
+    attackRange: 2.25
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.35
@@ -223,7 +223,7 @@ MonoBehaviour:
     armor: 40
     attack: 135
     attackSpeed: 1.2
-    attackRange: 1
+    attackRange: 1.75
     areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 1.75
@@ -247,9 +247,9 @@ MonoBehaviour:
     armor: 50
     attack: 55.5
     attackSpeed: 0.8
-    attackRange: 1.5
+    attackRange: 2.25
     areaRadius: 0
-    criticalChance: 0
+    criticalChance: 0.05
     moveSpeed: 1.45
     productionTime: 18
     goldCost: 240
@@ -271,7 +271,7 @@ MonoBehaviour:
     armor: 10
     attack: 244
     attackSpeed: 1.4
-    attackRange: 7
+    attackRange: 6
     areaRadius: 0
     criticalChance: 0.15
     moveSpeed: 1.1
@@ -295,8 +295,8 @@ MonoBehaviour:
     armor: 10
     attack: 122
     attackSpeed: 0.8
-    attackRange: 7
-    areaRadius: 2.5
+    attackRange: 8
+    areaRadius: 3.5
     criticalChance: 0
     moveSpeed: 1.1
     productionTime: 18
@@ -319,7 +319,7 @@ MonoBehaviour:
     armor: 80
     attack: 300
     attackSpeed: 1.2
-    attackRange: 1
+    attackRange: 1.75
     areaRadius: 0
     criticalChance: 0.2
     moveSpeed: 2
@@ -343,9 +343,9 @@ MonoBehaviour:
     armor: 100
     attack: 120
     attackSpeed: 0.9
-    attackRange: 1.5
+    attackRange: 2
     areaRadius: 0
-    criticalChance: 0
+    criticalChance: 0.1
     moveSpeed: 1.6
     productionTime: 24
     goldCost: 600
@@ -391,7 +391,7 @@ MonoBehaviour:
     armor: 25
     attack: 273
     attackSpeed: 0.8
-    attackRange: 8
+    attackRange: 6
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.25
