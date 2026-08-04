@@ -10,7 +10,6 @@ public class AIScheduleInfo
     public float tpInterval = 10f;
     public float tpIntervalDecrementAmount = 0.4f; // tp 충전 주기 감소시 얼마나 감소할지
     public float tpIntervalDecrementInterval = 60f; // 감소가 발생하는 주기
-    public float minInterval = 4f;
     // x:시간, y:수급량
     public AnimationCurve tpAmountCurve;
 

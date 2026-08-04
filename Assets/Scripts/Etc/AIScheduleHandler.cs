@@ -70,7 +70,7 @@ public class AIScheduleHandler
 
             var decrementCount = Mathf.FloorToInt(playTime / _aiScheduleInfo.tpIntervalDecrementInterval);
             var nextInterval = _aiScheduleInfo.tpInterval - decrementCount * _aiScheduleInfo.tpIntervalDecrementAmount;
-            _nextTpSupplyTimer = Mathf.Max(_aiScheduleInfo.minInterval, nextInterval);
+            _nextTpSupplyTimer = nextInterval;
 
             SpendTp(spendAmount, out int _);
 

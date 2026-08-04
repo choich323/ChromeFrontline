@@ -14,77 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    upgradeInterval: 150
-    tpInterval: 19
-    tpIntervalDecrementAmount: 0.25
-    tpIntervalDecrementInterval: 30
-    minInterval: 14
+    upgradeInterval: 120
+    tpInterval: 6.5
+    tpIntervalDecrementAmount: -0.5
+    tpIntervalDecrementInterval: 60
     tpAmountCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: -2.603035
-        value: 28
-        inSlope: 0.14913444
-        outSlope: 0.14913444
+        time: 0
+        value: 80
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 1
+        outWeight: 0
       - serializedVersion: 3
-        time: 147.39627
-        value: 57.815994
-        inSlope: 0.2931291
-        outSlope: 0.2931291
+        time: 600
+        value: 1500
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.48443946
-      - serializedVersion: 3
-        time: 293.99646
-        value: 114.46699
-        inSlope: 0.6614254
-        outSlope: 0.6614254
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.26582652
-        outWeight: 0.43417233
-      - serializedVersion: 3
-        time: 403.6799
-        value: 211.77419
-        inSlope: 1.1752119
-        outSlope: 1.1752119
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.3340374
-        outWeight: 0.6107868
-      - serializedVersion: 3
-        time: 545.07965
-        value: 392.3596
-        inSlope: 0.859877
-        outSlope: 0.859877
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.52577174
-        outWeight: 0.39377305
-      - serializedVersion: 3
-        time: 710.9635
-        value: 595.0767
-        inSlope: 0.6305766
-        outSlope: 0.6305766
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.58034015
-        outWeight: 0.20100342
-      - serializedVersion: 3
-        time: 946.21747
-        value: 807.72516
-        inSlope: 0.9479549
-        outSlope: 0.9479549
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.3934519
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -93,34 +47,34 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.9
-        inSlope: -0.000016694174
-        outSlope: -0.000016694174
+        value: 1
+        inSlope: -0.00007164199
+        outSlope: -0.00007164199
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 496.90134
-        value: 0.8917046
-        inSlope: -0.000038697555
-        outSlope: -0.000038697555
+        time: 940.60156
+        value: 0.93261343
+        inSlope: -0.0001156138
+        outSlope: -0.0001156138
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.37494698
+        outWeight: 1
       - serializedVersion: 3
-        time: 945.7992
-        value: 0.867484
-        inSlope: -0.00008815187
-        outSlope: -0.00008815187
+        time: 1409.3668
+        value: 0.87751675
+        inSlope: -0.000121422585
+        outSlope: -0.000121422585
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.5320679
+        outWeight: 1
       - serializedVersion: 3
-        time: 1207.8204
-        value: 0.82651675
+        time: 1664.7655
+        value: 0.82033694
         inSlope: -0.00029904157
         outSlope: -0.00029904157
         tangentMode: 0
@@ -130,6 +84,6 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    burstInterval: 120
-    emergencyHpThreshold: 0.3
+    burstInterval: 60
+    emergencyHpThreshold: 0.33
     emergencyTpMultiplier: 6
