@@ -14,30 +14,120 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    upgradeInterval: 120
-    tpInterval: 6.5
+    upgradeInterval: 90
+    tpInterval: 8
     tpIntervalDecrementAmount: -0.5
-    tpIntervalDecrementInterval: 60
+    tpIntervalDecrementInterval: 30
     tpAmountCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 80
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
+        value: 50
+        inSlope: 0.14928198
+        outSlope: 0.6666667
+        tangentMode: 65
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.45779508
+      - serializedVersion: 3
+        time: 30
+        value: 70
+        inSlope: 0.6666667
+        outSlope: 0.87056607
+        tangentMode: 5
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.66421825
+      - serializedVersion: 3
+        time: 60
+        value: 80
+        inSlope: 0.8228976
+        outSlope: 0.8228976
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 90
+        value: 130
+        inSlope: 1.1194913
+        outSlope: 1.1194913
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 120
+        value: 150
+        inSlope: 0.95617205
+        outSlope: 0.95617205
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.57573295
+      - serializedVersion: 3
+        time: 180
+        value: 260
+        inSlope: 1.5114286
+        outSlope: 1.5114286
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.1038139
+      - serializedVersion: 3
+        time: 240
+        value: 480
+        inSlope: 2.2750428
+        outSlope: 2.2750428
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.1612436
+      - serializedVersion: 3
+        time: 300
+        value: 720
+        inSlope: 1.7117045
+        outSlope: 1.7117045
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 360
+        value: 840
+        inSlope: 0.84140587
+        outSlope: 0.84140587
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 420
+        value: 920
+        inSlope: 0.98081636
+        outSlope: 0.98081636
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.4721617
+      - serializedVersion: 3
+        time: 510
+        value: 1000
+        inSlope: 0.76056707
+        outSlope: 0.76056707
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.86984795
       - serializedVersion: 3
         time: 600
-        value: 1500
-        inSlope: 2
-        outSlope: 2
+        value: 1200
+        inSlope: 4.880255
+        outSlope: 4.880255
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.14504226
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -48,11 +138,20 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -0.00007164199
-        outSlope: -0.00007164199
+        inSlope: 0
+        outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 120
+        value: 1
+        inSlope: -0
+        outSlope: -0.000057714133
+        tangentMode: 5
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 940.60156
