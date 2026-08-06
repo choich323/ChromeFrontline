@@ -216,8 +216,8 @@ MonoBehaviour:
       kr: "\uB9C8\uD53C\uC544 \uB450\uBAA9"
   - id: MaxGrade
     value:
-      en: Max Grade
-      kr: "\uCD5C\uB300 \uB4F1\uAE09 \uB2EC\uC131"
+      en: Max\nGrade
+      kr: "\uCD5C\uACE0\\n\uB4F1\uAE09"
   - id: MaxHp
     value:
       en: Max Hp

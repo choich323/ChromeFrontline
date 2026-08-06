@@ -6,10 +6,11 @@ using UnityEngine;
 public class AIScheduleInfo
 {
     public string id;
-    public float upgradeInterval = 180f;
+    public float upgradeInterval = 90f;
     public float tpInterval = 10f;
-    public float tpIntervalDecrementAmount = 0.4f; // tp 충전 주기 감소시 얼마나 감소할지
-    public float tpIntervalDecrementInterval = 60f; // 감소가 발생하는 주기
+    public float tpIntervalChangeAmount = 0.4f; // tp 충전 주기 감소시 얼마나 감소할지
+    public float tpIntervalChangeInterval = 60f; // 감소가 발생하는 주기
+    public float tpIntervalMax = 35f;
     // x:시간, y:수급량
     public AnimationCurve tpAmountCurve;
 

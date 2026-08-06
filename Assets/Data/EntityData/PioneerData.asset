@@ -27,16 +27,16 @@ MonoBehaviour:
     tier: 1
     grade: 0
     level: 1
-    hp: 208
-    armor: 29
+    hp: 253
+    armor: 32
     attack: 24.5
     attackSpeed: 0.99
     attackRange: 1
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.21
-    productionTime: 8.3
-    goldCost: 15
+    productionTime: 7.5
+    goldCost: 17
   - id: Phalanx
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -51,15 +51,15 @@ MonoBehaviour:
     tier: 1
     grade: 0
     level: 1
-    hp: 231
+    hp: 253
     armor: 32
-    attack: 12.2
+    attack: 10.2
     attackSpeed: 0.75
     attackRange: 1.5
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.21
-    productionTime: 8.4
+    productionTime: 6.7
     goldCost: 14
   - id: Security
     prefab: {fileID: 0}
@@ -75,16 +75,16 @@ MonoBehaviour:
     tier: 1
     grade: 0
     level: 1
-    hp: 170
-    armor: 21
+    hp: 207
+    armor: 23
     attack: 57.1
-    attackSpeed: 1.1
+    attackSpeed: 1.03
     attackRange: 5
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.1
-    productionTime: 9.4
-    goldCost: 17
+    productionTime: 7.9
+    goldCost: 18
   - id: Piercer
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -99,16 +99,16 @@ MonoBehaviour:
     tier: 1
     grade: 0
     level: 1
-    hp: 189
+    hp: 207
     armor: 23
-    attack: 28.6
-    attackSpeed: 1
+    attack: 23.8
+    attackSpeed: 0.93
     attackRange: 4
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.1
-    productionTime: 9.6
-    goldCost: 16
+    productionTime: 8.6
+    goldCost: 18
   - id: SpecialForce
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -123,16 +123,16 @@ MonoBehaviour:
     tier: 2
     grade: 0
     level: 1
-    hp: 374
-    armor: 44
-    attack: 45.3
+    hp: 455
+    armor: 48
+    attack: 46.5
     attackSpeed: 1.27
     attackRange: 1.25
     areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 1.33
-    productionTime: 13.2
-    goldCost: 48
+    productionTime: 11.7
+    goldCost: 53
   - id: Breacher
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -147,16 +147,16 @@ MonoBehaviour:
     tier: 2
     grade: 0
     level: 1
-    hp: 416
-    armor: 49
-    attack: 22.6
+    hp: 455
+    armor: 48
+    attack: 19.4
     attackSpeed: 0.97
     attackRange: 2.25
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.33
-    productionTime: 15
-    goldCost: 50
+    productionTime: 10.8
+    goldCost: 45
   - id: AssaultRifle
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -171,16 +171,16 @@ MonoBehaviour:
     tier: 2
     grade: 0
     level: 1
-    hp: 306
-    armor: 32
-    attack: 105.7
-    attackSpeed: 1.39
+    hp: 373
+    armor: 35
+    attack: 108.5
+    attackSpeed: 1.29
     attackRange: 6
     areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 1.21
-    productionTime: 15.1
-    goldCost: 55
+    productionTime: 12.3
+    goldCost: 56
   - id: Commander
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -195,16 +195,16 @@ MonoBehaviour:
     tier: 2
     grade: 0
     level: 1
-    hp: 340
+    hp: 373
     armor: 35
-    attack: 52.8
-    attackSpeed: 1.26
+    attack: 45.2
+    attackSpeed: 1.18
     attackRange: 6
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.21
-    productionTime: 14.7
-    goldCost: 49
+    productionTime: 13.7
+    goldCost: 57
   - id: HydroPuncher
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -219,16 +219,16 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 674
-    armor: 66
-    attack: 83.8
+    hp: 820
+    armor: 72
+    attack: 88.4
     attackSpeed: 1.66
     attackRange: 1.75
     areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 1.46
-    productionTime: 21.7
-    goldCost: 158
+    productionTime: 19.1
+    goldCost: 174
   - id: ShadowReaper
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -243,16 +243,16 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 748
-    armor: 73
-    attack: 41.9
+    hp: 820
+    armor: 72
+    attack: 36.8
     attackSpeed: 1.25
     attackRange: 2.25
     areaRadius: 0
     criticalChance: 0.05
     moveSpeed: 1.46
-    productionTime: 24.1
-    goldCost: 161
+    productionTime: 17.5
+    goldCost: 146
   - id: TheThunder
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -267,16 +267,16 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 551
-    armor: 47
-    attack: 195.5
-    attackSpeed: 1.74
+    hp: 671
+    armor: 52
+    attack: 206.2
+    attackSpeed: 1.63
     attackRange: 6
     areaRadius: 0
     criticalChance: 0.15
     moveSpeed: 1.33
-    productionTime: 23.1
-    goldCost: 168
+    productionTime: 19.4
+    goldCost: 176
   - id: AegisStorm
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 22100000, guid: 5b41c79c27ae6c1459b4ef8d749725ed, type: 2}
@@ -291,16 +291,16 @@ MonoBehaviour:
     tier: 3
     grade: 0
     level: 1
-    hp: 612
-    armor: 47
-    attack: 195.5
-    attackSpeed: 1.43
+    hp: 671
+    armor: 52
+    attack: 206.2
+    attackSpeed: 1.33
     attackRange: 8
     areaRadius: 3.5
     criticalChance: 0
     moveSpeed: 1.06
-    productionTime: 21.9
-    goldCost: 175
+    productionTime: 19.2
+    goldCost: 192
   - id: ElectroBlade
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -315,16 +315,16 @@ MonoBehaviour:
     tier: 4
     grade: 0
     level: 1
-    hp: 1212
-    armor: 99
-    attack: 155
+    hp: 1475
+    armor: 109
+    attack: 167.9
     attackSpeed: 2.28
     attackRange: 1.75
     areaRadius: 0
     criticalChance: 0.2
     moveSpeed: 1.61
-    productionTime: 36.4
-    goldCost: 530
+    productionTime: 32.8
+    goldCost: 596
   - id: PlasmaSlasher
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -339,16 +339,16 @@ MonoBehaviour:
     tier: 4
     grade: 0
     level: 1
-    hp: 1347
+    hp: 1475
     armor: 109
-    attack: 77.5
+    attack: 70
     attackSpeed: 1.66
     attackRange: 2
     areaRadius: 0
     criticalChance: 0.1
     moveSpeed: 1.61
-    productionTime: 40.5
-    goldCost: 540
+    productionTime: 28.9
+    goldCost: 481
   - id: VoidBullet
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -363,16 +363,16 @@ MonoBehaviour:
     tier: 4
     grade: 0
     level: 1
-    hp: 992
-    armor: 71
-    attack: 361.7
-    attackSpeed: 2.38
+    hp: 1207
+    armor: 78
+    attack: 391.8
+    attackSpeed: 2.22
     attackRange: 8
     areaRadius: 0
     criticalChance: 0.25
     moveSpeed: 1.46
-    productionTime: 37.8
-    goldCost: 550
+    productionTime: 32.9
+    goldCost: 598
   - id: SonicDisruptor
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
@@ -387,13 +387,13 @@ MonoBehaviour:
     tier: 4
     grade: 0
     level: 1
-    hp: 1102
+    hp: 1207
     armor: 78
-    attack: 180.8
-    attackSpeed: 2.16
+    attack: 163.2
+    attackSpeed: 2.02
     attackRange: 6
     areaRadius: 0
     criticalChance: 0
     moveSpeed: 1.46
-    productionTime: 42.8
-    goldCost: 570
+    productionTime: 36.2
+    goldCost: 604
