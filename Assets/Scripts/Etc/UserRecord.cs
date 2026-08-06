@@ -46,17 +46,43 @@ public class UserRecord
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const string DEFAULT_WORLD_ID = "world1";
     
+    private string _currentWorldId = DEFAULT_WORLD_ID;
+    
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
     private Dictionary<int, StageRecord> _stageBestRecordDict = new Dictionary<int, StageRecord>();
 
-    private string _currentWorldId = DEFAULT_WORLD_ID;
-
     [JsonProperty]
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
+    [JsonProperty]
+    private int _chrome = 0;
+    
+    [JsonProperty]
+    private long _lastChromeUpdateTick = 0;
+
+    public void EarnChrome(int argAmount)
+    {
+        if (argAmount <= 0) return;
+        _chrome += argAmount;
+        _lastChromeUpdateTick = DateTime.Now.Ticks;
+    }
+
+    public bool ConsumeChrome(int argAmount)
+    {
+        if (argAmount <= 0 || _chrome < argAmount) return false;
+        
+        _chrome -= argAmount;
+        _lastChromeUpdateTick = DateTime.Now.Ticks;
+        return true;
+    }
+    
+    [JsonIgnore]
     public string CurrentWorldId => _currentWorldId;
 
+    [JsonIgnore]
+    public int Chrome => _chrome;
+    
     public void SetCurrentWorldId(string argWorldId)
     {
         _currentWorldId = argWorldId;
