@@ -93,20 +93,20 @@ public class UIResult : APopup
     {
         var record = Gm.UserRecord;
         int stage = _resultData.stage;
-        var stageBestRecord = record.GetStageBestRecord(stage);
-        if (stageBestRecord == null)
-        {
-            stageBestRecord = new StageRecord();
-            stageBestRecord.tick = DateTime.Now.Ticks;
-            record.SaveStageBestRecord(stage, stageBestRecord);
-        }
-
         var stageSaveInfo = record.GetStageSaveInfo(stage);
         if (stageSaveInfo == null)
         {
             stageSaveInfo = new StageSaveInfo();
             stageSaveInfo.stage = stage;
             record.SaveStageSaveInfo(stage, stageSaveInfo);
+        }
+        
+        var stageBestRecord = record.GetStageBestRecord(stage);
+        if (stageBestRecord == null)
+        {
+            stageBestRecord = new StageRecord();
+            stageBestRecord.tick = DateTime.Now.Ticks;
+            record.SaveStageBestRecord(stage, stageBestRecord);
         }
         
         if (!stageBestRecord.isClear && _resultData.isClear)

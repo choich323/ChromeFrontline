@@ -304,6 +304,11 @@ public class DataManager : MonoBehaviour
     {
         return _worldCatalog.GetWorldIndex(argWorldId);
     }
+
+    public int GetWorldNumber(string argWorldId)
+    {
+        return GetWorldIndex(argWorldId) + 1;
+    }
     
     public StoryData GetOrLoadStoryData(string argWorldId)
     {

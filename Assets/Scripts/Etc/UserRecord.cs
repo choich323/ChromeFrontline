@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UnityEngine;
 
 [Serializable]
 public class StageSaveInfo
@@ -51,11 +52,15 @@ public class UserRecord
     private Dictionary<int, StageRecord> _stageBestRecordDict = new Dictionary<int, StageRecord>();
 
     private string _currentWorldId = DEFAULT_WORLD_ID;
+    
+    [JsonProperty]
+    private int _maxUnlockedWorld = 1;
 
     [JsonProperty]
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
     public string CurrentWorldId => _currentWorldId;
+    public int MaxUnlockedWorld => _maxUnlockedWorld;
 
     public void SetCurrentWorldId(string argWorldId)
     {
@@ -77,11 +82,23 @@ public class UserRecord
     
     public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo)
     {
+        if (_stageSaveInfoDict.ContainsKey(argKey) && argStageSaveInfo.tick <= _stageSaveInfoDict[argKey].tick)
+        {
+            return;
+        }
+        
         _stageSaveInfoDict[argKey] = argStageSaveInfo;
+        int curWorld = Managers.Data.GetWorldNumber(_currentWorldId);
+        _maxUnlockedWorld = Mathf.Max(_maxUnlockedWorld, curWorld);
     }
     
     public void SaveStageBestRecord(int argKey, StageRecord argRecord)
     {
+        if (_stageBestRecordDict.ContainsKey(argKey) && argRecord.tick <= _stageBestRecordDict[argKey].tick)
+        {
+            return;
+        }
+        
         _stageBestRecordDict[argKey] = argRecord;
     }
     
@@ -99,22 +116,14 @@ public class UserRecord
     
     public void Save(UserRecord argUserRecord)
     {
-        foreach (var record in argUserRecord._stageBestRecordDict)
+        foreach (var kvp in argUserRecord._stageSaveInfoDict)
         {
-            var key = record.Key;
-            if (!_stageBestRecordDict.ContainsKey(key) || record.Value.tick > _stageBestRecordDict[key].tick)
-            {
-                _stageBestRecordDict[key] = record.Value;
-            }
+            SaveStageSaveInfo(kvp.Key, kvp.Value);
         }
-
-        foreach (var info in argUserRecord._stageSaveInfoDict)
+        
+        foreach (var kvp in argUserRecord._stageBestRecordDict)
         {
-            var key = info.Key;
-            if (!_stageSaveInfoDict.ContainsKey(key) || info.Value.tick > _stageSaveInfoDict[key].tick)
-            {
-                _stageSaveInfoDict[key] = info.Value;
-            }
+            SaveStageBestRecord(kvp.Key, kvp.Value);
         }
     }
     
