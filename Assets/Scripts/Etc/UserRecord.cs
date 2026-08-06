@@ -28,12 +28,21 @@ public class StageRecord
     public bool isClear = false;
     public float clearTime = INVALID_CLEAR_TIME;
     public int hqhpRatio = INVALID_HQ_HP_RATIO;
+
+    public bool IsFirstTry()
+    {
+        return !isClear && hqhpRatio == INVALID_HQ_HP_RATIO;
+    }
 }
 
 [Serializable]
 public class UserRecord
 {
-    private const float CLEAR_TIME_THRESHOLD = 720f; // 12분
+    // stage마다 클리어 기준 시간을 다르게 하는 것도 좋지만,
+    // 유저가 별을 달성하기 위한 조건을 매번 확인하는 것은 귀찮을 것 같다.
+    // 고정값으로 해야 유저가 당연히 그렇겠지 하고 기준을 맞출 듯.
+    // 물론 고정하지 않으면 그건 그거대로 유저가 적응하겠지만.. 바라는 바는 아님.
+    public const float CLEAR_TIME_THRESHOLD = 480f; // 8분
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const string DEFAULT_WORLD_ID = "world1";
     
