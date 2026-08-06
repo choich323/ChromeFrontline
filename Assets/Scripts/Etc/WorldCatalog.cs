@@ -16,7 +16,7 @@ public class WorldCatalog : ScriptableObject
 
     public int GetWorldCount() => _worldList.Count;
     
-    public string GetWorldId(int argIndex)
+    public string GetWorldIdByIndex(int argIndex)
     {
         if (argIndex >= 0 && argIndex < _worldList.Count)
             return _worldList[argIndex].worldId;
