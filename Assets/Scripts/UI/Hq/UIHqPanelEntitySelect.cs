@@ -130,7 +130,7 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
     public override void Clear()
     {
         var ph = Managers.UI.PopupHandler;
-        if (ph.Top().GetType() == typeof(UIEntityStat))
+        if (ph.Top() != null && ph.Top().GetType() == typeof(UIEntityStat))
         {
             ph.ClosePopup();
         }

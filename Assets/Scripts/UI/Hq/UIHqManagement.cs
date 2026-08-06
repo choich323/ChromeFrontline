@@ -35,6 +35,11 @@ public class UIHqManagement : APopup
     {
         _rightPanel.GoBack();
     }
+
+    public override void RequestClose()
+    {
+        ForceClose();
+    }
     
     // menu select 패널일 때만 닫히도록 하고, 나머지는 패널 복귀로 하도록 강제 닫기를 별도로 제작.
     void ForceClose()

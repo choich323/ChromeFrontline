@@ -72,6 +72,11 @@ public abstract class APopup : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public virtual void RequestClose()
+    {
+        Close();
+    }
+    
     public virtual void Close()
     {
         if (IsClosed) return;
