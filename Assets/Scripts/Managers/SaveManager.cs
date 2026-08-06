@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
     
     public void Awake()
     {
-        _filePath = Path.Combine(Application.persistentDataPath, "UserSave.sav");
+        _filePath = Path.Combine(Application.persistentDataPath, "ChromeFrontline_UserSave.sav");
     }
 
     public void Init()

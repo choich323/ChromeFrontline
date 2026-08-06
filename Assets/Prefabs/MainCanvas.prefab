@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 345028105492537458}
   - component: {fileID: 6229060973277798604}
   m_Layer: 0
-  m_Name: DamageTextCanvas
+  m_Name: WorldSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,76 +14,130 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIScheduleData
   scheduleInfoList:
   - id: normal
-    upgradeInterval: 150
-    tpInterval: 19
-    tpIntervalDecrementAmount: 0.25
-    tpIntervalDecrementInterval: 30
-    minInterval: 14
+    upgradeInterval: 90
+    tpInterval: 7
+    tpIntervalChangeAmount: -1.5
+    tpIntervalChangeInterval: 30
+    tpIntervalMax: 35
     tpAmountCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: -2.603035
-        value: 28
-        inSlope: 0.14913444
-        outSlope: 0.14913444
-        tangentMode: 0
+        time: 0
+        value: 20
+        inSlope: 0.14928198
+        outSlope: 1
+        tangentMode: 65
         weightedMode: 0
         inWeight: 0
-        outWeight: 1
+        outWeight: 0.45779508
       - serializedVersion: 3
-        time: 147.39627
-        value: 57.815994
-        inSlope: 0.2931291
-        outSlope: 0.2931291
+        time: 30
+        value: 50
+        inSlope: 1
+        outSlope: 0.4592004
+        tangentMode: 5
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.41625354
+      - serializedVersion: 3
+        time: 60
+        value: 75
+        inSlope: 0.8228976
+        outSlope: 0.8228976
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.48443946
+        outWeight: 1
       - serializedVersion: 3
-        time: 293.99646
-        value: 114.46699
-        inSlope: 0.6614254
-        outSlope: 0.6614254
+        time: 90
+        value: 110
+        inSlope: 1.1194913
+        outSlope: 1.1194913
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.26582652
-        outWeight: 0.43417233
+        inWeight: 0.33333334
+        outWeight: 1
       - serializedVersion: 3
-        time: 403.6799
-        value: 211.77419
-        inSlope: 1.1752119
-        outSlope: 1.1752119
+        time: 120
+        value: 200
+        inSlope: 2.929136
+        outSlope: 2.929136
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.3340374
-        outWeight: 0.6107868
+        inWeight: 0.33333334
+        outWeight: 0.7666832
       - serializedVersion: 3
-        time: 545.07965
-        value: 392.3596
-        inSlope: 0.859877
-        outSlope: 0.859877
+        time: 180
+        value: 320
+        inSlope: 1.5114286
+        outSlope: 1.5114286
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.52577174
-        outWeight: 0.39377305
+        inWeight: 0.33333334
+        outWeight: 0.1038139
       - serializedVersion: 3
-        time: 710.9635
-        value: 595.0767
-        inSlope: 0.6305766
-        outSlope: 0.6305766
+        time: 240
+        value: 400
+        inSlope: 1.9782435
+        outSlope: 1.9782435
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.58034015
-        outWeight: 0.20100342
+        inWeight: 0.35127512
+        outWeight: 0.9503179
       - serializedVersion: 3
-        time: 946.21747
-        value: 807.72516
-        inSlope: 0.9479549
-        outSlope: 0.9479549
+        time: 300
+        value: 600
+        inSlope: 2.7094195
+        outSlope: 2.7094195
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.3934519
+        inWeight: 0.33333334
+        outWeight: 0.55581564
+      - serializedVersion: 3
+        time: 360
+        value: 800
+        inSlope: 0.84140587
+        outSlope: 0.84140587
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 420
+        value: 920
+        inSlope: 0.98081636
+        outSlope: 0.98081636
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.4721617
+      - serializedVersion: 3
+        time: 510
+        value: 1100
+        inSlope: 0.76056707
+        outSlope: 0.76056707
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.86984795
+      - serializedVersion: 3
+        time: 600
+        value: 1200
+        inSlope: 1.0850242
+        outSlope: 1.0850242
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0
+      - serializedVersion: 3
+        time: 720
+        value: 1800
+        inSlope: 6.5505447
+        outSlope: 6.5505447
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.5035258
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -93,34 +147,43 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.9
-        inSlope: -0.000016694174
-        outSlope: -0.000016694174
+        value: 1
+        inSlope: 0
+        outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 496.90134
-        value: 0.8917046
-        inSlope: -0.000038697555
-        outSlope: -0.000038697555
+        time: 120
+        value: 1
+        inSlope: -0
+        outSlope: -0.000057714133
+        tangentMode: 5
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 940.60156
+        value: 0.93261343
+        inSlope: -0.0001156138
+        outSlope: -0.0001156138
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.37494698
+        outWeight: 1
       - serializedVersion: 3
-        time: 945.7992
-        value: 0.867484
-        inSlope: -0.00008815187
-        outSlope: -0.00008815187
+        time: 1409.3668
+        value: 0.87751675
+        inSlope: -0.000121422585
+        outSlope: -0.000121422585
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.5320679
+        outWeight: 1
       - serializedVersion: 3
-        time: 1207.8204
-        value: 0.82651675
+        time: 1664.7655
+        value: 0.82033694
         inSlope: -0.00029904157
         outSlope: -0.00029904157
         tangentMode: 0
@@ -130,6 +193,6 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    burstInterval: 120
-    emergencyHpThreshold: 0.3
+    burstInterval: 60
+    emergencyHpThreshold: 0.33
     emergencyTpMultiplier: 6

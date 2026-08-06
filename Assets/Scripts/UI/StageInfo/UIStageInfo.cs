@@ -6,7 +6,7 @@ public class UIStageInfo : APopup
 {
     private const float HOUR_TO_SECOND  = 3600f;
     private const float MINUTE_TO_SECOND  = 60f;
-    private const float CLEAR_TIME_THRESHOLD = 720f; // 12분
+    private const float CLEAR_TIME_THRESHOLD = UserRecord.CLEAR_TIME_THRESHOLD;
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const string STAGE_CLEAR_NONE = "--";
     private const string STAGE_CLEAR_TIME_NONE = "--:--";
@@ -83,9 +83,10 @@ public class UIStageInfo : APopup
         var Sm = Managers.String;
         _clearMissionText.SetText(Sm.GetString(StringID.Clear));
         var clearMissionTimeThreshold = GetConvertedTimeText(CLEAR_TIME_THRESHOLD);
+        _clearTimeMissionText.SetText(Sm.GetString(StringID.ClearTimeMission, clearMissionTimeThreshold));
         _hqHpMissionText.SetText(Sm.GetString(StringID.HqHpMission, CLEAR_HQ_HP_RATIO));
 
-        if (stageRecord == null)
+        if (stageRecord.IsFirstTry())
         {
             _clearBestText.SetText(STAGE_CLEAR_NONE);
             _clearTimeBestText.SetText(STAGE_CLEAR_TIME_NONE);
@@ -96,7 +97,6 @@ public class UIStageInfo : APopup
             string clearText = stageRecord.isClear ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
             _clearBestText.SetText(clearText);
         
-            _clearTimeMissionText.SetText(Sm.GetString(StringID.ClearTimeMission, clearMissionTimeThreshold));
             _clearTimeBestText.SetText(GetConvertedTimeText(stageRecord.clearTime));
         
             var ratio = stageRecord.hqhpRatio == StageRecord.INVALID_HQ_HP_RATIO ? STAGE_CLEAR_HQ_HP_NONE : $"{stageRecord.hqhpRatio:N0}%";

@@ -68,9 +68,9 @@ public class AIScheduleHandler
             int spendAmount = (int)(tpAmount * spendRate);
             int saveAmount = (int)tpAmount - spendAmount;
 
-            var decrementCount = Mathf.FloorToInt(playTime / _aiScheduleInfo.tpIntervalDecrementInterval);
-            var nextInterval = _aiScheduleInfo.tpInterval - decrementCount * _aiScheduleInfo.tpIntervalDecrementAmount;
-            _nextTpSupplyTimer = Mathf.Max(_aiScheduleInfo.minInterval, nextInterval);
+            var decrementCount = Mathf.FloorToInt(playTime / _aiScheduleInfo.tpIntervalChangeInterval);
+            var nextInterval = _aiScheduleInfo.tpInterval - decrementCount * _aiScheduleInfo.tpIntervalChangeAmount;
+            _nextTpSupplyTimer = Mathf.Min(_aiScheduleInfo.tpIntervalMax, nextInterval);
 
             SpendTp(spendAmount, out int _);
 

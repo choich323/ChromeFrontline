@@ -9,11 +9,12 @@ public class UIEntityUnit : MonoBehaviour
     
     [SerializeField] private Button _btnSelect;
     [SerializeField] private Image _icon;
+    [SerializeField] private Image _bg;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _productionTimeText;
     [SerializeField] private TextMeshProUGUI _goldText;
     [SerializeField] private UILongPressDetector _detector;
-    [SerializeField] private GameObject _selectedTextObj; 
+    [SerializeField] private Color _selectedColor;
 
     private Action<PrefabID> _onSelectEntity;
     private EntityInfo _entityInfo;
@@ -50,7 +51,7 @@ public class UIEntityUnit : MonoBehaviour
         {
             Debug.LogError($"Can't find spawner. Slot:{_slotIndex}");
             _selected = false;
-            _selectedTextObj.SetActive(false);
+            _bg.color = Color.white;
             return;
         }
 
@@ -59,7 +60,7 @@ public class UIEntityUnit : MonoBehaviour
         {
             Debug.LogError($"Can't find slot. Slot:{_slotIndex}");
             _selected = false;
-            _selectedTextObj.SetActive(false);
+            _bg.color = Color.white;
             return;
         }
 
@@ -68,12 +69,12 @@ public class UIEntityUnit : MonoBehaviour
         if (curSlotTargetId == id)
         {
             _selected = true;
-            _selectedTextObj.SetActive(true);
+            _bg.color = _selectedColor;
             return;
         }
         
         _selected = false;
-        _selectedTextObj.SetActive(false);
+        _bg.color = Color.white;
     }
 
     void SetText()
