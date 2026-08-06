@@ -59,9 +59,37 @@ public class UserRecord
     [JsonProperty]
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
+    [JsonProperty]
+    private int _chrome = 0;
+    
+    [JsonProperty]
+    private long _lastChromeUpdateTick = 0;
+
+    public void EarnChrome(int argAmount)
+    {
+        if (argAmount <= 0) return;
+        _chrome += argAmount;
+        _lastChromeUpdateTick = DateTime.Now.Ticks;
+    }
+
+    public bool ConsumeChrome(int argAmount)
+    {
+        if (argAmount <= 0 || _chrome < argAmount) return false;
+        
+        _chrome -= argAmount;
+        _lastChromeUpdateTick = DateTime.Now.Ticks;
+        return true;
+    }
+    
+    [JsonIgnore]
     public string CurrentWorldId => _currentWorldId;
+    
+    [JsonIgnore]
     public int MaxUnlockedWorld => _maxUnlockedWorld;
 
+    [JsonIgnore]
+    public int Chrome => _chrome;
+    
     public void SetCurrentWorldId(string argWorldId)
     {
         _currentWorldId = argWorldId;
