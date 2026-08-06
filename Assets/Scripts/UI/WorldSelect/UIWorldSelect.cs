@@ -12,16 +12,16 @@ public class UIWorldSelect : APopup
     public override void Init()
     {
         base.Init();
-        RefreshList();
+        RefreshList(true);
     }
 
-    void RefreshList()
+    void RefreshList(bool argIsInit = false)
     {
         ClearUnitList();
 
         var catalog = Managers.Data.WorldCatalog;
         var ur = Managers.Game.UserRecord;
-        var curWorldId = ur.CurrentWorldId;
+        var curWorldId = argIsInit ? Managers.Data.GetWorldId(ur.MaxUnlockedWorld) : ur.CurrentWorldId;
         UIWorldSelectUnit selectedUnit = null;
         
         var worldCount = ur.MaxUnlockedWorld;

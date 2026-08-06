@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: world4
   m_EditorClassIdentifier: Assembly-CSharp::WorldData
   worldId: world4
-  bg: {fileID: 1624212000631451773, guid: 27c78005f93b67c41b2342f26e821e02, type: 3}
+  bg: {fileID: 0}
   stageInfoList:
   - stage: 1
     stageName: 4-1
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 1
     aiScheduleId: normal
-    maxHqLevel: 4
-    playerAvailableEntitiesMask: 0
-    enemyAvailableEntitiesMask: 0
+    playerAvailableEntitiesMask: 65535
+    enemyAvailableEntitiesMask: 4294901760

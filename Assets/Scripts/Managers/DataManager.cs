@@ -287,13 +287,11 @@ public class DataManager : MonoBehaviour
         var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageIndex);
         if (mySave != null && mySave.isCleared) return true;
 
-        // 3. 직전 스테이지(index - 1)를 클리어했는지 검사
-        var prevStage = _curWorldData.GetStageInfoList()
-            .FirstOrDefault(s => s.stageIndex == argStageInfo.stageIndex - 1);
-
+        // 3. 직전 스테이지를 클리어했는지 검사
+        var prevStage = _curWorldData.GetStageInfoList().FirstOrDefault(info => info.stage == argStageInfo.stage-1);
         if (prevStage != null)
         {
-            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stageIndex);
+            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stage);
             return prevSave != null && prevSave.isCleared;
         }
 

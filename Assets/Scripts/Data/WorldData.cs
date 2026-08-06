@@ -8,6 +8,7 @@ public class StageInfo
     [Header("=== Lobby UI Info ===")]
     public int stage;
     public string stageName;
+    public bool isLastStage = false;
     public Vector2 uiPosition;   // 에디터에서 베이킹할 맵 상의 앵커 좌표
 
     [Header("=== Gameplay Metadata ===")]

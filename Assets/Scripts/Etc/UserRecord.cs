@@ -97,32 +97,24 @@ public class UserRecord
 
     public StageSaveInfo GetStageSaveInfo(int argStage)
     {
-        if (!_stageSaveInfoDict.TryGetValue(argStage, out var result))
-        {
-            result = new StageSaveInfo();
-            result.stage = argStage;
-            result.tick = DateTime.Now.Ticks;
-            _stageSaveInfoDict.Add(argStage, result);
-        }
-
-        return result;
+        return _stageSaveInfoDict.GetValueOrDefault(argStage);
     }
     
-    public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo)
+    public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo, bool argIsLastStage = false)
     {
-        if (_stageSaveInfoDict.ContainsKey(argKey) && argStageSaveInfo.tick <= _stageSaveInfoDict[argKey].tick)
+        if (_stageSaveInfoDict.ContainsKey(argKey) && argStageSaveInfo.tick < _stageSaveInfoDict[argKey].tick)
         {
             return;
         }
         
         _stageSaveInfoDict[argKey] = argStageSaveInfo;
         int curWorld = Managers.Data.GetWorldNumber(_currentWorldId);
-        _maxUnlockedWorld = Mathf.Max(_maxUnlockedWorld, curWorld);
+        _maxUnlockedWorld += argIsLastStage && _maxUnlockedWorld == curWorld ? 1 : 0;
     }
     
     public void SaveStageBestRecord(int argKey, StageRecord argRecord)
     {
-        if (_stageBestRecordDict.ContainsKey(argKey) && argRecord.tick <= _stageBestRecordDict[argKey].tick)
+        if (_stageBestRecordDict.ContainsKey(argKey) && argRecord.tick < _stageBestRecordDict[argKey].tick)
         {
             return;
         }

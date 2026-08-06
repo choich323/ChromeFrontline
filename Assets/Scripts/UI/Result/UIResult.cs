@@ -7,6 +7,7 @@ public struct ResultData
 {
     public int stage;
     public bool isClear;
+    public bool isLastStage;
 }
 
 public class UIResult : APopup
@@ -14,7 +15,7 @@ public class UIResult : APopup
     private const float HOUR_TO_SECOND  = 3600f;
     private const float MINUTE_TO_SECOND  = 60f;
     private const float HUNDRED_PERCENT  = 100f;
-    private const float CLEAR_TIME_THRESHOLD = 720f; // 12분
+    private const float CLEAR_TIME_THRESHOLD = UserRecord.CLEAR_TIME_THRESHOLD;
     private const int CLEAR_HQ_HP_RATIO = 100;
     
     [SerializeField] private Image _bgImage;
@@ -93,19 +94,22 @@ public class UIResult : APopup
     {
         var record = Gm.UserRecord;
         int stage = _resultData.stage;
+        var nowTick = DateTime.Now.Ticks;
+        
         var stageSaveInfo = record.GetStageSaveInfo(stage);
         if (stageSaveInfo == null)
         {
             stageSaveInfo = new StageSaveInfo();
+            stageSaveInfo.tick = nowTick;
             stageSaveInfo.stage = stage;
-            record.SaveStageSaveInfo(stage, stageSaveInfo);
+            record.SaveStageSaveInfo(stage, stageSaveInfo, _resultData.isLastStage);
         }
         
         var stageBestRecord = record.GetStageBestRecord(stage);
         if (stageBestRecord == null)
         {
             stageBestRecord = new StageRecord();
-            stageBestRecord.tick = DateTime.Now.Ticks;
+            stageBestRecord.tick = nowTick;
             record.SaveStageBestRecord(stage, stageBestRecord);
         }
         
@@ -134,9 +138,11 @@ public class UIResult : APopup
 
         if (_isClearChanged || _isBestClearTimeChanged || _isBestHqHpChanged)
         {
-            stageBestRecord.tick = DateTime.Now.Ticks;
+            
+            stageSaveInfo.tick = nowTick;
+            stageBestRecord.tick = nowTick;
+            record.SaveStageSaveInfo(stage, stageSaveInfo, _resultData.isLastStage);
             record.SaveStageBestRecord(stage, stageBestRecord);
-            record.SaveStageSaveInfo(stage, stageSaveInfo);
         }
         
         Gm.SaveUserRecord(record);
@@ -224,6 +230,7 @@ public class UIResult : APopup
         var ur = Gm.UserRecord;
         var stage = _resultData.stage;
         var stageRecord = ur.GetStageBestRecord(stage);
+        
         if (stageRecord != null)
         {
             var bestClear = Sm.GetString(StringID.Success);

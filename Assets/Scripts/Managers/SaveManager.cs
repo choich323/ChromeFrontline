@@ -100,4 +100,11 @@ public class SaveManager : MonoBehaviour
 
         return srDecrypt.ReadToEnd();
     }
+    
+    [ContextMenu("Delete Save File")]
+    public void DeleteSaveFile()
+    {
+        if (File.Exists(_filePath)) File.Delete(_filePath);
+        Debug.Log("세이브 파일 삭제 완료!");
+    }
 }
