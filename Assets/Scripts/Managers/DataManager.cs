@@ -284,7 +284,7 @@ public class DataManager : MonoBehaviour
         if (argStageInfo.stageIndex == 1) return true;
 
         // 2. 이미 클리어한 스테이지라면 무조건 해금
-        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageIndex);
+        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stage);
         if (mySave != null && mySave.isCleared) return true;
 
         // 3. 직전 스테이지를 클리어했는지 검사

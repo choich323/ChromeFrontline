@@ -12,7 +12,6 @@ public class UIStageInfo : APopup
     private const string STAGE_CLEAR_TIME_NONE = "--:--";
     private const string STAGE_CLEAR_HQ_HP_NONE = "--%";
     
-    [SerializeField] private TextMeshProUGUI _stageNumberText;
     [SerializeField] private TextMeshProUGUI _stageTitleText;
     [SerializeField] private TextMeshProUGUI _stageDescriptionText;
     
@@ -58,20 +57,14 @@ public class UIStageInfo : APopup
         SetIcon(argUserRecord);
     }
 
-    void SetStageNumberText(UserRecord argUserRecord)
-    {
-        var worldNum = Managers.Data.GetWorldIndex(argUserRecord.CurrentWorldId) + 1;
-        _stageNumberText.SetText($"{worldNum}-{_stageInfo.stage}");
-    }
-
     void SetStageTitleText(UserRecord argUserRecord)
     {
-        _stageTitleText.SetText(Managers.String.GetStageTitle(argUserRecord.CurrentWorldId, _stageInfo.stage));
+        _stageTitleText.SetText(Managers.String.GetStageTitle(Managers.Game.CurWorldId, _stageInfo.stage));
     }
     
     void SetStageDescText(UserRecord argUserRecord)
     {
-        _stageDescriptionText.SetText(Managers.String.GetStageDesc(argUserRecord.CurrentWorldId, _stageInfo.stage));
+        _stageDescriptionText.SetText(Managers.String.GetStageDesc(Managers.Game.CurWorldId, _stageInfo.stage));
     }
 
     void SetMissionText(UserRecord argUserRecord)

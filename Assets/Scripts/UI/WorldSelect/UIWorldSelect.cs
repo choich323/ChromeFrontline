@@ -12,16 +12,16 @@ public class UIWorldSelect : APopup
     public override void Init()
     {
         base.Init();
-        RefreshList(true);
+        RefreshList();
     }
 
-    void RefreshList(bool argIsInit = false)
+    void RefreshList()
     {
         ClearUnitList();
 
         var catalog = Managers.Data.WorldCatalog;
         var ur = Managers.Game.UserRecord;
-        var curWorldId = argIsInit ? Managers.Data.GetWorldId(ur.MaxUnlockedWorld) : ur.CurrentWorldId;
+        var curWorldId = Managers.Game.CurWorldId;
         UIWorldSelectUnit selectedUnit = null;
         
         var worldCount = ur.MaxUnlockedWorld;
@@ -66,7 +66,7 @@ public class UIWorldSelect : APopup
     {
         var gm = Managers.Game;
         var userRecord = gm.UserRecord;
-        var prevWorldId = userRecord.CurrentWorldId;
+        var prevWorldId = gm.CurWorldId;
 
         if (argSelectedWorldId == prevWorldId)
         {
@@ -81,8 +81,7 @@ public class UIWorldSelect : APopup
         
         GetWorldUnit(prevWorldId).EnableSelectedColor(false);
         
-        userRecord.SetCurrentWorldId(argSelectedWorldId);
-        gm.SaveUserRecord(userRecord);
+        Managers.Game.SetCurWorldId(argSelectedWorldId);
 
         Managers.Lobby.RefreshLobbyMap(argSelectedWorldId);
     }

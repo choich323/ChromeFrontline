@@ -50,8 +50,6 @@ public class UserRecord
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
     private Dictionary<int, StageRecord> _stageBestRecordDict = new Dictionary<int, StageRecord>();
-
-    private string _currentWorldId = DEFAULT_WORLD_ID;
     
     [JsonProperty]
     private int _maxUnlockedWorld = 1;
@@ -82,18 +80,10 @@ public class UserRecord
     }
     
     [JsonIgnore]
-    public string CurrentWorldId => _currentWorldId;
-    
-    [JsonIgnore]
     public int MaxUnlockedWorld => _maxUnlockedWorld;
 
     [JsonIgnore]
     public int Chrome => _chrome;
-    
-    public void SetCurrentWorldId(string argWorldId)
-    {
-        _currentWorldId = argWorldId;
-    }
 
     public StageSaveInfo GetStageSaveInfo(int argStage)
     {
@@ -108,7 +98,7 @@ public class UserRecord
         }
         
         _stageSaveInfoDict[argKey] = argStageSaveInfo;
-        int curWorld = Managers.Data.GetWorldNumber(_currentWorldId);
+        int curWorld = Managers.Data.GetWorldNumber(Managers.Game.CurWorldId);
         _maxUnlockedWorld += argIsLastStage && _maxUnlockedWorld == curWorld ? 1 : 0;
     }
     

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
     private UserRecord _userRecord;
+    private string _curWorldId;
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
     public UserRecord UserRecord => _userRecord;
+    public string CurWorldId => _curWorldId;
     
     public event Action OnGamePause
     {
@@ -104,6 +106,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         _userRecord = Managers.Save.LoadRecord();
+        _curWorldId = Managers.Data.GetWorldId(_userRecord.MaxUnlockedWorld);
         _isInGame = false;
     }
 
@@ -124,6 +127,11 @@ public class GameManager : MonoBehaviour
         sm.SaveRecord(_userRecord);
     }
 
+    public void SetCurWorldId(string argWorldId)
+    {
+        _curWorldId = argWorldId;
+    }
+    
     void RunAIScheduleHandler(AIScheduleInfo argScheduleInfo)
     {
         if (_aiScheduleHandler != null)
@@ -255,7 +263,7 @@ public class GameManager : MonoBehaviour
         
         ResetStage();
         
-        Managers.Lobby.RefreshLobbyMap(_userRecord.CurrentWorldId, _playedStageIndex, _isNewStageUnlocked);
+        Managers.Lobby.RefreshLobbyMap(_curWorldId, _playedStageIndex, _isNewStageUnlocked);
         _playedStageIndex = -1;
         _isNewStageUnlocked = false;
         Managers.Sound.StopIngameBgm();
