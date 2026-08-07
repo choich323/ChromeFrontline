@@ -15,59 +15,59 @@ MonoBehaviour:
   worldId: world2
   bg: {fileID: -3743932562648756766, guid: 0846e2a39b4ad8a47b39e60dc1094749, type: 3}
   stageInfoList:
-  - stage: 1
+  - stage: 10
     stageName: 2-1
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 1
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 2
+  - stage: 11
     stageName: 2-2
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 2
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 3
+  - stage: 12
     stageName: 2-3
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 3
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 4
+  - stage: 13
     stageName: 2-4
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 4
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 5
+  - stage: 14
     stageName: 2-5
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 5
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 6
+  - stage: 15
     stageName: 2-6
+    isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 6
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 7
+  - stage: 16
     stageName: 2-7
+    isLastStage: 1
     uiPosition: {x: 0, y: 0}
     stageIndex: 7
     aiScheduleId: normal
-    maxHqLevel: 4
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760

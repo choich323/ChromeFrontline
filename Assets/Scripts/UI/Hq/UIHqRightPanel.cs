@@ -43,7 +43,7 @@ public class UIHqRightPanel : MonoBehaviour
         {
             panel.gameObject.SetActive(false);
             panel.Init(GoToPanel, GoBack);
-            _panelDict.Add(panel.PanelType, panel);
+            _panelDict.TryAdd(panel.PanelType, panel);
         }
 
         var startPanel = _panelDict[_curType];

@@ -20,13 +20,14 @@ public class UIWorldSelect : APopup
         ClearUnitList();
 
         var catalog = Managers.Data.WorldCatalog;
-        var curWorldId = Managers.Game.UserRecord.CurrentWorldId;
+        var ur = Managers.Game.UserRecord;
+        var curWorldId = Managers.Game.CurWorldId;
         UIWorldSelectUnit selectedUnit = null;
         
-        int worldCount = catalog.GetWorldCount();
+        var worldCount = ur.MaxUnlockedWorld;
         for (int i = 0; i < worldCount; i++)
         {
-            string worldId = catalog.GetWorldId(i);
+            string worldId = catalog.GetWorldIdByIndex(i);
             string worldName = catalog.GetWorldName(i);
             
             var obj = Managers.Pool.Instantiate(PrefabID.UIWorldSelectUnit);
@@ -65,17 +66,24 @@ public class UIWorldSelect : APopup
     {
         var gm = Managers.Game;
         var userRecord = gm.UserRecord;
-        var prevWorldId = userRecord.CurrentWorldId;
+        var prevWorldId = gm.CurWorldId;
 
         if (argSelectedWorldId == prevWorldId)
+        {
             return;
+        }
+
+        var selectedWorld = Managers.Data.GetWorldNumber(argSelectedWorldId);
+        if (selectedWorld > userRecord.MaxUnlockedWorld)
+        {
+            return;
+        }
         
         GetWorldUnit(prevWorldId).EnableSelectedColor(false);
         
-        userRecord.SetCurrentWorldId(argSelectedWorldId);
-        gm.SaveUserRecord(userRecord);
+        Managers.Game.SetCurWorldId(argSelectedWorldId);
 
-        Managers.Lobby.RefreshLobbyMap();
+        Managers.Lobby.RefreshLobbyMap(argSelectedWorldId);
     }
 
     void ClearUnitList()

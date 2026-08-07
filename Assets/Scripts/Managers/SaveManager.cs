@@ -65,7 +65,7 @@ public class SaveManager : MonoBehaviour
         }
     }
     
-    private string EncryptAES(string plainText)
+    private string EncryptAES(string argPlainText)
     {
         using Aes aesAlg = Aes.Create();
         aesAlg.Key = _aesKey;
@@ -74,18 +74,19 @@ public class SaveManager : MonoBehaviour
         ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
         using MemoryStream msEncrypt = new MemoryStream();
-        using CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);
-        using StreamWriter swEncrypt = new StreamWriter(csEncrypt);
-        
-        swEncrypt.Write(plainText);
-        swEncrypt.Close();
-        
+        // using 블록을 중첩하여 스코프가 끝날 때 자동으로 FlushFinalBlock이 안전하게 호출되도록 처리
+        using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+        {
+            swEncrypt.Write(argPlainText);
+        } 
+    
         return Convert.ToBase64String(msEncrypt.ToArray());
     }
 
-    private string DecryptAES(string cipherText)
+    private string DecryptAES(string argCipherText)
     {
-        byte[] cipherBytes = Convert.FromBase64String(cipherText);
+        byte[] cipherBytes = Convert.FromBase64String(argCipherText);
 
         using Aes aesAlg = Aes.Create();
         aesAlg.Key = _aesKey;
@@ -96,7 +97,14 @@ public class SaveManager : MonoBehaviour
         using MemoryStream msDecrypt = new MemoryStream(cipherBytes);
         using CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
         using StreamReader srDecrypt = new StreamReader(csDecrypt);
-        
+
         return srDecrypt.ReadToEnd();
+    }
+    
+    [ContextMenu("Delete Save File")]
+    public void DeleteSaveFile()
+    {
+        if (File.Exists(_filePath)) File.Delete(_filePath);
+        Debug.Log("세이브 파일 삭제 완료!");
     }
 }

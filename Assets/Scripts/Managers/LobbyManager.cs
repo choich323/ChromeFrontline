@@ -26,7 +26,8 @@ public class LobbyManager : MonoBehaviour
         Managers.I.SetLobbyManager(this);
         _btnOption.onClick.AddListener(OnClickOption);
         _btnWorldSelect.onClick.AddListener(OnClickWorldSelect);
-        RefreshLobbyMap();
+        string worldId = Managers.Data.GetWorldId(Managers.Game.UserRecord.MaxUnlockedWorld);
+        RefreshLobbyMap(worldId);
         RefreshText();
     }
 
@@ -38,16 +39,14 @@ public class LobbyManager : MonoBehaviour
         _btnWorldSelectText.text = $"{world}\n{select}";
     }
     
-    public void RefreshLobbyMap(int argPlayedStageIndex = -1, bool argIsNewStageUnlocked = false)
+    public void RefreshLobbyMap(string argTargetWorld, int argPlayedStageIndex = -1, bool argIsNewStageUnlocked = false)
     {
         ToggleLobby(true);
         
         _userRecord = Managers.Game.UserRecord;
         if (_userRecord == null) return;
-
-        string targetWorldId = _userRecord.CurrentWorldId;
         
-        Managers.Data.LoadWorldData(targetWorldId, (worldData) =>
+        Managers.Data.LoadWorldData(argTargetWorld, (worldData) =>
         {
             if (worldData == null) return;
 
@@ -120,7 +119,7 @@ public class LobbyManager : MonoBehaviour
             newNode.transform.localScale = Vector3.one;
 
             // 4. 데이터 묶어주기 및 클릭 이벤트 연결
-            StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stageIndex);
+            StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stage);
             newNode.Init(stageInfo, saveInfo, OnStageNodeClicked);
 
             // 직전 플레이 노드

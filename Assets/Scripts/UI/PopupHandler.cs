@@ -43,6 +43,10 @@ public class PopupHandler
 
     public APopup Top()
     {
+        if (_popupStack.Count <= 0)
+        {
+            return null;
+        }
         return _popupStack.Peek();
     }
     
@@ -89,6 +93,7 @@ public class PopupHandler
         if (_popupStack.Count <= 0) return;
         
         APopup popup = _popupStack.Pop();
+        popup.RequestClose();
         popup.gameObject.SetActive(false);
         
         CheckVisibility();

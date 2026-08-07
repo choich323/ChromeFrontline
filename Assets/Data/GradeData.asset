@@ -32,7 +32,7 @@ MonoBehaviour:
     attackSpeedRatio: 1.1
     moveSpeedRatio: 1.1
   - grade: 2
-    probability: 6.8
+    probability: 7
     gold: 500
     color: {r: 0.2901961, g: 0.5529412, b: 1, a: 1}
     attackRatio: 3
@@ -41,7 +41,7 @@ MonoBehaviour:
     attackSpeedRatio: 1.28
     moveSpeedRatio: 1.28
   - grade: 3
-    probability: 2
+    probability: 1.9
     gold: 900
     color: {r: 0.65882355, g: 0.33333334, b: 0.96862745, a: 1}
     attackRatio: 7
@@ -50,7 +50,7 @@ MonoBehaviour:
     attackSpeedRatio: 1.7
     moveSpeedRatio: 1.7
   - grade: 4
-    probability: 0.2
+    probability: 0.1
     gold: 0
     color: {r: 1, g: 0.79607844, b: 0.22745098, a: 1}
     attackRatio: 15

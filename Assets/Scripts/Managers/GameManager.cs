@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
     private bool _isInGame = false;
     private bool _wasAlreadyClearedBeforePlay = false;
     private bool _isNewStageUnlocked = false;
+    private bool _isLastStage = false;
     private event Action _onGamePause;
     private event Action _onGameResume;
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
     private UserRecord _userRecord;
+    private string _curWorldId;
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
     public UserRecord UserRecord => _userRecord;
+    public string CurWorldId => _curWorldId;
     
     public event Action OnGamePause
     {
@@ -103,6 +106,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         _userRecord = Managers.Save.LoadRecord();
+        _curWorldId = Managers.Data.GetWorldId(_userRecord.MaxUnlockedWorld);
         _isInGame = false;
     }
 
@@ -119,11 +123,15 @@ public class GameManager : MonoBehaviour
     
     public void SaveUserRecord(UserRecord argUserRecord)
     {
-        _userRecord.Save(argUserRecord);
         var sm = Managers.Save;
         sm.SaveRecord(_userRecord);
     }
 
+    public void SetCurWorldId(string argWorldId)
+    {
+        _curWorldId = argWorldId;
+    }
+    
     void RunAIScheduleHandler(AIScheduleInfo argScheduleInfo)
     {
         if (_aiScheduleHandler != null)
@@ -200,6 +208,7 @@ public class GameManager : MonoBehaviour
         _wasAlreadyClearedBeforePlay = saveInfo != null && saveInfo.isCleared;
         _playedStageIndex = argStageInfo.stageIndex;
         _isNewStageUnlocked = false;
+        _isLastStage = argStageInfo.isLastStage;
         
         var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
         RunAIScheduleHandler(aiScheduleInfo);
@@ -228,6 +237,7 @@ public class GameManager : MonoBehaviour
         var resultData = new ResultData();
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
+        resultData.isLastStage = _isLastStage;
         popup.SetData(resultData);
     }
 
@@ -253,7 +263,7 @@ public class GameManager : MonoBehaviour
         
         ResetStage();
         
-        Managers.Lobby.RefreshLobbyMap(_playedStageIndex, _isNewStageUnlocked);
+        Managers.Lobby.RefreshLobbyMap(_curWorldId, _playedStageIndex, _isNewStageUnlocked);
         _playedStageIndex = -1;
         _isNewStageUnlocked = false;
         Managers.Sound.StopIngameBgm();

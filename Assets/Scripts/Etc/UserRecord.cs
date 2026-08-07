@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UnityEngine;
 
 [Serializable]
 public class StageSaveInfo
@@ -46,11 +47,12 @@ public class UserRecord
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const string DEFAULT_WORLD_ID = "world1";
     
-    private string _currentWorldId = DEFAULT_WORLD_ID;
-    
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
     private Dictionary<int, StageRecord> _stageBestRecordDict = new Dictionary<int, StageRecord>();
+    
+    [JsonProperty]
+    private int _maxUnlockedWorld = 1;
 
     [JsonProperty]
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
@@ -78,36 +80,35 @@ public class UserRecord
     }
     
     [JsonIgnore]
-    public string CurrentWorldId => _currentWorldId;
+    public int MaxUnlockedWorld => _maxUnlockedWorld;
 
     [JsonIgnore]
     public int Chrome => _chrome;
-    
-    public void SetCurrentWorldId(string argWorldId)
-    {
-        _currentWorldId = argWorldId;
-    }
 
     public StageSaveInfo GetStageSaveInfo(int argStage)
     {
-        if (!_stageSaveInfoDict.TryGetValue(argStage, out var result))
-        {
-            result = new StageSaveInfo();
-            result.stage = argStage;
-            result.tick = DateTime.Now.Ticks;
-            _stageSaveInfoDict.Add(argStage, result);
-        }
-
-        return result;
+        return _stageSaveInfoDict.GetValueOrDefault(argStage);
     }
     
-    public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo)
+    public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo, bool argIsLastStage = false)
     {
+        if (_stageSaveInfoDict.ContainsKey(argKey) && argStageSaveInfo.tick < _stageSaveInfoDict[argKey].tick)
+        {
+            return;
+        }
+        
         _stageSaveInfoDict[argKey] = argStageSaveInfo;
+        int curWorld = Managers.Data.GetWorldNumber(Managers.Game.CurWorldId);
+        _maxUnlockedWorld += argIsLastStage && _maxUnlockedWorld == curWorld ? 1 : 0;
     }
     
     public void SaveStageBestRecord(int argKey, StageRecord argRecord)
     {
+        if (_stageBestRecordDict.ContainsKey(argKey) && argRecord.tick < _stageBestRecordDict[argKey].tick)
+        {
+            return;
+        }
+        
         _stageBestRecordDict[argKey] = argRecord;
     }
     
@@ -125,22 +126,14 @@ public class UserRecord
     
     public void Save(UserRecord argUserRecord)
     {
-        foreach (var record in argUserRecord._stageBestRecordDict)
+        foreach (var kvp in argUserRecord._stageSaveInfoDict)
         {
-            var key = record.Key;
-            if (!_stageBestRecordDict.ContainsKey(key) || record.Value.tick > _stageBestRecordDict[key].tick)
-            {
-                _stageBestRecordDict[key] = record.Value;
-            }
+            SaveStageSaveInfo(kvp.Key, kvp.Value);
         }
-
-        foreach (var info in argUserRecord._stageSaveInfoDict)
+        
+        foreach (var kvp in argUserRecord._stageBestRecordDict)
         {
-            var key = info.Key;
-            if (!_stageSaveInfoDict.ContainsKey(key) || info.Value.tick > _stageSaveInfoDict[key].tick)
-            {
-                _stageSaveInfoDict[key] = info.Value;
-            }
+            SaveStageBestRecord(kvp.Key, kvp.Value);
         }
     }
     

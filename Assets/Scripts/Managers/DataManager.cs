@@ -284,16 +284,14 @@ public class DataManager : MonoBehaviour
         if (argStageInfo.stageIndex == 1) return true;
 
         // 2. 이미 클리어한 스테이지라면 무조건 해금
-        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stageIndex);
+        var mySave = argUserRecord.GetStageSaveInfo(argStageInfo.stage);
         if (mySave != null && mySave.isCleared) return true;
 
-        // 3. 직전 스테이지(index - 1)를 클리어했는지 검사
-        var prevStage = _curWorldData.GetStageInfoList()
-            .FirstOrDefault(s => s.stageIndex == argStageInfo.stageIndex - 1);
-
+        // 3. 직전 스테이지를 클리어했는지 검사
+        var prevStage = _curWorldData.GetStageInfoList().FirstOrDefault(info => info.stage == argStageInfo.stage-1);
         if (prevStage != null)
         {
-            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stageIndex);
+            var prevSave = argUserRecord.GetStageSaveInfo(prevStage.stage);
             return prevSave != null && prevSave.isCleared;
         }
 
@@ -303,6 +301,16 @@ public class DataManager : MonoBehaviour
     public int GetWorldIndex(string argWorldId)
     {
         return _worldCatalog.GetWorldIndex(argWorldId);
+    }
+
+    public int GetWorldNumber(string argWorldId)
+    {
+        return GetWorldIndex(argWorldId) + 1;
+    }
+
+    public string GetWorldId(int argWorld)
+    {
+        return _worldCatalog.GetWorldIdByIndex(argWorld-1);
     }
     
     public StoryData GetOrLoadStoryData(string argWorldId)
