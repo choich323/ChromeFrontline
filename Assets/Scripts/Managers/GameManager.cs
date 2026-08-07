@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
         Managers.Lobby.RefreshLobbyMap(_curWorldId, _playedStageIndex, _isNewStageUnlocked);
         _playedStageIndex = -1;
         _isNewStageUnlocked = false;
-        Managers.Sound.StopIngameBgm();
+        Managers.Sound.PlayOutgameBgm();
         Managers.UI.RefreshUI();
         
         _gameField.ResetField();
