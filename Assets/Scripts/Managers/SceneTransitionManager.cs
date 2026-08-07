@@ -32,6 +32,8 @@ public class SceneTransitionManager : MonoBehaviour
         }
         
         argCallbackDuringFade?.Invoke();
+
+        yield return new WaitForSeconds(0.7f);
         
         Managers.UI.FadeIn(_fadeDuration);
         
