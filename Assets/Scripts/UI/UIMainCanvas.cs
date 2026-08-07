@@ -47,5 +47,6 @@ public class UIMainCanvas : MonoBehaviour
         }
         
         _btnStartGame.gameObject.SetActive(true);
+        Managers.Sound.PlayOutgameBgm();
     }
 }

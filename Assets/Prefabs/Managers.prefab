@@ -588,7 +588,6 @@ MonoBehaviour:
   _damageTextParent: {fileID: 0}
   _fadeCanvasGroup: {fileID: 1633820727798216994}
   _inputBlocker: {fileID: 0}
-  _damageTextXOffset: 30
 --- !u!114 &6085571731153602665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   _ingameBgmData: {fileID: 11400000, guid: ab40846116cad1442a635d555e99075e, type: 2}
+  _outgameBgmData: {fileID: 11400000, guid: 57f6b2d158f766943ac2e5f20bc58a84, type: 2}
   _bgmSource: {fileID: 8380758657352203765}
   _sfxSource: {fileID: 5669419018277560613}
   _selectSfxClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}

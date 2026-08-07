@@ -12,7 +12,6 @@ public class BGMData : ScriptableObject
 
     public BGMInfo[] bgmList;
 
-    // 이름으로 특정 클립을 찾는 헬퍼 메서드
     public AudioClip GetClip(string bgmName)
     {
         foreach (var bgm in bgmList)

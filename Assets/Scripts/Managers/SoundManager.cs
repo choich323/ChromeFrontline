@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private BGMData _ingameBgmData;
+    [SerializeField] private BGMData _outgameBgmData;
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private AudioSource _sfxSource;
 
@@ -12,8 +13,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _upgradeSuccessSfxClip;
     [SerializeField] private AudioClip _upgradeFailSfxClip;
     
-    private int _playlistIndex = 0;
-    private Coroutine _playlistCoroutine;
+    private int _bgmPlaylistIndex = 0;
+    private Coroutine _bgmPlaylistCoroutine;
     
     public float MasterVolume => AudioListener.volume;
     
@@ -32,31 +33,38 @@ public class SoundManager : MonoBehaviour
     {
         if (_ingameBgmData == null || _ingameBgmData.bgmList.Length == 0) return;
 
-        StopIngameBgm();
+        StopBgm();
 
-        _playlistIndex = 0;
-        _bgmSource.loop = false; 
-
-        _playlistCoroutine = StartCoroutine(CoPlayIngameBgm());
+        _bgmPlaylistCoroutine = StartCoroutine(CoPlayBgm(_ingameBgmData));
     }
 
-    // 재생 중지용
-    public void StopIngameBgm()
+    public void PlayOutgameBgm()
     {
-        if (_playlistCoroutine != null)
+        if (_outgameBgmData == null || _outgameBgmData.bgmList.Length == 0) return;
+        
+        StopBgm();
+        
+        _bgmPlaylistCoroutine = StartCoroutine(CoPlayBgm(_outgameBgmData));
+    }
+
+    public void StopBgm()
+    {
+        if (_bgmPlaylistCoroutine != null)
         {
-            StopCoroutine(_playlistCoroutine);
-            _playlistCoroutine = null;
+            StopCoroutine(_bgmPlaylistCoroutine);
+            _bgmPlaylistCoroutine = null;
         }
         _bgmSource.Stop();
+        _bgmPlaylistIndex = 0;
+        _bgmSource.loop = false; 
     }
 
-    IEnumerator CoPlayIngameBgm()
+    IEnumerator CoPlayBgm(BGMData argBGMData)
     {
         while (true)
         {
             // 이름으로 찾지 않고, SO 배열의 인덱스에서 직접 AudioClip을 꺼내옵니다.
-            AudioClip clip = _ingameBgmData.bgmList[_playlistIndex].clip;
+            AudioClip clip = argBGMData.bgmList[_bgmPlaylistIndex].clip;
 
             if (clip != null)
             {
@@ -73,7 +81,7 @@ public class SoundManager : MonoBehaviour
             }
 
             // 다음 인덱스로 이동 (마지막 곡 다음에는 다시 0으로)
-            _playlistIndex = (_playlistIndex + 1) % _ingameBgmData.bgmList.Length;
+            _bgmPlaylistIndex = (_bgmPlaylistIndex + 1) % argBGMData.bgmList.Length;
         }
     }
     
