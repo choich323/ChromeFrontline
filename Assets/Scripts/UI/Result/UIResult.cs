@@ -121,7 +121,7 @@ public class UIResult : APopup
             stageSaveInfo.starCount++;
         }
 
-        if (_resultData.isClear && _playTime < stageBestRecord.clearTime)
+        if (_resultData.isClear && _playTime <= UserRecord.CLEAR_TIME_THRESHOLD && _playTime < stageBestRecord.clearTime)
         {
             _isBestClearTimeChanged = true;
             stageBestRecord.clearTime = _playTime;
