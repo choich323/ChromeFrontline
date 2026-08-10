@@ -74,7 +74,7 @@ public abstract class APopup : MonoBehaviour
 
     public virtual void RequestClose()
     {
-        Close();
+        
     }
     
     public virtual void Close()
