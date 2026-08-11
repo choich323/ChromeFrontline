@@ -100,14 +100,14 @@ public class CameraController : MonoBehaviour
 
     void HandleInput()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
         HandlePCInput();
 #elif UNITY_ANDROID || UNITY_IOS
         HandleMobileInput();
 #endif
     }
 
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
     private void HandlePCInput()
     {
         // 1. 줌 입력 처리
@@ -309,7 +309,7 @@ public class CameraController : MonoBehaviour
         return false;
 #endif
         
-#if UNITY_STANDALONE || UNITY_EDITOR
+#if UNITY_STANDALONE || UNITY_EDITOR || UNITY_WEBGL
         // PC/에디터 환경: 1프레임 딜레이를 무시하고 마우스 위치에 물리적으로 직접 레이캐스트를 쏨
         PointerEventData eventData = new PointerEventData(EventSystem.current);
         eventData.position = Input.mousePosition;

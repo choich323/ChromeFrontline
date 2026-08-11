@@ -62,7 +62,7 @@ public class LobbyManager : MonoBehaviour
                 // 새 스테이지가 열렸고, 그 노드가 존재한다면 연출 코루틴 시작
                 if (argIsNewStageUnlocked && newTarget != null)
                 {
-                    StartCoroutine(CoPanToNewStage(playedTarget, newTarget));
+                    StartCoroutine(CoMoveToNewStage(playedTarget, newTarget));
                 }
                 else
                 {
@@ -168,7 +168,7 @@ public class LobbyManager : MonoBehaviour
         return contentRect.DOAnchorPos(targetPos, 1f).SetEase(Ease.InOutCubic);
     }
     
-    IEnumerator CoPanToNewStage(RectTransform argPlayedTarget, RectTransform argNewTarget)
+    IEnumerator CoMoveToNewStage(RectTransform argPlayedTarget, RectTransform argNewTarget)
     {
         Managers.UI.ActiveInputBlocker(true);
 
