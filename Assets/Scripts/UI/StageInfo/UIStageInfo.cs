@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,20 +52,22 @@ public class UIStageInfo : APopup
     void SetUI(UserRecord argUserRecord)
     {
         //SetStageNumberText(argUserRecord);
-        SetStageTitleText(argUserRecord);
-        SetStageDescText(argUserRecord);
+        SetStageTitleText();
+        SetStageDescText();
         SetMissionText(argUserRecord);
         SetIcon(argUserRecord);
     }
 
-    void SetStageTitleText(UserRecord argUserRecord)
+    async Task SetStageTitleText()
     {
-        _stageTitleText.SetText(Managers.String.GetStageTitle(Managers.Game.CurWorldId, _stageInfo.stage));
+        var title= await Managers.String.GetStageTitle(Managers.Game.CurWorldId, _stageInfo.stage);
+        _stageTitleText.SetText(title);
     }
     
-    void SetStageDescText(UserRecord argUserRecord)
+    async Task SetStageDescText()
     {
-        _stageDescriptionText.SetText(Managers.String.GetStageDesc(Managers.Game.CurWorldId, _stageInfo.stage));
+        var desc = await Managers.String.GetStageDesc(Managers.Game.CurWorldId, _stageInfo.stage);
+        _stageDescriptionText.SetText(desc);
     }
 
     void SetMissionText(UserRecord argUserRecord)

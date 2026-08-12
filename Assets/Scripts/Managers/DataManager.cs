@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -313,7 +314,7 @@ public class DataManager : MonoBehaviour
         return _worldCatalog.GetWorldIdByIndex(argWorld-1);
     }
     
-    public StoryData GetOrLoadStoryData(string argWorldId)
+    public async Task<StoryData> GetOrLoadStoryData(string argWorldId)
     {
         // 1. 현재 로드된 월드의 데이터라면 즉시 반환
         if (_curStoryData != null && _curStoryWorldId == argWorldId)
@@ -325,12 +326,23 @@ public class DataManager : MonoBehaviour
         if (_storyDataHandle.IsValid())
         {
             Addressables.Release(_storyDataHandle);
+            _curStoryData = null;
         }
 
-        // 3. 새 월드 스토리 동기 로드
+        
         string address = $"StoryData_{argWorldId}";
         _storyDataHandle = Addressables.LoadAssetAsync<StoryData>(address);
-        _curStoryData = _storyDataHandle.WaitForCompletion();
+
+        try
+        {
+            _curStoryData = await _storyDataHandle.Task;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Story Data Load Failed.: {argWorldId}");
+            return null;
+        }
+        
         _curStoryWorldId = argWorldId;
 
         return _curStoryData;

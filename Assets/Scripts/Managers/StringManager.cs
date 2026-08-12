@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class StringManager : MonoBehaviour
@@ -44,26 +45,36 @@ public class StringManager : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// 지정한 월드와 스테이지의 타이틀을 반환합니다.
-    /// </summary>
-    public string GetStageTitle(string argWorldId, int argStage)
+    public async Task<string> GetStageTitle(string argWorldId, int argStage)
     {
-        var data = Managers.Data.GetOrLoadStoryData(argWorldId);
-        var info = data.storyInfoList.FirstOrDefault(info => info.stage == argStage);
-        if (info == null) return "";
+        var data = await Managers.Data.GetOrLoadStoryData(argWorldId);
+        if (data == null)
+        {
+            return string.Empty;
+        }
+        
+        var info = data.storyInfoList.FirstOrDefault(item => item.stage == argStage);
+        if (info == null)
+        {
+            return String.Empty;
+        }
 
         return Managers.Language.GetLocalizedString(info.title);
     }
 
-    /// <summary>
-    /// 지정한 월드와 스테이지의 설명을 반환합니다.
-    /// </summary>
-    public string GetStageDesc(string argWorldId, int argStage)
+    public async Task<string> GetStageDesc(string argWorldId, int argStage)
     {
-        var data = Managers.Data.GetOrLoadStoryData(argWorldId);
-        var info = data.storyInfoList.FirstOrDefault(info => info.stage == argStage);
-        if (info == null) return "";
+        var data = await Managers.Data.GetOrLoadStoryData(argWorldId);
+        if (data == null)
+        {
+            return string.Empty;
+        }
+        
+        var info = data.storyInfoList.FirstOrDefault(item => item.stage == argStage);
+        if (info == null)
+        {
+            return string.Empty;
+        }
 
         return Managers.Language.GetLocalizedString(info.desc);
     }

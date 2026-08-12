@@ -8,7 +8,7 @@ public class PlayerPrefsManager
     private const string QUALITY_KEY = "Quality";
     private const string LANG_KEY = "Language";
 
-    private const float DEFAULT_SOUND = 1f;
+    private const float DEFAULT_SOUND = 0.5f;
     private const float DEFAULT_SENSITIVITY = 0.22f;
     private const int DEFAULT_FRAME_INDEX = 1;
     private const int DEFAULT_QUALITY_INDEX = 1;
