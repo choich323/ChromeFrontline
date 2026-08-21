@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f1fda7e1416d845966736907fc13ef, type: 3}
+  m_Name: DialogData_1_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogData
+  stage: 1_1
+  dialogInfoList:
+  - infoId: dummyId1
+    dialogueList:
+    - talker:
+        en: dummyTalker1
+        kr: "\uB354\uBBF8 \uD654\uC790 1"
+      text:
+        en: dummy text 1
+        kr: "\uB354\uBBF8 \uD14D\uC2A4\uD2B8 1"
+    - talker:
+        en: dummyTalker2
+        kr: "\uB354\uBBF8 \uD654\uC790 2"
+      text:
+        en: dummy text 2
+        kr: "\uB354\uBBF8 \uD14D\uC2A4\uD2B8 2"
+  - infoId: dummyId2
+    dialogueList:
+    - talker:
+        en: dummyTalker3
+        kr: "\uB354\uBBF8 \uD654\uC790 3"
+      text:
+        en: dummy text 3
+        kr: "\uB354\uBBF8 \uD14D\uC2A4\uD2B8 3"

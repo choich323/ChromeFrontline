@@ -1,23 +1,29 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class Dialogue
+{
+    public LocalizationText talker;
+    public LocalizationText text;
+}
 
 [Serializable]
 public class DialogInfo
 {
     public string infoId;
-    public LocalizationText talker;
-    public LocalizationText text;
+    public List<Dialogue> dialogueList = new();
 }
 
-[CreateAssetMenu(fileName = "DialogData", menuName = "Custom/DialogData")]
+[CreateAssetMenu(fileName = "DialogData", menuName = "Custom/Dialog/DialogData")]
 public class DialogData : ScriptableObject
 {
-    public string dialogDataId;
-    public List<DialogInfo> dialogInfoList = new List<DialogInfo>();
+    public string stage;
+    public List<DialogInfo> dialogInfoList = new();
 
-    public IEnumerable<DialogInfo> GetInfoList()
+    public DialogInfo GetDialogInfo(string argInfoId)
     {
-        return dialogInfoList;
+        return dialogInfoList.Find(info => info.infoId == argInfoId);
     }
 }

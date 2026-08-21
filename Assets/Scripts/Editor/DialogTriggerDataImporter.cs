@@ -11,27 +11,41 @@ using UnityEngine;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 
-public class DialogDataImporter : EditorWindow
+public class DialogTriggerDataImporter : EditorWindow
 {
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
     private string gid = "0";
     private string savePath = "Assets/Data/Dialog";
     private string stage;
 
-    [MenuItem("Tools/Import Dialog Data")]
+    [MenuItem("Tools/Import Dialog Trigger Data")]
     public static void ShowWindow()
     {
-        GetWindow<DialogDataImporter>("Dialog Importer");
+        GetWindow<DialogTriggerDataImporter>(
+            "Dialog Trigger Importer");
     }
 
     private void OnGUI()
     {
-        GUILayout.Label("Google Sheet Settings", EditorStyles.boldLabel);
+        GUILayout.Label(
+            "Google Sheet Settings",
+            EditorStyles.boldLabel);
 
-        sheetId = EditorGUILayout.TextField("Spreadsheet ID", sheetId);
-        gid = EditorGUILayout.TextField("Sheet GID", gid);
-        stage = EditorGUILayout.TextField("Stage", stage);
-        savePath = EditorGUILayout.TextField("Save Folder", savePath);
+        sheetId = EditorGUILayout.TextField(
+            "Spreadsheet ID",
+            sheetId);
+
+        gid = EditorGUILayout.TextField(
+            "Sheet GID",
+            gid);
+
+        stage = EditorGUILayout.TextField(
+            "Stage",
+            stage);
+
+        savePath = EditorGUILayout.TextField(
+            "Save Folder",
+            savePath);
 
         if (GUILayout.Button("Import & Parse"))
             ImportData();
@@ -45,7 +59,8 @@ public class DialogDataImporter : EditorWindow
 
         try
         {
-            Debug.Log("다이얼로그 데이터 다운로드 중...");
+            Debug.Log(
+                "다이얼로그 트리거 데이터 다운로드 중...");
 
             string csvContent =
                 await DownloadCSVAsync(url);
@@ -54,11 +69,13 @@ public class DialogDataImporter : EditorWindow
         }
         catch (Exception e)
         {
-            Debug.LogError($"다운로드 실패: {e.Message}");
+            Debug.LogError(
+                $"다운로드 실패: {e.Message}");
         }
     }
 
-    private async Task<string> DownloadCSVAsync(string url)
+    private async Task<string> DownloadCSVAsync(
+        string url)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -92,7 +109,8 @@ public class DialogDataImporter : EditorWindow
         if (string.IsNullOrEmpty(guid))
         {
             Debug.LogWarning(
-                $"[Addressable] '{argAssetPath}'의 GUID를 찾을 수 없습니다.");
+                $"[Addressable] '{argAssetPath}'의 " +
+                "GUID를 찾을 수 없습니다.");
             return;
         }
 
@@ -114,7 +132,9 @@ public class DialogDataImporter : EditorWindow
 
         entry.address =
             string.IsNullOrEmpty(argCustomAddress)
-                ? System.IO.Path.GetFileNameWithoutExtension(argAssetPath)
+                ? System.IO.Path
+                    .GetFileNameWithoutExtension(
+                        argAssetPath)
                 : argCustomAddress;
 
         settings.SetDirty(
@@ -127,7 +147,8 @@ public class DialogDataImporter : EditorWindow
             $"'{group.Name}' 그룹에 등록되었습니다.");
     }
 
-    private void ParseCSVAndCreateSO(string csvContent)
+    private void ParseCSVAndCreateSO(
+        string csvContent)
     {
         string[] lines =
             csvContent.Split(
@@ -151,28 +172,25 @@ public class DialogDataImporter : EditorWindow
         }
 
         string assetPath =
-            $"{savePath}/DialogData_{stage}.asset";
+            $"{savePath}/DialogTriggerData_{stage}.asset";
 
-        DialogData dialogData =
-            AssetDatabase.LoadAssetAtPath<DialogData>(
+        DialogTriggerData triggerData =
+            AssetDatabase.LoadAssetAtPath<DialogTriggerData>(
                 assetPath);
 
-        if (dialogData == null)
+        if (triggerData == null)
         {
-            dialogData =
-                CreateInstance<DialogData>();
+            triggerData =
+                CreateInstance<DialogTriggerData>();
 
             AssetDatabase.CreateAsset(
-                dialogData,
+                triggerData,
                 assetPath);
         }
 
-        dialogData.stage = stage;
-        dialogData.dialogInfoList =
-            new List<DialogInfo>();
+        triggerData.stage = stage;
 
-        Dictionary<string, DialogInfo> infoMap =
-            new Dictionary<string, DialogInfo>();
+        triggerData.triggerInfoList = new List<DialogTriggerInfo>();
 
         for (int i = 1; i < lines.Length; i++)
         {
@@ -185,26 +203,8 @@ public class DialogDataImporter : EditorWindow
             if (values[stageIndex].Trim() != stage)
                 continue;
 
-            string infoId =
-                GetValue(
-                    headers,
-                    values,
-                    "infoId");
-
-            if (!infoMap.TryGetValue(
-                    infoId,
-                    out DialogInfo info))
-            {
-                info = new DialogInfo
-                {
-                    infoId = infoId
-                };
-
-                infoMap.Add(infoId, info);
-            }
-
-            Dialogue dialogue =
-                new Dialogue();
+            DialogTriggerInfo trigger =
+                new DialogTriggerInfo();
 
             for (int col = 0;
                  col < headers.Length;
@@ -221,54 +221,35 @@ public class DialogDataImporter : EditorWindow
                     values[col].Trim();
 
                 if (string.IsNullOrEmpty(header) ||
-                    string.IsNullOrEmpty(value) ||
-                    header == "infoId")
+                    string.IsNullOrEmpty(value))
                     continue;
 
                 value =
                     value.Replace("\\n", "\n");
 
                 ApplyValueViaReflection(
-                    dialogue,
+                    trigger,
                     header,
                     value);
             }
 
-            info.dialogueList.Add(dialogue);
+            triggerData.triggerInfoList.Add(
+                trigger);
         }
 
-        dialogData.dialogInfoList.AddRange(
-            infoMap.Values);
-
-        EditorUtility.SetDirty(dialogData);
+        EditorUtility.SetDirty(triggerData);
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
         SetAssetAsAddressable(
             assetPath,
-            $"DialogData_{stage}");
+            $"DialogTriggerData_{stage}");
 
         Debug.Log(
-            $"[Dialog Import] {stage} : " +
-            $"{dialogData.dialogInfoList.Count}" +
-            "개의 DialogInfo가 갱신되었습니다.");
-    }
-
-    private string GetValue(
-        string[] headers,
-        string[] values,
-        string columnName)
-    {
-        int index =
-            Array.IndexOf(
-                headers,
-                columnName);
-
-        return index >= 0 &&
-               index < values.Length
-            ? values[index].Trim()
-            : string.Empty;
+            $"[Dialog Trigger Import] {stage} : " +
+            $"{triggerData.triggerInfoList.Count}" +
+            "개의 Trigger가 갱신되었습니다.");
     }
 
     private void ApplyValueViaReflection(
@@ -279,79 +260,33 @@ public class DialogDataImporter : EditorWindow
         Type targetType =
             argTargetObj.GetType();
 
-        if (argHeaderPath.Contains("."))
+        FieldInfo field =
+            targetType.GetField(
+                argHeaderPath,
+                BindingFlags.Public |
+                BindingFlags.Instance |
+                BindingFlags.NonPublic);
+
+        if (field == null)
         {
-            string[] pathParts =
-                argHeaderPath.Split('.');
-
-            FieldInfo parentField =
-                targetType.GetField(
-                    pathParts[0],
-                    BindingFlags.Public |
-                    BindingFlags.Instance |
-                    BindingFlags.NonPublic);
-
-            if (parentField == null)
-                return;
-
-            object parentInstance =
-                parentField.GetValue(argTargetObj);
-
-            if (parentInstance == null)
-            {
-                parentInstance =
-                    Activator.CreateInstance(
-                        parentField.FieldType);
-
-                parentField.SetValue(
-                    argTargetObj,
-                    parentInstance);
-            }
-
-            FieldInfo childField =
-                parentField.FieldType.GetField(
-                    pathParts[1],
-                    BindingFlags.Public |
-                    BindingFlags.Instance |
-                    BindingFlags.NonPublic);
-
-            if (childField != null)
-            {
-                try
-                {
-                    childField.SetValue(
-                        parentInstance,
-                        Convert.ChangeType(
-                            argValue,
-                            childField.FieldType));
-                }
-                catch
-                {
-                    Debug.LogWarning(
-                        $"[Parse Warning] " +
-                        $"{argHeaderPath} 변환 실패: {argValue}");
-                }
-            }
+            Debug.LogWarning(
+                $"[Parse Warning] " +
+                $"{targetType.Name}에 " +
+                $"'{argHeaderPath}' 변수가 없습니다.");
+            return;
         }
-        else
+
+        try
         {
-            FieldInfo field =
-                targetType.GetField(
-                    argHeaderPath,
-                    BindingFlags.Public |
-                    BindingFlags.Instance |
-                    BindingFlags.NonPublic);
-
-            if (field == null)
+            if (field.FieldType.IsEnum)
             {
-                Debug.LogWarning(
-                    $"[Parse Warning] " +
-                    $"{targetType.Name}에 " +
-                    $"'{argHeaderPath}' 변수가 없습니다.");
-                return;
+                field.SetValue(
+                    argTargetObj,
+                    Enum.Parse(
+                        field.FieldType,
+                        argValue));
             }
-
-            try
+            else
             {
                 field.SetValue(
                     argTargetObj,
@@ -359,12 +294,12 @@ public class DialogDataImporter : EditorWindow
                         argValue,
                         field.FieldType));
             }
-            catch
-            {
-                Debug.LogWarning(
-                    $"[Parse Warning] " +
-                    $"{argHeaderPath} 변환 실패: {argValue}");
-            }
+        }
+        catch
+        {
+            Debug.LogWarning(
+                $"[Parse Warning] " +
+                $"{argHeaderPath} 변환 실패: {argValue}");
         }
     }
 
