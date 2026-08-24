@@ -39,6 +39,13 @@ public class DataManager : MonoBehaviour
     private string _curStoryWorldId = string.Empty;
     private AsyncOperationHandle<StoryData> _storyDataHandle;
 
+    // dialog data
+    private string _curDialogStage = string.Empty;
+    private DialogData _curDialogData = null;
+    private AsyncOperationHandle<DialogData> _dialogHandle;
+    private DialogTriggerData _curDialogTriggerData = null;
+    private AsyncOperationHandle<DialogTriggerData> _dialogTriggerHandle;
+    
     public int StartGold => _playerCurrencyData.startGold;
     public WorldCatalog WorldCatalog => _worldCatalog;
     
@@ -238,6 +245,7 @@ public class DataManager : MonoBehaviour
         if (_worldDataHandle.IsValid())
         {
             Addressables.Release(_worldDataHandle);
+            _curWorldData = null;
         }
 
         // 3. 어드레서블 비동기 로드 실행
@@ -257,24 +265,6 @@ public class DataManager : MonoBehaviour
                 argOnComplete?.Invoke(null);
             }
         };
-    }
-
-    public void UnloadWorldAndStoryData()
-    {
-        if (_worldDataHandle.IsValid())
-        {
-            Addressables.Release(_worldDataHandle);
-            _curWorldData = null;
-            Debug.Log("World Data Unload Complete.");
-        }
-        
-        if (_storyDataHandle.IsValid())
-        {
-            Addressables.Release(_storyDataHandle);
-            _curStoryData = null;
-            _curStoryWorldId = string.Empty;
-            Debug.Log("Story Data Unload Complete.");
-        }
     }
     
     public bool IsStageUnlocked(StageInfo argStageInfo, UserRecord argUserRecord)
@@ -346,5 +336,120 @@ public class DataManager : MonoBehaviour
         _curStoryWorldId = argWorldId;
 
         return _curStoryData;
+    }
+
+    public void LoadDialogAndDialogTriggerData(Action argOnComplete = null)
+    {
+        bool isDialogLoadComplete = false;
+        bool isDialogTriggerLoadComplete = false;
+        bool isComplete = false;
+        
+        LoadDialogData(OnCompleteLoadDialog);
+        LoadDialogTriggerData(OnCompleteLoadDialogTrigger);
+
+        void OnCompleteLoadDialog()
+        {
+            isDialogLoadComplete = true;
+            CheckComplete();
+        }
+
+        void OnCompleteLoadDialogTrigger()
+        {
+            isDialogTriggerLoadComplete = true;
+            CheckComplete();
+        }
+
+        void CheckComplete()
+        {
+            if (isComplete || !isDialogLoadComplete || !isDialogTriggerLoadComplete)
+                return;
+            
+            isComplete = true;
+            argOnComplete?.Invoke();
+        }
+    }
+    
+    void LoadDialogData(Action argOnComplete = null)
+    {
+        string stage = $"{_curWorldData.world}_{Managers.Game.Stage}";
+
+        if (_curDialogData != null && stage == _curDialogStage)
+        {
+            argOnComplete?.Invoke();
+            return;
+        }
+
+        _curDialogStage = stage;
+        
+        if (_dialogHandle.IsValid())
+        {
+            Addressables.Release(_dialogHandle);
+            _curDialogData = null;
+        }
+        
+        string address = $"DialogData_{stage}";
+        Addressables.LoadAssetAsync<DialogData>(address).Completed += handle =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                _dialogHandle = handle;
+                _curDialogData = handle.Result;
+                
+                Debug.Log($"[{stage}] Dialog Data Load Complete.");
+                argOnComplete?.Invoke();
+            }
+            else
+            {
+                Debug.LogError($"Dialog Data Load Failed.: {stage}");
+                argOnComplete?.Invoke();
+            }
+        };
+    }
+
+    public DialogData GetDialogData()
+    {
+        return _curDialogData;
+    }
+
+    void LoadDialogTriggerData(Action argOnComplete = null)
+    {
+        string stage = $"{_curWorldData.world}_{Managers.Game.Stage}";
+
+        if (_curDialogTriggerData != null && stage == _curDialogStage)
+        {
+            argOnComplete?.Invoke();
+            return;
+        }
+
+        _curDialogStage = stage;
+        
+        if (_dialogTriggerHandle.IsValid())
+        {
+            Addressables.Release(_dialogTriggerHandle);
+            _curDialogTriggerData = null;
+        }
+        
+        string address = $"DialogTriggerData_{stage}";
+        Addressables.LoadAssetAsync<DialogTriggerData>(address).Completed += handle =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                _dialogTriggerHandle = handle;
+                _curDialogTriggerData = handle.Result;
+                
+                Debug.Log($"[{stage}] Dialog Trigger Data Load Complete.");
+                argOnComplete?.Invoke();
+            }
+            else
+            {
+                Debug.LogError($"Dialog Trigger Data Load Failed.: {stage}");
+                argOnComplete?.Invoke();
+            }
+        };
+    }
+
+    public DialogTriggerData GetDialogTriggerData()
+    {
+        return _curDialogTriggerData;
     }
 }

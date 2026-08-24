@@ -298,6 +298,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 508110515127023856}
     - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
+      propertyPath: _dialogInputBtn
+      value: 
+      objectReference: {fileID: 8824891881146298369}
+    - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
       propertyPath: _pauseBtnParent
       value: 
       objectReference: {fileID: 4596459285976898093}
@@ -450,6 +454,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+--- !u!114 &8824891881146298369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7821465458281651228, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+  m_PrefabInstance: {fileID: 8824891881146298368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

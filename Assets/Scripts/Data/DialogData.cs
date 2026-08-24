@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Dialogue
+public class Dialog
 {
     public LocalizationText talker;
     public LocalizationText text;
@@ -13,7 +13,7 @@ public class Dialogue
 public class DialogInfo
 {
     public string infoId;
-    public List<Dialogue> dialogueList = new();
+    public List<Dialog> dialogList = new();
 }
 
 [CreateAssetMenu(fileName = "DialogData", menuName = "Custom/Dialog/DialogData")]

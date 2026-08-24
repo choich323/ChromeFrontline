@@ -1,6 +1,9 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class UIManager : MonoBehaviour
@@ -11,7 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform _damageTextParent;
     [SerializeField] private CanvasGroup _fadeCanvasGroup;
     [SerializeField] private GameObject _inputBlocker;
-
+    [SerializeField] private Button _dialogInputBtn;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -19,18 +22,32 @@ public class UIManager : MonoBehaviour
     private UIGameSpeedBtn _gameSpeedBtn;
     private bool _isProduceIndicatorEnable;
     private bool _isHqUpgradeIndicatorEnable;
+    private bool _isShowingDialog;
+    private bool _isWaitingInput;
     private List<UIDamageText> _damageTextList = new List<UIDamageText>();
+    private DialogHandler _dialogHandler;
     
     public PopupHandler PopupHandler => _popupHandler;
+    public DialogHandler DialogHandler => _dialogHandler;
     
     public void Init()
     {
         ActiveInputBlocker(false);
         CreatePopupHandler();
+        CreateDialogHandler();
+
+        _dialogInputBtn.onClick.RemoveAllListeners();
+        _dialogInputBtn.onClick.AddListener(OnClickDialog);
+        _dialogInputBtn.gameObject.SetActive(false);
     }
 
     void Update()
     {
+        if (_isShowingDialog)
+        {
+            return;
+        }
+        
         if (_popupHandler != null)
         {
             _popupHandler.OnUpdate();
@@ -66,6 +83,12 @@ public class UIManager : MonoBehaviour
     {
         _popupHandler = new PopupHandler();
         _popupHandler.Init();
+    }
+
+    void CreateDialogHandler()
+    {
+        _dialogHandler = new();
+        _dialogHandler.Init();
     }
     
     public void CreateTopHUD()
@@ -207,5 +230,44 @@ public class UIManager : MonoBehaviour
             Managers.Pool.Destroy(dt, PrefabID.UIDamageText);
         }
         _damageTextList.Clear();
+    }
+    
+    public void ShowDialog(string argDialogInfoId, Action argCallback = null)
+    {
+        var data = Managers.Data.GetDialogData();
+        var info = data.GetDialogInfo(argDialogInfoId);
+
+        StartCoroutine(CoShowDialog(info.dialogList, argCallback));
+    }
+
+    IEnumerator CoShowDialog(List<Dialog> argDialogList, Action argCallback = null)
+    {
+        Managers.Game.PauseGame();
+        _dialogInputBtn.gameObject.SetActive(true);
+        
+        foreach (var dialog in argDialogList)
+        {
+            _isWaitingInput = true;
+            
+            var talker = Managers.Language.GetLocalizedString(dialog.talker);
+            var text = Managers.Language.GetLocalizedString(dialog.text);
+            
+            Debug.Log($"{talker}: {text}");
+
+            while (_isWaitingInput)
+            {
+                yield return null;
+            }
+        }
+        
+        _dialogInputBtn.gameObject.SetActive(false);
+        Managers.Game.ResumeGame();
+        
+        argCallback?.Invoke();
+    }
+
+    void OnClickDialog()
+    {
+        _isWaitingInput = false;
     }
 }

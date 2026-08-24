@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private const int DEFAULT_STAGE = 1;
     private const float DEFAULT_GAME_SPEED = 1f;
     private const float ENTITY_ARRIVAL_GOLD_RATIO = 0.75f;
+    private const float HUNDRED = 100f;
     
     private ulong _uid = INVALID_UID;
     private int _stage = DEFAULT_STAGE;
@@ -19,12 +20,14 @@ public class GameManager : MonoBehaviour
     private GameField _gameField;
     private bool _isPaused = false;
     private bool _isEnemyEmergencyTriggered = false;
-    private bool _isInGame = false;
+    private bool _isInStage = false;
     private bool _wasAlreadyClearedBeforePlay = false;
     private bool _isNewStageUnlocked = false;
     private bool _isLastStage = false;
     private event Action _onGamePause;
     private event Action _onGameResume;
+    private event Action _onStartStage;
+    private event Action _onEndStage;
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
     private UserRecord _userRecord;
@@ -37,7 +40,7 @@ public class GameManager : MonoBehaviour
     public int Stage => _stage;
     public bool IsGameOver => _gameField.IsGameOver();
     public bool IsPaused => _isPaused;
-    public bool IsInGame => _isInGame;
+    public bool IsInStage => _isInStage;
     public float CurGameSpeed  => _curGameSpeed;
     public float PlayTime => _elapsedPlayTime;
     public AIScheduleHandler AIScheduleHandler => _aiScheduleHandler;
@@ -56,9 +59,21 @@ public class GameManager : MonoBehaviour
         remove => _onGameResume -= value;
     }
 
+    public event Action OnStartStage
+    {
+        add => _onStartStage += value;
+        remove => _onStartStage -= value;
+    }
+    
+    public event Action OnEndStage
+    {
+        add => _onEndStage += value;
+        remove => _onEndStage -= value;
+    }
+    
     void Update()
     {
-        if (_isInGame)
+        if (_isInStage)
         {
             UpdateTimer();
             UpdateAIScheduleHandler();
@@ -72,7 +87,7 @@ public class GameManager : MonoBehaviour
             Managers.Sound.PlaySelectSfx();
             var popup = Managers.UI.PopupHandler.OpenPopup<UIConfirm>(PrefabID.UIConfirm);
             var sm = Managers.String;
-            var stringId = _isInGame ? StringID.ConfirmExitStage : StringID.ConfirmExitGame;
+            var stringId = _isInStage ? StringID.ConfirmExitStage : StringID.ConfirmExitGame;
             string msg = sm.GetString(stringId);
             string confirm = sm.GetString(StringID.Yes);
             string cancel = sm.GetString(StringID.No);
@@ -80,7 +95,7 @@ public class GameManager : MonoBehaviour
 
             void OnConfirm()
             {
-                if (_isInGame)
+                if (_isInStage)
                 {
                     ExitStage();
                 }
@@ -107,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         _userRecord = Managers.Save.LoadRecord();
         _curWorldId = Managers.Data.GetWorldId(_userRecord.MaxUnlockedWorld);
-        _isInGame = false;
+        _isInStage = false;
     }
 
     public void CreateGameField()
@@ -199,8 +214,8 @@ public class GameManager : MonoBehaviour
         yield return Managers.UI.FadeOut().WaitForCompletion();
         
         Managers.Lobby.ToggleLobby(false);
-        
-        _isInGame = true;
+
+        _isInStage = true;
         _elapsedPlayTime = 0f;
         _stage = argStageInfo.stage;
         
@@ -213,15 +228,39 @@ public class GameManager : MonoBehaviour
         var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
         RunAIScheduleHandler(aiScheduleInfo);
         RunSlotUpgradeHandler();
-        Managers.Sound.PlayIngameBgm();
+        
         _gameField.Run();
-        Managers.UI.OnEnterStage(argStageInfo.stageName);
-        Managers.CamController.ResetCam();
+        
+        OnEnterStage(argStageInfo.stageName);
+
+        bool isSetDialogTriggerEnd = false;
+        Managers.Data.LoadDialogAndDialogTriggerData(OnLoadDialogComplete);
+        
         PauseGame();
+
+        while (!isSetDialogTriggerEnd)
+        {
+            yield return null;
+        }
         
         yield return Managers.UI.FadeIn().WaitForCompletion();
         
         ResumeGame();
+        
+        _onStartStage?.Invoke();
+        
+        void OnLoadDialogComplete()
+        {
+            Managers.UI.DialogHandler.SetTrigger();
+            isSetDialogTriggerEnd = true;
+        }
+    }
+
+    void OnEnterStage(string argStageName)
+    {
+        Managers.Sound.PlayIngameBgm();
+        Managers.UI.OnEnterStage(argStageName);
+        Managers.CamController.ResetCam();
     }
     
     public void EndStage(bool argIsPlayerWin)
@@ -233,12 +272,83 @@ public class GameManager : MonoBehaviour
             _isNewStageUnlocked = true;
         }
 
-        var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
         var resultData = new ResultData();
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         resultData.isLastStage = _isLastStage;
+        
+        CheckSave(resultData);
+        
+        var popup = Managers.UI.PopupHandler.OpenPopup<UIResult>(PrefabID.UIResult);
         popup.SetData(resultData);
+        
+        _onEndStage?.Invoke();
+    }
+    
+    void CheckSave(ResultData argResultData)
+    {
+        var record = UserRecord;
+        int stage = argResultData.stage;
+        var nowTick = DateTime.Now.Ticks;
+
+        bool isClearChanged = false;
+        bool isBestClearTimeChanged = false;
+        bool isBestHqHpChanged = false;
+        
+        var stageSaveInfo = record.GetStageSaveInfo(stage);
+        if (stageSaveInfo == null)
+        {
+            stageSaveInfo = new StageSaveInfo();
+            stageSaveInfo.tick = nowTick;
+            stageSaveInfo.stage = stage;
+            record.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
+        }
+        
+        var stageBestRecord = record.GetStageBestRecord(stage);
+        if (stageBestRecord == null)
+        {
+            stageBestRecord = new StageRecord();
+            stageBestRecord.tick = nowTick;
+            record.SaveStageBestRecord(stage, stageBestRecord);
+        }
+        
+        if (!stageBestRecord.isClear && argResultData.isClear)
+        {
+            isClearChanged = true;
+            stageBestRecord.isClear = true;
+            stageSaveInfo.isCleared = true;
+            stageSaveInfo.starCount++;
+        }
+
+        if (argResultData.isClear && PlayTime <= UserRecord.CLEAR_TIME_THRESHOLD && PlayTime < stageBestRecord.clearTime)
+        {
+            isBestClearTimeChanged = true;
+            stageBestRecord.clearTime = PlayTime;
+            stageSaveInfo.starCount++;
+        }
+
+        var hpRatio = GameField.PlayerHq.GetHqHpRatio() * HUNDRED;
+        if (stageBestRecord.hqhpRatio < HUNDRED && hpRatio >= HUNDRED)
+        {
+            isBestHqHpChanged = true;
+            stageBestRecord.hqhpRatio = (int)hpRatio;
+            stageSaveInfo.starCount++;
+        }
+
+        if (isClearChanged || isBestClearTimeChanged || isBestHqHpChanged)
+        {
+            
+            stageSaveInfo.tick = nowTick;
+            stageBestRecord.tick = nowTick;
+            record.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
+            record.SaveStageBestRecord(stage, stageBestRecord);
+        }
+        
+        argResultData.isClearChanged = isClearChanged;
+        argResultData.isBestClearTimeChanged = isBestClearTimeChanged;
+        argResultData.isBestHqHpChanged = isBestHqHpChanged;
+        
+        SaveUserRecord(record);
     }
 
     public void ExitStage()
@@ -250,7 +360,7 @@ public class GameManager : MonoBehaviour
     {
         PauseGame();
         
-        _isInGame = false;
+        _isInStage = false;
 
         yield return Managers.UI.FadeOut().WaitForCompletion();
         
@@ -273,6 +383,7 @@ public class GameManager : MonoBehaviour
         
         Managers.UI.OnExitStage();
         Managers.Lobby.ToggleLobby(true);
+        Managers.UI.DialogHandler.ReleaseTrigger();
 
         yield return Managers.UI.FadeIn().WaitForCompletion();
         
@@ -319,6 +430,10 @@ public class GameManager : MonoBehaviour
         RunSlotUpgradeHandler();
         
         _gameField.Run();
+        
+        Managers.UI.DialogHandler.ReleaseTrigger();
+        Managers.UI.DialogHandler.SetTrigger();
+        
         ResumeGame();
 
         Managers.UI.RefreshUI();

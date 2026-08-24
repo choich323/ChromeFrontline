@@ -28,7 +28,7 @@ public class AIScheduleHandler
 
     public void Update()
     {
-        if (!Managers.Game.IsInGame)
+        if (!Managers.Game.IsInStage)
         {
             return;
         }

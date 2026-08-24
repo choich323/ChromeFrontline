@@ -44,6 +44,7 @@ public class StageInfo
 public class WorldData : ScriptableObject
 {
     public string worldId;
+    public int world;
     public Sprite bg;
     
     public List<StageInfo> stageInfoList = new List<StageInfo>();

@@ -203,8 +203,8 @@ public class DialogDataImporter : EditorWindow
                 infoMap.Add(infoId, info);
             }
 
-            Dialogue dialogue =
-                new Dialogue();
+            Dialog dialog =
+                new Dialog();
 
             for (int col = 0;
                  col < headers.Length;
@@ -229,12 +229,12 @@ public class DialogDataImporter : EditorWindow
                     value.Replace("\\n", "\n");
 
                 ApplyValueViaReflection(
-                    dialogue,
+                    dialog,
                     header,
                     value);
             }
 
-            info.dialogueList.Add(dialogue);
+            info.dialogList.Add(dialog);
         }
 
         dialogData.dialogInfoList.AddRange(
