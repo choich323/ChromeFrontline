@@ -310,6 +310,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4596459285976898093}
     - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
+      propertyPath: _dialogShowDelay
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
       propertyPath: _damageTextParent
       value: 
       objectReference: {fileID: 1470259197}

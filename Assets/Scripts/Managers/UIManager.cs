@@ -264,7 +264,7 @@ public class UIManager : MonoBehaviour
             var talker = Managers.Language.GetLocalizedString(dialog.talker);
             var text = Managers.Language.GetLocalizedString(dialog.text);
             
-            _dialogBox.SetText(talker, text);
+            _dialogBox.ShowText(talker, text);
 
             while (_isWaitingInput)
             {
@@ -281,6 +281,14 @@ public class UIManager : MonoBehaviour
 
     void OnClickDialog()
     {
-        _isWaitingInput = false;
+        _dialogBox.OnClickDialog(Callback);
+
+        void Callback(bool argIsTyping)
+        {
+            if (!argIsTyping)
+            {
+                _isWaitingInput = false;
+            }
+        }
     }
 }
