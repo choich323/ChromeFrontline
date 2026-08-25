@@ -286,6 +286,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
+      propertyPath: _dialogBox
+      value: 
+      objectReference: {fileID: 8824891881146298370}
+    - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
       propertyPath: _hudParent
       value: 
       objectReference: {fileID: 4178409334657125881}
@@ -367,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ef62dc32786ed9041982a0ec99f63a9c, type: 2}
     - target: {fileID: 8063325534040495659, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -437,9 +441,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2990300795959979445, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4142855740502099347, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
       propertyPath: m_Name
       value: MainCanvasParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785098537959358255, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785098537959358255, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785098537959358255, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7956758374798527494, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
       propertyPath: m_Name
@@ -465,6 +485,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &8824891881146298370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2471304145248031853, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+  m_PrefabInstance: {fileID: 8824891881146298368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70dd391b8145024092ae14f6bb534ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIDialog
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

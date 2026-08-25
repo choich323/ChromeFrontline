@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CanvasGroup _fadeCanvasGroup;
     [SerializeField] private GameObject _inputBlocker;
     [SerializeField] private Button _dialogInputBtn;
+    [SerializeField] private UIDialog _dialogBox;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
         _dialogInputBtn.onClick.RemoveAllListeners();
         _dialogInputBtn.onClick.AddListener(OnClickDialog);
         _dialogInputBtn.gameObject.SetActive(false);
+        _dialogBox.gameObject.SetActive(false);
     }
 
     void Update()
@@ -235,7 +237,16 @@ public class UIManager : MonoBehaviour
     public void ShowDialog(string argDialogInfoId, Action argCallback = null)
     {
         var data = Managers.Data.GetDialogData();
+        if (data == null)
+        {
+            return;
+        }
+        
         var info = data.GetDialogInfo(argDialogInfoId);
+        if (info == null)
+        {
+            return;
+        }
 
         StartCoroutine(CoShowDialog(info.dialogList, argCallback));
     }
@@ -244,6 +255,7 @@ public class UIManager : MonoBehaviour
     {
         Managers.Game.PauseGame();
         _dialogInputBtn.gameObject.SetActive(true);
+        _dialogBox.gameObject.SetActive(true);
         
         foreach (var dialog in argDialogList)
         {
@@ -252,7 +264,7 @@ public class UIManager : MonoBehaviour
             var talker = Managers.Language.GetLocalizedString(dialog.talker);
             var text = Managers.Language.GetLocalizedString(dialog.text);
             
-            Debug.Log($"{talker}: {text}");
+            _dialogBox.SetText(talker, text);
 
             while (_isWaitingInput)
             {
@@ -261,6 +273,7 @@ public class UIManager : MonoBehaviour
         }
         
         _dialogInputBtn.gameObject.SetActive(false);
+        _dialogBox.gameObject.SetActive(false);
         Managers.Game.ResumeGame();
         
         argCallback?.Invoke();

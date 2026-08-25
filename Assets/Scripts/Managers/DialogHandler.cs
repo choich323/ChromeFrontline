@@ -25,6 +25,10 @@ public class DialogHandler
     public void SetTrigger()
     {
         var data = Managers.Data.GetDialogTriggerData();
+        if (data == null)
+        {
+            return;
+        }
 
         foreach (var info in data.triggerInfoList)
         {
