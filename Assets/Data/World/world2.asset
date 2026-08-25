@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: world2
   m_EditorClassIdentifier: Assembly-CSharp::StageData
   worldId: world2
+  world: 2
   bg: {fileID: -3743932562648756766, guid: 0846e2a39b4ad8a47b39e60dc1094749, type: 3}
   stageInfoList:
   - stage: 10

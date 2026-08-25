@@ -8,6 +8,9 @@ public struct ResultData
     public int stage;
     public bool isClear;
     public bool isLastStage;
+    public bool isClearChanged;
+    public bool isBestClearTimeChanged;
+    public bool isBestHqHpChanged;
 }
 
 public class UIResult : APopup
@@ -57,9 +60,6 @@ public class UIResult : APopup
     
     private ResultData _resultData;
     private float _playTime;
-    private bool _isClearChanged = false;
-    private bool _isBestClearTimeChanged = false;
-    private bool _isBestHqHpChanged = false;
 
     public void SetData(ResultData argResultData)
     {
@@ -68,7 +68,7 @@ public class UIResult : APopup
         _resultData = argResultData;
         _playTime = Gm.PlayTime;
         
-        CheckSave();
+        //CheckSave();
         
         SetButton();
         SetColor();
@@ -79,9 +79,6 @@ public class UIResult : APopup
     {
         base.Clear();
         
-        _isClearChanged = false;
-        _isBestClearTimeChanged = false;
-        _isBestHqHpChanged = false;
         _clearNewTextObject.SetActive(false);
         _clearTimeNewTextObject.SetActive(false);
         _hqHpNewTextObject.SetActive(false);
@@ -90,63 +87,63 @@ public class UIResult : APopup
         _hqHpIcon.SetActive(false);
     }
     
-    void CheckSave()
-    {
-        var record = Gm.UserRecord;
-        int stage = _resultData.stage;
-        var nowTick = DateTime.Now.Ticks;
-        
-        var stageSaveInfo = record.GetStageSaveInfo(stage);
-        if (stageSaveInfo == null)
-        {
-            stageSaveInfo = new StageSaveInfo();
-            stageSaveInfo.tick = nowTick;
-            stageSaveInfo.stage = stage;
-            record.SaveStageSaveInfo(stage, stageSaveInfo, _resultData.isLastStage);
-        }
-        
-        var stageBestRecord = record.GetStageBestRecord(stage);
-        if (stageBestRecord == null)
-        {
-            stageBestRecord = new StageRecord();
-            stageBestRecord.tick = nowTick;
-            record.SaveStageBestRecord(stage, stageBestRecord);
-        }
-        
-        if (!stageBestRecord.isClear && _resultData.isClear)
-        {
-            _isClearChanged = true;
-            stageBestRecord.isClear = true;
-            stageSaveInfo.isCleared = true;
-            stageSaveInfo.starCount++;
-        }
-
-        if (_resultData.isClear && _playTime <= UserRecord.CLEAR_TIME_THRESHOLD && _playTime < stageBestRecord.clearTime)
-        {
-            _isBestClearTimeChanged = true;
-            stageBestRecord.clearTime = _playTime;
-            stageSaveInfo.starCount++;
-        }
-
-        var hpRatio = Gm.GameField.PlayerHq.GetHqHpRatio() * HUNDRED_PERCENT;
-        if (stageBestRecord.hqhpRatio < HUNDRED_PERCENT && hpRatio >= HUNDRED_PERCENT)
-        {
-            _isBestHqHpChanged = true;
-            stageBestRecord.hqhpRatio = (int)hpRatio;
-            stageSaveInfo.starCount++;
-        }
-
-        if (_isClearChanged || _isBestClearTimeChanged || _isBestHqHpChanged)
-        {
-            
-            stageSaveInfo.tick = nowTick;
-            stageBestRecord.tick = nowTick;
-            record.SaveStageSaveInfo(stage, stageSaveInfo, _resultData.isLastStage);
-            record.SaveStageBestRecord(stage, stageBestRecord);
-        }
-        
-        Gm.SaveUserRecord(record);
-    }
+    // void CheckSave()
+    // {
+    //     var record = Gm.UserRecord;
+    //     int stage = _resultData.stage;
+    //     var nowTick = DateTime.Now.Ticks;
+    //     
+    //     var stageSaveInfo = record.GetStageSaveInfo(stage);
+    //     if (stageSaveInfo == null)
+    //     {
+    //         stageSaveInfo = new StageSaveInfo();
+    //         stageSaveInfo.tick = nowTick;
+    //         stageSaveInfo.stage = stage;
+    //         record.SaveStageSaveInfo(stage, stageSaveInfo, _resultData.isLastStage);
+    //     }
+    //     
+    //     var stageBestRecord = record.GetStageBestRecord(stage);
+    //     if (stageBestRecord == null)
+    //     {
+    //         stageBestRecord = new StageRecord();
+    //         stageBestRecord.tick = nowTick;
+    //         record.SaveStageBestRecord(stage, stageBestRecord);
+    //     }
+    //     
+    //     if (!stageBestRecord.isClear && _resultData.isClear)
+    //     {
+    //         _isClearChanged = true;
+    //         stageBestRecord.isClear = true;
+    //         stageSaveInfo.isCleared = true;
+    //         stageSaveInfo.starCount++;
+    //     }
+    //
+    //     if (_resultData.isClear && _playTime <= UserRecord.CLEAR_TIME_THRESHOLD && _playTime < stageBestRecord.clearTime)
+    //     {
+    //         _isBestClearTimeChanged = true;
+    //         stageBestRecord.clearTime = _playTime;
+    //         stageSaveInfo.starCount++;
+    //     }
+    //
+    //     var hpRatio = Gm.GameField.PlayerHq.GetHqHpRatio() * HUNDRED_PERCENT;
+    //     if (stageBestRecord.hqhpRatio < HUNDRED_PERCENT && hpRatio >= HUNDRED_PERCENT)
+    //     {
+    //         _isBestHqHpChanged = true;
+    //         stageBestRecord.hqhpRatio = (int)hpRatio;
+    //         stageSaveInfo.starCount++;
+    //     }
+    //
+    //     if (_isClearChanged || _isBestClearTimeChanged || _isBestHqHpChanged)
+    //     {
+    //         
+    //         stageSaveInfo.tick = nowTick;
+    //         stageBestRecord.tick = nowTick;
+    //         record.SaveStageSaveInfo(stage, stageSaveInfo, _resultData.isLastStage);
+    //         record.SaveStageBestRecord(stage, stageBestRecord);
+    //     }
+    //     
+    //     Gm.SaveUserRecord(record);
+    // }
 
     void SetButton()
     {
@@ -188,7 +185,7 @@ public class UIResult : APopup
         var clearText = _resultData.isClear ? Sm.GetString(StringID.Success) : Sm.GetString(StringID.Fail);
         _clearText.SetText(clearText);
 
-        if (_isClearChanged)
+        if (_resultData.isClearChanged)
         {
             _clearNewTextObject.SetActive(true);
         }
@@ -201,7 +198,7 @@ public class UIResult : APopup
         var clearMissionTimeThreshold = GetConvertedTimeText(CLEAR_TIME_THRESHOLD);
         _clearTimeMissionText.SetText(Sm.GetString(StringID.ClearTimeMission, clearMissionTimeThreshold));
         _clearTimeText.SetText(GetConvertedTimeText(Gm.PlayTime));
-        if (_isBestClearTimeChanged)
+        if (_resultData.isBestClearTimeChanged)
         {
             _clearTimeNewTextObject.SetActive(true);
         }
@@ -218,7 +215,7 @@ public class UIResult : APopup
             hpRatio = 0f;
         }
         _hqHpText.SetText($"{hpRatio:N0}%");
-        if (_isBestHqHpChanged)
+        if (_resultData.isBestHqHpChanged)
         {
             _hqHpNewTextObject.SetActive(true);
         }
@@ -237,12 +234,12 @@ public class UIResult : APopup
             _clearBestText.SetText(Sm.GetString(StringID.Best, bestClear));
             _clearBestText.gameObject.SetActive(true);
             
-            string bestClearTimeText = _isBestClearTimeChanged ? _clearTimeText.text : GetConvertedTimeText(stageRecord.clearTime);
+            string bestClearTimeText = _resultData.isBestClearTimeChanged ? _clearTimeText.text : GetConvertedTimeText(stageRecord.clearTime);
             _clearTimeBestText.SetText(Sm.GetString(StringID.Best, bestClearTimeText));
             _clearTimeBestText.gameObject.SetActive(true);
 
             string recordLess = stageRecord.hqhpRatio <= 0 ? "-%" : stageRecord.hqhpRatio + "%";
-            var bestHpText = _isBestHqHpChanged ? _hqHpText.text : recordLess;
+            var bestHpText = _resultData.isBestHqHpChanged ? _hqHpText.text : recordLess;
             _hqHpBestText.SetText(Sm.GetString(StringID.Best, bestHpText));
             _hqHpBestText.gameObject.SetActive(true);
         }

@@ -11,17 +11,17 @@ using UnityEngine;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 
-public class StoryDataImporter : EditorWindow
+public class DialogDataImporter : EditorWindow
 {
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
     private string gid = "0";
-    private string savePath = "Assets/Data/Story";
-    private string worldId;
+    private string savePath = "Assets/Data/Dialog";
+    private string stage;
 
-    [MenuItem("Tools/Import Story Data")]
+    [MenuItem("Tools/Import Dialog Data")]
     public static void ShowWindow()
     {
-        GetWindow<StoryDataImporter>("Story Importer");
+        GetWindow<DialogDataImporter>("Dialog Importer");
     }
 
     private void OnGUI()
@@ -30,10 +30,10 @@ public class StoryDataImporter : EditorWindow
 
         sheetId = EditorGUILayout.TextField("Spreadsheet ID", sheetId);
         gid = EditorGUILayout.TextField("Sheet GID", gid);
-        worldId = EditorGUILayout.TextField("World ID", worldId);
-        savePath = EditorGUILayout.TextField("Save Path", savePath);
+        stage = EditorGUILayout.TextField("Stage", stage);
+        savePath = EditorGUILayout.TextField("Save Folder", savePath);
 
-        if (GUILayout.Button("Import & Parse (Dynamic)"))
+        if (GUILayout.Button("Import & Parse"))
             ImportData();
     }
 
@@ -45,7 +45,7 @@ public class StoryDataImporter : EditorWindow
 
         try
         {
-            Debug.Log("데이터 다운로드 중...");
+            Debug.Log("다이얼로그 데이터 다운로드 중...");
 
             string csvContent =
                 await DownloadCSVAsync(url);
@@ -60,14 +60,15 @@ public class StoryDataImporter : EditorWindow
 
     private async Task<string> DownloadCSVAsync(string url)
     {
-        using HttpClient client = new HttpClient();
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response =
+                await client.GetAsync(url);
 
-        HttpResponseMessage response =
-            await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
 
-        response.EnsureSuccessStatusCode();
-
-        return await response.Content.ReadAsStringAsync();
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 
     private void SetAssetAsAddressable(
@@ -139,70 +140,78 @@ public class StoryDataImporter : EditorWindow
         string[] headers =
             SplitCSVLine(lines[0]);
 
-        int worldIdColIndex =
-            Array.IndexOf(headers, "worldId");
+        int stageIndex =
+            Array.IndexOf(headers, "stage");
 
-        if (worldIdColIndex == -1)
+        if (stageIndex == -1)
         {
             Debug.LogError(
-                "[Import Error] 'worldId' 컬럼을 찾을 수 없습니다.");
+                "[Import Error] 'stage' 컬럼을 찾을 수 없습니다.");
             return;
         }
 
         string assetPath =
-            $"{savePath}/StoryData_{worldId}.asset";
-        
-        StoryData storyData =
-            AssetDatabase.LoadAssetAtPath<StoryData>(assetPath);
+            $"{savePath}/DialogData_{stage}.asset";
 
-        if (storyData == null)
+        DialogData dialogData =
+            AssetDatabase.LoadAssetAtPath<DialogData>(
+                assetPath);
+
+        if (dialogData == null)
         {
-            storyData =
-                CreateInstance<StoryData>();
-
-            storyData.worldId = worldId;
+            dialogData =
+                CreateInstance<DialogData>();
 
             AssetDatabase.CreateAsset(
-                storyData,
+                dialogData,
                 assetPath);
         }
-        else if (!string.IsNullOrEmpty(storyData.worldId) &&
-                 storyData.worldId != worldId)
-        {
-            Debug.LogError(
-                $"[Import Error] 타겟 에셋의 World ID" +
-                $"({storyData.worldId})와 입력한 World ID" +
-                $"({worldId})가 다릅니다.");
 
-            return;
-        }
+        dialogData.stage = stage;
+        dialogData.dialogInfoList =
+            new List<DialogInfo>();
 
-        storyData.storyInfoList =
-            new List<StoryInfo>();
+        Dictionary<string, DialogInfo> infoMap =
+            new Dictionary<string, DialogInfo>();
 
         for (int i = 1; i < lines.Length; i++)
         {
             string[] values =
                 SplitCSVLine(lines[i]);
 
-            if (worldIdColIndex >= values.Length)
+            if (stageIndex >= values.Length)
                 continue;
 
-            string rowWorldId =
-                values[worldIdColIndex].Trim();
-
-            if (rowWorldId != worldId)
+            if (values[stageIndex].Trim() != stage)
                 continue;
 
-            StoryInfo newStoryInfo =
-                new StoryInfo();
+            string infoId =
+                GetValue(
+                    headers,
+                    values,
+                    "infoId");
+
+            if (!infoMap.TryGetValue(
+                    infoId,
+                    out DialogInfo info))
+            {
+                info = new DialogInfo
+                {
+                    infoId = infoId
+                };
+
+                infoMap.Add(infoId, info);
+            }
+
+            Dialog dialog =
+                new Dialog();
 
             for (int col = 0;
                  col < headers.Length;
                  col++)
             {
                 if (col >= values.Length ||
-                    col == worldIdColIndex)
+                    col == stageIndex)
                     continue;
 
                 string header =
@@ -212,50 +221,68 @@ public class StoryDataImporter : EditorWindow
                     values[col].Trim();
 
                 if (string.IsNullOrEmpty(header) ||
-                    string.IsNullOrEmpty(value))
+                    string.IsNullOrEmpty(value) ||
+                    header == "infoId")
                     continue;
 
                 value =
                     value.Replace("\\n", "\n");
 
                 ApplyValueViaReflection(
-                    newStoryInfo,
+                    dialog,
                     header,
                     value);
             }
 
-            storyData.storyInfoList.Add(
-                newStoryInfo);
+            info.dialogList.Add(dialog);
         }
 
-        EditorUtility.SetDirty(storyData);
+        dialogData.dialogInfoList.AddRange(
+            infoMap.Values);
+
+        EditorUtility.SetDirty(dialogData);
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
-        // Addressable 등록
         SetAssetAsAddressable(
             assetPath,
-            $"StoryData_{worldId}");
+            $"DialogData_{stage}");
 
         Debug.Log(
-            $"[리플렉션 임포트 완료] " +
-            $"{storyData.storyInfoList.Count}" +
-            $"개의 스토리 데이터가 갱신되었습니다.");
+            $"[Dialog Import] {stage} : " +
+            $"{dialogData.dialogInfoList.Count}" +
+            "개의 DialogInfo가 갱신되었습니다.");
+    }
+
+    private string GetValue(
+        string[] headers,
+        string[] values,
+        string columnName)
+    {
+        int index =
+            Array.IndexOf(
+                headers,
+                columnName);
+
+        return index >= 0 &&
+               index < values.Length
+            ? values[index].Trim()
+            : string.Empty;
     }
 
     private void ApplyValueViaReflection(
-        object targetObj,
-        string headerPath,
-        string value)
+        object argTargetObj,
+        string argHeaderPath,
+        string argValue)
     {
         Type targetType =
-            targetObj.GetType();
+            argTargetObj.GetType();
 
-        if (headerPath.Contains("."))
+        if (argHeaderPath.Contains("."))
         {
             string[] pathParts =
-                headerPath.Split('.');
+                argHeaderPath.Split('.');
 
             FieldInfo parentField =
                 targetType.GetField(
@@ -268,7 +295,7 @@ public class StoryDataImporter : EditorWindow
                 return;
 
             object parentInstance =
-                parentField.GetValue(targetObj);
+                parentField.GetValue(argTargetObj);
 
             if (parentInstance == null)
             {
@@ -277,7 +304,7 @@ public class StoryDataImporter : EditorWindow
                         parentField.FieldType);
 
                 parentField.SetValue(
-                    targetObj,
+                    argTargetObj,
                     parentInstance);
             }
 
@@ -290,41 +317,65 @@ public class StoryDataImporter : EditorWindow
 
             if (childField != null)
             {
-                childField.SetValue(
-                    parentInstance,
-                    Convert.ChangeType(
-                        value,
-                        childField.FieldType));
+                try
+                {
+                    childField.SetValue(
+                        parentInstance,
+                        Convert.ChangeType(
+                            argValue,
+                            childField.FieldType));
+                }
+                catch
+                {
+                    Debug.LogWarning(
+                        $"[Parse Warning] " +
+                        $"{argHeaderPath} 변환 실패: {argValue}");
+                }
             }
         }
         else
         {
             FieldInfo field =
                 targetType.GetField(
-                    headerPath,
+                    argHeaderPath,
                     BindingFlags.Public |
                     BindingFlags.Instance |
                     BindingFlags.NonPublic);
 
-            if (field != null)
+            if (field == null)
+            {
+                Debug.LogWarning(
+                    $"[Parse Warning] " +
+                    $"{targetType.Name}에 " +
+                    $"'{argHeaderPath}' 변수가 없습니다.");
+                return;
+            }
+
+            try
             {
                 field.SetValue(
-                    targetObj,
+                    argTargetObj,
                     Convert.ChangeType(
-                        value,
+                        argValue,
                         field.FieldType));
+            }
+            catch
+            {
+                Debug.LogWarning(
+                    $"[Parse Warning] " +
+                    $"{argHeaderPath} 변환 실패: {argValue}");
             }
         }
     }
 
-    private string[] SplitCSVLine(string line)
+    private string[] SplitCSVLine(string argLine)
     {
         Regex csvRegex =
             new Regex(
                 ",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
 
         string[] result =
-            csvRegex.Split(line);
+            csvRegex.Split(argLine);
 
         for (int i = 0; i < result.Length; i++)
         {

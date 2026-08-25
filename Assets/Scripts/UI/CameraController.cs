@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour
 
     bool CanInput()
     {
-        if (!Managers.Game.IsInGame || Managers.UI.PopupHandler.GetPopupCount() > 0)
+        if (!Managers.Game.IsInStage || Managers.UI.PopupHandler.GetPopupCount() > 0)
         {
             return false;
         }
