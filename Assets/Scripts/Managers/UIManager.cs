@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     
     public PopupHandler PopupHandler => _popupHandler;
     public DialogHandler DialogHandler => _dialogHandler;
+    public bool IsShowingDialog => _isShowingDialog;
     
     public void Init()
     {
@@ -253,7 +254,14 @@ public class UIManager : MonoBehaviour
 
     IEnumerator CoShowDialog(List<Dialog> argDialogList, Action argCallback = null)
     {
+        while (_isShowingDialog)
+        {
+            yield return null;
+        }
+        
         Managers.Game.PauseGame();
+        
+        _isShowingDialog = true;
         _dialogInputBtn.gameObject.SetActive(true);
         _dialogBox.gameObject.SetActive(true);
         
@@ -274,6 +282,8 @@ public class UIManager : MonoBehaviour
         
         _dialogInputBtn.gameObject.SetActive(false);
         _dialogBox.gameObject.SetActive(false);
+        _isShowingDialog = false;
+        
         Managers.Game.ResumeGame();
         
         argCallback?.Invoke();
