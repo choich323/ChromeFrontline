@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f1fda7e1416d845966736907fc13ef, type: 3}
-  m_Name: DialogData_1_1
+  m_Name: DialogData_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogData
-  stage: 1_1
+  stage: 1
   dialogInfoList:
   - infoId: dummyId1
     dialogList:

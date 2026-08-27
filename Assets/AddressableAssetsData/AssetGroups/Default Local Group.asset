@@ -35,18 +35,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aec22ddaed1a5ed49a369895e274787b
-    m_Address: DialogData_1_1
+  - m_GUID: 963d6657a1673144bbd4286a94d7e285
+    m_Address: DialogTriggerData_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97c66fd31134ce64eb56910d8f66a8a1
+    m_Address: DialogData_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b07996e190e915446936c28869d92fed
     m_Address: world1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cc26866be5a660e4e95ced08e2ed29c9
-    m_Address: DialogTriggerData_1_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

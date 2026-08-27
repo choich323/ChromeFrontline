@@ -20,6 +20,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private GradeData _gradeData;
     [SerializeField] private GameSpeedData _gameSpeedData;
     [SerializeField] private WorldCatalog _worldCatalog;
+    [SerializeField] private TutorialManifest _tutorialManifest;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
@@ -40,11 +41,14 @@ public class DataManager : MonoBehaviour
     private AsyncOperationHandle<StoryData> _storyDataHandle;
 
     // dialog data
-    private string _curDialogStage = string.Empty;
     private DialogData _curDialogData = null;
     private AsyncOperationHandle<DialogData> _dialogHandle;
     private DialogTriggerData _curDialogTriggerData = null;
     private AsyncOperationHandle<DialogTriggerData> _dialogTriggerHandle;
+    
+    // tutorial data
+    private TutorialData _curTutorialData = null;
+    private AsyncOperationHandle<TutorialData> _tutorialDataHandle;
     
     public int StartGold => _playerCurrencyData.startGold;
     public WorldCatalog WorldCatalog => _worldCatalog;
@@ -371,15 +375,13 @@ public class DataManager : MonoBehaviour
     
     void LoadDialogData(Action argOnComplete = null)
     {
-        string stage = $"{_curWorldData.world}_{Managers.Game.Stage}";
+        int stage = Managers.Game.Stage;
 
-        if (_curDialogData != null && stage == _curDialogStage)
+        if (_curDialogData != null && stage == _curDialogData.stage)
         {
             argOnComplete?.Invoke();
             return;
         }
-
-        _curDialogStage = stage;
         
         if (_dialogHandle.IsValid())
         {
@@ -413,15 +415,13 @@ public class DataManager : MonoBehaviour
 
     void LoadDialogTriggerData(Action argOnComplete = null)
     {
-        string stage = $"{_curWorldData.world}_{Managers.Game.Stage}";
+        int stage = Managers.Game.Stage;
 
-        if (_curDialogTriggerData != null && stage == _curDialogStage)
+        if (_curDialogTriggerData != null && stage == _curDialogTriggerData.stage)
         {
             argOnComplete?.Invoke();
             return;
         }
-
-        _curDialogStage = stage;
         
         if (_dialogTriggerHandle.IsValid())
         {
@@ -451,5 +451,40 @@ public class DataManager : MonoBehaviour
     public DialogTriggerData GetDialogTriggerData()
     {
         return _curDialogTriggerData;
+    }
+
+    public void LoadTutorialData(string argTutorialId)
+    {
+        if (_curTutorialData != null && _curTutorialData.tutorialId == argTutorialId)
+        {
+            return;
+        }
+
+        if (_tutorialDataHandle.IsValid())
+        {
+            Addressables.Release(_tutorialDataHandle);
+            _curTutorialData = null;
+        }
+
+        string address = $"TutorialData_{argTutorialId}";
+        Addressables.LoadAssetAsync<TutorialData>(address).Completed += handle =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                _tutorialDataHandle = handle;
+                _curTutorialData = handle.Result;
+                
+                Debug.Log($"[{argTutorialId}] tutorialData Load Complete.");
+            }
+            else
+            {
+                Debug.LogError($"[{argTutorialId}] Tutorial Data Load Failed.");
+            }
+        };
+    }
+
+    public TutorialData GetTutorialData()
+    {
+        return _curTutorialData;
     }
 }

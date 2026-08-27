@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 9120166470027335224}
   - component: {fileID: 3008962949775970385}
   - component: {fileID: 8063325534040495659}
+  - component: {fileID: 6190149927754925768}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -514,6 +515,7 @@ MonoBehaviour:
   _saveManager: {fileID: 3008962949775970385}
   _lobbyManager: {fileID: 0}
   _sceneTransitionManager: {fileID: 8063325534040495659}
+  _tutorialManager: {fileID: 6190149927754925768}
 --- !u!114 &2263360699957816099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +560,7 @@ MonoBehaviour:
   _gradeData: {fileID: 11400000, guid: b62a32bb9ac0277409a80076fe1d743b, type: 2}
   _gameSpeedData: {fileID: 11400000, guid: 5ec4da9e8b2d61840aea3c6e0e1207b9, type: 2}
   _worldCatalog: {fileID: 11400000, guid: 2c61b5122ca97294cbcc63fffff94e58, type: 2}
+  _tutorialManifest: {fileID: 11400000, guid: d0423d111a0760e4fb33f9771ba97457, type: 2}
 --- !u!114 &9124406171102656420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +591,8 @@ MonoBehaviour:
   _damageTextParent: {fileID: 0}
   _fadeCanvasGroup: {fileID: 1633820727798216994}
   _inputBlocker: {fileID: 0}
+  _dialogInputBtn: {fileID: 0}
+  _dialogBox: {fileID: 0}
 --- !u!114 &6085571731153602665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,3 +662,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
   _ingameSceneName: Ingame
   _fadeDuration: 0.5
+--- !u!114 &6190149927754925768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057011906925887961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7448f7909dcd32a4caffbe8e955762be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialManager

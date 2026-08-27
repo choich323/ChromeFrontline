@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
     private bool _isWaitingInput;
     private List<UIDamageText> _damageTextList = new List<UIDamageText>();
     private DialogHandler _dialogHandler;
+    private Dictionary<string, List<Button>> _identifierButtons = new Dictionary<string, List<Button>>();
     
     public PopupHandler PopupHandler => _popupHandler;
     public DialogHandler DialogHandler => _dialogHandler;
@@ -300,5 +302,20 @@ public class UIManager : MonoBehaviour
                 _isWaitingInput = false;
             }
         }
+    }
+
+    public void AddIdentifierButton(string argId, Button argButton)
+    {
+        _identifierButtons[argId].Add(argButton);
+    }
+
+    public void RemoveIdentifierButton(string argId, Button argButton)
+    {
+        if (!_identifierButtons.ContainsKey(argId))
+        {
+            return;
+        }
+        
+        _identifierButtons[argId].Remove(argButton);
     }
 }

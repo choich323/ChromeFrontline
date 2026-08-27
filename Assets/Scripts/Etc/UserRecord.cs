@@ -63,6 +63,18 @@ public class UserRecord
     [JsonProperty]
     private long _lastChromeUpdateTick = 0;
 
+    private HashSet<string> _completedTutorialIds;
+
+    public bool IsCompletedTutorialId(string argTutorialId)
+    {
+        return _completedTutorialIds.Contains(argTutorialId);
+    }
+
+    public void AddCompletedTutorialId(string argTutorialId)
+    {
+        _completedTutorialIds.Add(argTutorialId);
+    }
+    
     public void EarnChrome(int argAmount)
     {
         if (argAmount <= 0) return;
