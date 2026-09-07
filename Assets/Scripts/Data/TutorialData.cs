@@ -4,35 +4,33 @@ using UnityEngine;
 
 public enum TutorialTriggerType
 {
+    LobbyEnter,
     StageStart,
-    StageClear,
-    LobbyReturn,
-    WorldClear,
-    HqHpBelow, 
-    SlotUpgrade,
-    HqUpgrade,
+    StageEnd,
+    StageStartDialogEnd,
+    StageEndDialogEnd,
 }
 
 [Serializable]
 public class TutorialRequirements
 {
+    // 이 스테이지까지 클리어하는 것이 요구사항
     public int stage;
 }
 
 [Serializable]
 public class TutorialInfo
 {
-    public TutorialTriggerType triggerType;
-    public float value;
-    // dialogInfoId, UITargetId 에 해당. 트리거 타입에 따라 활용
-    public string id;
+    public string targetId;
 }
 
 [CreateAssetMenu(fileName = "TutorialData", menuName = "Custom/Tutorial/TutorialData")]
 public class TutorialData : ScriptableObject
 {
-    public string tutorialId;
+    public string id;
 
     public TutorialRequirements requirements;
+    public TutorialTriggerType triggerType;
+
     public List<TutorialInfo> infoList = new List<TutorialInfo>();
 }

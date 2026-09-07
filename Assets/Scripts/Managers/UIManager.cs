@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _inputBlocker;
     [SerializeField] private Button _dialogInputBtn;
     [SerializeField] private UIDialog _dialogBox;
+    [SerializeField] private UITutorial _uiTutorial;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -44,11 +45,17 @@ public class UIManager : MonoBehaviour
         _dialogInputBtn.onClick.AddListener(OnClickDialog);
         _dialogInputBtn.gameObject.SetActive(false);
         _dialogBox.gameObject.SetActive(false);
+        _uiTutorial.gameObject.SetActive(false);
     }
 
     void Update()
     {
         if (_isShowingDialog)
+        {
+            return;
+        }
+
+        if (_uiTutorial.gameObject.activeInHierarchy)
         {
             return;
         }
@@ -306,6 +313,11 @@ public class UIManager : MonoBehaviour
 
     public void AddIdentifierButton(string argId, Button argButton)
     {
+        if (!_identifierButtons.ContainsKey(argId))
+        {
+            List<Button> btns = new List<Button>();
+            _identifierButtons.Add(argId, btns);
+        }
         _identifierButtons[argId].Add(argButton);
     }
 
@@ -317,5 +329,36 @@ public class UIManager : MonoBehaviour
         }
         
         _identifierButtons[argId].Remove(argButton);
+    }
+
+    public void ActivateHighlight(string argId, Action argOnComplete)
+    {
+        // button
+        if (_identifierButtons.ContainsKey(argId))
+        {
+            List<RectTransform> rectTransformList = new List<RectTransform>();
+            foreach (var btn in _identifierButtons[argId])
+            {
+                btn.onClick.AddListener(OnBtn);
+                rectTransformList.Add(btn.transform as RectTransform);
+            }
+            _uiTutorial.SetHole(rectTransformList);
+            _uiTutorial.gameObject.SetActive(true);
+        }
+        else
+        {
+            _uiTutorial.gameObject.SetActive(false);
+            argOnComplete?.Invoke();
+        }
+
+        void OnBtn()
+        {
+            _uiTutorial.gameObject.SetActive(false);
+            foreach (var btn in _identifierButtons[argId])
+            {
+                btn.onClick.RemoveListener(OnBtn);
+            }
+            argOnComplete?.Invoke();
+        }
     }
 }

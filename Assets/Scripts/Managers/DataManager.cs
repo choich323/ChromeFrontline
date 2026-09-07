@@ -49,6 +49,7 @@ public class DataManager : MonoBehaviour
     // tutorial data
     private TutorialData _curTutorialData = null;
     private AsyncOperationHandle<TutorialData> _tutorialDataHandle;
+    private bool _isFinishedTutorial = false;
     
     public int StartGold => _playerCurrencyData.startGold;
     public WorldCatalog WorldCatalog => _worldCatalog;
@@ -453,10 +454,11 @@ public class DataManager : MonoBehaviour
         return _curDialogTriggerData;
     }
 
-    public void LoadTutorialData(string argTutorialId)
+    void LoadTutorialData(string argTutorialId, Action argOnComplete)
     {
-        if (_curTutorialData != null && _curTutorialData.tutorialId == argTutorialId)
+        if (_curTutorialData != null && _curTutorialData.id == argTutorialId)
         {
+            argOnComplete?.Invoke();
             return;
         }
 
@@ -480,11 +482,64 @@ public class DataManager : MonoBehaviour
             {
                 Debug.LogError($"[{argTutorialId}] Tutorial Data Load Failed.");
             }
+            
+            argOnComplete?.Invoke();
         };
     }
 
-    public TutorialData GetTutorialData()
+    void ReleaseTutorialData()
     {
-        return _curTutorialData;
+        if (_tutorialDataHandle.IsValid())
+        {
+            Addressables.Release(_tutorialDataHandle);
+            _curTutorialData = null;
+        }
+    }
+
+    string GetNextTutorialId()
+    {
+        if (_isFinishedTutorial)
+        {
+            return string.Empty;
+        }
+        
+        int order = 0;
+        string id = _tutorialManifest.GetNextTutorialId(order);
+        while(id != string.Empty)
+        {
+            if (!Managers.Game.UserRecord.IsCompletedTutorialId(id))
+            {
+                break;
+            }
+            
+            id = _tutorialManifest.GetNextTutorialId(order++);
+        }
+
+        return id;
+    }
+
+    public void GetNextTutorial(Action<TutorialData> argOnComplete)
+    {
+        var nextId = GetNextTutorialId();
+        if (nextId == string.Empty)
+        {
+            ReleaseTutorialData();
+            _isFinishedTutorial = true;
+            argOnComplete?.Invoke(null);
+            return;
+        }
+        LoadTutorialData(nextId, OnLoad);
+
+        void OnLoad()
+        {
+            // stage 도달 여부 체크
+            if (_curTutorialData != null && _curTutorialData.requirements.stage > Managers.Game.UserRecord.MaxClearedStage)
+            {
+                argOnComplete?.Invoke(null);
+                return;
+            }
+            
+            argOnComplete?.Invoke(_curTutorialData);
+        }
     }
 }

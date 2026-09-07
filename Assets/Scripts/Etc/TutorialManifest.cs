@@ -6,7 +6,7 @@ public class TutorialManifest : ScriptableObject
 {
     public List<string> tutorialOrderList = new List<string>();
 
-    public string GetNextTutorial(string argCurTutorial)
+    public string GetNextTutorialId(string argCurTutorial)
     {
         var index = tutorialOrderList.IndexOf(argCurTutorial);
         if (index + 1 >= tutorialOrderList.Count)
@@ -15,5 +15,14 @@ public class TutorialManifest : ScriptableObject
         }
         
         return tutorialOrderList[index + 1];
+    }
+
+    public string GetNextTutorialId(int argIndex)
+    {
+        if (tutorialOrderList.Count <= argIndex)
+        {
+            return string.Empty;
+        }
+        return tutorialOrderList[argIndex];
     }
 }

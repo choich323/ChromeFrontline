@@ -17,7 +17,7 @@ public class SceneTransitionManager : MonoBehaviour
         {
             Managers.I.InitCameraController();
             Managers.UI.CreateTopHUD();
-            Managers.Game.CreateGameField();
+            Managers.Game.OnEnterLobbyFirst();
         }
     }
 

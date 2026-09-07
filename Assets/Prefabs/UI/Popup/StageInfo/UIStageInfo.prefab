@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 696933378816547981}
   - component: {fileID: 6887218171167131198}
   - component: {fileID: 1386784817568100949}
+  - component: {fileID: 1642117103169964591}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -414,6 +415,20 @@ MonoBehaviour:
   _stringGroupList:
   - stringId: Start
     text: {fileID: 1317289282272924628}
+--- !u!114 &1642117103169964591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759829975341765856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85fcbbc2fa5ce44da1e7797e29f1c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIIdentifierButton
+  _id: enterStage
+  _button: {fileID: 6887218171167131198}
 --- !u!1 &1066719406007807904
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,9 @@ public class UserRecord
     private int _maxUnlockedWorld = 1;
 
     [JsonProperty]
+    private int _maxClearedStage = 0;
+
+    [JsonProperty]
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
     [JsonProperty]
@@ -62,8 +65,9 @@ public class UserRecord
     
     [JsonProperty]
     private long _lastChromeUpdateTick = 0;
-
-    private HashSet<string> _completedTutorialIds;
+    
+    [JsonProperty]
+    private HashSet<string> _completedTutorialIds = new HashSet<string>();
 
     public bool IsCompletedTutorialId(string argTutorialId)
     {
@@ -93,6 +97,9 @@ public class UserRecord
     
     [JsonIgnore]
     public int MaxUnlockedWorld => _maxUnlockedWorld;
+    
+    [JsonIgnore]
+    public int MaxClearedStage => _maxClearedStage;
 
     [JsonIgnore]
     public int Chrome => _chrome;
@@ -102,26 +109,27 @@ public class UserRecord
         return _stageSaveInfoDict.GetValueOrDefault(argStage);
     }
     
-    public void SaveStageSaveInfo(int argKey, StageSaveInfo argStageSaveInfo, bool argIsLastStage = false)
+    public void SaveStageSaveInfo(int argStage, StageSaveInfo argStageSaveInfo, bool argIsLastStage = false)
     {
-        if (_stageSaveInfoDict.ContainsKey(argKey) && argStageSaveInfo.tick < _stageSaveInfoDict[argKey].tick)
+        if (_stageSaveInfoDict.ContainsKey(argStage) && argStageSaveInfo.tick < _stageSaveInfoDict[argStage].tick)
         {
             return;
         }
         
-        _stageSaveInfoDict[argKey] = argStageSaveInfo;
+        _stageSaveInfoDict[argStage] = argStageSaveInfo;
         int curWorld = Managers.Data.GetWorldNumber(Managers.Game.CurWorldId);
         _maxUnlockedWorld += argIsLastStage && _maxUnlockedWorld == curWorld ? 1 : 0;
+        _maxClearedStage = Math.Max(_maxClearedStage, argStage);
     }
     
-    public void SaveStageBestRecord(int argKey, StageRecord argRecord)
+    public void SaveStageBestRecord(int argStage, StageRecord argRecord)
     {
-        if (_stageBestRecordDict.ContainsKey(argKey) && argRecord.tick < _stageBestRecordDict[argKey].tick)
+        if (_stageBestRecordDict.ContainsKey(argStage) && argRecord.tick < _stageBestRecordDict[argStage].tick)
         {
             return;
         }
         
-        _stageBestRecordDict[argKey] = argRecord;
+        _stageBestRecordDict[argStage] = argRecord;
     }
     
     public StageRecord GetStageBestRecord(int argStage)

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private event Action _onGameResume;
     private event Action _onStartStage;
     private event Action _onEndStage;
+    private event Action _onEnterLobby;
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
     private UserRecord _userRecord;
@@ -69,6 +70,12 @@ public class GameManager : MonoBehaviour
     {
         add => _onEndStage += value;
         remove => _onEndStage -= value;
+    }
+    
+    public event Action OnEnterLobby
+    {
+        add => _onEnterLobby += value;
+        remove => _onEnterLobby -= value;
     }
     
     void Update()
@@ -125,7 +132,13 @@ public class GameManager : MonoBehaviour
         _isInStage = false;
     }
 
-    public void CreateGameField()
+    public void OnEnterLobbyFirst()
+    {
+        CreateGameField();
+        _onEnterLobby?.Invoke();
+    }
+    
+    void CreateGameField()
     {
         var gameFieldObj = Managers.Pool.Instantiate(PrefabID.GameField);
         if (gameFieldObj == null)
@@ -136,7 +149,7 @@ public class GameManager : MonoBehaviour
         _gameField = gameFieldObj.GetComponent<GameField>();
     }
     
-    public void SaveUserRecord(UserRecord argUserRecord)
+    public void SaveUserRecord()
     {
         var sm = Managers.Save;
         sm.SaveRecord(_userRecord);
@@ -348,7 +361,7 @@ public class GameManager : MonoBehaviour
         argResultData.isBestClearTimeChanged = isBestClearTimeChanged;
         argResultData.isBestHqHpChanged = isBestHqHpChanged;
         
-        SaveUserRecord(record);
+        SaveUserRecord();
     }
 
     public void ExitStage()
