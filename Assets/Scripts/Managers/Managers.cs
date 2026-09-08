@@ -16,6 +16,7 @@ public class Managers : MonoBehaviour
     [SerializeField] private SaveManager _saveManager;
     [SerializeField] private LobbyManager _lobbyManager;
     [SerializeField] private SceneTransitionManager _sceneTransitionManager;
+    [SerializeField] private TutorialManager _tutorialManager;
     
     private PlayerPrefsManager _prefsManager;
     private CameraController _cameraController;
@@ -33,6 +34,7 @@ public class Managers : MonoBehaviour
     public static SaveManager Save => I._saveManager;
     public static LobbyManager Lobby => I._lobbyManager;
     public static SceneTransitionManager Transition => I._sceneTransitionManager;
+    public static TutorialManager Tutorial => I._tutorialManager;
 
     public static CameraController CamController => I._cameraController;
 
@@ -66,6 +68,7 @@ public class Managers : MonoBehaviour
         _soundManager.Init();
         _uiManager.Init();
         _gameManager.Init();
+        _tutorialManager.Init();
     }
 
     public void InitCameraController()

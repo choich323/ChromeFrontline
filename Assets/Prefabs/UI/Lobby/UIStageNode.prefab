@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1886874222362464295}
   - component: {fileID: 2591980476152257976}
   - component: {fileID: 4021857390820473539}
+  - component: {fileID: 9088955094729976574}
   m_Layer: 5
   m_Name: UIStageNode
   m_TagString: Untagged
@@ -111,6 +112,20 @@ MonoBehaviour:
   - {fileID: 6063230159559604061}
   - {fileID: 7420681419580718029}
   - {fileID: 4581656817641304403}
+--- !u!114 &9088955094729976574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333879484586321987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85fcbbc2fa5ce44da1e7797e29f1c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIIdentifierButton
+  _id: stageNode
+  _button: {fileID: 2591980476152257976}
 --- !u!1 &2816766706248498916
 GameObject:
   m_ObjectHideFlags: 0

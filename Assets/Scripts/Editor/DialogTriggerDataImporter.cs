@@ -15,8 +15,8 @@ public class DialogTriggerDataImporter : EditorWindow
 {
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
     private string gid = "0";
-    private string savePath = "Assets/Data/Dialog";
-    private string stage;
+    private string savePath = "Assets/Data/DialogTrigger";
+    private int stage;
 
     [MenuItem("Tools/Import Dialog Trigger Data")]
     public static void ShowWindow()
@@ -39,7 +39,7 @@ public class DialogTriggerDataImporter : EditorWindow
             "Sheet GID",
             gid);
 
-        stage = EditorGUILayout.TextField(
+        stage = EditorGUILayout.IntField(
             "Stage",
             stage);
 
@@ -194,24 +194,21 @@ public class DialogTriggerDataImporter : EditorWindow
 
         for (int i = 1; i < lines.Length; i++)
         {
-            string[] values =
-                SplitCSVLine(lines[i]);
+            string[] values = SplitCSVLine(lines[i]);
 
             if (stageIndex >= values.Length)
                 continue;
 
-            if (values[stageIndex].Trim() != stage)
+            if (values[stageIndex].Trim() != $"{stage}")
                 continue;
 
-            DialogTriggerInfo trigger =
-                new DialogTriggerInfo();
+            DialogTriggerInfo trigger = new DialogTriggerInfo();
 
             for (int col = 0;
                  col < headers.Length;
                  col++)
             {
-                if (col >= values.Length ||
-                    col == stageIndex)
+                if (col >= values.Length || col == stageIndex)
                     continue;
 
                 string header =
@@ -220,12 +217,10 @@ public class DialogTriggerDataImporter : EditorWindow
                 string value =
                     values[col].Trim();
 
-                if (string.IsNullOrEmpty(header) ||
-                    string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(header) || string.IsNullOrEmpty(value))
                     continue;
 
-                value =
-                    value.Replace("\\n", "\n");
+                value = value.Replace("\\n", "\n");
 
                 ApplyValueViaReflection(
                     trigger,
@@ -233,8 +228,7 @@ public class DialogTriggerDataImporter : EditorWindow
                     value);
             }
 
-            triggerData.triggerInfoList.Add(
-                trigger);
+            triggerData.triggerInfoList.Add(trigger);
         }
 
         EditorUtility.SetDirty(triggerData);

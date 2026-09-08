@@ -13,7 +13,6 @@ public enum DialogTriggerType
 [Serializable]
 public class DialogTriggerInfo
 {
-    public string triggerId;
     public DialogTriggerType triggerType;
     public float value;
     public string dialogInfoId;
@@ -22,6 +21,6 @@ public class DialogTriggerInfo
 [CreateAssetMenu(fileName = "DialogTriggerData", menuName = "Custom/Dialog/DialogTriggerData")]
 public class DialogTriggerData : ScriptableObject
 {
-    public string stage;
+    public int stage;
     public List<DialogTriggerInfo> triggerInfoList = new();
 }

@@ -19,7 +19,7 @@ public class DialogInfo
 [CreateAssetMenu(fileName = "DialogData", menuName = "Custom/Dialog/DialogData")]
 public class DialogData : ScriptableObject
 {
-    public string stage;
+    public int stage;
     public List<DialogInfo> dialogInfoList = new();
 
     public DialogInfo GetDialogInfo(string argInfoId)

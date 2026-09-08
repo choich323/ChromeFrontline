@@ -16,7 +16,7 @@ public class DialogDataImporter : EditorWindow
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
     private string gid = "0";
     private string savePath = "Assets/Data/Dialog";
-    private string stage;
+    private int stage;
 
     [MenuItem("Tools/Import Dialog Data")]
     public static void ShowWindow()
@@ -30,7 +30,7 @@ public class DialogDataImporter : EditorWindow
 
         sheetId = EditorGUILayout.TextField("Spreadsheet ID", sheetId);
         gid = EditorGUILayout.TextField("Sheet GID", gid);
-        stage = EditorGUILayout.TextField("Stage", stage);
+        stage = EditorGUILayout.IntField("Stage", stage);
         savePath = EditorGUILayout.TextField("Save Folder", savePath);
 
         if (GUILayout.Button("Import & Parse"))
@@ -182,7 +182,7 @@ public class DialogDataImporter : EditorWindow
             if (stageIndex >= values.Length)
                 continue;
 
-            if (values[stageIndex].Trim() != stage)
+            if (values[stageIndex].Trim() != $"{stage}")
                 continue;
 
             string infoId =

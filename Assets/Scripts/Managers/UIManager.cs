@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _inputBlocker;
     [SerializeField] private Button _dialogInputBtn;
     [SerializeField] private UIDialog _dialogBox;
+    [SerializeField] private UITutorial _uiTutorial;
 
     private PopupHandler _popupHandler;
     private HUDController _topHUDController;
@@ -27,9 +29,11 @@ public class UIManager : MonoBehaviour
     private bool _isWaitingInput;
     private List<UIDamageText> _damageTextList = new List<UIDamageText>();
     private DialogHandler _dialogHandler;
+    private Dictionary<string, List<Button>> _identifierButtons = new Dictionary<string, List<Button>>();
     
     public PopupHandler PopupHandler => _popupHandler;
     public DialogHandler DialogHandler => _dialogHandler;
+    public bool IsShowingDialog => _isShowingDialog;
     
     public void Init()
     {
@@ -41,11 +45,17 @@ public class UIManager : MonoBehaviour
         _dialogInputBtn.onClick.AddListener(OnClickDialog);
         _dialogInputBtn.gameObject.SetActive(false);
         _dialogBox.gameObject.SetActive(false);
+        _uiTutorial.gameObject.SetActive(false);
     }
 
     void Update()
     {
         if (_isShowingDialog)
+        {
+            return;
+        }
+
+        if (_uiTutorial.gameObject.activeInHierarchy)
         {
             return;
         }
@@ -253,7 +263,14 @@ public class UIManager : MonoBehaviour
 
     IEnumerator CoShowDialog(List<Dialog> argDialogList, Action argCallback = null)
     {
+        while (_isShowingDialog)
+        {
+            yield return null;
+        }
+        
         Managers.Game.PauseGame();
+        
+        _isShowingDialog = true;
         _dialogInputBtn.gameObject.SetActive(true);
         _dialogBox.gameObject.SetActive(true);
         
@@ -274,6 +291,8 @@ public class UIManager : MonoBehaviour
         
         _dialogInputBtn.gameObject.SetActive(false);
         _dialogBox.gameObject.SetActive(false);
+        _isShowingDialog = false;
+        
         Managers.Game.ResumeGame();
         
         argCallback?.Invoke();
@@ -289,6 +308,57 @@ public class UIManager : MonoBehaviour
             {
                 _isWaitingInput = false;
             }
+        }
+    }
+
+    public void AddIdentifierButton(string argId, Button argButton)
+    {
+        if (!_identifierButtons.ContainsKey(argId))
+        {
+            List<Button> btns = new List<Button>();
+            _identifierButtons.Add(argId, btns);
+        }
+        _identifierButtons[argId].Add(argButton);
+    }
+
+    public void RemoveIdentifierButton(string argId, Button argButton)
+    {
+        if (!_identifierButtons.ContainsKey(argId))
+        {
+            return;
+        }
+        
+        _identifierButtons[argId].Remove(argButton);
+    }
+
+    public void ActivateHighlight(string argId, string argText, TutorialTextPosType argPosType, Action argOnComplete)
+    {
+        // button
+        if (_identifierButtons.ContainsKey(argId))
+        {
+            List<RectTransform> rectTransformList = new List<RectTransform>();
+            foreach (var btn in _identifierButtons[argId])
+            {
+                btn.onClick.AddListener(OnBtn);
+                rectTransformList.Add(btn.transform as RectTransform);
+            }
+            _uiTutorial.SetHole(rectTransformList, argText, argPosType);
+            _uiTutorial.gameObject.SetActive(true);
+        }
+        else
+        {
+            _uiTutorial.gameObject.SetActive(false);
+            argOnComplete?.Invoke();
+        }
+
+        void OnBtn()
+        {
+            _uiTutorial.gameObject.SetActive(false);
+            foreach (var btn in _identifierButtons[argId])
+            {
+                btn.onClick.RemoveListener(OnBtn);
+            }
+            argOnComplete?.Invoke();
         }
     }
 }

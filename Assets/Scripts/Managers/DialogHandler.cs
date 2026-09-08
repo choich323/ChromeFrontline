@@ -7,6 +7,20 @@ public class DialogHandler
     private const float HUNDRED = 100f;
     
     private List<Action> _triggerReleaseList = new List<Action>();
+    private event Action _onStageStart;
+    private event Action _onStageFirstClearEnd;
+    
+    public event Action OnStageStartEnd
+    {
+        add => _onStageStart += value;
+        remove  => _onStageStart -= value;
+    }
+
+    public event Action OnStageFirstClearEnd
+    {
+        add => _onStageFirstClearEnd += value;
+        remove => _onStageFirstClearEnd -= value;
+    }
     
     public void Init()
     {
@@ -56,7 +70,7 @@ public class DialogHandler
         
         void OnStartStage()
         {
-            Managers.UI.ShowDialog(argInfo.dialogInfoId);
+            Managers.UI.ShowDialog(argInfo.dialogInfoId, _onStageStart);
             Managers.Game.OnStartStage -= OnStartStage;
         } 
     }
@@ -93,6 +107,8 @@ public class DialogHandler
             void OnEnd()
             {
                 Managers.Game.PauseGame();
+                
+                _onStageFirstClearEnd?.Invoke();
             }
         }
     }

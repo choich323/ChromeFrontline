@@ -30,13 +30,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f3c760792bca3949a8af6a7cbff6770
+    m_Address: TutorialData_CreateEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 823183e9dd184cc4993cf64abc11f8bb
     m_Address: StoryData_world1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aec22ddaed1a5ed49a369895e274787b
-    m_Address: DialogData_1_1
+  - m_GUID: 963d6657a1673144bbd4286a94d7e285
+    m_Address: DialogTriggerData_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97c66fd31134ce64eb56910d8f66a8a1
+    m_Address: DialogData_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -45,8 +55,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cc26866be5a660e4e95ced08e2ed29c9
-    m_Address: DialogTriggerData_1_1
+  - m_GUID: dcd52cda41273184ea0f879017685b6d
+    m_Address: TutorialData_stageSelect
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &642748307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9152459898180975181, guid: 774386fdb950ec44b925653d3acaa51a, type: 3}
+  m_PrefabInstance: {fileID: 8824891881146298368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca9e8223922f684aabb65339db6b7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UITutorial
 --- !u!1 &860235971
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +304,10 @@ PrefabInstance:
       propertyPath: _hudParent
       value: 
       objectReference: {fileID: 4178409334657125881}
+    - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
+      propertyPath: _uiTutorial
+      value: 
+      objectReference: {fileID: 642748307}
     - target: {fileID: -4555702561471690154, guid: 92875701fbdf0194485f5486887bd8c0, type: 3}
       propertyPath: _popupParent
       value: 
