@@ -18,4 +18,12 @@ MonoBehaviour:
   triggerType: 0
   infoList:
   - targetId: stageNode
+    textPos: 3
+    text:
+      en: Touch stage button
+      kr: "\uC2A4\uD14C\uC774\uC9C0\uB97C \uC120\uD0DD\uD558\uC2ED\uC2DC\uC624"
   - targetId: enterStage
+    textPos: 1
+    text:
+      en: Touch start button
+      kr: "\uC2DC\uC791 \uBC84\uD2BC\uC744 \uB20C\uB7EC \uC791\uC804\uC744 \uC2DC\uC791\uD558\uC2ED\uC2DC\uC624"

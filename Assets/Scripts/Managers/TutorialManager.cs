@@ -45,8 +45,10 @@ public class TutorialManager : MonoBehaviour
         {
             int size = argTutorialData.infoList.Count;
             int index = 0;
-            string id = argTutorialData.infoList[index++].targetId;
-            Managers.UI.ActivateHighlight(id, OnHighlight);
+            var info = argTutorialData.infoList[index++];
+            string id = info.targetId;
+            string text = Managers.Language.GetLocalizedString(info.text);
+            Managers.UI.ActivateHighlight(id, text, info.textPos, OnHighlight);
             
             void OnHighlight(){
                 if (index >= size)
@@ -55,8 +57,10 @@ public class TutorialManager : MonoBehaviour
                     return;
                 }
                 
-                id = argTutorialData.infoList[index++].targetId;
-                Managers.UI.ActivateHighlight(id, OnHighlight);
+                info = argTutorialData.infoList[index++];
+                id = info.targetId;
+                text = Managers.Language.GetLocalizedString(info.text);
+                Managers.UI.ActivateHighlight(id, text, info.textPos, OnHighlight);
             }
         }
 

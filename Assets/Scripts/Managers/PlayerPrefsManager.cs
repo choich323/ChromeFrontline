@@ -22,7 +22,19 @@ public class PlayerPrefsManager
     
     public void Init()
     {
-        
+        if (!PlayerPrefs.HasKey(LANG_KEY))
+        {
+            switch (Application.systemLanguage)
+            {
+                default:
+                case SystemLanguage.English:
+                    SetLanguage((int)global::Language.English);
+                    break;
+                case SystemLanguage.Korean:
+                    SetLanguage((int)global::Language.Korean);
+                    break;
+            }
+        }
     }
 
     public void SetSound(float argValue)

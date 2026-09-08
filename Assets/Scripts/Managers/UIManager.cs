@@ -331,7 +331,7 @@ public class UIManager : MonoBehaviour
         _identifierButtons[argId].Remove(argButton);
     }
 
-    public void ActivateHighlight(string argId, Action argOnComplete)
+    public void ActivateHighlight(string argId, string argText, TutorialTextPosType argPosType, Action argOnComplete)
     {
         // button
         if (_identifierButtons.ContainsKey(argId))
@@ -342,7 +342,7 @@ public class UIManager : MonoBehaviour
                 btn.onClick.AddListener(OnBtn);
                 rectTransformList.Add(btn.transform as RectTransform);
             }
-            _uiTutorial.SetHole(rectTransformList);
+            _uiTutorial.SetHole(rectTransformList, argText, argPosType);
             _uiTutorial.gameObject.SetActive(true);
         }
         else

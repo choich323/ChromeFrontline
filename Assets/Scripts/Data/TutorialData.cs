@@ -11,6 +11,15 @@ public enum TutorialTriggerType
     StageEndDialogEnd,
 }
 
+public enum TutorialTextPosType
+{
+    None = 0,
+    Top,
+    Bottom,
+    Right,
+    Left
+}
+
 [Serializable]
 public class TutorialRequirements
 {
@@ -22,6 +31,8 @@ public class TutorialRequirements
 public class TutorialInfo
 {
     public string targetId;
+    public TutorialTextPosType textPos;
+    public LocalizationText text;
 }
 
 [CreateAssetMenu(fileName = "TutorialData", menuName = "Custom/Tutorial/TutorialData")]
