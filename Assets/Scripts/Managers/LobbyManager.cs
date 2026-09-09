@@ -9,9 +9,10 @@ public class LobbyManager : MonoBehaviour
 {
     [Header("=== UI References ===")]
     [SerializeField] private ScrollRect _mapScrollRect;
-    [SerializeField] private Transform _nodeContainer;       // Content 객체
+    [SerializeField] private Transform _nodeParent;       // Content 객체
     [SerializeField] private Image _bgImage;
-
+    [SerializeField] private TextMeshProUGUI _chromeText;
+    
     [Header("=== World Switching ===")]
     [SerializeField] private Button _btnWorldSelect;
     [SerializeField] private TextMeshProUGUI _btnWorldSelectText;
@@ -19,14 +20,14 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Button _btnOption;
     
     private List<UIStageNode> _nodeList = new List<UIStageNode>();
-    private UserRecord _userRecord;
+    private UserRecord UserRecord => Managers.Game.UserRecord;
 
     void Awake()
     {
         Managers.I.SetLobbyManager(this);
         _btnOption.onClick.AddListener(OnClickOption);
         _btnWorldSelect.onClick.AddListener(OnClickWorldSelect);
-        string worldId = Managers.Data.GetWorldId(Managers.Game.UserRecord.MaxUnlockedWorld);
+        string worldId = Managers.Data.GetWorldId(UserRecord.MaxUnlockedWorld);
         RefreshLobbyMap(worldId);
         RefreshText();
     }
@@ -36,24 +37,32 @@ public class LobbyManager : MonoBehaviour
         var sm = Managers.String;
         string world = sm.GetString(StringID.World);
         string select = sm.GetString(StringID.Select);
-        _btnWorldSelectText.text = $"{world}\n{select}";
+        _btnWorldSelectText.SetText($"{world}\n{select}");
+        _chromeText.SetText($"{UserRecord.Chrome}");
     }
     
     public void RefreshLobbyMap(string argTargetWorld, int argPlayedStageIndex = -1, bool argIsNewStageUnlocked = false)
     {
         ToggleLobby(true);
         
-        _userRecord = Managers.Game.UserRecord;
-        if (_userRecord == null) return;
+        if (UserRecord == null)
+        {
+            return;
+        }
+        
+        RefreshText();
         
         Managers.Data.LoadWorldData(argTargetWorld, (worldData) =>
         {
-            if (worldData == null) return;
+            if (worldData == null)
+            {
+                return;
+            }
 
             SetMapBackground(worldData);
             
             // 노드 깔고, 카메라가 쳐다볼 타겟 노드 가져오기
-            GenerateNodesAndFindTarget(worldData, _userRecord, argPlayedStageIndex, out RectTransform playedTarget, out RectTransform newTarget);
+            GenerateNodesAndFindTarget(worldData, argPlayedStageIndex, out RectTransform playedTarget, out RectTransform newTarget);
 
             if (playedTarget != null)
             {
@@ -88,7 +97,7 @@ public class LobbyManager : MonoBehaviour
         _bgImage.sprite = argWorldData.bg;
     }
     
-    void GenerateNodesAndFindTarget(WorldData argWorldData, UserRecord argUserRecord, int argPlayedStageIndex, out RectTransform outPlayedTarget, out RectTransform outNewTarget)
+    void GenerateNodesAndFindTarget(WorldData argWorldData, int argPlayedStageIndex, out RectTransform outPlayedTarget, out RectTransform outNewTarget)
     {
         // 1. 기존에 있던 노드들 청소
         foreach (var stageNode in _nodeList)
@@ -106,20 +115,20 @@ public class LobbyManager : MonoBehaviour
         foreach (var stageInfo in argWorldData.GetStageInfoList())
         {
             // 미해금 노드면 패스
-            if (!Managers.Data.IsStageUnlocked(stageInfo, argUserRecord))
+            if (!Managers.Data.IsStageUnlocked(stageInfo, UserRecord))
                 continue;
 
             // 3. 노드 생성 및 구워둔 좌표 이식
             var obj = Managers.Pool.Instantiate(PrefabID.UIStageNode);
             var newNode = obj.GetComponent<UIStageNode>();
             _nodeList.Add(newNode);
-            newNode.transform.SetParent(_nodeContainer);
+            newNode.transform.SetParent(_nodeParent);
             RectTransform rect = obj.transform as RectTransform;
             rect.anchoredPosition = stageInfo.uiPosition;
             newNode.transform.localScale = Vector3.one;
 
             // 4. 데이터 묶어주기 및 클릭 이벤트 연결
-            StageSaveInfo saveInfo = argUserRecord.GetStageSaveInfo(stageInfo.stage);
+            StageSaveInfo saveInfo = UserRecord.GetStageSaveInfo(stageInfo.stage);
             newNode.Init(stageInfo, saveInfo, OnStageNodeClicked);
 
             // 직전 플레이 노드
@@ -191,7 +200,7 @@ public class LobbyManager : MonoBehaviour
             return;
         }
         
-        popup.SetData(argStageInfo, _userRecord);
+        popup.SetData(argStageInfo, UserRecord);
         popup.SetOnClose(OnClose);
 
         void OnClose()

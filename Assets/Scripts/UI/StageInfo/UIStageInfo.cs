@@ -31,6 +31,9 @@ public class UIStageInfo : APopup
     [SerializeField] private TextMeshProUGUI _hqHpMissionText;
     [SerializeField] private TextMeshProUGUI _hqHpBestText;
     
+    [Header("Clear Reward")]
+    [SerializeField] private TextMeshProUGUI _clearReward;
+    
     [SerializeField] private Button _btnEnter;
     
     private StageInfo _stageInfo;
@@ -49,12 +52,13 @@ public class UIStageInfo : APopup
         SetUI(argUserRecord);
     }
 
-    void SetUI(UserRecord argUserRecord)
+    async void SetUI(UserRecord argUserRecord)
     {
         //SetStageNumberText(argUserRecord);
-        SetStageTitleText();
-        SetStageDescText();
+        await SetStageTitleText();
+        await SetStageDescText();
         SetMissionText(argUserRecord);
+        SetRewardText();
         SetIcon(argUserRecord);
     }
 
@@ -100,6 +104,11 @@ public class UIStageInfo : APopup
         }
     }
 
+    void SetRewardText()
+    {
+        _clearReward.SetText($"{_stageInfo.reward}");
+    }
+    
     string GetConvertedTimeText(float argTime)
     {
         var playTime = argTime;

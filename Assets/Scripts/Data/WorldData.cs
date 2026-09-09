@@ -14,6 +14,7 @@ public class StageInfo
     [Header("=== Gameplay Metadata ===")]
     public int stageIndex;       // 월드 내 정렬 순서
     public string aiScheduleId;  // 난이도 설정용
+    public int reward = 80;
     
     // public int maxHqLevel;
     public ulong playerAvailableEntitiesMask;

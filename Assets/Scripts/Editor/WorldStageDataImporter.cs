@@ -15,7 +15,7 @@ public class WorldStageDataImporter : EditorWindow
     //[cite: 3] 구글 시트 다운로드를 위한 변수들 세팅
     private string sheetId = "YOUR_SPREADSHEET_ID_HERE";
     private string gid = "0";
-    private string savePath = "Assets/Data/World/world.asset";
+    private string savePath = "Assets/Data/World";
     private string worldId = "world";
 
     [MenuItem("Tools/Import World-Stage Data")]
@@ -123,13 +123,14 @@ public class WorldStageDataImporter : EditorWindow
         int worldIdColIndex = Array.IndexOf(headers, "worldId");
         
         // 3. ScriptableObject 로드 또는 생성[cite: 3]
-        WorldData worldData = AssetDatabase.LoadAssetAtPath<WorldData>(savePath);
+        var path = savePath + $"/{worldId}.asset";
+        WorldData worldData = AssetDatabase.LoadAssetAtPath<WorldData>(path);
         
         if (worldData == null)
         {
             worldData = CreateInstance<WorldData>();
             worldData.worldId = worldId; //[cite: 1, 3]
-            AssetDatabase.CreateAsset(worldData, savePath);
+            AssetDatabase.CreateAsset(worldData, path);
         }
         else
         {
@@ -201,7 +202,7 @@ public class WorldStageDataImporter : EditorWindow
         AssetDatabase.SaveAssets(); 
         AssetDatabase.Refresh();
 
-        SetAssetAsAddressable(savePath, worldId);
+        SetAssetAsAddressable(path, worldId);
         
         Debug.Log($"[리플렉션 임포트 완료] {worldData.stageInfoList.Count}개의 스테이지 데이터가 갱신되었습니다.");
     }

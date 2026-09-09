@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public struct ResultData
 {
     public int stage;
+    public int chromeReward;
     public bool isClear;
     public bool isLastStage;
     public bool isClearChanged;

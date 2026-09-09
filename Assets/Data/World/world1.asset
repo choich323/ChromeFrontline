@@ -22,6 +22,7 @@ MonoBehaviour:
     uiPosition: {x: -445, y: 793}
     stageIndex: 1
     aiScheduleId: normal
+    reward: 80
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 2
@@ -30,6 +31,7 @@ MonoBehaviour:
     uiPosition: {x: -748, y: 625}
     stageIndex: 2
     aiScheduleId: normal
+    reward: 84
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 3
@@ -38,6 +40,7 @@ MonoBehaviour:
     uiPosition: {x: -175, y: 62}
     stageIndex: 3
     aiScheduleId: normal
+    reward: 88
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 4
@@ -46,6 +49,7 @@ MonoBehaviour:
     uiPosition: {x: -751, y: -694}
     stageIndex: 4
     aiScheduleId: normal
+    reward: 92
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 5
@@ -54,6 +58,7 @@ MonoBehaviour:
     uiPosition: {x: 283, y: 409}
     stageIndex: 5
     aiScheduleId: normal
+    reward: 97
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 6
@@ -62,6 +67,7 @@ MonoBehaviour:
     uiPosition: {x: 556, y: 727}
     stageIndex: 6
     aiScheduleId: normal
+    reward: 102
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 7
@@ -70,6 +76,7 @@ MonoBehaviour:
     uiPosition: {x: 175, y: -247}
     stageIndex: 7
     aiScheduleId: normal
+    reward: 107
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 8
@@ -78,6 +85,7 @@ MonoBehaviour:
     uiPosition: {x: 685, y: -637}
     stageIndex: 8
     aiScheduleId: normal
+    reward: 112
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
   - stage: 9
@@ -86,5 +94,6 @@ MonoBehaviour:
     uiPosition: {x: 784, y: -1192}
     stageIndex: 9
     aiScheduleId: normal
+    reward: 118
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
