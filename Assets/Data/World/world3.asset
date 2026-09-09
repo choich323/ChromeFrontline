@@ -16,67 +16,75 @@ MonoBehaviour:
   world: 3
   bg: {fileID: -5139938918507374353, guid: a09712944b384dd4d94f5d85469a4af2, type: 3}
   stageInfoList:
-  - stage: 1
+  - stage: 17
     stageName: 3-1
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 1
     aiScheduleId: normal
+    reward: 174
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 2
+  - stage: 18
     stageName: 3-2
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 2
     aiScheduleId: normal
+    reward: 183
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 3
+  - stage: 19
     stageName: 3-3
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 3
     aiScheduleId: normal
+    reward: 192
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 4
+  - stage: 20
     stageName: 3-4
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 4
     aiScheduleId: normal
+    reward: 202
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 5
+  - stage: 21
     stageName: 3-5
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 5
     aiScheduleId: normal
+    reward: 212
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 6
+  - stage: 22
     stageName: 3-6
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 6
     aiScheduleId: normal
+    reward: 222
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 7
+  - stage: 23
     stageName: 3-7
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 7
     aiScheduleId: normal
+    reward: 234
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
-  - stage: 8
+  - stage: 24
     stageName: 3-8
     isLastStage: 1
     uiPosition: {x: 0, y: 0}
     stageIndex: 8
     aiScheduleId: normal
+    reward: 245
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760

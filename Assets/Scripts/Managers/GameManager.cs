@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     
     private ulong _uid = INVALID_UID;
     private int _stage = DEFAULT_STAGE;
+    private int _chromeReward;
     private int _playedStageIndex = -1;
     private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
@@ -231,6 +232,7 @@ public class GameManager : MonoBehaviour
         _isInStage = true;
         _elapsedPlayTime = 0f;
         _stage = argStageInfo.stage;
+        _chromeReward = argStageInfo.reward;
         
         var saveInfo = _userRecord.GetStageSaveInfo(argStageInfo.stage);
         _wasAlreadyClearedBeforePlay = saveInfo != null && saveInfo.isCleared;
@@ -289,6 +291,7 @@ public class GameManager : MonoBehaviour
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         resultData.isLastStage = _isLastStage;
+        resultData.chromeReward = _chromeReward;
         
         CheckSave(resultData);
         
@@ -300,7 +303,6 @@ public class GameManager : MonoBehaviour
     
     void CheckSave(ResultData argResultData)
     {
-        var record = UserRecord;
         int stage = argResultData.stage;
         var nowTick = DateTime.Now.Ticks;
 
@@ -308,21 +310,21 @@ public class GameManager : MonoBehaviour
         bool isBestClearTimeChanged = false;
         bool isBestHqHpChanged = false;
         
-        var stageSaveInfo = record.GetStageSaveInfo(stage);
+        var stageSaveInfo = UserRecord.GetStageSaveInfo(stage);
         if (stageSaveInfo == null)
         {
             stageSaveInfo = new StageSaveInfo();
             stageSaveInfo.tick = nowTick;
             stageSaveInfo.stage = stage;
-            record.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
+            UserRecord.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
         }
         
-        var stageBestRecord = record.GetStageBestRecord(stage);
+        var stageBestRecord = UserRecord.GetStageBestRecord(stage);
         if (stageBestRecord == null)
         {
             stageBestRecord = new StageRecord();
             stageBestRecord.tick = nowTick;
-            record.SaveStageBestRecord(stage, stageBestRecord);
+            UserRecord.SaveStageBestRecord(stage, stageBestRecord);
         }
         
         if (!stageBestRecord.isClear && argResultData.isClear)
@@ -350,16 +352,13 @@ public class GameManager : MonoBehaviour
 
         if (isClearChanged || isBestClearTimeChanged || isBestHqHpChanged)
         {
-            
             stageSaveInfo.tick = nowTick;
             stageBestRecord.tick = nowTick;
-            record.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
-            record.SaveStageBestRecord(stage, stageBestRecord);
+            UserRecord.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
+            UserRecord.SaveStageBestRecord(stage, stageBestRecord);
         }
         
-        argResultData.isClearChanged = isClearChanged;
-        argResultData.isBestClearTimeChanged = isBestClearTimeChanged;
-        argResultData.isBestHqHpChanged = isBestHqHpChanged;
+        UserRecord.EarnChrome(argResultData.chromeReward);
         
         SaveUserRecord();
     }

@@ -81,14 +81,20 @@ public class UserRecord
     
     public void EarnChrome(int argAmount)
     {
-        if (argAmount <= 0) return;
+        if (argAmount <= 0)
+        {
+            return;
+        }
         _chrome += argAmount;
         _lastChromeUpdateTick = DateTime.Now.Ticks;
     }
 
     public bool ConsumeChrome(int argAmount)
     {
-        if (argAmount <= 0 || _chrome < argAmount) return false;
+        if (argAmount <= 0 || _chrome < argAmount)
+        {
+            return false;
+        }
         
         _chrome -= argAmount;
         _lastChromeUpdateTick = DateTime.Now.Ticks;

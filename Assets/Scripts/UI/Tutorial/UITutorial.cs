@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class UITutorial : MonoBehaviour
 {
+    private const float HALF = 0.5f;
+    private const float ZERO = 0f;
+    private const float ONE = 1f;
+    
     [SerializeField] private UITutorialDimmer _dimmer;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private float _xPadding = 50f;
@@ -45,20 +49,20 @@ public class UITutorial : MonoBehaviour
         switch (argPosType)
         {
             case TutorialTextPosType.Left:
-                targetPos = new Vector2(min.x - _xPadding, (min.y + max.y) * 0.5f);
-                textRect.pivot = new Vector2(1f, 0.5f);
+                targetPos = new Vector2(min.x - _xPadding, (min.y + max.y) * HALF);
+                textRect.pivot = new Vector2(ONE, HALF);
                 break;
             case TutorialTextPosType.Right:
-                targetPos = new Vector2(max.x + _xPadding, (min.y + max.y) * 0.5f);
-                textRect.pivot = new Vector2(0f, 0.5f);
+                targetPos = new Vector2(max.x + _xPadding, (min.y + max.y) * HALF);
+                textRect.pivot = new Vector2(ZERO, HALF);
                 break;
             case TutorialTextPosType.Top:
-                targetPos = new Vector2((min.x + max.x) * 0.5f, max.y + _yPadding);
-                textRect.pivot = new Vector2(0.5f, 0f);
+                targetPos = new Vector2((min.x + max.x) * HALF, max.y + _yPadding);
+                textRect.pivot = new Vector2(HALF, ZERO);
                 break;
             case TutorialTextPosType.Bottom:
-                targetPos = new Vector2((min.x + max.x) * 0.5f, min.y - _yPadding);
-                textRect.pivot = new Vector2(0.5f, 1f);
+                targetPos = new Vector2((min.x + max.x) * HALF, min.y - _yPadding);
+                textRect.pivot = new Vector2(HALF, ONE);
                 break;
             default:
                 _text.gameObject.SetActive(false);

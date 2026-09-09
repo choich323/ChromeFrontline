@@ -84,6 +84,7 @@ public enum StringID
     
     // StageInfo
     Start,
+    ClearReward,
     
     // worldSelectInfo
     World,

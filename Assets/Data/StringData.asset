@@ -57,6 +57,10 @@ MonoBehaviour:
     value:
       en: Clear
       kr: "\uD074\uB9AC\uC5B4 \uC5EC\uBD80"
+  - id: ClearReward
+    value:
+      en: Clear Reward
+      kr: "\uD074\uB9AC\uC5B4 \uBCF4\uC0C1"
   - id: ClearTimeMission
     value:
       en: Clear in {0}

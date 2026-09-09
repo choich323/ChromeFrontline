@@ -16,11 +16,12 @@ MonoBehaviour:
   world: 4
   bg: {fileID: 0}
   stageInfoList:
-  - stage: 1
+  - stage: 25
     stageName: 4-1
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 1
     aiScheduleId: normal
+    reward: 258
     playerAvailableEntitiesMask: 65535
     enemyAvailableEntitiesMask: 4294901760
