@@ -21,9 +21,11 @@ public class DataManager : MonoBehaviour
     [SerializeField] private GameSpeedData _gameSpeedData;
     [SerializeField] private WorldCatalog _worldCatalog;
     [SerializeField] private TutorialManifest _tutorialManifest;
+    [SerializeField] private SkillData _skillData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
+    private Dictionary<int, SkillInfo> _skillInfoDict = new Dictionary<int, SkillInfo>();
     private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
     private List<EntityInfo> _entityInfoList = new List<EntityInfo>();
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
@@ -88,6 +90,12 @@ public class DataManager : MonoBehaviour
             _stringInfoDict.TryAdd(id, info.value);
         }
 
+        foreach (var info in _skillData.GetInfoList())
+        {
+            var id = info.id;
+            _skillInfoDict.TryAdd(id, info);
+        }
+        
         foreach (var info in _aiScheduleData.GetScheduleInfoList())
         {
             _aiScheduleInfoList.Add(info);
@@ -541,5 +549,25 @@ public class DataManager : MonoBehaviour
             
             argOnComplete?.Invoke(_curTutorialData);
         }
+    }
+
+    public SkillInfo GetSkillInfo(int argSkillId)
+    {
+        if (!_skillInfoDict.TryGetValue(argSkillId, out SkillInfo outSkillInfo))
+        {
+            return null;
+        }
+        
+        return outSkillInfo;
+    }
+
+    public SkillUpgradeData GetSkillUpgradeInfo(int argSkillId)
+    {
+        if (!_skillInfoDict.TryGetValue(argSkillId, out SkillInfo outSkillInfo))
+        {
+            return null;
+        }
+
+        return outSkillInfo.upgradeData;
     }
 }
