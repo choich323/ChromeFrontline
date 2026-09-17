@@ -181,7 +181,7 @@ MonoBehaviour:
     moveSpeed: 1.21
     productionTime: 12.3
     goldCost: 56
-  - id: Commander
+  - id: HeavyGunner
     prefab: {fileID: 0}
     explosionAnimatorOverrideController: {fileID: 0}
     animatorOverrideController: {fileID: 22100000, guid: a4ada21183fb5a946a5b51a2fe77b7e2, type: 2}

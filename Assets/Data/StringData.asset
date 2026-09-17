@@ -65,10 +65,14 @@ MonoBehaviour:
     value:
       en: Clear in {0}
       kr: "{0}\uBD84 \uC774\uB0B4 \uD074\uB9AC\uC5B4"
-  - id: Commander
+  - id: HeavyGunner
     value:
-      en: Commander
-      kr: "\uC804\uC220 \uC9C0\uD718\uAD00"
+      en: HeavyGunner
+      kr: "\uC911\uD654\uAE30\uBCD1"
+  - id: CommanderSkill
+    value:
+      en: Commander Skill
+      kr: "\uC9C0\uD718\uAD00 \uC2A4\uD0AC"
   - id: ConfirmAddSlot
     value:
       en: Are you sure to add one more slot?

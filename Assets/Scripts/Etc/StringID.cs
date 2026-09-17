@@ -85,6 +85,7 @@ public enum StringID
     // StageInfo
     Start,
     ClearReward,
+    CommanderSkill,
     
     // worldSelectInfo
     World,
@@ -99,7 +100,7 @@ public enum StringID
     SpecialForce,
     Breacher,
     AssaultRifle,
-    Commander,
+    HeavyGunner,
     HydroPuncher,
     ShadowReaper,
     TheThunder,

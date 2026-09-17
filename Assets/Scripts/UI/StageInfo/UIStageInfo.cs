@@ -14,6 +14,10 @@ public class UIStageInfo : APopup
     private const string STAGE_CLEAR_HQ_HP_NONE = "--%";
     
     [SerializeField] private TextMeshProUGUI _stageTitleText;
+
+    [Header("Skill Info")]
+    [SerializeField] private TextMeshProUGUI _skillText;
+    
     
     [Header("Clear Mission")] 
     [SerializeField] private GameObject _clearIcon;
