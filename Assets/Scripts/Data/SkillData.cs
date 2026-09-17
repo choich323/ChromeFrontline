@@ -39,7 +39,7 @@ public enum StatType
 {
     None,
     Attack,
-    Defense,
+    Armor,
     AttackSpeed,
     MoveSpeed,
     Critical,
@@ -52,6 +52,7 @@ public enum StatType
 public class SkillInfo
 {
     public int id;
+    public Sprite icon;
     public SkillType type;
     
     public TargetType targetType;

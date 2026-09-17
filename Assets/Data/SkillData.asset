@@ -14,8 +14,231 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   infoList:
   - id: 1001
-    type: 2
+    icon: {fileID: -7864223098581987500, guid: a995276dbbf831f4485326c279c82849, type: 3}
+    type: 1
+    targetType: 3
+    rangeData:
+      type: 2
+      radius: 0
+      vertexList:
+      - {x: -1, y: -1}
+      - {x: 1, y: -1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+    cooldown: 30
+    hitTiming: 0.8
+    actionList:
+    - type: 1
+      value: 0.2
+      duration: 0
+      interval: 0
+      statModifierList: []
+    upgradeData:
+      value: 0.1
+      range: 0
+      cooldown: 0
+      duration: 0
+  - id: 1002
+    icon: {fileID: -1736326233518769972, guid: bd5032734b5b8bb4da414f484442e171, type: 3}
+    type: 1
+    targetType: 3
+    rangeData:
+      type: 1
+      radius: 2
+      vertexList: []
+    cooldown: 20
+    hitTiming: 0.7
+    actionList:
+    - type: 1
+      value: 0.1
+      duration: 0
+      interval: 0
+      statModifierList: []
+    upgradeData:
+      value: 0.2
+      range: 0.1
+      cooldown: 0
+      duration: 0
+  - id: 1003
+    icon: {fileID: -800539931983229277, guid: 766e3b9b4e5d8f34a97f7c37498a820b, type: 3}
+    type: 1
+    targetType: 3
+    rangeData:
+      type: 2
+      radius: 0
+      vertexList:
+      - {x: -1, y: -1}
+      - {x: 1, y: -1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+    cooldown: 30
+    hitTiming: 0.75
+    actionList:
+    - type: 1
+      value: 0.02
+      duration: 3
+      interval: 1
+      statModifierList: []
+    upgradeData:
+      value: 0.1
+      range: 0
+      cooldown: 0
+      duration: 0.2
+  - id: 2001
+    icon: {fileID: -2757887451555568444, guid: c0f623bf8088dda41b30347e9addd2df, type: 3}
+    type: 1
     targetType: 2
+    rangeData:
+      type: 2
+      radius: 0
+      vertexList:
+      - {x: -1, y: -1}
+      - {x: 1, y: -1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+    cooldown: 60
+    hitTiming: 0
+    actionList:
+    - type: 3
+      value: 0.1
+      duration: 10
+      interval: 1
+      statModifierList: []
+    upgradeData:
+      value: 0.1
+      range: 0.1
+      cooldown: 0.05
+      duration: 0.1
+  - id: 2002
+    icon: {fileID: -711012508038229037, guid: b8d2d6cb12f20794489258a1378920b6, type: 3}
+    type: 1
+    targetType: 3
+    rangeData:
+      type: 1
+      radius: 4
+      vertexList: []
+    cooldown: 120
+    hitTiming: 0.25
+    actionList:
+    - type: 1
+      value: 0.5
+      duration: 0
+      interval: 0
+      statModifierList: []
+    upgradeData:
+      value: 0.04
+      range: 0.05
+      cooldown: 0
+      duration: 0
+  - id: 3001
+    icon: {fileID: 2162073879907501594, guid: 29dbca7c4b57e36459c939e65c0c9be6, type: 3}
+    type: 1
+    targetType: 2
+    rangeData:
+      type: 0
+      radius: 0
+      vertexList: []
+    cooldown: 45
+    hitTiming: 0
+    actionList:
+    - type: 4
+      value: 0
+      duration: 10
+      interval: 0
+      statModifierList:
+      - type: 5
+        value: 0.2
+    upgradeData:
+      value: 0
+      range: 0
+      cooldown: 0
+      duration: 0.2
+  - id: 3002
+    icon: {fileID: -7404376503033989308, guid: 54b489bc0827903408ac592e88df8b7d, type: 3}
+    type: 1
+    targetType: 2
+    rangeData:
+      type: 0
+      radius: 0
+      vertexList: []
+    cooldown: 45
+    hitTiming: 0
+    actionList:
+    - type: 1
+      value: 0.1
+      duration: 0
+      interval: 0
+      statModifierList: []
+    - type: 4
+      value: 0
+      duration: 10
+      interval: 0
+      statModifierList:
+      - type: 1
+        value: 0.1
+      - type: 3
+        value: 0.1
+      - type: 4
+        value: 0.1
+    upgradeData:
+      value: 0.2
+      range: 0
+      cooldown: 0
+      duration: 0.1
+  - id: 3003
+    icon: {fileID: -2165511494652259143, guid: 8b237d7aa8f897543b36a1c271f35ad7, type: 3}
+    type: 1
+    targetType: 2
+    rangeData:
+      type: 0
+      radius: 0
+      vertexList: []
+    cooldown: 60
+    hitTiming: 0
+    actionList:
+    - type: 2
+      value: 0.1
+      duration: 0
+      interval: 0
+      statModifierList: []
+    upgradeData:
+      value: 0.2
+      range: 0
+      cooldown: 0
+      duration: 0
+  - id: 4001
+    icon: {fileID: 8389134475083476877, guid: 9b1b427c26e13dd48a34aa797b8f2faa, type: 3}
+    type: 1
+    targetType: 3
+    rangeData:
+      type: 0
+      radius: 0
+      vertexList: []
+    cooldown: 90
+    hitTiming: 0
+    actionList:
+    - type: 5
+      value: 0
+      duration: 10
+      interval: 0
+      statModifierList:
+      - type: 1
+        value: 0.1
+      - type: 2
+        value: 0.1
+      - type: 3
+        value: 0.1
+      - type: 4
+        value: 0.1
+    upgradeData:
+      value: 0
+      range: 0
+      cooldown: 0
+      duration: 0.1
+  - id: 10001
+    icon: {fileID: 1926804461, guid: 7c5bf9c5420b6054983bcd6af8dc4367, type: 3}
+    type: 2
+    targetType: 1
     rangeData:
       type: 0
       radius: 0
@@ -28,10 +251,56 @@ MonoBehaviour:
       duration: -1
       interval: 0
       statModifierList:
-      - type: 1
+      - type: 6
         value: 0.1
     upgradeData:
       value: 0.1
-      range: 0.1
-      cooldown: 0.1
-      duration: 0.1
+      range: 0
+      cooldown: 0
+      duration: 0
+  - id: 10002
+    icon: {fileID: 21300000, guid: b7169c21225b1f04ab520fd934e0cd2c, type: 3}
+    type: 2
+    targetType: 1
+    rangeData:
+      type: 0
+      radius: 0
+      vertexList: []
+    cooldown: 0
+    hitTiming: 0
+    actionList:
+    - type: 4
+      value: 0
+      duration: -1
+      interval: 0
+      statModifierList:
+      - type: 7
+        value: 0.1
+    upgradeData:
+      value: 0.2
+      range: 0
+      cooldown: 0
+      duration: 0
+  - id: 10003
+    icon: {fileID: 260226116070882889, guid: c239487b3731d4f418cd977ce793b1ac, type: 3}
+    type: 2
+    targetType: 1
+    rangeData:
+      type: 0
+      radius: 0
+      vertexList: []
+    cooldown: 0
+    hitTiming: 0
+    actionList:
+    - type: 4
+      value: 0
+      duration: -1
+      interval: 0
+      statModifierList:
+      - type: 8
+        value: 0.05
+    upgradeData:
+      value: 0.2
+      range: 0
+      cooldown: 0
+      duration: 0

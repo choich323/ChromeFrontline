@@ -103,7 +103,14 @@ public class SkillDataImporter : EditorWindow
             AssetDatabase.CreateAsset(skillData, assetPath);
         }
 
-        skillData.infoList.Clear();
+        Dictionary<int, SkillInfo> existingInfoDict = new Dictionary<int, SkillInfo>();
+
+        foreach (SkillInfo info in skillData.infoList)
+        {
+            existingInfoDict[info.id] = info;
+        }
+
+        List<SkillInfo> importedInfoList = new List<SkillInfo>();
 
         for (int i = 1; i < lines.Length; i++)
         {
@@ -118,7 +125,20 @@ public class SkillDataImporter : EditorWindow
                 continue;
             }
 
-            SkillInfo skillInfo = new SkillInfo();
+            int id = int.Parse(
+                values[idIndex].Trim(),
+                CultureInfo.InvariantCulture);
+
+            SkillInfo skillInfo;
+
+            if (existingInfoDict.TryGetValue(id, out SkillInfo existingInfo))
+            {
+                skillInfo = existingInfo;
+            }
+            else
+            {
+                skillInfo = new SkillInfo();
+            }
 
             for (int col = 0; col < headers.Length; col++)
             {
@@ -149,9 +169,12 @@ public class SkillDataImporter : EditorWindow
                 }
             }
 
-            skillData.infoList.Add(skillInfo);
+            importedInfoList.Add(skillInfo);
         }
 
+        skillData.infoList.Clear();
+        skillData.infoList.AddRange(importedInfoList);
+        
         EditorUtility.SetDirty(skillData);
 
         AssetDatabase.SaveAssets();
