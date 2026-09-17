@@ -14,7 +14,6 @@ public class UIStageInfo : APopup
     private const string STAGE_CLEAR_HQ_HP_NONE = "--%";
     
     [SerializeField] private TextMeshProUGUI _stageTitleText;
-    [SerializeField] private TextMeshProUGUI _stageDescriptionText;
     
     [Header("Clear Mission")] 
     [SerializeField] private GameObject _clearIcon;
@@ -56,7 +55,6 @@ public class UIStageInfo : APopup
     {
         //SetStageNumberText(argUserRecord);
         await SetStageTitleText();
-        await SetStageDescText();
         SetMissionText(argUserRecord);
         SetRewardText();
         SetIcon(argUserRecord);
@@ -66,12 +64,6 @@ public class UIStageInfo : APopup
     {
         var title= await Managers.String.GetStageTitle(Managers.Game.CurWorldId, _stageInfo.stage);
         _stageTitleText.SetText(title);
-    }
-    
-    async Task SetStageDescText()
-    {
-        var desc = await Managers.String.GetStageDesc(Managers.Game.CurWorldId, _stageInfo.stage);
-        _stageDescriptionText.SetText(desc);
     }
 
     void SetMissionText(UserRecord argUserRecord)

@@ -61,21 +61,4 @@ public class StringManager : MonoBehaviour
 
         return Managers.Language.GetLocalizedString(info.title);
     }
-
-    public async Task<string> GetStageDesc(string argWorldId, int argStage)
-    {
-        var data = await Managers.Data.GetOrLoadStoryData(argWorldId);
-        if (data == null)
-        {
-            return string.Empty;
-        }
-        
-        var info = data.storyInfoList.FirstOrDefault(item => item.stage == argStage);
-        if (info == null)
-        {
-            return string.Empty;
-        }
-
-        return Managers.Language.GetLocalizedString(info.desc);
-    }
 }
