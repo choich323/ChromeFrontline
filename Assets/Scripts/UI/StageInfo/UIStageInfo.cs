@@ -17,6 +17,7 @@ public class UIStageInfo : APopup
 
     [Header("Skill Info")]
     [SerializeField] private TextMeshProUGUI _skillText;
+    [SerializeField] private UISkillSelect _uiSkillSelect;
     
     [Header("Clear Mission")] 
     [SerializeField] private GameObject _clearIcon;

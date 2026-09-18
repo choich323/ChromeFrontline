@@ -52,6 +52,8 @@ public enum StatType
 public class SkillInfo
 {
     public int id;
+    public string nameId;
+    public string descId;
     public Sprite icon;
     public SkillType type;
     
