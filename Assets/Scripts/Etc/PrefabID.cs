@@ -19,7 +19,7 @@ public enum PrefabID
     SpecialForce,
     Breacher,
     AssaultRifle,
-    Commander,
+    HeavyGunner,
     HydroPuncher,
     ShadowReaper,
     TheThunder,

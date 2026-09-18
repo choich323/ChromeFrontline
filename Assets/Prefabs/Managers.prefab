@@ -561,6 +561,7 @@ MonoBehaviour:
   _gameSpeedData: {fileID: 11400000, guid: 5ec4da9e8b2d61840aea3c6e0e1207b9, type: 2}
   _worldCatalog: {fileID: 11400000, guid: 2c61b5122ca97294cbcc63fffff94e58, type: 2}
   _tutorialManifest: {fileID: 11400000, guid: d0423d111a0760e4fb33f9771ba97457, type: 2}
+  _skillData: {fileID: 11400000, guid: 1cf28a7c821547a42bc278c2374ada58, type: 2}
 --- !u!114 &9124406171102656420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +594,7 @@ MonoBehaviour:
   _inputBlocker: {fileID: 0}
   _dialogInputBtn: {fileID: 0}
   _dialogBox: {fileID: 0}
+  _uiTutorial: {fileID: 0}
 --- !u!114 &6085571731153602665
 MonoBehaviour:
   m_ObjectHideFlags: 0
