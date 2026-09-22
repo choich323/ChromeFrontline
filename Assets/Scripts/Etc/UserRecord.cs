@@ -47,7 +47,7 @@ public class UserRecord
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const int BASIC_SKILL_ID = 1001;
     private const int EMPTY_SKILL_ID = 0;
-    private const string DEFAULT_WORLD_ID = "world1";
+    private const int SKILL_SLOT_MAX = 4;
     
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
@@ -72,10 +72,10 @@ public class UserRecord
     private HashSet<string> _completedTutorialIds = new HashSet<string>();
 
     [JsonProperty]
-    private HashSet<int> _skillIds = new HashSet<int> { BASIC_SKILL_ID };
+    private HashSet<int> _skillIds = new HashSet<int> ();
 
     [JsonProperty] 
-    private HashSet<int> _equipmentIds = new HashSet<int> { EMPTY_SKILL_ID, EMPTY_SKILL_ID, EMPTY_SKILL_ID, EMPTY_SKILL_ID };
+    private List<int> _equipmentIds = new List<int> ();
     
     [JsonIgnore]
     public int MaxUnlockedWorld => _maxUnlockedWorld;
@@ -92,6 +92,22 @@ public class UserRecord
     [JsonIgnore]
     public IReadOnlyCollection<int> EquipmentIds => _equipmentIds;
 
+    public void CreateInitialData()
+    {
+        if (_skillIds.Count <= 0)
+        {
+            _skillIds.Add(BASIC_SKILL_ID);
+        }
+
+        if (_equipmentIds.Count <= 0)
+        {
+            for (int i = 0; i < SKILL_SLOT_MAX; i++)
+            {
+                _equipmentIds.Add(EMPTY_SKILL_ID);
+            }
+        }
+    }
+    
     public bool IsCompletedTutorialId(string argTutorialId)
     {
         return _completedTutorialIds.Contains(argTutorialId);

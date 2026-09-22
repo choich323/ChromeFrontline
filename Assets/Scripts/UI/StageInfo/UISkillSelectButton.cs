@@ -54,9 +54,4 @@ public class UISkillSelectButton : MonoBehaviour
         _btn.onClick.RemoveListener(OnClick);
         _icon.sprite = null;
     }
-
-    public void SetEquipment(bool argEnable)
-    {
-        _btn.interactable = !argEnable;
-    }
 }

@@ -44,8 +44,18 @@ public class TutorialManager : MonoBehaviour
         void OnTriggered()
         {
             int size = argTutorialData.infoList.Count;
+            if (size <= 0)
+            {
+                return;
+            }
+            
             int index = 0;
             var info = argTutorialData.infoList[index++];
+            if (info == null)
+            {
+                return;
+            }
+            
             string id = info.targetId;
             string text = Managers.Language.GetLocalizedString(info.text);
             Managers.UI.ActivateHighlight(id, text, info.textPos, OnHighlight);

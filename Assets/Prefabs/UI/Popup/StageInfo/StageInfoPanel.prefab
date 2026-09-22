@@ -853,6 +853,11 @@ MonoBehaviour:
   - {fileID: 5315547218392868633}
   - {fileID: 160736721088197006}
   - {fileID: 8292864524826259911}
+  _skillStateImageList:
+  - {fileID: 5550577999370140760}
+  - {fileID: 3969202575116705652}
+  - {fileID: 9001256997209262563}
+  - {fileID: 992976542077274538}
   _clearIcon: {fileID: 2335280190337015007}
   _clearMissionText: {fileID: 1074374831569310215}
   _clearBestText: {fileID: 4016851272644586356}
@@ -2825,6 +2830,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7522038207439572975, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
   m_PrefabInstance: {fileID: 433863311788241373}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9001256997209262563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8858448450457319486, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
+  m_PrefabInstance: {fileID: 433863311788241373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4028499168024593510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2944,6 +2954,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &5550577999370140760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8858448450457319486, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
+  m_PrefabInstance: {fileID: 4028499168024593510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6884806750609476489 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7522038207439572975, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
@@ -3049,6 +3064,11 @@ PrefabInstance:
 --- !u!224 &2709287623760914597 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7522038207439572975, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
+  m_PrefabInstance: {fileID: 5619075443064547146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3969202575116705652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8858448450457319486, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
   m_PrefabInstance: {fileID: 5619075443064547146}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4630644735823405516 stripped
@@ -3393,6 +3413,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
+--- !u!1 &992976542077274538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8858448450457319486, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}
+  m_PrefabInstance: {fileID: 8586188594846232980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2255143344777461371 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7522038207439572975, guid: d98d2c0c3e7aaec488845ec50b068ab4, type: 3}

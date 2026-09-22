@@ -44,6 +44,7 @@ public class SaveManager : MonoBehaviour
         if (!File.Exists(_filePath))
         {
             var newRecord = new UserRecord();
+            newRecord.CreateInitialData();
             SaveRecord(newRecord);
             return newRecord;
         }

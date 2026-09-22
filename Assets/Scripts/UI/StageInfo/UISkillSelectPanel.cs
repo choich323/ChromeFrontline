@@ -71,6 +71,13 @@ public class UISkillSelectPanel : MonoBehaviour
         // 제대로 선택했다면
         if (argSkillId != INVALID_ID && _selectedSkillSlotIndex < SKILL_SLOT_MAX)
         {
+            // 이미 다른 슬롯에 있다면 자리를 교체해야 할듯
+            var existIndex = _equipedSkillIdList.FindIndex(id => id == argSkillId);
+            if (existIndex != -1)
+            {
+                _equipedSkillIdList[existIndex] = _equipedSkillIdList[_selectedSkillSlotIndex];
+            }
+            
             _equipedSkillIdList[_selectedSkillSlotIndex] = argSkillId;
             Managers.Game.SetEquipedSkillIds(_equipedSkillIdList);
         }
@@ -82,16 +89,6 @@ public class UISkillSelectPanel : MonoBehaviour
     {
         _equipedSkillIdList.Clear();
         _equipedSkillIdList.AddRange(argUserRecord.EquipmentIds);
-        
-        foreach (var id in _equipedSkillIdList)
-        {
-            var btn = _skillBtnList.Find(btn => btn.ID == id);
-            if (btn == null)
-            {
-                continue;
-            }
-            btn.SetEquipment(true);
-        }
     }
 
     void ClearBtnList()

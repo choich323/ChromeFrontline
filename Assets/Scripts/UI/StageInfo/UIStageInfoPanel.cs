@@ -21,6 +21,7 @@ public class UIStageInfoPanel : MonoBehaviour
     [Header("Skill Buttons")] 
     [SerializeField] private List<Button> _skillButtonList = new List<Button>();
     [SerializeField] private List<Image> _skillImageList = new List<Image>();
+    [SerializeField] private List<GameObject> _skillStateImageList = new List<GameObject>();
     
     [Header("Clear Mission")] 
     [SerializeField] private GameObject _clearIcon;
@@ -96,9 +97,15 @@ public class UIStageInfoPanel : MonoBehaviour
             var info = Managers.Data.GetSkillInfo(id);
             if (info == null)
             {
+                _skillImageList[i].gameObject.SetActive(false);
+                _skillStateImageList[i].SetActive(true);
                 continue;
             }
-            _skillImageList[i].sprite = info.icon;
+
+            var icon = _skillImageList[i];
+            icon.sprite = info.icon;
+            icon.gameObject.SetActive(true);
+            _skillStateImageList[i].SetActive(false);
         }
     }
     
