@@ -115,6 +115,7 @@ public class UIHqRightPanel : MonoBehaviour
         nextPanel.CanvasGroup.alpha = 0f;
         
         // 시작 위치 설정
+        // 오른쪽 또는 왼쪽에 배치하여 페이드인/아웃을 하면서 패널 위치 또한 슬라이드 인/아웃 시킨다
         float startX = argIsGoBack ? -_slideDistance : _slideDistance;
         nextPanel.RectTransform.anchoredPosition = new Vector2(startX, 0);
 
@@ -124,6 +125,7 @@ public class UIHqRightPanel : MonoBehaviour
         nextPanel.CanvasGroup.DOFade(1, _transitionDuration).SetUpdate(true);
         // 그러면서 위치를 중앙으로 이동시키고, 종료 후 이전 패널은 비활성화.
         nextPanel.RectTransform.DOAnchorPos(Vector2.zero, _transitionDuration)
+            // 도착할 수록 속도가 느려진다
             .SetEase(Ease.OutCubic)
             .SetUpdate(true)
             .OnComplete(() =>

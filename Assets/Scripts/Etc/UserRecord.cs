@@ -45,6 +45,8 @@ public class UserRecord
     // 물론 고정하지 않으면 그건 그거대로 유저가 적응하겠지만.. 바라는 바는 아님.
     public const float CLEAR_TIME_THRESHOLD = 480f; // 8분
     private const int CLEAR_HQ_HP_RATIO = 100;
+    private const int BASIC_SKILL_ID = 1001;
+    private const int EMPTY_SKILL_ID = 0;
     private const string DEFAULT_WORLD_ID = "world1";
     
     // stage, <tick, success, bestTime, bestHqHp>>
@@ -68,6 +70,27 @@ public class UserRecord
     
     [JsonProperty]
     private HashSet<string> _completedTutorialIds = new HashSet<string>();
+
+    [JsonProperty]
+    private HashSet<int> _skillIds = new HashSet<int> { BASIC_SKILL_ID };
+
+    [JsonProperty] 
+    private HashSet<int> _equipmentIds = new HashSet<int> { EMPTY_SKILL_ID, EMPTY_SKILL_ID, EMPTY_SKILL_ID, EMPTY_SKILL_ID };
+    
+    [JsonIgnore]
+    public int MaxUnlockedWorld => _maxUnlockedWorld;
+    
+    [JsonIgnore]
+    public int MaxClearedStage => _maxClearedStage;
+
+    [JsonIgnore]
+    public int Chrome => _chrome;
+    
+    [JsonIgnore]
+    public IReadOnlyCollection<int> SkillIds => _skillIds;
+    
+    [JsonIgnore]
+    public IReadOnlyCollection<int> EquipmentIds => _equipmentIds;
 
     public bool IsCompletedTutorialId(string argTutorialId)
     {
@@ -101,15 +124,6 @@ public class UserRecord
         return true;
     }
     
-    [JsonIgnore]
-    public int MaxUnlockedWorld => _maxUnlockedWorld;
-    
-    [JsonIgnore]
-    public int MaxClearedStage => _maxClearedStage;
-
-    [JsonIgnore]
-    public int Chrome => _chrome;
-
     public StageSaveInfo GetStageSaveInfo(int argStage)
     {
         return _stageSaveInfoDict.GetValueOrDefault(argStage);
@@ -223,5 +237,19 @@ public class UserRecord
             return true;
         }
         return false;
+    }
+
+    public void AddSkillId(int argSkillId)
+    {
+        _skillIds.Add(argSkillId);
+    }
+
+    public void SetEquipmentSkillId(List<int> argSkillIdList)
+    {
+       _equipmentIds.Clear();
+       foreach (var id in argSkillIdList)
+       {
+           _equipmentIds.Add(id);
+       }
     }
 }

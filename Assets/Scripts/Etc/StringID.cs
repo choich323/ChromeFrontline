@@ -86,6 +86,9 @@ public enum StringID
     Start,
     ClearReward,
     CommanderSkill,
+    SkillSelect,
+    Active,
+    Passive,
     
     // worldSelectInfo
     World,

@@ -23,3 +23,5 @@ MonoBehaviour:
     prefab: {fileID: 4624048158271565981, guid: 6814f0e872a74a6499f6b7381b285535, type: 3}
   - id: UIDamageText
     prefab: {fileID: 8534312463349980150, guid: bd9cb60d35ea36e4393a182bf880a67e, type: 3}
+  - id: UISkillSelectButton
+    prefab: {fileID: 2083060455094067334, guid: 16f1397b1e6ca0240be70c95260d23bc, type: 3}

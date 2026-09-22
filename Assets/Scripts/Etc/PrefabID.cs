@@ -73,4 +73,6 @@ public enum PrefabID
     UIWorldSelectUnit,
     
     UIDamageText,
+    
+    UISkillSelectButton,
 }

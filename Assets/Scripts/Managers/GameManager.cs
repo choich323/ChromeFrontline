@@ -152,8 +152,7 @@ public class GameManager : MonoBehaviour
     
     public void SaveUserRecord()
     {
-        var sm = Managers.Save;
-        sm.SaveRecord(_userRecord);
+        Managers.Save.SaveRecord(_userRecord);
     }
 
     public void SetCurWorldId(string argWorldId)
@@ -494,5 +493,11 @@ public class GameManager : MonoBehaviour
     public void OnEntityDamaged(Vector3 argPos, float argDamage, bool argIsCritical, Team argTeam)
     {
         Managers.UI.CreateDamageText(argPos, argDamage, argIsCritical, argTeam);
+    }
+
+    public void SetEquipedSkillIds(List<int> argSkillIds)
+    {
+        _userRecord.SetEquipmentSkillId(argSkillIds);
+        SaveUserRecord();
     }
 }

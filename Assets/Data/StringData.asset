@@ -458,6 +458,10 @@ MonoBehaviour:
     value:
       en: Shield
       kr: "\uBCF4\uD638\uB9C9"
+  - id: SkillSelect
+    value:
+      en: Skill Select
+      kr: "\uC2A4\uD0AC \uC120\uD0DD"
   - id: Slot
     value:
       en: Slot {0}

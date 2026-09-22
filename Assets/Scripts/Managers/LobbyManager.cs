@@ -200,7 +200,7 @@ public class LobbyManager : MonoBehaviour
             return;
         }
         
-        popup.SetData(argStageInfo, UserRecord);
+        popup.SetUI(argStageInfo, UserRecord);
         popup.SetOnClose(OnClose);
 
         void OnClose()
