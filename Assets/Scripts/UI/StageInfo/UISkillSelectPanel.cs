@@ -34,10 +34,13 @@ public class UISkillSelectPanel : MonoBehaviour
         {
             ClearBtnList();
         }
-        
-        foreach (var id in argUserRecord.SkillIds)
+
+        var infoList = Managers.Data.GetSkillInfoList();
+        foreach (var info in infoList)
         {
-            CreateSkillButtons(id);
+            var id = info.id;
+            var isUnlocked = argUserRecord.IsUnlockedSkillId(id);
+            CreateSkillButtons(argUserRecord.GetSkillLevel(id), id, isUnlocked);
         }
         
         SetEquipedSkills(argUserRecord);
@@ -48,7 +51,7 @@ public class UISkillSelectPanel : MonoBehaviour
         _selectedSkillSlotIndex = argIndex;
     }
     
-    public void CreateSkillButtons(int argSkillId)
+    public void CreateSkillButtons(int argSkillLevel, int argSkillId, bool argIsUnlocked)
     {
         var obj = Managers.Pool.Instantiate(PrefabID.UISkillSelectButton);
         if (obj == null)
@@ -58,12 +61,18 @@ public class UISkillSelectPanel : MonoBehaviour
         
         var skillBtn = obj.GetComponent<UISkillSelectButton>();
         _skillBtnList.Add(skillBtn);
-
-        var skillInfo = Managers.Data.GetSkillInfo(argSkillId);
-        skillBtn.Init(skillInfo, OnSkillSelect);
-        
-        skillBtn.transform.SetParent(_skillBtnParent);
+        skillBtn.transform.SetParent(_skillBtnParent, false);
         skillBtn.transform.SetAsLastSibling();
+        
+        if (!argIsUnlocked)
+        {
+            skillBtn.SetLock();
+            return;
+        }
+        
+        var skillInfo = Managers.Data.GetSkillInfo(argSkillId);
+        skillBtn.Init(argSkillLevel, skillInfo, OnSkillSelect);
+        skillBtn.SetUnlock();
     }
 
     void OnSkillSelect(int argSkillId)

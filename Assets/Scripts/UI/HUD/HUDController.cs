@@ -10,6 +10,7 @@ public class HUDController : MonoBehaviour
     private const float HUNDRED_PERCENT  = 100f;
     private const float HOUR_TO_SECOND  = 3600f;
     private const float MINUTE_TO_SECOND  = 60f;
+    private const int SKILL_SLOT_MAX = 4;
     
     [Header("Player HQ UI")] 
     [SerializeField] private Slider _hpSlider;
@@ -23,6 +24,9 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Image _hqImage;
     [SerializeField] private GameObject _hqIndicator;
     [SerializeField] private TextMeshProUGUI _goldText;
+
+    [Header("Skill UI")]
+    [SerializeField] private List<UIIngameSkillButton> _skillButtonList = new List<UIIngameSkillButton>();
     
     [Header("Info UI")]
     [SerializeField] private TextMeshProUGUI _timerText;
@@ -46,7 +50,12 @@ public class HUDController : MonoBehaviour
     private bool IsPaused => Managers.Game.IsPaused;
     private SoundManager Sm => Managers.Sound;
 
-    public void Run(string argStageName)
+    public void OnEnterStage(string argStageName)
+    {
+        Run(argStageName);
+    }
+    
+    void Run(string argStageName)
     {
         Clear();
         
@@ -68,9 +77,10 @@ public class HUDController : MonoBehaviour
         UpdateStageText(argStageName);
         UpdateText();
         UpdateHqBtnImage(playerHq.Tier);
+        UpdateSkillButtons();
     }
-
-    public void Clear()
+    
+    void Clear()
     {
         _isSubMenuOpen = false;
         if (_menuAnimCoroutine != null)
@@ -85,6 +95,11 @@ public class HUDController : MonoBehaviour
             cg.interactable = false;
             cg.blocksRaycasts = false;
         }
+
+        foreach (var btn in _skillButtonList)
+        {
+            btn.Clear();
+        }
         
         _hqBtn.onClick.RemoveAllListeners();
         _optionBtn.onClick.RemoveAllListeners();
@@ -92,7 +107,7 @@ public class HUDController : MonoBehaviour
         _exitBtn.onClick.RemoveAllListeners();
     }
     
-    private void Update()
+    void Update()
     {
         if (_isRestarting || IsPaused)
             return;
@@ -150,6 +165,20 @@ public class HUDController : MonoBehaviour
         var info = Managers.Data.GetHeadQuarterUpgradeInfo(argTier);
         _hqImage.sprite = info.sprite;
     }
+
+    void UpdateSkillButtons()
+    {
+        var ur = Managers.Game.UserRecord;
+        var equipIds = ur.GetEquipmentSkillIdList();
+        int count = Mathf.Min(equipIds.Count, SKILL_SLOT_MAX);
+        for (int i = 0; i < count; i++)
+        {
+            var btn = _skillButtonList[i];
+            int id = equipIds[i];
+            var level = ur.GetSkillLevel(id);
+            btn.Init(id, level);
+        }
+    }
     
     void UpdateGold(long argGold)
     {
@@ -159,14 +188,7 @@ public class HUDController : MonoBehaviour
 
     void OnUpdateGold()
     {
-        if (Managers.UI.IsEnableHUDHqIndicator())
-        {
-            _hqIndicator.SetActive(true);
-        }
-        else
-        {
-            _hqIndicator.SetActive(false);
-        }
+        _hqIndicator.SetActive(Managers.UI.IsEnableHUDHqIndicator());
     }
 
     void UpdateStageText(string argStageName)

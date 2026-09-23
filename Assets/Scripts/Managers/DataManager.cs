@@ -570,4 +570,14 @@ public class DataManager : MonoBehaviour
 
         return outSkillInfo.upgradeData;
     }
+
+    public List<SkillInfo> GetSkillInfoList()
+    {
+        List<SkillInfo> skillInfoList = new List<SkillInfo>();
+        foreach (var kvp in _skillInfoDict)
+        {
+            skillInfoList.Add(kvp.Value);
+        }
+        return skillInfoList;
+    }
 }

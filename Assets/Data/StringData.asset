@@ -296,8 +296,8 @@ MonoBehaviour:
         \uC801\uC744 \uC12C\uBA78\uD569\uB2C8\uB2E4."
   - id: Level
     value:
-      en: Level
-      kr: "\uB808\uBCA8"
+      en: Lv.{0}
+      kr: "\uB808\uBCA8 {0}"
   - id: Lv
     value:
       en: Lv.{0}

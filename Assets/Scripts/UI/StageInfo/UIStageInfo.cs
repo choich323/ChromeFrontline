@@ -17,8 +17,11 @@ public class UIStageInfo : APopup
         
         _stageInfoPanel.gameObject.SetActive(true);
         _stageInfoPanel.CanvasGroup.alpha = 1f;
+        _stageInfoPanel.CanvasGroup.interactable = _stageInfoPanel.CanvasGroup.blocksRaycasts = true;
+        
         _skillSelectPanel.gameObject.SetActive(false);
-        _skillSelectPanel.CanvasGroup.interactable = _skillSelectPanel.CanvasGroup.blocksRaycasts = true;
+        _skillSelectPanel.CanvasGroup.alpha = 0f;
+        _skillSelectPanel.CanvasGroup.interactable = _skillSelectPanel.CanvasGroup.blocksRaycasts = false;
         
         _stageInfoPanel.Init(OnSkillBtn);
         _skillSelectPanel.Init(OnSkillSelect);

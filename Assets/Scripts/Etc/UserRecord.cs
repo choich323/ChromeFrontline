@@ -74,6 +74,9 @@ public class UserRecord
     [JsonProperty]
     private HashSet<int> _skillIds = new HashSet<int> ();
 
+    [JsonProperty]
+    private Dictionary<int, int> _skillLevelDict = new Dictionary<int, int>();
+    
     [JsonProperty] 
     private List<int> _equipmentIds = new List<int> ();
     
@@ -96,7 +99,7 @@ public class UserRecord
     {
         if (_skillIds.Count <= 0)
         {
-            _skillIds.Add(BASIC_SKILL_ID);
+            AddSkillId(BASIC_SKILL_ID);
         }
 
         if (_equipmentIds.Count <= 0)
@@ -258,6 +261,7 @@ public class UserRecord
     public void AddSkillId(int argSkillId)
     {
         _skillIds.Add(argSkillId);
+        _skillLevelDict.TryAdd(argSkillId, 1);
     }
 
     public void SetEquipmentSkillId(List<int> argSkillIdList)
@@ -267,5 +271,23 @@ public class UserRecord
        {
            _equipmentIds.Add(id);
        }
+    }
+
+    public bool IsUnlockedSkillId(int argSkillId)
+    {
+        return _skillIds.Contains(argSkillId);
+    }
+
+    public int GetSkillLevel(int argSkillId)
+    {
+        _skillLevelDict.TryGetValue(argSkillId, out int level);
+        return level;
+    }
+
+    public List<int> GetEquipmentSkillIdList()
+    {
+        List<int> skillIdList = new List<int>();
+        skillIdList.AddRange(_equipmentIds);
+        return skillIdList;
     }
 }
