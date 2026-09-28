@@ -8,6 +8,7 @@ public class GameField : MonoBehaviour
     [SerializeField] private Transform _playerHqPos;
     [SerializeField] private Transform _enemyHqPos;
     [SerializeField] private Transform _explosionParent;
+    [SerializeField] private Transform _skillRangeParent;
 
     private HeadQuarter _playerHq;
     private HeadQuarter _enemyHq;
@@ -15,6 +16,7 @@ public class GameField : MonoBehaviour
     public HeadQuarter PlayerHq => _playerHq;
     public HeadQuarter EnemyHq => _enemyHq;
     public Transform ExplosionParent => _explosionParent;
+    public Transform SkillRangeParent => _skillRangeParent;
     
     public void Run()
     {

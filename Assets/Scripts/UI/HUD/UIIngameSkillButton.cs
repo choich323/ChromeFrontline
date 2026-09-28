@@ -62,6 +62,7 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     void CreateSkillRange()
     {
         var obj = Managers.Pool.Instantiate(PrefabID.SkillRange);
+        obj.transform.SetParent(Managers.Game.GameField.SkillRangeParent, true);
         _skillRange = obj.GetComponent<SkillRange>();
         
         var container = new SkillRangeContainer();

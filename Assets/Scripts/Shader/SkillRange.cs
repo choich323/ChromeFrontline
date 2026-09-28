@@ -17,6 +17,7 @@ public class SkillRange : MonoBehaviour
     private const int VERTICES_PER_TRIANGLE = 3;
     
     [SerializeField] private MeshFilter _meshFilter;
+    [SerializeField] private LineRenderer _lineRenderer;
     
     public void Init(SkillRangeContainer argContainer)
     {
@@ -32,21 +33,12 @@ public class SkillRange : MonoBehaviour
 
     void SetCircle(float argRadius)
     {
-        var mesh = CreateCircle(argRadius);
-        _meshFilter.mesh = mesh;
-    }
-
-    Mesh CreateCircle(float argRadius)
-    {
-        Mesh mesh = new Mesh();
-        
         Vector3[] vertices = new Vector3[CIRCLE_SEGMENT_COUNT + 1];
-        int[] triangles = new int[CIRCLE_SEGMENT_COUNT * VERTICES_PER_TRIANGLE];
 
         // 중심점
         vertices[0] = Vector3.zero;
 
-        // 원 둘레의 각 정점 구하기
+        // 원 둘레
         for (int i = 0; i < CIRCLE_SEGMENT_COUNT; i++)
         {
             float angle = i * Mathf.PI * 2f / CIRCLE_SEGMENT_COUNT;
@@ -57,6 +49,16 @@ public class SkillRange : MonoBehaviour
                 0f
             );
         }
+
+        CreateCircleMesh(vertices);
+        SetCircleBorder(vertices);
+    }
+
+    void CreateCircleMesh(Vector3[] argVertices)
+    {
+        Mesh mesh = new Mesh();
+        
+        int[] triangles = new int[CIRCLE_SEGMENT_COUNT * VERTICES_PER_TRIANGLE];
 
         // 삼각형 그룹 연결
         for (int i = 0; i < CIRCLE_SEGMENT_COUNT; i++)
@@ -69,11 +71,21 @@ public class SkillRange : MonoBehaviour
         }
 
         mesh.name = "CircleRange";
-        mesh.vertices = vertices;
+        mesh.vertices = argVertices;
         mesh.triangles = triangles;
         mesh.RecalculateBounds();
+        _meshFilter.mesh = mesh;
+    }
+    
+    void SetCircleBorder(Vector3[] argVertices)
+    {
+        _lineRenderer.positionCount = CIRCLE_SEGMENT_COUNT;
+        _lineRenderer.loop = true;
 
-        return mesh;
+        for (int i = 0; i < CIRCLE_SEGMENT_COUNT; i++)
+        {
+            _lineRenderer.SetPosition(i, argVertices[i + 1]);
+        }
     }
 
     void SetPolygon(List<Vector2> argVertexList)
@@ -94,6 +106,8 @@ public class SkillRange : MonoBehaviour
         mesh.RecalculateBounds();
 
         _meshFilter.mesh = mesh;
+
+        SetPolygonBorder(argVertexList);
     }
     
     int[] Trianglate(List<Vector2> argVertexList)
@@ -204,6 +218,17 @@ public class SkillRange : MonoBehaviour
         return argA.x * argB.y - argA.y * argB.x;
     }
 
+    void SetPolygonBorder(List<Vector2> argVertexList)
+    {
+        _lineRenderer.positionCount = argVertexList.Count;
+        _lineRenderer.loop = true;
+
+        for (int i = 0; i < argVertexList.Count; i++)
+        {
+            _lineRenderer.SetPosition(i, argVertexList[i]);
+        }
+    }
+    
     public void Destroy(Action<SkillRange> argCallback)
     {
         StartCoroutine(CoDestroy(argCallback));
