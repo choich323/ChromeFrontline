@@ -97,7 +97,6 @@ public class SkillActionData
     public List<StatModifierData> statModifierList;
 }
 
-
 [Serializable]
 public class StatModifierData
 {
@@ -108,7 +107,6 @@ public class StatModifierData
     [Range(0, 1)]
     public float value;
 }
-
 
 [Serializable]
 public class SkillUpgradeData

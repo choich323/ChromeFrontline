@@ -46,6 +46,7 @@ public class UserRecord
     public const float CLEAR_TIME_THRESHOLD = 480f; // 8분
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const int BASIC_SKILL_ID = 1001;
+    private const int TEST_SKILL_ID = 1002;
     private const int EMPTY_SKILL_ID = 0;
     private const int SKILL_SLOT_MAX = 4;
     
@@ -100,6 +101,7 @@ public class UserRecord
         if (_skillIds.Count <= 0)
         {
             AddSkillId(BASIC_SKILL_ID);
+            AddSkillId(TEST_SKILL_ID);
         }
 
         if (_equipmentIds.Count <= 0)

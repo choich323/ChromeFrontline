@@ -1,7 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIIngameSkillButton : MonoBehaviour
+public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private const int INVALID_ID = 0;
     private const int INVALID_SKILL_LEVEL = 0;
@@ -15,6 +18,8 @@ public class UIIngameSkillButton : MonoBehaviour
     private int _id;
     private int _skillLevel;
     private SkillInfo _skillInfo;
+    private SkillRange _skillRange;
+    private readonly Plane _plane = new Plane(Vector3.forward, Vector3.zero);
     
     public void Init(int argSkillId, int argSkillLevel)
     {
@@ -30,7 +35,23 @@ public class UIIngameSkillButton : MonoBehaviour
         
         SetUnlock();
         SetIcon(_skillInfo.icon);
-        SetButton();
+    }
+
+    public void OnDrag(PointerEventData argEventData)
+    {
+        UpdateSkillRangePosition(argEventData);
+    }
+
+    public void OnPointerDown(PointerEventData argEventData)
+    {
+        CreateSkillRange();
+        
+        UpdateSkillRangePosition(argEventData);
+    }
+
+    public void OnPointerUp(PointerEventData argEventData)
+    {
+        DestroySkillRange();
     }
 
     void SetIcon(Sprite argIcon)
@@ -38,11 +59,42 @@ public class UIIngameSkillButton : MonoBehaviour
         _icon.sprite = argIcon;
     }
 
-    void SetButton()
+    void CreateSkillRange()
     {
+        var obj = Managers.Pool.Instantiate(PrefabID.SkillRange);
+        _skillRange = obj.GetComponent<SkillRange>();
         
+        var container = new SkillRangeContainer();
+        container.type = _skillInfo.rangeData.type;
+        container.radius = _skillInfo.rangeData.radius;
+        container.vertexList = _skillInfo.rangeData.vertexList;
+        _skillRange.Init(container);
+    }
+    
+    void UpdateSkillRangePosition(PointerEventData argEventData)
+    {
+        var cam = Managers.CamController.Cam;
+        Ray ray = cam.ScreenPointToRay(argEventData.position);
+        if (!_plane.Raycast(ray, out float distance))
+        {
+            return;
+        }
+        
+        var worldPos = ray.GetPoint(distance);
+        _skillRange.transform.position = worldPos;
+    }
+    
+    // temp code
+    void DestroySkillRange()
+    {
+        _skillRange.Destroy(OnDestroySkillRange);
     }
 
+    void OnDestroySkillRange(SkillRange argSkillRange)
+    {
+        Managers.Pool.Destroy(argSkillRange, PrefabID.SkillRange);
+    }
+    
     void SetLock()
     {
         _lock.SetActive(true);

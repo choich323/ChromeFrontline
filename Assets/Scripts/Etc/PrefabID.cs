@@ -6,6 +6,7 @@ public enum PrefabID
     
     GameField = 50,
     HeadQuarter = 51,
+    SkillRange = 52,
     
     // Entity
     EntitySingle = 1001,

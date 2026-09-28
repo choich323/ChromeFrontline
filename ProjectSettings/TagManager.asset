@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SkillRange
+    uniqueID: 1691585865
+    locked: 0
   - name: DamageText
     uniqueID: 867866163
     locked: 0
