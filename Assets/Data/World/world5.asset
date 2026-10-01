@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcbce69c7a6192245b7b14f7da42b539, type: 3}
-  m_Name: world4
+  m_Name: world5
   m_EditorClassIdentifier: Assembly-CSharp::WorldData
-  worldId: world4
-  world: 4
-  bg: {fileID: 863728761707035365, guid: bd5138cdf2c66f0468af86495100b70f, type: 3}
+  worldId: world5
+  world: 5
+  bg: {fileID: -8195997122805717150, guid: c0780f5b31b7dd3449f553ccf950b42a, type: 3}
   stageInfoList:
-  - stage: 25
-    stageName: 4-1
+  - stage: 26
+    stageName: 5-1
     isLastStage: 0
     uiPosition: {x: 0, y: 0}
     stageIndex: 1
