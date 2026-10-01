@@ -95,6 +95,9 @@ public enum StringID
     Select,
     WorldSelect,
     
+    // Skill Training
+    CommanderSkillTraining,
+    
     // Entity - Pioneer Name
     Police = 10001,
     Phalanx,

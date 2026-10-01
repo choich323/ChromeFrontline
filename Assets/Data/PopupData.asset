@@ -29,3 +29,5 @@ MonoBehaviour:
     prefab: {fileID: 8534312463349980150, guid: 1c948c605007cff4da45d82bbe3085a9, type: 3}
   - id: UIWorldSelect
     prefab: {fileID: 8534312463349980150, guid: 2c6518801829d6b4e88b5ba28755fc72, type: 3}
+  - id: UISkillTrainingCenter
+    prefab: {fileID: 8534312463349980150, guid: 480c951b11bc1904e9951d83bdb236b2, type: 3}

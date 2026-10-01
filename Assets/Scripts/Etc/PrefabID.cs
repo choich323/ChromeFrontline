@@ -76,4 +76,6 @@ public enum PrefabID
     UIDamageText,
     
     UISkillSelectButton,
+    
+    UISkillTrainingCenter,
 }

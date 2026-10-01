@@ -12,6 +12,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Transform _nodeParent;       // Content 객체
     [SerializeField] private Image _bgImage;
     [SerializeField] private TextMeshProUGUI _chromeText;
+    [SerializeField] private Button _btnSkillTrainingCenter;
     
     [Header("=== World Switching ===")]
     [SerializeField] private Button _btnWorldSelect;
@@ -26,6 +27,7 @@ public class LobbyManager : MonoBehaviour
     {
         Managers.I.SetLobbyManager(this);
         _btnOption.onClick.AddListener(OnClickOption);
+        _btnSkillTrainingCenter.onClick.AddListener(OnClickSkillTrainingCenter);
         _btnWorldSelect.onClick.AddListener(OnClickWorldSelect);
         string worldId = Managers.Data.GetWorldId(UserRecord.MaxUnlockedWorld);
         RefreshLobbyMap(worldId);
@@ -226,6 +228,19 @@ public class LobbyManager : MonoBehaviour
         void OnBtnPopupClose()
         {
             sm.PlaySelectSfx();
+            Managers.UI.PopupHandler.ClosePopup();
+        }
+    }
+
+    void OnClickSkillTrainingCenter()
+    {
+        Managers.Sound.PlaySelectSfx();
+        var popup = Managers.UI.PopupHandler.OpenPopup<UISkillTrainingCenter>(PrefabID.UISkillTrainingCenter);
+        popup.SetOnClose(OnClose);
+
+        void OnClose()
+        {
+            Managers.Sound.PlaySelectSfx();
             Managers.UI.PopupHandler.ClosePopup();
         }
     }

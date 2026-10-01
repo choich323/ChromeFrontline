@@ -88,6 +88,10 @@ MonoBehaviour:
     value:
       en: Commander Skill
       kr: "\uC9C0\uD718\uAD00 \uC2A4\uD0AC"
+  - id: CommanderSkillTraining
+    value:
+      en: Commander Skill Training
+      kr: "\uC9C0\uD718\uAD00 \uC2A4\uD0AC \uD6C8\uB828"
   - id: ConfirmAddSlot
     value:
       en: Are you sure to add one more slot?

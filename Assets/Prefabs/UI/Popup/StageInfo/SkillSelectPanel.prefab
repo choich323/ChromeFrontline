@@ -244,6 +244,7 @@ MonoBehaviour:
   _skillBtnParent: {fileID: 1296095591548754495}
   _canvasGroup: {fileID: 8160723463711829755}
   _backBtn: {fileID: 2774398413427199741}
+  _scrollRect: {fileID: 5383945442771084304}
 --- !u!225 &8160723463711829755
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class UISkillSelectPanel : MonoBehaviour
     [SerializeField] private Transform _skillBtnParent;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Button _backBtn;
+    [SerializeField] private ScrollRect _scrollRect;
     
     private List<UISkillSelectButton> _skillBtnList = new List<UISkillSelectButton>();
     private List<int> _equipedSkillIdList = new List<int>();
@@ -44,6 +45,8 @@ public class UISkillSelectPanel : MonoBehaviour
         }
         
         SetEquipedSkills(argUserRecord);
+        
+        _scrollRect.verticalNormalizedPosition = 1f;
     }
 
     public void SetCurSkillSlot(int argIndex)
