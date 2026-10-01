@@ -83,6 +83,15 @@ public class UISkillSelectButton : MonoBehaviour
         _unlockContents.SetActive(true);
         _btn.interactable = true;
     }
+
+    public void SetTextsEmpty()
+    {
+        _name.SetText(string.Empty);
+        _desc.SetText(string.Empty);
+        _activeText.SetActive(false);
+        _passiveText.SetActive(false);
+        _locked.SetActive(true);
+    }
     
     public void Clear()
     {

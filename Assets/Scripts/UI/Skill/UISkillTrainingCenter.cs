@@ -32,6 +32,10 @@ public class UISkillTrainingCenter : APopup
             int level = Managers.Game.UserRecord.GetSkillLevel(info.id);
             btn.Init(level, info, OnSelectSkill);
             btn.SetUnlock();
+            if (level <= 0)
+            {
+                btn.SetTextsEmpty();
+            }
         }
     }
 
