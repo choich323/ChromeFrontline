@@ -41,6 +41,7 @@ public class UISkillTrainingCenter : APopup
 
     void OnSelectSkill(int argId)
     {
+        Managers.Sound.PlaySelectSfx();
         var popup = Managers.UI.PopupHandler.OpenPopup<UISkillTrainingInfo>(PrefabID.UISkillTrainingInfo);
         if (popup == null)
         {
