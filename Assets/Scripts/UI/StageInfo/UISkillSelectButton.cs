@@ -7,10 +7,10 @@ public class UISkillSelectButton : MonoBehaviour
 {
     [SerializeField] private Button _btn;
     [SerializeField] private Image _icon;
-    [SerializeField] private GameObject _activeText;
-    [SerializeField] private GameObject _passiveText;
     [SerializeField] private GameObject _unlockContents;
     [SerializeField] private GameObject _locked;
+    [SerializeField] private TextMeshProUGUI _activeText;
+    [SerializeField] private TextMeshProUGUI _passiveText;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _desc;
     [SerializeField] private TextMeshProUGUI _level;
@@ -37,15 +37,18 @@ public class UISkillSelectButton : MonoBehaviour
     
     void SetType(SkillType argSkillType)
     {
+        var sm = Managers.String;
+        _activeText.SetText(sm.GetString(StringID.Active));
+        _passiveText.SetText(sm.GetString(StringID.Passive));
         if (argSkillType == SkillType.Active)
         {
-            _activeText.SetActive(true);
-            _passiveText.SetActive(false);
+            _activeText.gameObject.SetActive(true);
+            _passiveText.gameObject.SetActive(false);
         }
         else
         {
-            _activeText.SetActive(false);
-            _passiveText.SetActive(true);
+            _activeText.gameObject.SetActive(false);
+            _passiveText.gameObject.SetActive(true);
         }
     }
 
@@ -88,8 +91,8 @@ public class UISkillSelectButton : MonoBehaviour
     {
         _name.SetText(string.Empty);
         _desc.SetText(string.Empty);
-        _activeText.SetActive(false);
-        _passiveText.SetActive(false);
+        _activeText.gameObject.SetActive(false);
+        _passiveText.gameObject.SetActive(false);
         _locked.SetActive(true);
     }
     

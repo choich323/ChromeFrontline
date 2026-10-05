@@ -39,14 +39,23 @@ public class UISkillTrainingCenter : APopup
         }
     }
 
-    void SetSkillInfos()
-    {
-        
-    }
-
     void OnSelectSkill(int argId)
     {
+        var popup = Managers.UI.PopupHandler.OpenPopup<UISkillTrainingInfo>(PrefabID.UISkillTrainingInfo);
+        if (popup == null)
+        {
+            return;
+        }
         
+        var info = popup.GetComponent<UISkillTrainingInfo>();
+        info.SetInfo(argId);
+        info.SetOnClose(OnClose);
+        
+        void OnClose()
+        {
+            Managers.Sound.PlaySelectSfx();
+            Managers.UI.PopupHandler.ClosePopup();
+        }
     }
 
     void ClearBtns()

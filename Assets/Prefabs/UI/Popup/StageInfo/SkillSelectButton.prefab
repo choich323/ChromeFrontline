@@ -75,7 +75,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294796651
-  m_fontColor: {r: 0.4194165, g: 0.39607844, b: 0.99215686, a: 1}
+  m_fontColor: {r: 0.34509805, g: 0.7294118, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -740,10 +740,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UISkillSelectButton
   _btn: {fileID: 9110922756873179862}
   _icon: {fileID: 8326174381282443059}
-  _activeText: {fileID: 4595308396796085873}
-  _passiveText: {fileID: 196566799760603730}
   _unlockContents: {fileID: 276775351839972299}
   _locked: {fileID: 5019988179384943376}
+  _activeText: {fileID: 2237002661540971106}
+  _passiveText: {fileID: 2498019456180281331}
   _name: {fileID: 7955919327582904536}
   _desc: {fileID: 3550557240703452322}
   _level: {fileID: 2016839873854137521}
@@ -821,8 +821,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284835325
-  m_fontColor: {r: 0.9924528, g: 0.3951085, b: 0.3951085, a: 1}
+    rgba: 4283980031
+  m_fontColor: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

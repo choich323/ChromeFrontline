@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: StringData
   m_EditorClassIdentifier: Assembly-CSharp::StringData
   stringInfoList:
+  - id: Active
+    value:
+      en: Active
+      kr: "\uC561\uD2F0\uBE0C"
   - id: AddSlot
     value:
       en: Add Slot
@@ -382,6 +386,10 @@ MonoBehaviour:
     value:
       en: Increases the amount of Chrome earned when clearing a stage.
       kr: "\uD074\uB9AC\uC5B4\uC2DC \uD06C\uB86C \uD68D\uB4DD\uB7C9\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - id: Passive
+    value:
+      en: Passvie
+      kr: "\uD328\uC2DC\uBE0C"
   - id: Phalanx
     value:
       en: Phalanx

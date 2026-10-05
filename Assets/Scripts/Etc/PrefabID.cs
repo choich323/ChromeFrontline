@@ -78,4 +78,5 @@ public enum PrefabID
     UISkillSelectButton,
     
     UISkillTrainingCenter,
+    UISkillTrainingInfo,
 }
