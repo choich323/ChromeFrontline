@@ -43,8 +43,8 @@ public class UISkillTrainingInfo : APopup
             _nextInfo.SetActive(false);
         }
         // price setting
-        
-        
+        var price = Managers.Data.GetSkillPrice(_id);
+        _price.SetText($"{price:N0}");
         
         var skillInfo = Managers.Data.GetSkillInfo(_id);
         _icon.sprite = skillInfo.icon;

@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     
     private ulong _uid = INVALID_UID;
     private int _stage = DEFAULT_STAGE;
-    private int _chromeReward;
     private int _playedStageIndex = -1;
     private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
@@ -231,7 +230,6 @@ public class GameManager : MonoBehaviour
         _isInStage = true;
         _elapsedPlayTime = 0f;
         _stage = argStageInfo.stage;
-        _chromeReward = argStageInfo.reward;
         
         var saveInfo = _userRecord.GetStageSaveInfo(argStageInfo.stage);
         _wasAlreadyClearedBeforePlay = saveInfo != null && saveInfo.isCleared;
@@ -290,7 +288,6 @@ public class GameManager : MonoBehaviour
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         resultData.isLastStage = _isLastStage;
-        resultData.chromeReward = _chromeReward;
         
         CheckSave(resultData);
         
@@ -357,7 +354,7 @@ public class GameManager : MonoBehaviour
             UserRecord.SaveStageBestRecord(stage, stageBestRecord);
         }
         
-        UserRecord.EarnChrome(argResultData.chromeReward);
+        UserRecord.EarnChrome(Managers.Data.GetStageReward(stage));
         
         SaveUserRecord();
     }

@@ -147,7 +147,7 @@ public class UIStageInfoPanel : MonoBehaviour
 
     void SetRewardText()
     {
-        _clearReward.SetText($"{_stageInfo.reward}");
+        _clearReward.SetText($"{Managers.Data.GetStageReward(_stageInfo.stage)}");
     }
     
     string GetConvertedTimeText(float argTime)

@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
     [SerializeField] private AIScheduleData _aiScheduleData;
-    [SerializeField] private PlayerCurrencyData _playerCurrencyData;
+    [SerializeField] private CurrencyData _currencyData;
     [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
     [SerializeField] private AddSlotCostData _addSlotCostData;
     [SerializeField] private GradeData _gradeData;
@@ -32,6 +32,7 @@ public class DataManager : MonoBehaviour
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
+    private CurrencyInfo _currencyInfo = new CurrencyInfo();
 
     // stage data
     private WorldData _curWorldData = null;
@@ -53,7 +54,7 @@ public class DataManager : MonoBehaviour
     private AsyncOperationHandle<TutorialData> _tutorialDataHandle;
     private bool _isFinishedTutorial = false;
     
-    public int StartGold => _playerCurrencyData.startGold;
+    public int StartGold => _currencyInfo.startGold;
     public WorldCatalog WorldCatalog => _worldCatalog;
     
     public void Init()
@@ -63,6 +64,8 @@ public class DataManager : MonoBehaviour
 
     void InitialMapping()
     {
+        _currencyInfo.SetInfo(_currencyData);
+        
         foreach (var data in _dataList)
         {
             if (data == null) continue;
@@ -164,12 +167,38 @@ public class DataManager : MonoBehaviour
         return isFind;
     }
 
-    public AIScheduleInfo GetRandomAIScheduleInfo()
+    public int GetSkillPrice(int argId)
     {
-        int randIndex = UnityEngine.Random.Range(0, _aiScheduleInfoList.Count);
-        return _aiScheduleInfoList[randIndex];
+        var ur = Managers.Game.UserRecord;
+        bool isUnlocked = ur.IsUnlockedSkillId(argId);
+        int result = 0;
+        if (isUnlocked)
+        {
+            int level = ur.GetSkillLevel(argId);
+            if (level >= _currencyInfo.maxSkillLevel)
+            {
+                result = int.MaxValue;
+            }
+            else
+            {
+                result = Mathf.RoundToInt(_currencyInfo.defaultSkillUpgradePrice * Mathf.Pow((1 + _currencyInfo.skillUpgradePriceRatio), level - 1));
+            }
+        }
+        else
+        {
+            int skillCount = ur.SkillIds.Count;
+
+            result = Mathf.RoundToInt(_currencyInfo.defaultSkillUpgradePrice * Mathf.Pow((1 + _currencyInfo.skillTrainingPriceRatio), skillCount));
+        }
+
+        return result;
     }
 
+    public int GetStageReward(int argStage)
+    {
+        return Mathf.RoundToInt(_currencyInfo.defaultStageChromeReward * Mathf.Pow((1 + _currencyInfo.stageRewardRatio), argStage - 1));
+    }
+    
     public AIScheduleInfo GetAIScheduleInfo(string argScheduleId)
     {
         if (string.IsNullOrEmpty(argScheduleId))
