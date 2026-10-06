@@ -17,6 +17,7 @@ public class UISkillTrainingCenter : APopup
 
         _scrollRect.verticalNormalizedPosition = 1f;
         CreateBtns();
+        SetChrome();
     }
 
     void CreateBtns()
@@ -39,6 +40,11 @@ public class UISkillTrainingCenter : APopup
         }
     }
 
+    void SetChrome()
+    {
+        _chrome.SetText($"{Managers.Game.UserRecord.Chrome:N0}");
+    }
+    
     void OnSelectSkill(int argId)
     {
         Managers.Sound.PlaySelectSfx();

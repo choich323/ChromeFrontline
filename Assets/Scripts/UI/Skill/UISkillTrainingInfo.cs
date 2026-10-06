@@ -70,6 +70,11 @@ public class UISkillTrainingInfo : APopup
     void SetUpgradeInfo()
     {
         // upgrade text info
+        // level 0 또는 max level에선 level 1을 current에 기록,
+        // 그 외엔 현재를 current에, 이후 레벨을 next에 기록,
+        
+        
+        
     }
     
     void SetButton()

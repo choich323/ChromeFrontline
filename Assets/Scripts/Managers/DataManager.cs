@@ -188,7 +188,7 @@ public class DataManager : MonoBehaviour
         {
             int skillCount = ur.SkillIds.Count;
 
-            result = Mathf.RoundToInt(_currencyInfo.defaultSkillUpgradePrice * Mathf.Pow((1 + _currencyInfo.skillTrainingPriceRatio), skillCount));
+            result = Mathf.RoundToInt(_currencyInfo.defaultSkillTrainingPrice * Mathf.Pow((1 + _currencyInfo.skillTrainingPriceRatio), skillCount));
         }
 
         return result;

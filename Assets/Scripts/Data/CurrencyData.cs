@@ -39,10 +39,10 @@ public class CurrencyData : ScriptableObject
     public int defaultStageChromeReward = 100;
     public float stageRewardRatio = 0.05f;
     
-    public int defaultSkillTrainingPrice = 500;
+    public int defaultSkillTrainingPrice = 600;
     public float skillTrainingPriceRatio = 0.5f;
 
     public int maxSkillLevel = 5;
-    public int defaultSkillUpgradePrice = 4000;
+    public int defaultSkillUpgradePrice = 3000;
     public float skillUpgradePriceRatio = 1f;
 }

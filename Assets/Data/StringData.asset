@@ -159,7 +159,7 @@ MonoBehaviour:
       kr: "\uD30C\uB3D9\uC758 \uAC80"
   - id: EMPField
     value:
-      en: EMPField
+      en: EMP Field
       kr: "EMP \uD544\uB4DC"
   - id: EMPField_desc
     value:

@@ -15,8 +15,8 @@ MonoBehaviour:
   startGold: 200
   defaultStageChromeReward: 100
   stageRewardRatio: 0.05
-  defaultSkillPrice: 500
-  skillUpgradePriceRatio: 0.5
+  defaultSkillTrainingPrice: 600
+  skillTrainingPriceRatio: 0.5
   maxSkillLevel: 5
-  defaultSkillUpgradePrice: 4000
-  skillUpgradeRatio: 1
+  defaultSkillUpgradePrice: 3000
+  skillUpgradePriceRatio: 1
