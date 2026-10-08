@@ -64,7 +64,7 @@ public class UserRecord
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
     [JsonProperty]
-    private int _chrome = 0;
+    private long _chrome = 0;
     
     [JsonProperty]
     private long _lastChromeUpdateTick = 0;
@@ -88,7 +88,7 @@ public class UserRecord
     public int MaxClearedStage => _maxClearedStage;
 
     [JsonIgnore]
-    public int Chrome => _chrome;
+    public long Chrome => _chrome;
     
     [JsonIgnore]
     public IReadOnlyCollection<int> SkillIds => _skillIds;
