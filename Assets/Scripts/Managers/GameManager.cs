@@ -497,4 +497,24 @@ public class GameManager : MonoBehaviour
         _userRecord.SetEquipmentSkillId(argSkillIds);
         SaveUserRecord();
     }
+
+    public bool TryBuySkill(int argSkillId)
+    {
+        bool isSuccess = _userRecord.TryBuySkill(argSkillId);
+        if (isSuccess)
+        {
+            SaveUserRecord();
+        }
+        return isSuccess;
+    }
+
+    public bool TryUpgradeSkill(int argSkillId)
+    {
+        bool isSuccess = _userRecord.TryUpgradeSkill(argSkillId);
+        if (isSuccess)
+        {
+            SaveUserRecord();
+        }
+        return isSuccess;
+    }
 }

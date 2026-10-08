@@ -8,13 +8,13 @@ public class UISkillTrainingInfo : APopup
     
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _name;
-    [SerializeField] private TextMeshProUGUI _desc;
     [SerializeField] private TextMeshProUGUI _price;
     [SerializeField] private TextMeshProUGUI _activeType;
     [SerializeField] private TextMeshProUGUI _passiveType;
     
     [SerializeField] private GameObject _arrow;
-    [SerializeField] private GameObject _nextInfo;
+    [SerializeField] private UISkillChangeInfo _currentInfo;
+    [SerializeField] private UISkillChangeInfo _nextInfo;
     
     [SerializeField] private Button _btn;
 
@@ -24,10 +24,15 @@ public class UISkillTrainingInfo : APopup
     {
         _id = argSkillId;
 
+        Refresh();
+    }
+
+    void Refresh()
+    {
         SetButton();
         SetUI();
     }
-
+    
     void SetUI()
     {
         var ur = Managers.Game.UserRecord;
@@ -35,24 +40,19 @@ public class UISkillTrainingInfo : APopup
         if (isUnlocked)
         {
             _arrow.SetActive(true);
-            _nextInfo.SetActive(true);
+            _nextInfo.gameObject.SetActive(true);
         }
         else
         {
             _arrow.SetActive(false);
-            _nextInfo.SetActive(false);
+            _nextInfo.gameObject.SetActive(false);
         }
-        // price setting
-        var price = Managers.Data.GetSkillPrice(_id);
-        _price.SetText($"{price:N0}");
         
         var skillInfo = Managers.Data.GetSkillInfo(_id);
         _icon.sprite = skillInfo.icon;
         var sm = Managers.String;
         string name = sm.GetString(skillInfo.nameId);
-        string desc = sm.GetString(skillInfo.descId);
         _name.SetText(name);
-        _desc.SetText(desc);
 
         bool isActive = skillInfo.type == SkillType.Active;
         
@@ -64,22 +64,36 @@ public class UISkillTrainingInfo : APopup
         _passiveType.SetText(passive);
         _passiveType.gameObject.SetActive(!isActive);
         
-        SetUpgradeInfo();
+        SetChangeInfo(isUnlocked, skillInfo);
     }
 
-    void SetUpgradeInfo()
+    void SetChangeInfo(bool argIsUnlocked, SkillInfo argSkillInfo)
     {
-        // upgrade text info
-        // level 0 또는 max level에선 level 1을 current에 기록,
-        // 그 외엔 현재를 current에, 이후 레벨을 next에 기록,
+        var ur = Managers.Game.UserRecord;
+        var level = ur.GetSkillLevel(_id);
+        level = level <= 0 ? 1 : level;
+        var maxLevel = Managers.Data.SkillMaxLevel;
+        bool isMaxLevel = level >= maxLevel;
         
-        
-        
+        if (argIsUnlocked && !isMaxLevel)
+        {
+            _nextInfo.Init(level + 1, argSkillInfo);
+        }
+        _currentInfo.Init(level, argSkillInfo);
     }
     
     void SetButton()
     {
         var ur = Managers.Game.UserRecord;
+        var level = ur.GetSkillLevel(_id);
+        var maxLevel = Managers.Data.SkillMaxLevel;
+        if (level >= maxLevel)
+        {
+            _btn.gameObject.SetActive(false);
+            return;
+        }
+        
+        _btn.gameObject.SetActive(true);
         _btn.onClick.RemoveAllListeners();            
         if (ur.IsUnlockedSkillId(_id))
         {
@@ -89,16 +103,48 @@ public class UISkillTrainingInfo : APopup
         {
             _btn.onClick.AddListener(OnBtnBuy);
         }
+        
+        // price setting
+        var price = Managers.Data.GetSkillPrice(_id);
+        _price.SetText($"{price:N0}");
     }
 
     void OnBtnBuy()
     {
-        
+        var sm = Managers.Sound;
+        if (Managers.Game.TryBuySkill(_id))
+        {
+            sm.PlayUpgradeSfx(true);
+            Refresh();
+        }
+        else
+        {
+            sm.PlayUpgradeSfx(false);
+            OnFail();
+        }
     }
 
     void OnBtnUpgrade()
     {
-        
+        var sm = Managers.Sound;
+        if (Managers.Game.TryUpgradeSkill(_id))
+        {
+            sm.PlayUpgradeSfx(true);
+            Refresh();
+        }
+        else
+        {
+            sm.PlayUpgradeSfx(false);
+            OnFail();
+        }
+    }
+
+    void OnFail()
+    {
+        var ph = Managers.UI.PopupHandler;
+        var notice = ph.OpenPopup<UINotice>(PrefabID.UINotice);
+        string msg = Managers.String.GetString(StringID.NotEnoughChrome);
+        notice.SetData(msg, ph.ClosePopup);
     }
     
     public override void Clear()

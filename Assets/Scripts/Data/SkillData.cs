@@ -38,6 +38,7 @@ public enum SkillActionType
 public enum StatType
 {
     None,
+    HP,
     Attack,
     Armor,
     AttackSpeed,
@@ -54,6 +55,7 @@ public class SkillInfo
     public int id;
     public string nameId;
     public string descId;
+    public string descDetailId;
     public Sprite icon;
     public SkillType type;
     
@@ -68,6 +70,17 @@ public class SkillInfo
     public List<SkillActionData> actionList;
 
     public SkillUpgradeData upgradeData;
+
+    public object[] GetUIParams(int argLevel)
+    {
+        List<object> paramList = new List<object>();
+        foreach (var action in actionList)
+        {
+            paramList.AddRange(action.GetUIParams(argLevel, upgradeData));
+        }
+        
+        return paramList.ToArray();
+    }
 }
 
 [Serializable]
@@ -81,6 +94,10 @@ public class RangeData
 [Serializable]
 public class SkillActionData
 {
+    // 소수 첫째자리까지 나타내기 위함.
+    private const float THOUSAND = 1000f;
+    private const float TEN = 10f;
+    
     public SkillActionType type;
 
     // 0 ~ 1
@@ -90,11 +107,63 @@ public class SkillActionData
     public float value;
     // 지속 효과에만 사용
     public float duration;
-    public float interval;
+    public int count;
 
     [Header("Buff/Debuff Skill Info")]
     // Buff / Debuff에만 사용
     public List<StatModifierData> statModifierList;
+
+    public object[] GetUIParams(int argLevel, SkillUpgradeData argUpgradeData)
+    {
+        List<object> paramList = new List<object>();
+
+        switch (type)
+        {
+            case SkillActionType.Damage:
+            case SkillActionType.Heal:
+            case SkillActionType.Shield:
+                float calcValue = Mathf.Round((value + ((argLevel - 1) * argUpgradeData.value)) * THOUSAND) / TEN;
+                paramList.Add(calcValue);
+
+                if (duration > 0)
+                {
+                    float calcDuration = duration + ((argLevel - 1) * argUpgradeData.duration);
+                    paramList.Add(calcDuration);
+                }
+
+                if (count > 1)
+                {
+                    paramList.Add(count);
+                }
+                
+                break;
+            
+            case SkillActionType.Buff:
+            case SkillActionType.Debuff:
+                
+                if (duration > 0)
+                {
+                    float calcDuration = duration + ((argLevel - 1)  * argUpgradeData.duration);
+                    paramList.Add(calcDuration);
+                }
+                
+                foreach (var mod in statModifierList)
+                {
+                    var modifier = Mathf.Round((mod.value + (argUpgradeData.value * (argLevel - 1))) * THOUSAND) / TEN;
+                    if (modifier < 0)
+                    {
+                        modifier *= -1;
+                    }
+                    
+                    var calcModValue = modifier;
+                    paramList.Add(calcModValue);
+                }
+                
+                break;
+        }
+        
+        return paramList.ToArray();
+    }
 }
 
 [Serializable]
@@ -102,9 +171,7 @@ public class StatModifierData
 {
     public StatType type;
 
-    // 0 ~ 1
-    // 현재 값의 크기에 증분을 적용
-    [Range(0, 1)]
+    [Range(-1, 1)]
     public float value;
 }
 
@@ -114,17 +181,11 @@ public class SkillUpgradeData
     // 스킬 레벨업 시 증가하는 비율
     [Range(0, 1)]
     public float value;
-
-    // 범위 증가 비율
-    [Range(0, 1)]
+    
     public float range;
-
-    // 쿨타임 감소 비율
-    [Range(0, 1)]
+    
     public float cooldown;
-
-    // 지속시간 증가 비율
-    [Range(0, 1)]
+    
     public float duration;
 }
 

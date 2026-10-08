@@ -97,6 +97,9 @@ public enum StringID
     
     // Skill Training
     CommanderSkillTraining,
+    SkillDetail,
+    Second,
+    NotEnoughChrome,
     
     // Entity - Pioneer Name
     Police = 10001,
@@ -160,4 +163,18 @@ public enum StringID
     Crunch_desc,
     GoldRush_desc,
     OverMining_desc,
+    
+    // skill desc detail
+    LaserStrike_desc_detail,
+    Bomb_desc_detail,
+    EMPField_desc_detail,
+    DefensiveMatrix_desc_detail,
+    HQDefenceSystem_desc_detail,
+    CombatDrive_desc_detail,
+    Frenzy_desc_detail,
+    VitalReboot_desc_detail,
+    Glitch_desc_detail,
+    Crunch_desc_detail,
+    GoldRush_desc_detail,
+    OverMining_desc_detail,
 }

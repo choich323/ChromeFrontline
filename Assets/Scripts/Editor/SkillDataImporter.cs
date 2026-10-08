@@ -394,8 +394,7 @@ public class SkillDataImporter : EditorWindow
             actionData.duration =
                 ParseFloat(values[2]);
 
-            actionData.interval =
-                ParseFloat(values[3]);
+            actionData.count = int.Parse(values[3]);
 
             if (values.Length > 4)
             {

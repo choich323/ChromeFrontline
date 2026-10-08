@@ -55,6 +55,7 @@ public class DataManager : MonoBehaviour
     private bool _isFinishedTutorial = false;
     
     public int StartGold => _currencyInfo.startGold;
+    public int SkillMaxLevel => _currencyInfo.maxSkillLevel;
     public WorldCatalog WorldCatalog => _worldCatalog;
     
     public void Init()
@@ -154,6 +155,11 @@ public class DataManager : MonoBehaviour
     {
         var id = (int)ConvertStringToStringID(argId);
         return TryGetString(id, out outString);
+    }
+
+    public StringID TryGetStringId(string argId)
+    {
+        return ConvertStringToStringID(argId);
     }
     
     public bool TryGetString(int argId, out string outString)
@@ -582,12 +588,7 @@ public class DataManager : MonoBehaviour
 
     public SkillInfo GetSkillInfo(int argSkillId)
     {
-        if (!_skillInfoDict.TryGetValue(argSkillId, out SkillInfo outSkillInfo))
-        {
-            return null;
-        }
-        
-        return outSkillInfo;
+        return _skillInfoDict.GetValueOrDefault(argSkillId);
     }
 
     public SkillUpgradeData GetSkillUpgradeInfo(int argSkillId)

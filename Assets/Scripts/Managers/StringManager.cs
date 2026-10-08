@@ -12,12 +12,8 @@ public class StringManager : MonoBehaviour
 
     public string GetString(string argStringId)
     {
-        if (Managers.Data.TryGetString(argStringId, out string str))
-        {
-            return str;
-        }
-        Debug.LogError($"No string found for ID. ID:{argStringId}");
-        return string.Empty;
+        var id = Managers.Data.TryGetStringId(argStringId);
+        return GetString(id);
     }
     
     public string GetString(StringID argStringId)
@@ -31,6 +27,12 @@ public class StringManager : MonoBehaviour
         return string.Empty;
     }
 
+    public string GetString(string argStringId, params object[] argArguments)
+    {
+        var id = Managers.Data.TryGetStringId(argStringId);
+        return GetString(id, argArguments);
+    }
+    
     public string GetString(StringID argStringId, params object[] argArguments)
     {
         string str = GetString(argStringId);

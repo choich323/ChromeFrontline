@@ -260,12 +260,51 @@ public class UserRecord
         return false;
     }
 
-    public void AddSkillId(int argSkillId)
+    public bool TryBuySkill(int argSkillId)
+    {
+        if (IsUnlockedSkillId(argSkillId))
+        {
+            return false;
+        }
+
+        int price = Managers.Data.GetSkillPrice(argSkillId);
+        if (!ConsumeChrome(price))
+        {
+            return false;
+        }
+        
+        AddSkillId(argSkillId);
+        return true;
+    }
+
+    public bool TryUpgradeSkill(int argSkillId)
+    {
+        if (!IsUnlockedSkillId(argSkillId))
+        {
+            return false;
+        }
+
+        int price = Managers.Data.GetSkillPrice(argSkillId);
+        if (!ConsumeChrome(price))
+        {
+            return false;
+        }
+        
+        UpgradeSkill(argSkillId);
+        return true;
+    }
+    
+    void AddSkillId(int argSkillId)
     {
         _skillIds.Add(argSkillId);
         _skillLevelDict.TryAdd(argSkillId, 1);
     }
 
+    void UpgradeSkill(int argSkillId)
+    {
+        _skillLevelDict[argSkillId]++;
+    }
+    
     public void SetEquipmentSkillId(List<int> argSkillIdList)
     {
        _equipmentIds.Clear();
@@ -277,7 +316,7 @@ public class UserRecord
 
     public bool IsUnlockedSkillId(int argSkillId)
     {
-        return _skillIds.Contains(argSkillId);
+        return _skillIds.Contains(argSkillId) && _skillLevelDict.ContainsKey(argSkillId);
     }
 
     public int GetSkillLevel(int argSkillId)

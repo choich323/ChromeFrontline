@@ -16,12 +16,13 @@ MonoBehaviour:
   - id: 1001
     nameId: LaserStrike
     descId: LaserStrike_desc
+    descDetailId: LaserStrike_desc_detail
     icon: {fileID: -7864223098581987500, guid: a995276dbbf831f4485326c279c82849, type: 3}
     type: 1
     targetType: 3
     rangeData:
-      type: 2
-      radius: 0
+      type: 1
+      radius: 5
       vertexList:
       - {x: -4, y: -4}
       - {x: 4, y: -4}
@@ -33,16 +34,17 @@ MonoBehaviour:
     - type: 1
       value: 0.2
       duration: 0
-      interval: 0
+      count: 1
       statModifierList: []
     upgradeData:
-      value: 0.1
+      value: 0.025
       range: 0
       cooldown: 0
       duration: 0
   - id: 1002
     nameId: Bomb
     descId: Bomb_desc
+    descDetailId: Bomb_desc_detail
     icon: {fileID: -1736326233518769972, guid: bd5032734b5b8bb4da414f484442e171, type: 3}
     type: 1
     targetType: 3
@@ -56,16 +58,17 @@ MonoBehaviour:
     - type: 1
       value: 0.1
       duration: 0
-      interval: 0
+      count: 1
       statModifierList: []
     upgradeData:
-      value: 0.2
-      range: 0.1
-      cooldown: 0
+      value: 0.01
+      range: 0.25
+      cooldown: 1
       duration: 0
   - id: 1003
     nameId: EMPField
     descId: EMPField_desc
+    descDetailId: EMPField_desc_detail
     icon: {fileID: -800539931983229277, guid: 766e3b9b4e5d8f34a97f7c37498a820b, type: 3}
     type: 1
     targetType: 3
@@ -81,18 +84,19 @@ MonoBehaviour:
     hitTiming: 0.75
     actionList:
     - type: 1
-      value: 0.02
+      value: 0.05
       duration: 3
-      interval: 1
+      count: 3
       statModifierList: []
     upgradeData:
-      value: 0.1
+      value: 0.01
       range: 0
       cooldown: 0
-      duration: 0.2
+      duration: 0.25
   - id: 2001
     nameId: DefensiveMatrix
     descId: DefensiveMatrix_desc
+    descDetailId: DefensiveMatrix_desc_detail
     icon: {fileID: -2757887451555568444, guid: c0f623bf8088dda41b30347e9addd2df, type: 3}
     type: 1
     targetType: 2
@@ -108,18 +112,19 @@ MonoBehaviour:
     hitTiming: 0
     actionList:
     - type: 3
-      value: 0.1
+      value: 0.3
       duration: 10
-      interval: 1
+      count: 1
       statModifierList: []
     upgradeData:
-      value: 0.1
-      range: 0.1
-      cooldown: 0.05
-      duration: 0.1
+      value: 0
+      range: 0
+      cooldown: 5
+      duration: 4
   - id: 2002
     nameId: HQDefenceSystem
     descId: HQDefenceSystem_desc
+    descDetailId: HQDefenceSystem_desc_detail
     icon: {fileID: -711012508038229037, guid: b8d2d6cb12f20794489258a1378920b6, type: 3}
     type: 1
     targetType: 3
@@ -133,16 +138,17 @@ MonoBehaviour:
     - type: 1
       value: 0.5
       duration: 0
-      interval: 0
+      count: 1
       statModifierList: []
     upgradeData:
       value: 0.04
-      range: 0.05
+      range: 0
       cooldown: 0
       duration: 0
   - id: 3001
     nameId: CombatDrive
     descId: CombatDrive_desc
+    descDetailId: CombatDrive_desc_detail
     icon: {fileID: 2162073879907501594, guid: 29dbca7c4b57e36459c939e65c0c9be6, type: 3}
     type: 1
     targetType: 2
@@ -155,19 +161,20 @@ MonoBehaviour:
     actionList:
     - type: 4
       value: 0
-      duration: 10
-      interval: 0
+      duration: 15
+      count: 0
       statModifierList:
-      - type: 5
-        value: 0.2
+      - type: 6
+        value: 0.3
     upgradeData:
       value: 0
       range: 0
       cooldown: 0
-      duration: 0.2
+      duration: 2
   - id: 3002
     nameId: Frenzy
     descId: Frenzy_desc
+    descDetailId: Frenzy_desc_detail
     icon: {fileID: -7404376503033989308, guid: 54b489bc0827903408ac592e88df8b7d, type: 3}
     type: 1
     targetType: 2
@@ -178,30 +185,28 @@ MonoBehaviour:
     cooldown: 45
     hitTiming: 0
     actionList:
-    - type: 1
-      value: 0.1
-      duration: 0
-      interval: 0
-      statModifierList: []
     - type: 4
       value: 0
-      duration: 10
-      interval: 0
+      duration: 15
+      count: 0
       statModifierList:
       - type: 1
-        value: 0.1
-      - type: 3
+        value: -0.2
+      - type: 2
         value: 0.1
       - type: 4
         value: 0.1
+      - type: 5
+        value: 0.1
     upgradeData:
-      value: 0.2
+      value: 0.025
       range: 0
       cooldown: 0
-      duration: 0.1
+      duration: 1
   - id: 3003
     nameId: VitalReboot
     descId: VitalReboot_desc
+    descDetailId: VitalReboot_desc_detail
     icon: {fileID: -2165511494652259143, guid: 8b237d7aa8f897543b36a1c271f35ad7, type: 3}
     type: 1
     targetType: 2
@@ -215,16 +220,17 @@ MonoBehaviour:
     - type: 2
       value: 0.1
       duration: 0
-      interval: 0
+      count: 1
       statModifierList: []
     upgradeData:
-      value: 0.2
+      value: 0.025
       range: 0
       cooldown: 0
       duration: 0
   - id: 4001
     nameId: Glitch
     descId: Glitch_desc
+    descDetailId: Glitch_desc_detail
     icon: {fileID: 8389134475083476877, guid: 9b1b427c26e13dd48a34aa797b8f2faa, type: 3}
     type: 1
     targetType: 3
@@ -237,25 +243,26 @@ MonoBehaviour:
     actionList:
     - type: 5
       value: 0
-      duration: 10
-      interval: 0
+      duration: 15
+      count: 0
       statModifierList:
-      - type: 1
-        value: 0.1
       - type: 2
         value: 0.1
       - type: 3
         value: 0.1
       - type: 4
         value: 0.1
+      - type: 5
+        value: 0.1
     upgradeData:
       value: 0
       range: 0
       cooldown: 0
-      duration: 0.1
+      duration: 5
   - id: 10001
     nameId: Crunch
     descId: Crunch_desc
+    descDetailId: Crunch_desc_detail
     icon: {fileID: 1926804461, guid: 7c5bf9c5420b6054983bcd6af8dc4367, type: 3}
     type: 2
     targetType: 1
@@ -269,18 +276,19 @@ MonoBehaviour:
     - type: 4
       value: 0
       duration: -1
-      interval: 0
+      count: 0
       statModifierList:
-      - type: 6
+      - type: 7
         value: 0.1
     upgradeData:
-      value: 0.1
+      value: 0.01
       range: 0
       cooldown: 0
       duration: 0
   - id: 10002
     nameId: GoldRush
     descId: GoldRush_desc
+    descDetailId: GoldRush_desc_detail
     icon: {fileID: 21300000, guid: b7169c21225b1f04ab520fd934e0cd2c, type: 3}
     type: 2
     targetType: 1
@@ -294,18 +302,19 @@ MonoBehaviour:
     - type: 4
       value: 0
       duration: -1
-      interval: 0
+      count: 0
       statModifierList:
-      - type: 7
+      - type: 8
         value: 0.1
     upgradeData:
-      value: 0.2
+      value: 0.01
       range: 0
       cooldown: 0
       duration: 0
   - id: 10003
     nameId: OverMining
     descId: OverMining_desc
+    descDetailId: OverMining_desc_detail
     icon: {fileID: 260226116070882889, guid: c239487b3731d4f418cd977ce793b1ac, type: 3}
     type: 2
     targetType: 1
@@ -319,12 +328,12 @@ MonoBehaviour:
     - type: 4
       value: 0
       duration: -1
-      interval: 0
+      count: 0
       statModifierList:
-      - type: 8
+      - type: 9
         value: 0.05
     upgradeData:
-      value: 0.2
+      value: 0.01
       range: 0
       cooldown: 0
       duration: 0
