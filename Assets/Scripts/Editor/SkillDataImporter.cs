@@ -372,7 +372,7 @@ public class SkillDataImporter : EditorWindow
             string[] values =
                 actionMatch.Groups[1].Value.Split(':');
 
-            if (values.Length < 4)
+            if (values.Length < 2)
             {
                 Debug.LogWarning(
                     $"[SkillData Parse Warning] " +
@@ -388,18 +388,11 @@ public class SkillDataImporter : EditorWindow
             actionData.type =
                 ParseEnum<SkillActionType>(values[0]);
 
-            actionData.value =
-                ParseFloat(values[1]);
+            actionData.value = ParseFloat(values[1]);
 
-            actionData.duration =
-                ParseFloat(values[2]);
-
-            actionData.count = int.Parse(values[3]);
-
-            if (values.Length > 4)
+            if (values.Length > 2)
             {
-                actionData.statModifierList =
-                    ParseStatModifierList(values);
+                actionData.statModifierList = ParseStatModifierList(values);
             }
 
             actionList.Add(actionData);
@@ -408,19 +401,16 @@ public class SkillDataImporter : EditorWindow
         return actionList;
     }
 
-    private List<StatModifierData> ParseStatModifierList(
-        string[] argValues)
+    private List<StatModifierData> ParseStatModifierList(string[] argValues)
     {
         List<StatModifierData> modifierList =
             new List<StatModifierData>();
 
         // 0 : ActionType
         // 1 : Value
-        // 2 : Duration
-        // 3 : Interval
-        // 4부터 StatType / Value 반복
+        // 2부터 StatType / Value 반복
 
-        for (int i = 4; i + 1 < argValues.Length; i += 2)
+        for (int i = 2; i + 1 < argValues.Length; i += 2)
         {
             StatModifierData modifierData =
                 new StatModifierData();

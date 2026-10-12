@@ -229,15 +229,15 @@ public class SkillRange : MonoBehaviour
         }
     }
     
-    public void Destroy(Action<SkillRange> argCallback)
+    public void Destroy(float argTime, Action<SkillRange> argCallback)
     {
-        StartCoroutine(CoDestroy(argCallback));
+        StartCoroutine(CoDestroy(argTime, argCallback));
     }
 
     // test code
-    IEnumerator CoDestroy(Action<SkillRange> argCallback)
+    IEnumerator CoDestroy(float argTime, Action<SkillRange> argCallback)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(argTime);
         
         argCallback?.Invoke(this);
     }

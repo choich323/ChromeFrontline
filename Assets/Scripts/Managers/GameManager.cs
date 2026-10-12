@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
     private event Action _onEnterLobby;
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
+    private SkillHandler _skillHandler;
     private UserRecord _userRecord;
     private string _curWorldId;
+    private List<Coroutine> _skillCoroutines = new List<Coroutine>();
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -188,6 +190,22 @@ public class GameManager : MonoBehaviour
         _slotUpgradeHandler.Init();
     }
 
+    void RunSkillCoroutine(IEnumerator argAction)
+    {
+        var co = StartCoroutine(argAction);
+        _skillCoroutines.Add(co);
+    }
+    
+    void RunSkillHandler()
+    {
+        if (_skillHandler != null)
+        {
+            _skillHandler.Destroy();
+        }
+        _skillHandler = new SkillHandler();
+        _skillHandler.Run(RunSkillCoroutine);
+    }
+    
     public bool SetRandomGrade(int argCost, int argIndex)
     {
         var hq = GameField.PlayerHq;
@@ -240,6 +258,7 @@ public class GameManager : MonoBehaviour
         var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
         RunAIScheduleHandler(aiScheduleInfo);
         RunSlotUpgradeHandler();
+        RunSkillHandler();
         
         _gameField.Run();
         
@@ -516,5 +535,15 @@ public class GameManager : MonoBehaviour
             SaveUserRecord();
         }
         return isSuccess;
+    }
+
+    public bool OnIngameSkillBtn(int argId, Vector2 argPos)
+    {
+        if (_userRecord.IsEquipedSkill(argId))
+        {
+            return false;
+        }
+        
+        return _skillHandler.ExecuteSkill(argId, argPos);
     }
 }

@@ -319,6 +319,11 @@ public class UserRecord
         return _skillIds.Contains(argSkillId) && _skillLevelDict.ContainsKey(argSkillId);
     }
 
+    public bool IsEquipedSkill(int argId)
+    {
+        return IsUnlockedSkillId(argId) && _equipmentIds.Contains(argId);
+    }
+    
     public int GetSkillLevel(int argSkillId)
     {
         _skillLevelDict.TryGetValue(argSkillId, out int level);

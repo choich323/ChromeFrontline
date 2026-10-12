@@ -12,6 +12,7 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     [SerializeField] private Image _icon;
     [SerializeField] private Button _button;
     [SerializeField] private Image _cooldown;
+    [SerializeField] private Image _durationBorder;
     [SerializeField] private GameObject _lock;
     [SerializeField] private GameObject _unlock;
 
@@ -37,20 +38,37 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         SetIcon(_skillInfo.icon);
     }
 
-    public void OnDrag(PointerEventData argEventData)
-    {
-        UpdateSkillRangePosition(argEventData);
-    }
-
     public void OnPointerDown(PointerEventData argEventData)
     {
+        if (_skillInfo.rangeData.type == RangeType.None)
+        {
+            return;
+        }
+        
         CreateSkillRange();
         
         UpdateSkillRangePosition(argEventData);
     }
 
+    public void OnDrag(PointerEventData argEventData)
+    {
+        if (_skillInfo.rangeData.type == RangeType.None)
+        {
+            return;
+        }
+        
+        UpdateSkillRangePosition(argEventData);
+    }
+    
     public void OnPointerUp(PointerEventData argEventData)
     {
+        Managers.Game.OnIngameSkillBtn(_id, argEventData.position);
+        
+        if (_skillInfo.rangeData.type == RangeType.None)
+        {
+            return;
+        }
+        
         DestroySkillRange();
     }
 
@@ -85,10 +103,9 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         _skillRange.transform.position = worldPos;
     }
     
-    // temp code
     void DestroySkillRange()
     {
-        _skillRange.Destroy(OnDestroySkillRange);
+        _skillRange.Destroy(_skillInfo.duration, OnDestroySkillRange);
     }
 
     void OnDestroySkillRange(SkillRange argSkillRange)

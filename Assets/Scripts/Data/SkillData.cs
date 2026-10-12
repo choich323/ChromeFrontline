@@ -64,6 +64,9 @@ public class SkillInfo
     [Header("Active Skill info")]
     public RangeData rangeData;
     public float cooldown;
+    // 지속 데미지/효과에 사용
+    public float duration;
+    public int count;
     [Range(0, 1)]
     public float hitTiming;
 
@@ -76,7 +79,7 @@ public class SkillInfo
         List<object> paramList = new List<object>();
         foreach (var action in actionList)
         {
-            paramList.AddRange(action.GetUIParams(argLevel, upgradeData));
+            paramList.AddRange(action.GetUIParams(argLevel, duration, count, upgradeData));
         }
         
         return paramList.ToArray();
@@ -105,15 +108,12 @@ public class SkillActionData
     [Header("Active Skill Info")]
     [Range(0, 1)]
     public float value;
-    // 지속 효과에만 사용
-    public float duration;
-    public int count;
 
     [Header("Buff/Debuff Skill Info")]
     // Buff / Debuff에만 사용
     public List<StatModifierData> statModifierList;
 
-    public object[] GetUIParams(int argLevel, SkillUpgradeData argUpgradeData)
+    public object[] GetUIParams(int argLevel, float argDuration, int argCount, SkillUpgradeData argUpgradeData)
     {
         List<object> paramList = new List<object>();
 
@@ -125,15 +125,15 @@ public class SkillActionData
                 float calcValue = Mathf.Round((value + ((argLevel - 1) * argUpgradeData.value)) * THOUSAND) / TEN;
                 paramList.Add(calcValue);
 
-                if (duration > 0)
+                if (argDuration > 0)
                 {
-                    float calcDuration = duration + ((argLevel - 1) * argUpgradeData.duration);
+                    float calcDuration = argDuration + ((argLevel - 1) * argUpgradeData.duration);
                     paramList.Add(calcDuration);
                 }
 
-                if (count > 1)
+                if (argCount > 1)
                 {
-                    paramList.Add(count);
+                    paramList.Add(argCount);
                 }
                 
                 break;
@@ -141,9 +141,9 @@ public class SkillActionData
             case SkillActionType.Buff:
             case SkillActionType.Debuff:
                 
-                if (duration > 0)
+                if (argDuration > 0)
                 {
-                    float calcDuration = duration + ((argLevel - 1)  * argUpgradeData.duration);
+                    float calcDuration = argDuration + ((argLevel - 1)  * argUpgradeData.duration);
                     paramList.Add(calcDuration);
                 }
                 
