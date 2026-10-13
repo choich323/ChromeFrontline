@@ -21,6 +21,8 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     private SkillInfo _skillInfo;
     private SkillRange _skillRange;
     private readonly Plane _plane = new Plane(Vector3.forward, Vector3.zero);
+    private Coroutine _cooldownCoroutine;
+    private Coroutine _durationBorderCoroutine;
     
     public void Init(int argSkillId, int argSkillLevel)
     {
@@ -40,7 +42,7 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
 
     public void OnPointerDown(PointerEventData argEventData)
     {
-        if (_skillInfo.rangeData.type == RangeType.None)
+        if (_skillInfo.rangeData.type == RangeType.None || _cooldownCoroutine != null)
         {
             return;
         }
@@ -52,7 +54,7 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
 
     public void OnDrag(PointerEventData argEventData)
     {
-        if (_skillInfo.rangeData.type == RangeType.None)
+        if (_skillInfo.rangeData.type == RangeType.None || _cooldownCoroutine != null)
         {
             return;
         }
@@ -62,16 +64,56 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     
     public void OnPointerUp(PointerEventData argEventData)
     {
-        Managers.Game.OnIngameSkillBtn(_id, argEventData.position);
-        
-        if (_skillInfo.rangeData.type == RangeType.None)
+        if (Managers.Game.OnIngameSkillBtn(_id, argEventData.position))
         {
-            return;
+            if (_skillInfo.rangeData.type != RangeType.None)
+            {
+                DestroySkillRange();
+            }
+            
+            var info = Managers.Data.GetSkillInfo(_id);
+            var level = Managers.Game.UserRecord.GetSkillLevel(_id);
+            var cool = info.GetCooldown(level);
+
+            if (_cooldownCoroutine != null)
+            {
+                StopCoroutine(_cooldownCoroutine);
+            }
+            _cooldownCoroutine = StartCoroutine(CoSetFillAmount(_cooldown, cool));
+            
+            var duration = info.GetDuration(level);
+            if (duration > 0)
+            {
+                if (_durationBorderCoroutine != null)
+                {
+                    StopCoroutine(_durationBorderCoroutine);
+                }
+                _durationBorderCoroutine = StartCoroutine(CoSetFillAmount(_durationBorder, duration)); 
+            }
         }
-        
-        DestroySkillRange();
     }
 
+    IEnumerator CoSetFillAmount(Image argImage, float argValue)
+    {
+        if (argValue <= 0)
+        {
+            argImage.fillAmount = 0f;
+            yield break;
+        }
+        
+        var startTime = Time.time;
+        var targetTime = startTime + argValue;
+        argImage.fillAmount = 1f;
+        
+        while (Time.time < targetTime)
+        {
+            argImage.fillAmount = (targetTime - Time.time) / argValue;
+            yield return null;
+        }
+
+        argImage.fillAmount = 0f;
+    }
+    
     void SetIcon(Sprite argIcon)
     {
         _icon.sprite = argIcon;
@@ -105,6 +147,11 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     
     void DestroySkillRange()
     {
+        if (_skillRange == null)
+        {
+            return;
+        }
+        
         _skillRange.Destroy(_skillInfo.duration, OnDestroySkillRange);
     }
 

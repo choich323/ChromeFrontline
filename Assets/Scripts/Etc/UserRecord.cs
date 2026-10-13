@@ -47,6 +47,8 @@ public class UserRecord
     private const int CLEAR_HQ_HP_RATIO = 100;
     private const int BASIC_SKILL_ID = 1001;
     private const int TEST_SKILL_ID = 1002;
+    private const int TEST_SKILL_ID2 = 4001;
+    private const int TEST_SKILL_ID3 = 10002;
     private const int EMPTY_SKILL_ID = 0;
     private const int SKILL_SLOT_MAX = 4;
     
@@ -110,6 +112,20 @@ public class UserRecord
             {
                 _equipmentIds.Add(EMPTY_SKILL_ID);
             }
+        }
+    }
+
+    // data 오류 수정을 위한 함수
+    public void CheckData()
+    {
+        if (!_skillIds.Contains(TEST_SKILL_ID2))
+        {
+            AddSkillId(TEST_SKILL_ID2);
+        }
+
+        if (!_skillIds.Contains(TEST_SKILL_ID3))
+        {
+            AddSkillId(TEST_SKILL_ID3);
         }
     }
     

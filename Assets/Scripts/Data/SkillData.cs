@@ -84,6 +84,21 @@ public class SkillInfo
         
         return paramList.ToArray();
     }
+
+    public float GetCooldown(int argLevel)
+    {
+        return cooldown - upgradeData.cooldown * (argLevel - 1);
+    }
+
+    public float GetDuration(int argLevel)
+    {
+        return duration + upgradeData.duration * (argLevel - 1);
+    }
+
+    public int GetCount(int argLevel)
+    {
+        return count + upgradeData.count * (argLevel - 1);
+    }
 }
 
 [Serializable]
@@ -103,10 +118,8 @@ public class SkillActionData
     
     public SkillActionType type;
 
-    // 0 ~ 1
     // 대상의 기본 수치를 기준으로 적용되는 비율
     [Header("Active Skill Info")]
-    [Range(0, 1)]
     public float value;
 
     [Header("Buff/Debuff Skill Info")]
@@ -133,7 +146,8 @@ public class SkillActionData
 
                 if (argCount > 1)
                 {
-                    paramList.Add(argCount);
+                    int calcCount = argCount + (argLevel - 1) * argUpgradeData.count;
+                    paramList.Add(calcCount);
                 }
                 
                 break;
@@ -187,6 +201,8 @@ public class SkillUpgradeData
     public float cooldown;
     
     public float duration;
+
+    public int count;
 }
 
 [CreateAssetMenu(fileName = "SkillData", menuName = "Custom/SkillData")]

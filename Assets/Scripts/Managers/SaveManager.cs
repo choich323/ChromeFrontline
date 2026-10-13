@@ -45,6 +45,7 @@ public class SaveManager : MonoBehaviour
         {
             var newRecord = new UserRecord();
             newRecord.CreateInitialData();
+            newRecord.CheckData();
             SaveRecord(newRecord);
             return newRecord;
         }
@@ -57,6 +58,8 @@ public class SaveManager : MonoBehaviour
             string decryptedJson = DecryptAES(encryptedJson);
             
             var record = JsonConvert.DeserializeObject<UserRecord>(decryptedJson);
+            record.CheckData();
+            SaveRecord(record);
             return record;
         }
         catch (Exception e)

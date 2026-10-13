@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private SkillHandler _skillHandler;
     private UserRecord _userRecord;
     private string _curWorldId;
-    private List<Coroutine> _skillCoroutines = new List<Coroutine>();
+    private Dictionary<int, Coroutine> _skillCoroutineDict = new Dictionary<int, Coroutine>();
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -190,10 +190,35 @@ public class GameManager : MonoBehaviour
         _slotUpgradeHandler.Init();
     }
 
-    void RunSkillCoroutine(IEnumerator argAction)
+    void RunSkillCoroutine(int argId, IEnumerator argAction)
     {
+        if (_skillCoroutineDict.ContainsKey(argId))
+        {
+            return;
+        }
+        
         var co = StartCoroutine(argAction);
-        _skillCoroutines.Add(co);
+        _skillCoroutineDict.Add(argId, co);
+    }
+
+    void StopSkillCoroutine(int argId)
+    {
+        if (!_skillCoroutineDict.ContainsKey(argId))
+        {
+            return;
+        }
+
+        StopCoroutine(_skillCoroutineDict[argId]);
+        _skillCoroutineDict.Remove(argId);
+    }
+    
+    void StopAllSkillCoroutine()
+    {
+        foreach (var kvp in _skillCoroutineDict)
+        {
+            StopCoroutine(kvp.Value);
+        }
+        _skillCoroutineDict.Clear();
     }
     
     void RunSkillHandler()
@@ -203,7 +228,7 @@ public class GameManager : MonoBehaviour
             _skillHandler.Destroy();
         }
         _skillHandler = new SkillHandler();
-        _skillHandler.Run(RunSkillCoroutine);
+        _skillHandler.Run(RunSkillCoroutine, StopSkillCoroutine);
     }
     
     public bool SetRandomGrade(int argCost, int argIndex)
@@ -539,7 +564,7 @@ public class GameManager : MonoBehaviour
 
     public bool OnIngameSkillBtn(int argId, Vector2 argPos)
     {
-        if (_userRecord.IsEquipedSkill(argId))
+        if (!_userRecord.IsEquipedSkill(argId))
         {
             return false;
         }
