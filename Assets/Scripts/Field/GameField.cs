@@ -67,6 +67,18 @@ public class GameField : MonoBehaviour
             return _enemyHq.GetTargetSpawnerTransform();
         }
     }
+
+    public HeadQuarter GetHq(Team argTeam)
+    {
+        if (argTeam == Team.Player)
+        {
+            return _playerHq;
+        }
+        else
+        {
+            return _enemyHq;
+        }
+    } 
     
     public bool IsGameOver()
     {

@@ -28,6 +28,7 @@ MonoBehaviour:
       - {x: 4, y: -4}
       - {x: 6, y: 4}
       - {x: -2, y: 4}
+    costList: []
     cooldown: 30
     duration: 0
     count: 1
@@ -53,6 +54,7 @@ MonoBehaviour:
       type: 1
       radius: 4
       vertexList: []
+    costList: []
     cooldown: 20
     duration: 0
     count: 1
@@ -82,6 +84,7 @@ MonoBehaviour:
       - {x: 4, y: -4}
       - {x: 4, y: 4}
       - {x: -4, y: 4}
+    costList: []
     cooldown: 30
     duration: 3
     count: 3
@@ -111,19 +114,22 @@ MonoBehaviour:
       - {x: 4, y: -4}
       - {x: 4, y: 4}
       - {x: -4, y: 4}
+    costList: []
     cooldown: 60
-    duration: 10
+    duration: 5
     count: 1
     hitTiming: 0
     actionList:
     - type: 3
-      value: 0.3
-      statModifierList: []
+      value: 0
+      statModifierList:
+      - type: 6
+        value: 0.3
     upgradeData:
       value: 0
       range: 0
-      cooldown: 5
-      duration: 4
+      cooldown: 2.5
+      duration: 3
       count: 0
   - id: 2002
     nameId: HQDefenceSystem
@@ -136,6 +142,7 @@ MonoBehaviour:
       type: 1
       radius: 7
       vertexList: []
+    costList: []
     cooldown: 120
     duration: 0
     count: 1
@@ -161,15 +168,16 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList: []
     cooldown: 45
     duration: 15
     count: 1
     hitTiming: 0
     actionList:
-    - type: 4
+    - type: 3
       value: 0
       statModifierList:
-      - type: 6
+      - type: 5
         value: 0.3
     upgradeData:
       value: 0
@@ -188,21 +196,22 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList:
+    - type: 1
+      value: 0.2
     cooldown: 45
     duration: 15
     count: 1
     hitTiming: 0
     actionList:
-    - type: 4
+    - type: 3
       value: 0
       statModifierList:
       - type: 1
-        value: -0.2
-      - type: 2
+        value: 0.1
+      - type: 3
         value: 0.1
       - type: 4
-        value: 0.1
-      - type: 5
         value: 0.1
     upgradeData:
       value: 0.025
@@ -221,6 +230,7 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList: []
     cooldown: 60
     duration: 0
     count: 1
@@ -246,22 +256,23 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList: []
     cooldown: 90
     duration: 15
     count: 1
     hitTiming: 0
     actionList:
-    - type: 5
+    - type: 4
       value: 0
       statModifierList:
+      - type: 1
+        value: -0.1
       - type: 2
-        value: 0.1
+        value: -0.1
       - type: 3
-        value: 0.1
+        value: -0.1
       - type: 4
-        value: 0.1
-      - type: 5
-        value: 0.1
+        value: -0.1
     upgradeData:
       value: 0
       range: 0
@@ -279,12 +290,13 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList: []
     cooldown: 0
     duration: 0
     count: 0
     hitTiming: 0
     actionList:
-    - type: 4
+    - type: 3
       value: 0
       statModifierList:
       - type: 7
@@ -306,12 +318,13 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList: []
     cooldown: 0
     duration: 0
     count: 0
     hitTiming: 0
     actionList:
-    - type: 4
+    - type: 3
       value: 0
       statModifierList:
       - type: 8
@@ -333,12 +346,13 @@ MonoBehaviour:
       type: 0
       radius: 0
       vertexList: []
+    costList: []
     cooldown: 0
     duration: 0
     count: 0
     hitTiming: 0
     actionList:
-    - type: 4
+    - type: 3
       value: 0
       statModifierList:
       - type: 9

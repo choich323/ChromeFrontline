@@ -25,12 +25,18 @@ public enum RangeType
     Polygon,
 }
 
+public enum CostType
+{
+    None,
+    EntityHp,
+    Gold,
+}
+
 public enum SkillActionType
 {
     None,
     Damage,
     Heal,
-    Shield,
     Buff,
     Debuff,
 }
@@ -38,12 +44,12 @@ public enum SkillActionType
 public enum StatType
 {
     None,
-    HP,
     Attack,
     Armor,
     AttackSpeed,
     MoveSpeed,
     Critical,
+    Shield,
     ProductionSpeed,
     Gold,
     Chrome,
@@ -63,6 +69,7 @@ public class SkillInfo
     
     [Header("Active Skill info")]
     public RangeData rangeData;
+    public List<CostData> costList;
     public float cooldown;
     // 지속 데미지/효과에 사용
     public float duration;
@@ -99,6 +106,11 @@ public class SkillInfo
     {
         return count + upgradeData.count * (argLevel - 1);
     }
+    
+    public float GetUpgradeValue(int argLevel)
+    {
+        return upgradeData.value * (argLevel - 1);    
+    }
 }
 
 [Serializable]
@@ -107,6 +119,13 @@ public class RangeData
     public RangeType type;
     public float radius;
     public List<Vector2> vertexList;
+}
+
+[Serializable]
+public class CostData
+{
+    public CostType type;   
+    public float value;
 }
 
 [Serializable]
@@ -134,7 +153,6 @@ public class SkillActionData
         {
             case SkillActionType.Damage:
             case SkillActionType.Heal:
-            case SkillActionType.Shield:
                 float calcValue = Mathf.Round((value + ((argLevel - 1) * argUpgradeData.value)) * THOUSAND) / TEN;
                 paramList.Add(calcValue);
 
@@ -177,6 +195,17 @@ public class SkillActionData
         }
         
         return paramList.ToArray();
+    }
+
+    public List<StatModifierData> GetStatModifierList(float argValue)
+    {
+        List<StatModifierData> modifierList = new List<StatModifierData>();
+        modifierList.AddRange(statModifierList);
+        foreach (var modify in modifierList)
+        {
+            modify.value += argValue;
+        }
+        return modifierList;
     }
 }
 

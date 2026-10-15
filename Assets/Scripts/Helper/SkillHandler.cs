@@ -25,7 +25,7 @@ public class SkillHandler
         }
         
         _skillActionExecutor = new SkillActionExecutor();
-        _skillActionExecutor.Run();
+        _skillActionExecutor.Run(_runCoroutine, _stopCoroutine);
     }
 
     public bool ExecuteSkill(int argId, Vector2 argPos)
@@ -46,17 +46,47 @@ public class SkillHandler
         {
             yield break;
         }
-
+        
         var ur = Managers.Game.UserRecord;
         var level = ur.GetSkillLevel(argId);
         var skillInfo = Managers.Data.GetSkillInfo(argId);
-        var cool = skillInfo.GetCooldown(level);
+        if (!CheckCost(skillInfo.costList, skillInfo.GetUpgradeValue(level)))
+        {
+            yield break;
+        }
         
-        _skillActionExecutor.Execute(skillInfo, level, argPos);
+        try
+        {
+            var cool = skillInfo.GetCooldown(level);
+            _skillActionExecutor.Execute(skillInfo, level, argPos);
         
-        yield return new WaitForSeconds(cool);
+            yield return new WaitForSeconds(cool);
+        }
+        finally
+        {
+            _cooltimeSkills.Remove(argId);
         
-        _cooltimeSkills.Remove(argId);
+            _stopCoroutine?.Invoke(argId);
+        }
+    }
+
+    bool CheckCost(List<CostData> argCostList, float argUpgradeValue)
+    {
+        bool canPay = true;
+        foreach (var cost in argCostList)
+        {
+            switch (cost.type)
+            {
+                case CostType.Gold:
+                    if (Managers.Game.GameField.PlayerHq.Gold < (cost.value - argUpgradeValue))
+                    {
+                        canPay = false;
+                    }
+                    break;
+            }
+        }
+
+        return canPay;
     }
     
     public void Destroy()

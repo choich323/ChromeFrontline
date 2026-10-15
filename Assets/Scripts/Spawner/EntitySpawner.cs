@@ -256,6 +256,20 @@ public class EntitySpawner : MonoBehaviour
 
         return count;
     }
+
+    public List<AEntity> GetEntityList()
+    {
+        List<AEntity> entities = new List<AEntity>();
+        foreach (var kvp in _entityDict)
+        {
+            foreach (var entity in kvp.Value)
+            {
+                entities.Add(entity);
+            }
+        }
+
+        return entities;
+    }
     
     void DestroyEntities()
     {

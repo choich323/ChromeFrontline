@@ -15,6 +15,7 @@ public class SkillRange : MonoBehaviour
 {
     private const int CIRCLE_SEGMENT_COUNT = 64;
     private const int VERTICES_PER_TRIANGLE = 3;
+    private const float MIN_DURATION = 1f;
     
     [SerializeField] private MeshFilter _meshFilter;
     [SerializeField] private LineRenderer _lineRenderer;
@@ -237,7 +238,8 @@ public class SkillRange : MonoBehaviour
     // test code
     IEnumerator CoDestroy(float argTime, Action<SkillRange> argCallback)
     {
-        yield return new WaitForSeconds(argTime);
+        var waitTime = Mathf.Max(argTime, MIN_DURATION);
+        yield return new WaitForSeconds(waitTime);
         
         argCallback?.Invoke(this);
     }

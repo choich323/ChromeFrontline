@@ -307,6 +307,11 @@ public class SkillDataImporter : EditorWindow
             return ParseActionList(argValue);
         }
 
+        if (argElementType == typeof(CostData))
+        {
+            return ParseCostList(argValue);
+        }
+
         throw new NotSupportedException(
             $"지원하지 않는 List 타입입니다: List<{argElementType.Name}>");
     }
@@ -401,6 +406,32 @@ public class SkillDataImporter : EditorWindow
         return actionList;
     }
 
+    private List<CostData> ParseCostList(string argValue)
+    {
+        List<CostData> costList = new List<CostData>();
+
+        MatchCollection costMatches = Regex.Matches(argValue, @"\(([^()]*)\)");
+
+        foreach (Match costMatch in costMatches)
+        {
+            string[] values = costMatch.Groups[1].Value.Split(':');
+
+            if (values.Length < 2)
+            {
+                Debug.LogWarning($"[SkillData Parse Warning] Cost 형식이 올바르지 않습니다: {costMatch.Value}");
+                continue;
+            }
+
+            CostData costData = new CostData();
+            costData.type = ParseEnum<CostType>(values[0]);
+            costData.value = ParseFloat(values[1]);
+
+            costList.Add(costData);
+        }
+
+        return costList;
+    }
+    
     private List<StatModifierData> ParseStatModifierList(string[] argValues)
     {
         List<StatModifierData> modifierList =

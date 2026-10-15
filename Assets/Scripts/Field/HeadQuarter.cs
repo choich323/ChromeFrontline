@@ -344,6 +344,11 @@ public class HeadQuarter : MonoBehaviour
         return _spawner.GetEntitiesCount();
     }
 
+    public List<AEntity> GetEntityList()
+    {
+        return _spawner.GetEntityList();
+    }
+    
     void EntityCountChanged(int argCount)
     {
         _onEntityCountChanged?.Invoke(argCount);
