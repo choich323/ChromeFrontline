@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine.UI;
 public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private const int INVALID_ID = 0;
-    private const int INVALID_SKILL_LEVEL = 0;
     
     [SerializeField] private Image _icon;
     [SerializeField] private Button _button;
@@ -17,17 +17,15 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     [SerializeField] private GameObject _unlock;
 
     private int _id;
-    private int _skillLevel;
     private SkillInfo _skillInfo;
     private SkillRange _skillRange;
     private readonly Plane _plane = new Plane(Vector3.forward, Vector3.zero);
     private Coroutine _cooldownCoroutine;
     private Coroutine _durationBorderCoroutine;
     
-    public void Init(int argSkillId, int argSkillLevel)
+    public void Init(int argSkillId)
     {
         _id = argSkillId;
-        _skillLevel = argSkillLevel;
 
         _skillInfo = Managers.Data.GetSkillInfo(argSkillId);
         if (_skillInfo == null)
@@ -48,22 +46,32 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         }
         
         CreateSkillRange();
-        
-        UpdateSkillRangePosition(argEventData);
+        var team = _skillInfo.targetType == TargetType.Ally ? Team.Enemy : Team.Player;
+        var spawnerPos = Managers.Game.GameField.GetHq(team).Spawner.transform.position;
+        spawnerPos.y = 0;
+        bool isHQType = _skillInfo.rangeData.type == RangeType.HQ;
+        Vector2 pos = isHQType ? spawnerPos : argEventData.position;
+        UpdateSkillRangePosition(pos, !isHQType);
     }
 
     public void OnDrag(PointerEventData argEventData)
     {
-        if (_skillInfo.rangeData.type == RangeType.None || _cooldownCoroutine != null)
+        var rangeType = _skillInfo.rangeData.type;
+        if (rangeType == RangeType.None || rangeType == RangeType.HQ || _cooldownCoroutine != null)
         {
             return;
         }
         
-        UpdateSkillRangePosition(argEventData);
+        UpdateSkillRangePosition(argEventData.position, true);
     }
     
     public void OnPointerUp(PointerEventData argEventData)
     {
+        if (_skillInfo.type == SkillType.Passive)
+        {
+            return;
+        }
+        
         if (Managers.Game.OnIngameSkillBtn(_id, argEventData.position))
         {
             if (_skillInfo.rangeData.type != RangeType.None)
@@ -79,7 +87,7 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
             {
                 StopCoroutine(_cooldownCoroutine);
             }
-            _cooldownCoroutine = StartCoroutine(CoSetFillAmount(_cooldown, cool));
+            _cooldownCoroutine = StartCoroutine(CoSetFillAmount(_cooldown, cool, () => _cooldownCoroutine = null));
             
             var duration = info.GetDuration(level);
             if (duration > 0)
@@ -88,16 +96,17 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
                 {
                     StopCoroutine(_durationBorderCoroutine);
                 }
-                _durationBorderCoroutine = StartCoroutine(CoSetFillAmount(_durationBorder, duration)); 
+                _durationBorderCoroutine = StartCoroutine(CoSetFillAmount(_durationBorder, duration, () => _durationBorderCoroutine = null)); 
             }
         }
     }
 
-    IEnumerator CoSetFillAmount(Image argImage, float argValue)
+    IEnumerator CoSetFillAmount(Image argImage, float argValue, Action argCallback)
     {
         if (argValue <= 0)
         {
             argImage.fillAmount = 0f;
+            argCallback?.Invoke();
             yield break;
         }
         
@@ -112,6 +121,7 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         }
 
         argImage.fillAmount = 0f;
+        argCallback?.Invoke();
     }
     
     void SetIcon(Sprite argIcon)
@@ -132,17 +142,24 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         _skillRange.Init(container);
     }
     
-    void UpdateSkillRangePosition(PointerEventData argEventData)
+    void UpdateSkillRangePosition(Vector3 argPos, bool argIsUI)
     {
-        var cam = Managers.CamController.Cam;
-        Ray ray = cam.ScreenPointToRay(argEventData.position);
-        if (!_plane.Raycast(ray, out float distance))
+        if (argIsUI)
         {
-            return;
-        }
+            var cam = Managers.CamController.Cam;
+            Ray ray = cam.ScreenPointToRay(argPos);
+            if (!_plane.Raycast(ray, out float distance))
+            {
+                return;
+            }
         
-        var worldPos = ray.GetPoint(distance);
-        _skillRange.transform.position = worldPos;
+            var worldPos = ray.GetPoint(distance);
+            _skillRange.transform.position = worldPos;
+        }
+        else
+        {
+            _skillRange.transform.position = argPos;
+        }
     }
     
     void DestroySkillRange()
@@ -151,8 +168,9 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         {
             return;
         }
-        
-        _skillRange.Destroy(_skillInfo.duration, OnDestroySkillRange);
+
+        OnDestroySkillRange(_skillRange);
+        _skillRange = null;
     }
 
     void OnDestroySkillRange(SkillRange argSkillRange)
@@ -177,9 +195,24 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
     public void Clear()
     {
         _id = INVALID_ID;
-        _skillLevel = INVALID_SKILL_LEVEL;
         _skillInfo = null;
+
+        if (_cooldownCoroutine != null)
+        {
+            StopCoroutine(_cooldownCoroutine);
+            _cooldownCoroutine = null;
+        }
+
+        if (_durationBorderCoroutine != null)
+        {
+            StopCoroutine(_durationBorderCoroutine);
+            _durationBorderCoroutine = null;
+        }
         
+        _cooldown.fillAmount = 0;
+        _durationBorder.fillAmount = 0;
+
+        DestroySkillRange();
         SetLock();
     }
 }

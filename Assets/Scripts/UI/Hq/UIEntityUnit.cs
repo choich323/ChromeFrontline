@@ -46,7 +46,7 @@ public class UIEntityUnit : MonoBehaviour
 
     void CheckSelected()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null)
         {
             Debug.LogError($"Can't find spawner. Slot:{_slotIndex}");
@@ -107,7 +107,7 @@ public class UIEntityUnit : MonoBehaviour
 
     void OnBtnSelect()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         var slot = spawner.GetSlot(_slotIndex);
         var curSlotTargetId = slot.GetTargetId();
         var id = Managers.Data.ConvertStringToPrefabID(_entityInfo.id);

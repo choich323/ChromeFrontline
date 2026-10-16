@@ -63,7 +63,7 @@ public class UIHqPanelEntitySelect : AUIHqRightPanelSelect
 
     void OnSelectEntityUnit(PrefabID argPrefabID)
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_transitionContent.slotIndex);

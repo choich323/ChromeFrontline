@@ -28,7 +28,7 @@ public class UISlotUnit : MonoBehaviour
         SetEntityInfo();
         SetColor();
 
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null) return;
         var slot = spawner.GetSlot(argSlotIndex);
         if (slot == null) return;
@@ -43,7 +43,7 @@ public class UISlotUnit : MonoBehaviour
 
     public void SetEntityInfo()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_slotIndex);
@@ -70,7 +70,7 @@ public class UISlotUnit : MonoBehaviour
 
     void SetColor()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(_slotIndex);

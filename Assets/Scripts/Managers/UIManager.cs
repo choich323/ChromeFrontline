@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
     
     public bool IsProduceIndicatorEnable()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         var enumerator = spawner.GetSlotEnumerator();
         while(enumerator.MoveNext())
         {

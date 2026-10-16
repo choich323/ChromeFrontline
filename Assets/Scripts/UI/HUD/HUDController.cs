@@ -175,8 +175,7 @@ public class HUDController : MonoBehaviour
         {
             var btn = _skillButtonList[i];
             int id = equipIds[i];
-            var level = ur.GetSkillLevel(id);
-            btn.Init(id, level);
+            btn.Init(id);
         }
     }
     

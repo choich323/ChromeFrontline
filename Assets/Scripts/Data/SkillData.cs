@@ -23,6 +23,7 @@ public enum RangeType
     None,
     Circle,
     Polygon,
+    HQ,
 }
 
 public enum CostType

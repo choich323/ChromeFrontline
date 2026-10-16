@@ -40,6 +40,7 @@ public class HeadQuarter : MonoBehaviour
     public int Hp => _hp;
     public int MaxSlotCount => _hqUpgradeInfo.maxSlotCount;
     public long Gold => _gold;
+    public EntitySpawner Spawner => _spawner;
     
     public event Action<long> OnGoldChanged
     {
@@ -245,11 +246,6 @@ public class HeadQuarter : MonoBehaviour
     {
         var pos = _useLeftSpawnerPos ? _entitySpawnerLeftPos : _entitySpawnerRightPos;
         return pos;
-    }
-
-    public EntitySpawner GetSpawner()
-    {
-        return _spawner;
     }
     
     void Clear()

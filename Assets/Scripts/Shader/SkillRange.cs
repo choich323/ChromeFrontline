@@ -22,7 +22,7 @@ public class SkillRange : MonoBehaviour
     
     public void Init(SkillRangeContainer argContainer)
     {
-        if (argContainer.type == RangeType.Circle)
+        if (argContainer.type == RangeType.Circle || argContainer.type == RangeType.HQ)
         {
             SetCircle(argContainer.radius);
         }

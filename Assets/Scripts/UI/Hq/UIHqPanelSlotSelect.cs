@@ -33,7 +33,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSlot
 
     void SubscribeSlotProgress(int argSlotIndex)
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null) return;
         
         var slot = spawner.GetSlot(argSlotIndex);
@@ -48,7 +48,7 @@ public class UIHqPanelSlotSelect : AUIHqPanelSlot
         // 슬롯 선택 창을 한 번도 안 열고 팝업을 닫으면 없음.
         if (_transitionContent == null) return;
         
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         if (spawner == null) return;
         for (int i = 0; i < _slotUnitList.Count; i++)
         {
