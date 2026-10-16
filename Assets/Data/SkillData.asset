@@ -140,7 +140,7 @@ MonoBehaviour:
     targetType: 3
     rangeData:
       type: 3
-      radius: 9
+      radius: 10
       vertexList: []
     costList: []
     cooldown: 120
