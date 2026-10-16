@@ -17,7 +17,7 @@ public class UISkillChangeInfo : MonoBehaviour
     {
         var sm = Managers.String;
         
-        var level = sm.GetString(StringID.Level, argTargetLevel);
+        var level = sm.GetString(StringID.LevelString, argTargetLevel);
         _level.SetText(level);
 
         if (argSkillInfo.type == SkillType.Passive)

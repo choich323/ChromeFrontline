@@ -63,7 +63,7 @@ public class UISkillSelectButton : MonoBehaviour
 
         if (argSkillLevel >= 0)
         {
-            string level = sm.GetString(StringID.Level, argSkillLevel);
+            string level = sm.GetString(StringID.LevelString, argSkillLevel);
             _level.SetText(level);
         }
     }

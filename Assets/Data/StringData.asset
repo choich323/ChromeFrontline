@@ -382,9 +382,9 @@ MonoBehaviour:
         \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
   - id: Level
     value:
-      en: Lv.{0}
-      kr: "\uB808\uBCA8 {0}"
-  - id: Lv
+      en: Level
+      kr: "\uB808\uBCA8"
+  - id: LevelString
     value:
       en: Lv.{0}
       kr: "\uB808\uBCA8{0}"

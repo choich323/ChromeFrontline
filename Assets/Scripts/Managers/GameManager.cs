@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private event Action _onGameResume;
     private event Action _onStartStage;
     private event Action _onEndStage;
+    private event Action _onClearStage;
     private event Action _onEnterLobby;
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
@@ -73,6 +74,12 @@ public class GameManager : MonoBehaviour
     {
         add => _onEndStage += value;
         remove => _onEndStage -= value;
+    }
+    
+    public event Action OnClearStage
+    {
+        add => _onClearStage += value;
+        remove => _onClearStage -= value;
     }
     
     public event Action OnEnterLobby
@@ -382,6 +389,10 @@ public class GameManager : MonoBehaviour
         popup.SetData(resultData);
         
         _onEndStage?.Invoke();
+        if (argIsPlayerWin)
+        {
+            _onClearStage?.Invoke();
+        }
     }
     
     void CheckSave(ResultData argResultData)

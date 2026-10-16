@@ -79,7 +79,7 @@ public class HeadQuarter : MonoBehaviour
         SetHp(_hqUpgradeInfo.maxHp);
 
         _goldBonus = 1f;
-        _productionTimeBonus = 1f;
+        _productionTimeBonus = 0f;
         
         EarnGold(Dm.StartGold);
         
@@ -246,7 +246,7 @@ public class HeadQuarter : MonoBehaviour
         _onGoldChanged?.Invoke(_gold);
     }
 
-    float GetProductionBonus()
+    public float GetProductionTimeBonus()
     {
         return _hqUpgradeInfo.productionTimeBonus + _productionTimeBonus;
     }
@@ -291,7 +291,7 @@ public class HeadQuarter : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         _spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team);
-        _spawner.Init(_team, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionBonus);
+        _spawner.Init(_team, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionTimeBonus);
         _spawner.SetOnEntityCountChanged(EntityCountChanged);
         
         return _spawner;

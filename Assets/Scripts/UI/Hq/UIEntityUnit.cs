@@ -83,7 +83,8 @@ public class UIEntityUnit : MonoBehaviour
         var dm = Managers.Data;
         var stringId = dm.ConvertStringToStringID(_entityInfo.id);
         _nameText.SetText(sm.GetString(stringId));
-        _productionTimeText.SetText("{0}", _entityInfo.productionTime);
+        var timeBonus = Managers.Game.GameField.PlayerHq.GetProductionTimeBonus();
+        _productionTimeText.SetText("{0}", _entityInfo.productionTime * (1 - timeBonus));
         _goldText.SetText("{0}", _entityInfo.goldCost);
     }
 

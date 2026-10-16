@@ -96,13 +96,14 @@ public class DialogHandler
     
     void SetStageFirstClear(DialogTriggerInfo argInfo)
     {
-        Managers.Game.OnEndStage += OnEndStage;
-        _triggerReleaseList.Add(() => Managers.Game.OnEndStage -= OnEndStage);
+        Managers.Game.OnClearStage += OnClearStage;
+        _triggerReleaseList.Add(() => Managers.Game.OnClearStage -= OnClearStage);
 
-        void OnEndStage()
+        void OnClearStage()
         {
             Managers.UI.ShowDialog(argInfo.dialogInfoId, OnEnd);
-            Managers.Game.OnEndStage -= OnEndStage;
+            
+            Managers.Game.OnClearStage -= OnClearStage;
 
             void OnEnd()
             {

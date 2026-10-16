@@ -41,7 +41,7 @@ public enum StringID
     Mid,
     Bottom,
     Slot,
-    Lv,
+    LevelString,
     Producing,
     Produce,
     EntityUpgrade,

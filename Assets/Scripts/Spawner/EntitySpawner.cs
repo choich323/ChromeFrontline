@@ -140,6 +140,7 @@ public class EntitySpawner : MonoBehaviour
             Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
             if(info == null) 
                 yield break;
+            
             var entityInfo = info as EntityInfo;
             var goldCost = entityInfo.goldCost;
             while ((_getGold?.Invoke() ?? 0) < goldCost)
