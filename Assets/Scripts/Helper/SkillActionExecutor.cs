@@ -161,9 +161,10 @@ public class SkillActionExecutor
     void ApplyModifier(SkillInfo argInfo, SkillActionData argAction, int argLevel, List<AEntity> argTargets)
     {
         var modifier = GetStatModifier(argAction, (argLevel - 1) * argInfo.upgradeData.value);
+        bool isBuff = argAction.type == SkillActionType.Buff;
         foreach (var entity in argTargets)
         {
-            entity.ApplyStatModify(argInfo.id, modifier);
+            entity.ApplyStatModify(argInfo.id, isBuff, modifier);
         }
     }
 

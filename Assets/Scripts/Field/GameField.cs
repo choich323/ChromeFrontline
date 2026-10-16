@@ -12,14 +12,16 @@ public class GameField : MonoBehaviour
 
     private HeadQuarter _playerHq;
     private HeadQuarter _enemyHq;
+    private PassiveSkillContainer _pc;
     
     public HeadQuarter PlayerHq => _playerHq;
     public HeadQuarter EnemyHq => _enemyHq;
     public Transform ExplosionParent => _explosionParent;
     public Transform SkillRangeParent => _skillRangeParent;
     
-    public void Run()
+    public void Run(PassiveSkillContainer argPc)
     {
+        _pc = argPc;
         ResetField();
         CreateHqs();
         RunHqs();
@@ -47,7 +49,7 @@ public class GameField : MonoBehaviour
         else
             _enemyHq = hq;
         
-        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos);
+        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos, _pc);
     }
 
     void RunHqs()

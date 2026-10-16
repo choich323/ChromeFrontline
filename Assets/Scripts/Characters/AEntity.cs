@@ -144,7 +144,17 @@ public struct EntityStatModifier
         }
     }
 
-    public void SetBuff(EntityStatModifier modifier)
+    public void SetBuff(EntityStatModifier argModifier)
+    {
+        damage = Mathf.Max(argModifier.damage, damage);
+        atkSpeed = Mathf.Max(argModifier.atkSpeed, atkSpeed);
+        moveSpeed = Mathf.Max(argModifier.moveSpeed, moveSpeed);
+        criticalChance = Mathf.Max(argModifier.criticalChance, criticalChance);
+        armor = Mathf.Max(argModifier.armor, armor);
+        shield = Mathf.Max(argModifier.shield, shield);
+    }
+
+    public void SetDebuff(EntityStatModifier argModifier)
     {
         
     }
@@ -189,8 +199,10 @@ public abstract class AEntity : MonoBehaviour
     [SerializeField] private float _targetSearchYOffset = 5f;
     
     protected EntityStatus _entityStatus;
-    protected EntityStatModifier _entityStatModifier;
+    protected EntityStatModifier _entityBuff;
+    protected EntityStatModifier _entityDebuff;
     protected List<EntityBuff> _buffList = new List<EntityBuff>();
+    protected List<EntityBuff> _debuffList = new List<EntityBuff>();
     protected int _entityLayerMask;
     protected ContactFilter2D _contactFilter;
     protected RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
@@ -285,6 +297,27 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.moveSpeed = argEntityInfo.moveSpeed * gradeInfo.moveSpeedRatio;
         _entityStatus.canAction = true;
         _entityStatus.goldCost = (int)(argEntityInfo.goldCost * REWARD_RATIO);
+    }
+
+    void ApplyBuff()
+    {
+        _entityStatus.attack *= Mathf.Max(1 + _entityBuff.damage + _entityDebuff.damage, 0);
+        _entityStatus.armor *= Mathf.Max(1 + _entityBuff.armor + _entityDebuff.armor, MIN_ARMOR);
+        _entityStatus.shield *= (1 + _entityBuff.shield + _entityDebuff.shield);
+        _entityStatus.attackSpeed *= (1 + _entityBuff.atkSpeed + _entityDebuff.atkSpeed);
+        _entityStatus.moveSpeed *= (1 + _entityBuff.moveSpeed + _entityDebuff.moveSpeed);
+        
+        Managers.Data.TryGetPrefabInfo((int)_id, out var prefabInfo);
+        var entityInfo = prefabInfo as EntityInfo;
+        _entityStatus.criticalChance = entityInfo.criticalChance + _entityBuff.criticalChance + _entityDebuff.criticalChance;
+        if (_entityStatus.criticalChance < 0)
+        {
+            _entityStatus.criticalChance = 0;
+        }
+        else if (_entityStatus.criticalChance > 100)
+        {
+            _entityStatus.criticalChance = 100;
+        }
     }
     
     protected virtual void Update()
@@ -476,7 +509,12 @@ public abstract class AEntity : MonoBehaviour
 
         float armor = Mathf.Max(_entityStatus.armor, MIN_ARMOR);
         float reducedDamage = argDamage * (100f / (100f + armor));
-
+        reducedDamage *= (1 - _entityStatus.shield);
+        if (reducedDamage < 0)
+        {
+            reducedDamage = 0;
+        }
+        
         var textPos = transform.position;
         textPos.y += DAMAGE_TEXT_Y_OFFSET;
         Managers.Game.OnEntityDamaged(textPos, reducedDamage, argIsCritical, _entityStatus.team);
@@ -520,7 +558,7 @@ public abstract class AEntity : MonoBehaviour
         }
     }
 
-    public virtual void ApplyStatModify(int argId, EntityStatModifier argModifier)
+    public virtual void ApplyStatModify(int argId, bool argIsBuff, EntityStatModifier argModifier)
     {
         EntityBuff newBuff = new EntityBuff();
         newBuff.id = argId;
@@ -529,29 +567,57 @@ public abstract class AEntity : MonoBehaviour
         {
             return;
         }
-        _buffList.Add(newBuff);
+
+        if (_debuffList.FindIndex(debuff => debuff.id == argId) != -1)
+        {
+            return;
+        }
+
+        if (argIsBuff)
+        {
+            _buffList.Add(newBuff);
+        }
+        else
+        {
+            _debuffList.Add(newBuff);
+        }
         RefreshBuff();
     }
 
     public virtual void RemoveStatModify(int argId)
     {
         int index = _buffList.FindIndex(buff => buff.id == argId);
-        if (index < 0)
+        if (index >= 0)
         {
-            return;
+            _buffList.RemoveAt(index);
+        }
+        else
+        {
+            index = _debuffList.FindIndex(debuff => debuff.id == argId);
+            if (index >= 0)
+            {
+                _debuffList.RemoveAt(index);
+            }
         }
         
-        _buffList.RemoveAt(index);
         RefreshBuff();
     }
 
     void RefreshBuff()
     {
-        _entityStatModifier = default;
+        _entityBuff = default;
         foreach (var buff in _buffList)
         {
-            _entityStatModifier.SetBuff(buff.modifier);
+            _entityBuff.SetBuff(buff.modifier);
         }
+        
+        _entityDebuff = default;
+        foreach (var debuff in _debuffList)
+        {
+            _entityBuff.SetDebuff(debuff.modifier);
+        }
+        
+        ApplyBuff();
     }
     
     public virtual void GetHealByMaxHp(float argValueRatio)

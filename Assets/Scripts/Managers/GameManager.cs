@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int _playedStageIndex = -1;
     private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
+    private float _chromeBonus = 1f;
     private GameField _gameField;
     private bool _isPaused = false;
     private bool _isEnemyEmergencyTriggered = false;
@@ -284,8 +285,10 @@ public class GameManager : MonoBehaviour
         RunAIScheduleHandler(aiScheduleInfo);
         RunSlotUpgradeHandler();
         RunSkillHandler();
+        var pc = GetPassiveSkillContainer();
+        _chromeBonus = 1 + pc.ChromeBonus;
         
-        _gameField.Run();
+        _gameField.Run(pc);
         
         OnEnterStage(argStageInfo.stageName);
 
@@ -312,6 +315,46 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    PassiveSkillContainer GetPassiveSkillContainer()
+    {
+        PassiveSkillContainer pc = new PassiveSkillContainer();
+
+        foreach (var id in _userRecord.EquipmentIds)
+        {
+            var info = Managers.Data.GetSkillInfo(id);
+            if (info == null)
+            {
+                continue;
+            }
+
+            if (info.type == SkillType.Active)
+            {
+                continue;
+            }
+
+            foreach (var action in info.actionList)
+            {
+                foreach (var modify in action.statModifierList)
+                {
+                    switch (modify.type)
+                    {
+                        case StatType.ProductionSpeed:
+                            pc.productionTimeBonus = modify.value;
+                            break;
+                        case StatType.Gold:
+                            pc.goldBonus = modify.value;
+                            break;
+                        case StatType.Chrome:
+                            pc.ChromeBonus = modify.value;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return pc;
+    }
+    
     void OnEnterStage(string argStageName)
     {
         Managers.Sound.PlayIngameBgm();
@@ -397,8 +440,9 @@ public class GameManager : MonoBehaviour
             UserRecord.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
             UserRecord.SaveStageBestRecord(stage, stageBestRecord);
         }
-        
-        UserRecord.EarnChrome(Managers.Data.GetStageReward(stage));
+
+        var chrome = Managers.Data.GetStageReward(stage) * _chromeBonus;
+        UserRecord.EarnChrome((int)chrome);
         
         SaveUserRecord();
     }
@@ -480,8 +524,9 @@ public class GameManager : MonoBehaviour
 
         ReRunAIScheduleHandler();
         RunSlotUpgradeHandler();
-        
-        _gameField.Run();
+
+        var pc = GetPassiveSkillContainer();
+        _gameField.Run(pc);
         
         Managers.UI.DialogHandler.ReleaseTrigger();
         Managers.UI.DialogHandler.SetTrigger();

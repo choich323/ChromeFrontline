@@ -139,7 +139,16 @@ public class UserRecord
         {
             return;
         }
-        _chrome += argAmount;
+
+        if (_chrome + argAmount >= long.MaxValue)
+        {
+            _chrome = long.MaxValue;
+        }
+        else
+        {
+            _chrome += argAmount;
+        }
+        
         _lastChromeUpdateTick = DateTime.Now.Ticks;
     }
 

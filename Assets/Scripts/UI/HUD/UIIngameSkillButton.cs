@@ -36,6 +36,11 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         
         SetUnlock();
         SetIcon(_skillInfo.icon);
+
+        if (_skillInfo.type == SkillType.Passive)
+        {
+            SetPassive();
+        }
     }
 
     public void OnPointerDown(PointerEventData argEventData)
@@ -192,6 +197,12 @@ public class UIIngameSkillButton : MonoBehaviour, IPointerDownHandler, IDragHand
         _button.interactable = true;
     }
 
+    void SetPassive()
+    {
+        _button.interactable = false;
+        _durationBorder.fillAmount = 1f;
+    }
+    
     public void Clear()
     {
         _id = INVALID_ID;

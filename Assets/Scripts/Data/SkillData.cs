@@ -57,6 +57,14 @@ public enum StatType
 }
 
 [Serializable]
+public struct PassiveSkillContainer
+{
+    public float goldBonus;
+    public float ChromeBonus;
+    public float productionTimeBonus;
+}
+
+[Serializable]
 public class SkillInfo
 {
     public int id;
