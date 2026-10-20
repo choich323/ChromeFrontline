@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldData
   worldId: world4
   world: 4
-  bg: {fileID: 0}
+  bg: {fileID: 863728761707035365, guid: bd5138cdf2c66f0468af86495100b70f, type: 3}
   stageInfoList:
   - stage: 25
     stageName: 4-1

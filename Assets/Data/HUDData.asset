@@ -17,3 +17,5 @@ MonoBehaviour:
     prefab: {fileID: 4763895593107326412, guid: ef11085cc9dd10b4bba8d20383353558, type: 3}
   - id: UIPlayBtnGroup
     prefab: {fileID: 5033326681454855315, guid: 17fa3d349e4b2f948b53b87c55102ed0, type: 3}
+  - id: SkillRange
+    prefab: {fileID: 1612134975925124815, guid: 4100341748923fd43ba31fb9f6ae15c4, type: 3}

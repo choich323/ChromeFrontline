@@ -122,7 +122,7 @@ public class UIManager : MonoBehaviour
     public void OnEnterStage(string argStageName)
     {
         _topHUDController.gameObject.SetActive(true);
-        _topHUDController.Run(argStageName);
+        _topHUDController.OnEnterStage(argStageName);
         RefreshUI();
         
         _pauseBtn.gameObject.SetActive(true);
@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
     
     public bool IsProduceIndicatorEnable()
     {
-        var spawner = Managers.Game.GameField.PlayerHq.GetSpawner();
+        var spawner = Managers.Game.GameField.PlayerHq.Spawner;
         var enumerator = spawner.GetSlotEnumerator();
         while(enumerator.MoveNext())
         {

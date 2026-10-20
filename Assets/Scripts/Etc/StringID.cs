@@ -41,7 +41,7 @@ public enum StringID
     Mid,
     Bottom,
     Slot,
-    Lv,
+    LevelString,
     Producing,
     Produce,
     EntityUpgrade,
@@ -85,11 +85,21 @@ public enum StringID
     // StageInfo
     Start,
     ClearReward,
+    CommanderSkill,
+    SkillSelect,
+    Active,
+    Passive,
     
     // worldSelectInfo
     World,
     Select,
     WorldSelect,
+    
+    // Skill Training
+    CommanderSkillTraining,
+    SkillUpgradeDetails,
+    Second,
+    NotEnoughChrome,
     
     // Entity - Pioneer Name
     Police = 10001,
@@ -99,7 +109,7 @@ public enum StringID
     SpecialForce,
     Breacher,
     AssaultRifle,
-    Commander,
+    HeavyGunner,
     HydroPuncher,
     ShadowReaper,
     TheThunder,
@@ -126,4 +136,45 @@ public enum StringID
     Overload,
     BloodyCanon,
     DestroyLaser,
+    
+    // Skill Name
+    LaserStrike,
+    Bomb,
+    EMPField,
+    DefensiveMatrix,
+    HQDefenceSystem,
+    CombatDrive,
+    Frenzy,
+    VitalReboot,
+    Glitch,
+    Crunch,
+    GoldRush,
+    OverMining,
+    
+    LaserStrike_desc,
+    Bomb_desc,
+    EMPField_desc,
+    DefensiveMatrix_desc,
+    HQDefenceSystem_desc,
+    CombatDrive_desc,
+    Frenzy_desc,
+    VitalReboot_desc,
+    Glitch_desc,
+    Crunch_desc,
+    GoldRush_desc,
+    OverMining_desc,
+    
+    // skill desc detail
+    LaserStrike_desc_detail,
+    Bomb_desc_detail,
+    EMPField_desc_detail,
+    DefensiveMatrix_desc_detail,
+    HQDefenceSystem_desc_detail,
+    CombatDrive_desc_detail,
+    Frenzy_desc_detail,
+    VitalReboot_desc_detail,
+    Glitch_desc_detail,
+    Crunch_desc_detail,
+    GoldRush_desc_detail,
+    OverMining_desc_detail,
 }

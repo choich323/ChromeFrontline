@@ -84,10 +84,12 @@ public struct EntityStatus
     public int curLevel;
     public long goldCost;
     public Grade grade;
-    
-    [Header("Life")]
+
+    [Header("Life")] 
+    public int maxHp;
     public int curHp;
     public float armor;
+    public float shield;
 
     [Header("Attack")]
     public float originAttack;
@@ -107,10 +109,68 @@ public struct EntityStatus
     public bool canAction;
 }
 
+[Serializable]
+public struct EntityStatModifier
+{
+    public float damage;
+    public float atkSpeed;
+    public float moveSpeed;
+    public float criticalChance;
+    public float armor;
+    public float shield;
+
+    public void SetStats(StatModifierData argData)
+    {
+        switch (argData.type)
+        {
+            case StatType.Attack:
+                damage = argData.value;
+                break;
+            case StatType.Armor:
+                armor = argData.value;
+                break;
+            case StatType.AttackSpeed:
+                atkSpeed = argData.value;
+                break;
+            case StatType.MoveSpeed:
+                moveSpeed = argData.value;
+                break;
+            case StatType.Critical:
+                criticalChance = argData.value;
+                break;
+            case StatType.Shield:
+                shield = argData.value;
+                break;
+        }
+    }
+
+    public void SetBuff(EntityStatModifier argModifier)
+    {
+        damage = Mathf.Max(argModifier.damage, damage);
+        atkSpeed = Mathf.Max(argModifier.atkSpeed, atkSpeed);
+        moveSpeed = Mathf.Max(argModifier.moveSpeed, moveSpeed);
+        criticalChance = Mathf.Max(argModifier.criticalChance, criticalChance);
+        armor = Mathf.Max(argModifier.armor, armor);
+        shield = Mathf.Max(argModifier.shield, shield);
+    }
+
+    public void SetDebuff(EntityStatModifier argModifier)
+    {
+        
+    }
+}
+
+[Serializable]
+public struct EntityBuff
+{
+    public int id;
+    public EntityStatModifier modifier;
+}
+
 public abstract class AEntity : MonoBehaviour
 {
     protected const float EPSILON = 0.01f;
-    protected const int DEFAULT_RAYCAST_COUNT = 100;
+    protected const int DEFAULT_RAYCAST_COUNT = 200;
 
     private const ulong INVALID_UID = 0;
     private const float DAMAGE_TEXT_Y_OFFSET = 0.75f; 
@@ -139,6 +199,10 @@ public abstract class AEntity : MonoBehaviour
     [SerializeField] private float _targetSearchYOffset = 5f;
     
     protected EntityStatus _entityStatus;
+    protected EntityStatModifier _entityBuff;
+    protected EntityStatModifier _entityDebuff;
+    protected List<EntityBuff> _buffList = new List<EntityBuff>();
+    protected List<EntityBuff> _debuffList = new List<EntityBuff>();
     protected int _entityLayerMask;
     protected ContactFilter2D _contactFilter;
     protected RaycastHit2D[] _scanResults = new RaycastHit2D[DEFAULT_RAYCAST_COUNT];
@@ -221,6 +285,7 @@ public abstract class AEntity : MonoBehaviour
         var gradeInfo = Managers.Data.GetGradeInfo(grade);
         _entityStatus.grade = grade;
         _entityStatus.curLevel = argEntityInfo.level;
+        _entityStatus.maxHp = (int)(argEntityInfo.hp * gradeInfo.hpRatio);
         _entityStatus.curHp = (int)(argEntityInfo.hp * gradeInfo.hpRatio);
         _entityStatus.armor = argEntityInfo.armor * gradeInfo.armorRatio;
         _entityStatus.originAttack = argEntityInfo.attack;
@@ -232,6 +297,27 @@ public abstract class AEntity : MonoBehaviour
         _entityStatus.moveSpeed = argEntityInfo.moveSpeed * gradeInfo.moveSpeedRatio;
         _entityStatus.canAction = true;
         _entityStatus.goldCost = (int)(argEntityInfo.goldCost * REWARD_RATIO);
+    }
+
+    void ApplyBuff()
+    {
+        _entityStatus.attack *= Mathf.Max(1 + _entityBuff.damage + _entityDebuff.damage, 0);
+        _entityStatus.armor *= Mathf.Max(1 + _entityBuff.armor + _entityDebuff.armor, MIN_ARMOR);
+        _entityStatus.shield *= (1 + _entityBuff.shield + _entityDebuff.shield);
+        _entityStatus.attackSpeed *= (1 + _entityBuff.atkSpeed + _entityDebuff.atkSpeed);
+        _entityStatus.moveSpeed *= (1 + _entityBuff.moveSpeed + _entityDebuff.moveSpeed);
+        
+        Managers.Data.TryGetPrefabInfo((int)_id, out var prefabInfo);
+        var entityInfo = prefabInfo as EntityInfo;
+        _entityStatus.criticalChance = entityInfo.criticalChance + _entityBuff.criticalChance + _entityDebuff.criticalChance;
+        if (_entityStatus.criticalChance < 0)
+        {
+            _entityStatus.criticalChance = 0;
+        }
+        else if (_entityStatus.criticalChance > 100)
+        {
+            _entityStatus.criticalChance = 100;
+        }
     }
     
     protected virtual void Update()
@@ -423,13 +509,18 @@ public abstract class AEntity : MonoBehaviour
 
         float armor = Mathf.Max(_entityStatus.armor, MIN_ARMOR);
         float reducedDamage = argDamage * (100f / (100f + armor));
-
+        reducedDamage *= (1 - _entityStatus.shield);
+        if (reducedDamage < 0)
+        {
+            reducedDamage = 0;
+        }
+        
         var textPos = transform.position;
         textPos.y += DAMAGE_TEXT_Y_OFFSET;
         Managers.Game.OnEntityDamaged(textPos, reducedDamage, argIsCritical, _entityStatus.team);
         
         // 체력 계산
-        _entityStatus.curHp -= (int)reducedDamage;
+        _entityStatus.curHp -= Mathf.RoundToInt(reducedDamage);
         if (_entityStatus.curHp <= 0)
         {
             _entityStatus.curHp = 0;
@@ -443,6 +534,117 @@ public abstract class AEntity : MonoBehaviour
         }
     }
 
+    public virtual void GetDamageByMaxHp(float argDamageRatio)
+    {
+        if (IsDead)
+        {
+            return;
+        }
+        
+        var damage = argDamageRatio * _entityStatus.maxHp;
+        
+        var textPos = transform.position;
+        textPos.y += DAMAGE_TEXT_Y_OFFSET;
+        Managers.Game.OnEntityDamaged(textPos, damage, false, _entityStatus.team);
+        
+        _entityStatus.curHp -= Mathf.RoundToInt(damage);
+        if (_entityStatus.curHp <= 0)
+        {
+            _entityStatus.curHp = 0;
+            _entityStatus.canAction = false;
+            _entityStatus.curAction = EntityActionType.None;
+            
+            _dieAnimCoroutine = StartCoroutine(CoDie());
+        }
+    }
+
+    public virtual void ApplyStatModify(int argId, bool argIsBuff, EntityStatModifier argModifier)
+    {
+        EntityBuff newBuff = new EntityBuff();
+        newBuff.id = argId;
+        newBuff.modifier = argModifier;
+        if (_buffList.FindIndex(buff => buff.id == argId) != -1)
+        {
+            return;
+        }
+
+        if (_debuffList.FindIndex(debuff => debuff.id == argId) != -1)
+        {
+            return;
+        }
+
+        if (argIsBuff)
+        {
+            _buffList.Add(newBuff);
+        }
+        else
+        {
+            _debuffList.Add(newBuff);
+        }
+        RefreshBuff();
+    }
+
+    public virtual void RemoveStatModify(int argId)
+    {
+        int index = _buffList.FindIndex(buff => buff.id == argId);
+        if (index >= 0)
+        {
+            _buffList.RemoveAt(index);
+        }
+        else
+        {
+            index = _debuffList.FindIndex(debuff => debuff.id == argId);
+            if (index >= 0)
+            {
+                _debuffList.RemoveAt(index);
+            }
+        }
+        
+        RefreshBuff();
+    }
+
+    void RefreshBuff()
+    {
+        _entityBuff = default;
+        foreach (var buff in _buffList)
+        {
+            _entityBuff.SetBuff(buff.modifier);
+        }
+        
+        _entityDebuff = default;
+        foreach (var debuff in _debuffList)
+        {
+            _entityBuff.SetDebuff(debuff.modifier);
+        }
+        
+        ApplyBuff();
+    }
+    
+    public virtual void GetHealByMaxHp(float argValueRatio)
+    {
+        if (IsDead)
+        {
+            return;
+        }
+        
+        _entityStatus.curHp += Mathf.RoundToInt(argValueRatio * _entityStatus.maxHp);
+        if (_entityStatus.curHp > _entityStatus.maxHp)
+        {
+            _entityStatus.curHp = _entityStatus.maxHp;
+        }
+    }
+
+    public float GetHpRatio()
+    {
+        return _entityStatus.curHp / (float)_entityStatus.maxHp;   
+    }
+
+    public void PayHpCost(float argCost)
+    {
+        var value = (int)(argCost * _entityStatus.maxHp);
+        _entityStatus.curHp -= value;
+    }
+    
     IEnumerator CoDie()
     {
         if (_attackAnimCoroutine != null)

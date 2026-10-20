@@ -6,6 +6,7 @@ public enum PrefabID
     
     GameField = 50,
     HeadQuarter = 51,
+    SkillRange = 52,
     
     // Entity
     EntitySingle = 1001,
@@ -19,7 +20,7 @@ public enum PrefabID
     SpecialForce,
     Breacher,
     AssaultRifle,
-    Commander,
+    HeavyGunner,
     HydroPuncher,
     ShadowReaper,
     TheThunder,
@@ -73,4 +74,9 @@ public enum PrefabID
     UIWorldSelectUnit,
     
     UIDamageText,
+    
+    UISkillSelectButton,
+    
+    UISkillTrainingCenter,
+    UISkillTrainingInfo,
 }

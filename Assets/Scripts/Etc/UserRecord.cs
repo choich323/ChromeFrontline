@@ -45,7 +45,9 @@ public class UserRecord
     // 물론 고정하지 않으면 그건 그거대로 유저가 적응하겠지만.. 바라는 바는 아님.
     public const float CLEAR_TIME_THRESHOLD = 480f; // 8분
     private const int CLEAR_HQ_HP_RATIO = 100;
-    private const string DEFAULT_WORLD_ID = "world1";
+    private const int BASIC_SKILL_ID = 1001;
+    private const int EMPTY_SKILL_ID = 0;
+    private const int SKILL_SLOT_MAX = 4;
     
     // stage, <tick, success, bestTime, bestHqHp>>
     [JsonProperty]
@@ -61,7 +63,7 @@ public class UserRecord
     private Dictionary<int, StageSaveInfo> _stageSaveInfoDict = new Dictionary<int, StageSaveInfo>();
 
     [JsonProperty]
-    private int _chrome = 0;
+    private long _chrome = 0;
     
     [JsonProperty]
     private long _lastChromeUpdateTick = 0;
@@ -69,6 +71,58 @@ public class UserRecord
     [JsonProperty]
     private HashSet<string> _completedTutorialIds = new HashSet<string>();
 
+    [JsonProperty]
+    private HashSet<int> _skillIds = new HashSet<int> ();
+
+    [JsonProperty]
+    private Dictionary<int, int> _skillLevelDict = new Dictionary<int, int>();
+    
+    [JsonProperty] 
+    private List<int> _equipmentIds = new List<int> ();
+    
+    [JsonIgnore]
+    public int MaxUnlockedWorld => _maxUnlockedWorld;
+    
+    [JsonIgnore]
+    public int MaxClearedStage => _maxClearedStage;
+
+    [JsonIgnore]
+    public long Chrome => _chrome;
+    
+    [JsonIgnore]
+    public IReadOnlyCollection<int> SkillIds => _skillIds;
+    
+    [JsonIgnore]
+    public IReadOnlyCollection<int> EquipmentIds => _equipmentIds;
+
+    public void CreateInitialData()
+    {
+        if (_skillIds.Count <= 0)
+        {
+            AddSkillId(BASIC_SKILL_ID);
+        }
+
+        if (_equipmentIds.Count <= 0)
+        {
+            for (int i = 0; i < SKILL_SLOT_MAX; i++)
+            {
+                _equipmentIds.Add(EMPTY_SKILL_ID);
+            }
+        }
+    }
+
+    // data 오류 수정을 위한 함수
+    public void CheckData()
+    {
+        foreach (var info in Managers.Data.GetSkillInfoList())
+        {
+            if (!_skillIds.Contains(info.id))
+            {
+                AddSkillId(info.id);
+            }
+        }
+    }
+    
     public bool IsCompletedTutorialId(string argTutorialId)
     {
         return _completedTutorialIds.Contains(argTutorialId);
@@ -85,7 +139,16 @@ public class UserRecord
         {
             return;
         }
-        _chrome += argAmount;
+
+        if (_chrome + argAmount >= long.MaxValue)
+        {
+            _chrome = long.MaxValue;
+        }
+        else
+        {
+            _chrome += argAmount;
+        }
+        
         _lastChromeUpdateTick = DateTime.Now.Ticks;
     }
 
@@ -101,15 +164,6 @@ public class UserRecord
         return true;
     }
     
-    [JsonIgnore]
-    public int MaxUnlockedWorld => _maxUnlockedWorld;
-    
-    [JsonIgnore]
-    public int MaxClearedStage => _maxClearedStage;
-
-    [JsonIgnore]
-    public int Chrome => _chrome;
-
     public StageSaveInfo GetStageSaveInfo(int argStage)
     {
         return _stageSaveInfoDict.GetValueOrDefault(argStage);
@@ -223,5 +277,82 @@ public class UserRecord
             return true;
         }
         return false;
+    }
+
+    public bool TryBuySkill(int argSkillId)
+    {
+        if (IsUnlockedSkillId(argSkillId))
+        {
+            return false;
+        }
+
+        int price = Managers.Data.GetSkillPrice(argSkillId);
+        if (!ConsumeChrome(price))
+        {
+            return false;
+        }
+        
+        AddSkillId(argSkillId);
+        return true;
+    }
+
+    public bool TryUpgradeSkill(int argSkillId)
+    {
+        if (!IsUnlockedSkillId(argSkillId))
+        {
+            return false;
+        }
+
+        int price = Managers.Data.GetSkillPrice(argSkillId);
+        if (!ConsumeChrome(price))
+        {
+            return false;
+        }
+        
+        UpgradeSkill(argSkillId);
+        return true;
+    }
+    
+    void AddSkillId(int argSkillId)
+    {
+        _skillIds.Add(argSkillId);
+        _skillLevelDict.TryAdd(argSkillId, 1);
+    }
+
+    void UpgradeSkill(int argSkillId)
+    {
+        _skillLevelDict[argSkillId]++;
+    }
+    
+    public void SetEquipmentSkillId(List<int> argSkillIdList)
+    {
+       _equipmentIds.Clear();
+       foreach (var id in argSkillIdList)
+       {
+           _equipmentIds.Add(id);
+       }
+    }
+
+    public bool IsUnlockedSkillId(int argSkillId)
+    {
+        return _skillIds.Contains(argSkillId) && _skillLevelDict.ContainsKey(argSkillId);
+    }
+
+    public bool IsEquipedSkill(int argId)
+    {
+        return IsUnlockedSkillId(argId) && _equipmentIds.Contains(argId);
+    }
+    
+    public int GetSkillLevel(int argSkillId)
+    {
+        _skillLevelDict.TryGetValue(argSkillId, out int level);
+        return level;
+    }
+
+    public List<int> GetEquipmentSkillIdList()
+    {
+        List<int> skillIdList = new List<int>();
+        skillIdList.AddRange(_equipmentIds);
+        return skillIdList;
     }
 }

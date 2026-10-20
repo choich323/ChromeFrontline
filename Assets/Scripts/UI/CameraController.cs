@@ -138,7 +138,10 @@ public class CameraController : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
     void HandleMobileInput()
     {
-        if (Input.touchCount == 0) return;
+        if (Input.touchCount == 0)
+        {
+            return;
+        }
 
         // 1. 줌 입력 처리 (최우선)
         if (Input.touchCount >= 2)

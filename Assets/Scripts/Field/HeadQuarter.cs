@@ -23,6 +23,8 @@ public class HeadQuarter : MonoBehaviour
     private int _maxHp;
     private int _hp;
     private long _gold;
+    private float _goldBonus;
+    private float _productionTimeBonus;
     private Team _team;
     private EntitySpawner _spawner;
     private Func<Team, Transform> _getTargetSpawnerPos;
@@ -40,6 +42,7 @@ public class HeadQuarter : MonoBehaviour
     public int Hp => _hp;
     public int MaxSlotCount => _hqUpgradeInfo.maxSlotCount;
     public long Gold => _gold;
+    public EntitySpawner Spawner => _spawner;
     
     public event Action<long> OnGoldChanged
     {
@@ -65,7 +68,7 @@ public class HeadQuarter : MonoBehaviour
         remove => _onTierChanged -= value;
     }
     
-    public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, Transform> argGetTargetSpawnerPos)
+    public void Init(Team argTeam, bool argUseLeftSpawnerPos, Func<Team, Transform> argGetTargetSpawnerPos, PassiveSkillContainer argPc)
     {
         SetTier(DEFAULT_TIER);
         _usableEntityIDList.Clear();
@@ -74,12 +77,19 @@ public class HeadQuarter : MonoBehaviour
         _hqUpgradeInfo = Dm.GetHeadQuarterUpgradeInfo(_tier);
         _maxHp = _hqUpgradeInfo.maxHp;
         SetHp(_hqUpgradeInfo.maxHp);
+
+        _goldBonus = 1f;
+        _productionTimeBonus = 0f;
+        
         EarnGold(Dm.StartGold);
         
 // #if UNITY_EDITOR
 // 출시 전까진 테스트 편의를 위해 유지
         EarnGold(1000000);
 // #endif
+
+        _goldBonus += argPc.goldBonus;
+        _productionTimeBonus += argPc.productionTimeBonus;
         
         _spriteRenderer.sprite = _hqUpgradeInfo.sprite;
         _useLeftSpawnerPos = argUseLeftSpawnerPos;
@@ -226,7 +236,7 @@ public class HeadQuarter : MonoBehaviour
     
     public void EarnGold(long argGold)
     {
-        _gold += argGold;
+        _gold += (int)(argGold * _goldBonus);
         _onGoldChanged?.Invoke(_gold);
     }
 
@@ -236,20 +246,15 @@ public class HeadQuarter : MonoBehaviour
         _onGoldChanged?.Invoke(_gold);
     }
 
-    float GetProductionBonus()
+    public float GetProductionTimeBonus()
     {
-        return _hqUpgradeInfo.productionTimeBonus;
+        return _hqUpgradeInfo.productionTimeBonus + _productionTimeBonus;
     }
     
     public Transform GetTargetSpawnerTransform()
     {
         var pos = _useLeftSpawnerPos ? _entitySpawnerLeftPos : _entitySpawnerRightPos;
         return pos;
-    }
-
-    public EntitySpawner GetSpawner()
-    {
-        return _spawner;
     }
     
     void Clear()
@@ -286,7 +291,7 @@ public class HeadQuarter : MonoBehaviour
         spawnerObj.transform.SetParent(_spawnerParent);
         _spawner = spawnerObj.GetComponent<EntitySpawner>();
         var targetPos = _getTargetSpawnerPos?.Invoke(_team);
-        _spawner.Init(_team, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionBonus);
+        _spawner.Init(_team, targetPos, EarnGold, ConsumeGold, GetGold, GetProductionTimeBonus);
         _spawner.SetOnEntityCountChanged(EntityCountChanged);
         
         return _spawner;
@@ -344,6 +349,11 @@ public class HeadQuarter : MonoBehaviour
         return _spawner.GetEntitiesCount();
     }
 
+    public List<AEntity> GetEntityList()
+    {
+        return _spawner.GetEntityList();
+    }
+    
     void EntityCountChanged(int argCount)
     {
         _onEntityCountChanged?.Invoke(argCount);

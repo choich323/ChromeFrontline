@@ -14,22 +14,25 @@ public class DataManager : MonoBehaviour
     [SerializeField] private List<APrefabData> _dataList;
     [SerializeField] private StringData _stringData;
     [SerializeField] private AIScheduleData _aiScheduleData;
-    [SerializeField] private PlayerCurrencyData _playerCurrencyData;
+    [SerializeField] private CurrencyData _currencyData;
     [SerializeField] private HeadQuarterUpgradeData _hqUpgradeData;
     [SerializeField] private AddSlotCostData _addSlotCostData;
     [SerializeField] private GradeData _gradeData;
     [SerializeField] private GameSpeedData _gameSpeedData;
     [SerializeField] private WorldCatalog _worldCatalog;
     [SerializeField] private TutorialManifest _tutorialManifest;
+    [SerializeField] private SkillData _skillData;
     
     private Dictionary<int, APrefabInfo> _prefabInfoDict = new Dictionary<int, APrefabInfo>();
     private Dictionary<int, LocalizationText> _stringInfoDict = new Dictionary<int, LocalizationText>();
+    private Dictionary<int, SkillInfo> _skillInfoDict = new Dictionary<int, SkillInfo>();
     private List<AIScheduleInfo> _aiScheduleInfoList = new List<AIScheduleInfo>();
     private List<EntityInfo> _entityInfoList = new List<EntityInfo>();
     private List<HeadQuarterUpgradeInfo> _hqUpgradeInfoList = new List<HeadQuarterUpgradeInfo>();
     private List<AddSlotCostInfo> _addSlotCostInfoList = new List<AddSlotCostInfo>();
     private List<GradeInfo> _gradeInfoList = new List<GradeInfo>();
     private List<GameSpeedInfo> _gameSpeedInfoList = new List<GameSpeedInfo>();
+    private CurrencyInfo _currencyInfo = new CurrencyInfo();
 
     // stage data
     private WorldData _curWorldData = null;
@@ -51,7 +54,8 @@ public class DataManager : MonoBehaviour
     private AsyncOperationHandle<TutorialData> _tutorialDataHandle;
     private bool _isFinishedTutorial = false;
     
-    public int StartGold => _playerCurrencyData.startGold;
+    public int StartGold => _currencyInfo.startGold;
+    public int SkillMaxLevel => _currencyInfo.maxSkillLevel;
     public WorldCatalog WorldCatalog => _worldCatalog;
     
     public void Init()
@@ -61,6 +65,8 @@ public class DataManager : MonoBehaviour
 
     void InitialMapping()
     {
+        _currencyInfo.SetInfo(_currencyData);
+        
         foreach (var data in _dataList)
         {
             if (data == null) continue;
@@ -88,6 +94,12 @@ public class DataManager : MonoBehaviour
             _stringInfoDict.TryAdd(id, info.value);
         }
 
+        foreach (var info in _skillData.GetInfoList())
+        {
+            var id = info.id;
+            _skillInfoDict.TryAdd(id, info);
+        }
+        
         foreach (var info in _aiScheduleData.GetScheduleInfoList())
         {
             _aiScheduleInfoList.Add(info);
@@ -144,6 +156,11 @@ public class DataManager : MonoBehaviour
         var id = (int)ConvertStringToStringID(argId);
         return TryGetString(id, out outString);
     }
+
+    public StringID TryGetStringId(string argId)
+    {
+        return ConvertStringToStringID(argId);
+    }
     
     public bool TryGetString(int argId, out string outString)
     {
@@ -156,12 +173,38 @@ public class DataManager : MonoBehaviour
         return isFind;
     }
 
-    public AIScheduleInfo GetRandomAIScheduleInfo()
+    public int GetSkillPrice(int argId)
     {
-        int randIndex = UnityEngine.Random.Range(0, _aiScheduleInfoList.Count);
-        return _aiScheduleInfoList[randIndex];
+        var ur = Managers.Game.UserRecord;
+        bool isUnlocked = ur.IsUnlockedSkillId(argId);
+        int result = 0;
+        if (isUnlocked)
+        {
+            int level = ur.GetSkillLevel(argId);
+            if (level >= _currencyInfo.maxSkillLevel)
+            {
+                result = int.MaxValue;
+            }
+            else
+            {
+                result = Mathf.RoundToInt(_currencyInfo.defaultSkillUpgradePrice * Mathf.Pow((1 + _currencyInfo.skillUpgradePriceRatio), level - 1));
+            }
+        }
+        else
+        {
+            int skillCount = ur.SkillIds.Count;
+
+            result = Mathf.RoundToInt(_currencyInfo.defaultSkillTrainingPrice * Mathf.Pow((1 + _currencyInfo.skillTrainingPriceRatio), skillCount));
+        }
+
+        return result;
     }
 
+    public int GetStageReward(int argStage)
+    {
+        return Mathf.RoundToInt(_currencyInfo.defaultStageChromeReward * Mathf.Pow((1 + _currencyInfo.stageRewardRatio), argStage - 1));
+    }
+    
     public AIScheduleInfo GetAIScheduleInfo(string argScheduleId)
     {
         if (string.IsNullOrEmpty(argScheduleId))
@@ -541,5 +584,30 @@ public class DataManager : MonoBehaviour
             
             argOnComplete?.Invoke(_curTutorialData);
         }
+    }
+
+    public SkillInfo GetSkillInfo(int argSkillId)
+    {
+        return _skillInfoDict.GetValueOrDefault(argSkillId);
+    }
+
+    public SkillUpgradeData GetSkillUpgradeInfo(int argSkillId)
+    {
+        if (!_skillInfoDict.TryGetValue(argSkillId, out SkillInfo outSkillInfo))
+        {
+            return null;
+        }
+
+        return outSkillInfo.upgradeData;
+    }
+
+    public List<SkillInfo> GetSkillInfoList()
+    {
+        List<SkillInfo> skillInfoList = new List<SkillInfo>();
+        foreach (var kvp in _skillInfoDict)
+        {
+            skillInfoList.Add(kvp.Value);
+        }
+        return skillInfoList;
     }
 }

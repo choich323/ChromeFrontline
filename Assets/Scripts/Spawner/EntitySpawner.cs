@@ -140,6 +140,7 @@ public class EntitySpawner : MonoBehaviour
             Managers.Data.TryGetPrefabInfo((int)targetId, out var info);
             if(info == null) 
                 yield break;
+            
             var entityInfo = info as EntityInfo;
             var goldCost = entityInfo.goldCost;
             while ((_getGold?.Invoke() ?? 0) < goldCost)
@@ -255,6 +256,20 @@ public class EntitySpawner : MonoBehaviour
         }
 
         return count;
+    }
+
+    public List<AEntity> GetEntityList()
+    {
+        List<AEntity> entities = new List<AEntity>();
+        foreach (var kvp in _entityDict)
+        {
+            foreach (var entity in kvp.Value)
+            {
+                entities.Add(entity);
+            }
+        }
+
+        return entities;
     }
     
     void DestroyEntities()

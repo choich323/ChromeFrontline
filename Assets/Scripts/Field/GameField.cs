@@ -8,16 +8,20 @@ public class GameField : MonoBehaviour
     [SerializeField] private Transform _playerHqPos;
     [SerializeField] private Transform _enemyHqPos;
     [SerializeField] private Transform _explosionParent;
+    [SerializeField] private Transform _skillRangeParent;
 
     private HeadQuarter _playerHq;
     private HeadQuarter _enemyHq;
+    private PassiveSkillContainer _pc;
     
     public HeadQuarter PlayerHq => _playerHq;
     public HeadQuarter EnemyHq => _enemyHq;
     public Transform ExplosionParent => _explosionParent;
+    public Transform SkillRangeParent => _skillRangeParent;
     
-    public void Run()
+    public void Run(PassiveSkillContainer argPc)
     {
+        _pc = argPc;
         ResetField();
         CreateHqs();
         RunHqs();
@@ -45,7 +49,7 @@ public class GameField : MonoBehaviour
         else
             _enemyHq = hq;
         
-        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos);
+        hq.Init(argTeam, !isPlayer, GetTargetSpawnerPos, _pc);
     }
 
     void RunHqs()
@@ -65,6 +69,18 @@ public class GameField : MonoBehaviour
             return _enemyHq.GetTargetSpawnerTransform();
         }
     }
+
+    public HeadQuarter GetHq(Team argTeam)
+    {
+        if (argTeam == Team.Player)
+        {
+            return _playerHq;
+        }
+        else
+        {
+            return _enemyHq;
+        }
+    } 
     
     public bool IsGameOver()
     {

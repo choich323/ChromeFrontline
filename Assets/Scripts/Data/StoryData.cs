@@ -7,7 +7,6 @@ public class StoryInfo
 {
     public int stage;
     public LocalizationText title;
-    public LocalizationText desc;
 }
 
 [CreateAssetMenu(fileName = "StoryData", menuName = "Custom/StoryData")]

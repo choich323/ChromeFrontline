@@ -49,7 +49,8 @@ public class UIWorldSelect : APopup
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(_scrollRect.content);
         
-        _scrollRect.Focus((RectTransform)selectedUnit.transform);
+        if(selectedUnit != null)
+            _scrollRect.Focus((RectTransform)selectedUnit.transform);
     }
 
     void SetSelectedColor(UIWorldSelectUnit argUnit, bool argIsEnable)

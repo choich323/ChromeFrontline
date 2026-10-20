@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+// for tutorial
 public class UIIdentifierButton : MonoBehaviour
 {
     [SerializeField] private string _id;

@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     
     private ulong _uid = INVALID_UID;
     private int _stage = DEFAULT_STAGE;
-    private int _chromeReward;
     private int _playedStageIndex = -1;
     private float _curGameSpeed = DEFAULT_GAME_SPEED;
     private float _elapsedPlayTime = 0f;
+    private float _chromeBonus = 1f;
     private GameField _gameField;
     private bool _isPaused = false;
     private bool _isEnemyEmergencyTriggered = false;
@@ -29,11 +29,14 @@ public class GameManager : MonoBehaviour
     private event Action _onGameResume;
     private event Action _onStartStage;
     private event Action _onEndStage;
+    private event Action _onClearStage;
     private event Action _onEnterLobby;
     private AIScheduleHandler _aiScheduleHandler;
     private SlotUpgradeHandler _slotUpgradeHandler;
+    private SkillHandler _skillHandler;
     private UserRecord _userRecord;
     private string _curWorldId;
+    private Dictionary<int, Coroutine> _skillCoroutineDict = new Dictionary<int, Coroutine>();
     
     public GameField GameField => _gameField;
     public ulong CurUid => _uid;
@@ -71,6 +74,12 @@ public class GameManager : MonoBehaviour
     {
         add => _onEndStage += value;
         remove => _onEndStage -= value;
+    }
+    
+    public event Action OnClearStage
+    {
+        add => _onClearStage += value;
+        remove => _onClearStage -= value;
     }
     
     public event Action OnEnterLobby
@@ -152,8 +161,7 @@ public class GameManager : MonoBehaviour
     
     public void SaveUserRecord()
     {
-        var sm = Managers.Save;
-        sm.SaveRecord(_userRecord);
+        Managers.Save.SaveRecord(_userRecord);
     }
 
     public void SetCurWorldId(string argWorldId)
@@ -190,6 +198,47 @@ public class GameManager : MonoBehaviour
         _slotUpgradeHandler.Init();
     }
 
+    void RunSkillCoroutine(int argId, IEnumerator argAction)
+    {
+        if (_skillCoroutineDict.ContainsKey(argId))
+        {
+            return;
+        }
+        
+        var co = StartCoroutine(argAction);
+        _skillCoroutineDict.Add(argId, co);
+    }
+
+    void StopSkillCoroutine(int argId)
+    {
+        if (!_skillCoroutineDict.ContainsKey(argId))
+        {
+            return;
+        }
+
+        StopCoroutine(_skillCoroutineDict[argId]);
+        _skillCoroutineDict.Remove(argId);
+    }
+    
+    void StopAllSkillCoroutine()
+    {
+        foreach (var kvp in _skillCoroutineDict)
+        {
+            StopCoroutine(kvp.Value);
+        }
+        _skillCoroutineDict.Clear();
+    }
+    
+    void RunSkillHandler()
+    {
+        if (_skillHandler != null)
+        {
+            _skillHandler.Destroy();
+        }
+        _skillHandler = new SkillHandler();
+        _skillHandler.Run(RunSkillCoroutine, StopSkillCoroutine);
+    }
+    
     public bool SetRandomGrade(int argCost, int argIndex)
     {
         var hq = GameField.PlayerHq;
@@ -232,7 +281,6 @@ public class GameManager : MonoBehaviour
         _isInStage = true;
         _elapsedPlayTime = 0f;
         _stage = argStageInfo.stage;
-        _chromeReward = argStageInfo.reward;
         
         var saveInfo = _userRecord.GetStageSaveInfo(argStageInfo.stage);
         _wasAlreadyClearedBeforePlay = saveInfo != null && saveInfo.isCleared;
@@ -243,8 +291,11 @@ public class GameManager : MonoBehaviour
         var aiScheduleInfo = Managers.Data.GetAIScheduleInfo(argStageInfo.aiScheduleId);
         RunAIScheduleHandler(aiScheduleInfo);
         RunSlotUpgradeHandler();
+        RunSkillHandler();
+        var pc = GetPassiveSkillContainer();
+        _chromeBonus = 1 + pc.ChromeBonus;
         
-        _gameField.Run();
+        _gameField.Run(pc);
         
         OnEnterStage(argStageInfo.stageName);
 
@@ -271,6 +322,46 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    PassiveSkillContainer GetPassiveSkillContainer()
+    {
+        PassiveSkillContainer pc = new PassiveSkillContainer();
+
+        foreach (var id in _userRecord.EquipmentIds)
+        {
+            var info = Managers.Data.GetSkillInfo(id);
+            if (info == null)
+            {
+                continue;
+            }
+
+            if (info.type == SkillType.Active)
+            {
+                continue;
+            }
+
+            foreach (var action in info.actionList)
+            {
+                foreach (var modify in action.statModifierList)
+                {
+                    switch (modify.type)
+                    {
+                        case StatType.ProductionSpeed:
+                            pc.productionTimeBonus = modify.value;
+                            break;
+                        case StatType.Gold:
+                            pc.goldBonus = modify.value;
+                            break;
+                        case StatType.Chrome:
+                            pc.ChromeBonus = modify.value;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return pc;
+    }
+    
     void OnEnterStage(string argStageName)
     {
         Managers.Sound.PlayIngameBgm();
@@ -291,7 +382,6 @@ public class GameManager : MonoBehaviour
         resultData.isClear = argIsPlayerWin;
         resultData.stage = _stage;
         resultData.isLastStage = _isLastStage;
-        resultData.chromeReward = _chromeReward;
         
         CheckSave(resultData);
         
@@ -299,6 +389,10 @@ public class GameManager : MonoBehaviour
         popup.SetData(resultData);
         
         _onEndStage?.Invoke();
+        if (argIsPlayerWin)
+        {
+            _onClearStage?.Invoke();
+        }
     }
     
     void CheckSave(ResultData argResultData)
@@ -357,8 +451,9 @@ public class GameManager : MonoBehaviour
             UserRecord.SaveStageSaveInfo(stage, stageSaveInfo, argResultData.isLastStage);
             UserRecord.SaveStageBestRecord(stage, stageBestRecord);
         }
-        
-        UserRecord.EarnChrome(argResultData.chromeReward);
+
+        var chrome = Managers.Data.GetStageReward(stage) * _chromeBonus;
+        UserRecord.EarnChrome((int)chrome);
         
         SaveUserRecord();
     }
@@ -440,8 +535,9 @@ public class GameManager : MonoBehaviour
 
         ReRunAIScheduleHandler();
         RunSlotUpgradeHandler();
-        
-        _gameField.Run();
+
+        var pc = GetPassiveSkillContainer();
+        _gameField.Run(pc);
         
         Managers.UI.DialogHandler.ReleaseTrigger();
         Managers.UI.DialogHandler.SetTrigger();
@@ -494,5 +590,41 @@ public class GameManager : MonoBehaviour
     public void OnEntityDamaged(Vector3 argPos, float argDamage, bool argIsCritical, Team argTeam)
     {
         Managers.UI.CreateDamageText(argPos, argDamage, argIsCritical, argTeam);
+    }
+
+    public void SetEquipedSkillIds(List<int> argSkillIds)
+    {
+        _userRecord.SetEquipmentSkillId(argSkillIds);
+        SaveUserRecord();
+    }
+
+    public bool TryBuySkill(int argSkillId)
+    {
+        bool isSuccess = _userRecord.TryBuySkill(argSkillId);
+        if (isSuccess)
+        {
+            SaveUserRecord();
+        }
+        return isSuccess;
+    }
+
+    public bool TryUpgradeSkill(int argSkillId)
+    {
+        bool isSuccess = _userRecord.TryUpgradeSkill(argSkillId);
+        if (isSuccess)
+        {
+            SaveUserRecord();
+        }
+        return isSuccess;
+    }
+
+    public bool OnIngameSkillBtn(int argId, Vector2 argPos)
+    {
+        if (!_userRecord.IsEquipedSkill(argId))
+        {
+            return false;
+        }
+        
+        return _skillHandler.ExecuteSkill(argId, argPos);
     }
 }
