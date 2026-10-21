@@ -159,7 +159,7 @@ MonoBehaviour:
       kr: "\uD328\uBC30"
   - id: DefensiveMatrix
     value:
-      en: DefensiveMatrix
+      en: Defensive Matrix
       kr: "\uBCF4\uD638\uB9C9 \uC804\uAC1C"
   - id: DefensiveMatrix_desc
     value:
