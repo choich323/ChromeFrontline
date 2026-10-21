@@ -180,6 +180,11 @@ public class SkillActionExecutor
 
     void RemoveAction(SkillInfo argInfo)
     {
+        if (!Managers.Game.IsInStage)
+        {
+            return;
+        }
+        
         if (argInfo.duration <= 0)
         {
             return;
