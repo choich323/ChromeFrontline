@@ -116,7 +116,7 @@ MonoBehaviour:
       - {x: -4, y: 4}
     costList: []
     cooldown: 60
-    duration: 5
+    duration: 10
     count: 1
     hitTiming: 0
     actionList:
