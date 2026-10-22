@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UISkillChangeInfo : MonoBehaviour
 {
@@ -36,5 +37,8 @@ public class UISkillChangeInfo : MonoBehaviour
         var descDetailId = argSkillInfo.descDetailId;
         var descDetail = sm.GetString(descDetailId, argSkillInfo.GetUIParams(argTargetLevel));
         _desc.SetText(descDetail);
+        
+        var rectT = _cooltimeObj.transform as RectTransform;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectT);
     }
 }
