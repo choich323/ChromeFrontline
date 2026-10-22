@@ -452,8 +452,11 @@ public class GameManager : MonoBehaviour
             UserRecord.SaveStageBestRecord(stage, stageBestRecord);
         }
 
-        var chrome = Managers.Data.GetStageReward(stage) * _chromeBonus;
-        UserRecord.EarnChrome((int)chrome);
+        if (argResultData.isClear)
+        {
+            var chrome = Managers.Data.GetStageReward(stage) * _chromeBonus;
+            UserRecord.EarnChrome((int)chrome);
+        }
         
         SaveUserRecord();
     }
