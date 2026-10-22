@@ -18,6 +18,8 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Button _btnWorldSelect;
     [SerializeField] private TextMeshProUGUI _btnWorldSelectText;
 
+    [SerializeField] private TextMeshProUGUI _btnSkillTrainingText;
+    
     [SerializeField] private Button _btnOption;
     
     private List<UIStageNode> _nodeList = new List<UIStageNode>();
@@ -40,6 +42,7 @@ public class LobbyManager : MonoBehaviour
         string world = sm.GetString(StringID.World);
         string select = sm.GetString(StringID.Select);
         _btnWorldSelectText.SetText($"{world}\n{select}");
+        _btnSkillTrainingText.SetText(sm.GetString(StringID.SkillTraining));
         _chromeText.SetText($"{UserRecord.Chrome}");
     }
     

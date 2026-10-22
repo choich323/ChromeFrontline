@@ -97,6 +97,7 @@ public enum StringID
     
     // Skill Training
     CommanderSkillTraining,
+    SkillTraining,
     SkillUpgradeDetails,
     Second,
     NotEnoughChrome,

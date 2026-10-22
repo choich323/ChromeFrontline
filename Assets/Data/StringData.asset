@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: StringData
   m_EditorClassIdentifier: Assembly-CSharp::StringData
   stringInfoList:
+  - id: SkillTraining
+    value:
+      en: Skill\nTraining
+      kr: "\uC2A4\uD0AC \uD6C8\uB828"
   - id: Active
     value:
       en: Active
